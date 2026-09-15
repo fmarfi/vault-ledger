@@ -107,13 +107,16 @@ General/Other Expense. See `src/vault_ledger/coa.py`.
   out of scope for this MVP pass per Report 1.
 - The web app is a demo UI, not a production accountant tool -- no auth,
   no persistence beyond `corrections.csv`, single-process Flask dev server.
-- PDFs are read **first page only** -- multi-page statements aren't
-  handled. Field parsing still only understands the label conventions used
-  in our synthetic samples (`Description:`, `Amount Due:`/`Total:`,
-  `Status:`) -- a real-world PDF/image with different labels will likely
-  fail to parse even once OCR reads it correctly. This is a known,
-  separate gap (see the earlier real-receipt debugging session) from PDF
-  support itself.
+- PDFs are read **first page only** -- multi-page statements aren't handled.
+- Field parsing now has real-world fallback heuristics (company-suffix
+  vendor detection, table-header descriptions, "Total" without a colon,
+  ISO dates, receipt-language paid/unpaid inference) on top of the exact
+  synthetic-label match, validated against a real SaaS billing receipt.
+  This widens what parses successfully; it's still heuristic pattern
+  matching, not general invoice understanding -- a sufficiently different
+  real-world layout can still fail to parse even when OCR reads it
+  perfectly. Expect to keep extending these heuristics as new formats show
+  up (see the `vault-ledger-ocr-extraction` skill).
 
 ## Milestone status
 
