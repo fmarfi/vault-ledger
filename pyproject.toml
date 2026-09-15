@@ -9,6 +9,7 @@ dependencies = [
     "scikit-learn",
     "scipy",
     "pandas",
+    "flask",
 ]
 
 [project.optional-dependencies]

@@ -31,6 +31,9 @@ class PipelineResult:
     needs_review: bool
     entry: JournalEntry | None
     rejection_reason: str | None
+    amount: float
+    paid: bool
+    date: str | None
 
 
 def run_pipeline(document_path: str | Path, classifier: FusionClassifier) -> PipelineResult:
@@ -56,6 +59,9 @@ def run_pipeline(document_path: str | Path, classifier: FusionClassifier) -> Pip
         needs_review=review_flag,
         entry=entry,
         rejection_reason=rejection_reason,
+        amount=fields.amount,
+        paid=fields.paid,
+        date=fields.date,
     )
 
 
