@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && f=\"$(cat | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"tool_input\",{}).get(\"file_path\",\"\"))')\"; case \"$f\" in *src/vault_ledger/rules/*|*tests/test_entry_rules.py) .venv/bin/python -m pytest tests/test_entry_rules.py -q || { echo 'BLOCKED: entry-rules test suite failed after this edit -- the debit/credit balance invariant must never silently break (Report 1, item 5).' >&2; exit 2; } ;; esac"
+          }
+        ]
+      }
+    ]
+  }
+}
