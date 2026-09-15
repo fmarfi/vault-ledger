@@ -1,0 +1,22 @@
+[
+  {
+    "id": "R1",
+    "alternateExpression": "totalDebits is equal to totalCredits for every constructed journal entry"
+  },
+  {
+    "id": "R2",
+    "alternateExpression": "the predicted expense account must be a member of the fixed chart of accounts; if it is not, the entry is rejected rather than guessed"
+  },
+  {
+    "id": "R3",
+    "alternateExpression": "amount must be strictly greater than zero"
+  },
+  {
+    "id": "R4",
+    "alternateExpression": "if paid is true, then the credit account is Cash/Bank; if paid is false, then the credit account is Accounts Payable"
+  },
+  {
+    "id": "R5",
+    "alternateExpression": "the debit account is always the predicted expense account, never a mechanical account (Cash/Bank or Accounts Payable)"
+  }
+]
