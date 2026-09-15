@@ -16,13 +16,36 @@ yet (Report 1, "Explicitly NOT ASAP").
 - OCR: `pytesseract` wrapping the `tesseract` binary
   (`src/vault_ledger/extraction/ocr.py`). Requires `tesseract` installed via
   `brew install tesseract` on macOS -- this is a real external dependency,
-  check `which tesseract` before assuming OCR tests will run.
+  check `which tesseract` before assuming OCR tests will run. Small/low-res
+  images are auto-upscaled + contrast-corrected before OCR (`_prepare_for_ocr`)
+  since Tesseract needs roughly 300-DPI-equivalent text height.
+- PDFs: `src/vault_ledger/extraction/pdf.py`, routed to automatically from
+  `extract_raw_text()` when the path ends in `.pdf`. First page only. Tries
+  the native text layer first (via `pypdfium2`, exact and fast for
+  born-digital PDFs); if that's empty/too sparse (a scanned PDF), rasterizes
+  the page and runs it through the same OCR path as images.
 - Field parsing: regex/position heuristics, not ML
   (`src/vault_ledger/extraction/field_parser.py`). Report 1 is explicit that
   this doesn't need ML for the 3 target formats.
 - Synthetic samples: `src/vault_ledger/synthetic_samples.py` is the single
   source of truth for the 3 canonical sample documents, used by both the
   image generator (`data/synthetic/generate_documents.py`) and the tests.
+
+## Local-only OCR is a deliberate decision, not a placeholder
+
+Hosted Document AI APIs (AWS Textract, Google Document AI, Azure Document
+Intelligence) were researched and explicitly rejected for privacy reasons:
+by default they use customer document content to improve/train their
+models unless you opt out, and even opted out, the document still leaves
+the machine and is processed by a third party. That's incompatible with
+Vault Ledger's privacy stance. **Do not add a hosted OCR/Document AI call
+without raising it with the user first** -- this isn't a "we haven't gotten
+to it yet" gap, it's a considered no.
+
+Also avoid **PyMuPDF/`fitz`** for any PDF work -- it's AGPL-3.0, which would
+force either open-sourcing the whole product or a paid Artifex commercial
+license for a closed-source SaaS. `pypdfium2` (Apache-2.0/BSD) is the
+chosen PDF library for exactly this reason.
 
 ## The mandatory checkpoint: vendor/description separation
 
