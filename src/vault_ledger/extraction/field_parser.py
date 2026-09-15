@@ -43,7 +43,13 @@ def _find_labeled_value(lines: list[str], labels: tuple[str, ...]) -> str | None
 def parse_fields(raw_text: str) -> ExtractedFields:
     lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
     if not lines:
-        raise FieldParseError("no text to parse")
+        raise FieldParseError(
+            "OCR found no readable text in this image. This usually means the "
+            "source image is too low-resolution, too blurry, or too small "
+            "(well under ~900px on the short side) for Tesseract to read -- "
+            "not a bug in field parsing. Try a clearer, higher-resolution "
+            "photo or scan of the document."
+        )
 
     # Vendor: position-based heuristic -- vendor name is near the top
     # (Report 1's own suggested heuristic). Kept as its own field, never
