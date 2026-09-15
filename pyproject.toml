@@ -10,10 +10,11 @@ dependencies = [
     "scipy",
     "pandas",
     "flask",
+    "pypdfium2",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "fpdf2"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

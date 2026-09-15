@@ -7,11 +7,19 @@ for the full design rationale this scaffold implements.
 ## Pipeline
 
 ```
-document (image) -> OCR -> field parsing (vendor, description, date, amount)
+document (image or PDF) -> OCR -> field parsing (vendor, description, date, amount)
                  -> two-field fusion classifier -> account + confidence
                  -> confidence gate -> deterministic debit/credit rules
                  -> proposed journal entry
 ```
+
+PDFs (`src/vault_ledger/extraction/pdf.py`) try the native text layer first
+(exact, no OCR needed, for born-digital PDFs) and fall back to
+rasterize + OCR only for scanned/image-only PDFs. First page only. OCR
+itself is deliberately **local-only** (Tesseract) -- hosted Document AI
+APIs were researched and rejected for privacy reasons (see the
+`vault-ledger-ocr-extraction` skill); this is a considered decision, not a
+gap to fill in later.
 
 ## Setup
 
@@ -39,8 +47,9 @@ rules layer are all tested independently of it.
 ### CLI
 
 ```
-.venv/bin/python data/synthetic/generate_documents.py   # generates 3 sample doc images
+.venv/bin/python data/synthetic/generate_documents.py   # generates sample docs (png + native/scanned pdf)
 .venv/bin/python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies.png
+.venv/bin/python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies_native.pdf
 ```
 
 Prints the parsed fields, predicted account + confidence, review flag, and
@@ -98,6 +107,13 @@ General/Other Expense. See `src/vault_ledger/coa.py`.
   out of scope for this MVP pass per Report 1.
 - The web app is a demo UI, not a production accountant tool -- no auth,
   no persistence beyond `corrections.csv`, single-process Flask dev server.
+- PDFs are read **first page only** -- multi-page statements aren't
+  handled. Field parsing still only understands the label conventions used
+  in our synthetic samples (`Description:`, `Amount Due:`/`Total:`,
+  `Status:`) -- a real-world PDF/image with different labels will likely
+  fail to parse even once OCR reads it correctly. This is a known,
+  separate gap (see the earlier real-receipt debugging session) from PDF
+  support itself.
 
 ## Milestone status
 

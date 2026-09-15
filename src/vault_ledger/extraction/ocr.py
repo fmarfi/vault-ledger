@@ -36,14 +36,29 @@ def _prepare_for_ocr(image: Image.Image) -> Image.Image:
     return ImageOps.autocontrast(image)
 
 
-def extract_raw_text(image_path: str | Path) -> str:
-    """Run OCR on a single document image and return raw text.
-
-    Requires the `tesseract` binary to be installed and on PATH
-    (`brew install tesseract` on macOS).
+def ocr_image(image: Image.Image) -> str:
+    """Run OCR on an already-loaded PIL image. Shared with the PDF
+    scanned-page fallback (`extraction/pdf.py`) so both paths get the same
+    upscale/contrast preprocessing.
     """
     if pytesseract is None:
         raise RuntimeError("pytesseract is not installed")
 
-    image = _prepare_for_ocr(Image.open(image_path))
-    return pytesseract.image_to_string(image)
+    return pytesseract.image_to_string(_prepare_for_ocr(image))
+
+
+def extract_raw_text(document_path: str | Path) -> str:
+    """Run OCR on a single document (image or PDF) and return raw text.
+
+    PDFs are routed to `extraction.pdf.extract_pdf_text`, which prefers a
+    native text layer and only falls back to rasterize + OCR for scanned
+    PDFs -- see that module for details. Requires the `tesseract` binary to
+    be installed and on PATH (`brew install tesseract` on macOS).
+    """
+    document_path = Path(document_path)
+    if document_path.suffix.lower() == ".pdf":
+        from vault_ledger.extraction.pdf import extract_pdf_text
+
+        return extract_pdf_text(document_path)
+
+    return ocr_image(Image.open(document_path))
