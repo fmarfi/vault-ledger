@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vault Ledger — MVP Demo</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <div class="brand">
+      <span class="brand-mark">VL</span>
+      <span class="brand-name">Vault Ledger</span>
+    </div>
+    <span class="badge badge-muted">MVP demo · synthetic data</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>Invoice in. Journal entry out.</h1>
+    <p class="lede">
+      Vault Ledger reads a vendor invoice, utility bill, or receipt and
+      proposes a balanced, review-ready journal entry — automatically.
+      A bookkeeper confirms or corrects it in one click; corrections make
+      the model better over time.
+    </p>
+  </section>
+
+  <section class="pipeline">
+    <div class="pipeline-step">
+      <div class="step-num">1</div>
+      <div class="step-label">OCR</div>
+      <div class="step-sub">Read the document</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">2</div>
+      <div class="step-label">Field parsing</div>
+      <div class="step-sub">Vendor &amp; description, kept separate</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">3</div>
+      <div class="step-label">Classifier</div>
+      <div class="step-sub">Two-field fusion model</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">4</div>
+      <div class="step-label">Rules engine</div>
+      <div class="step-sub">Debits always = credits</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-step">
+      <div class="step-num">5</div>
+      <div class="step-label">Review</div>
+      <div class="step-sub">Confirm or correct</div>
+    </div>
+  </section>
+
+  <section class="card demo-card">
+    <h2>Try it</h2>
+    <p class="muted">Pick a sample document, or upload your own invoice / bill / receipt image.</p>
+
+    <div id="samples" class="samples"></div>
+
+    <div class="upload-row">
+      <label class="upload-btn">
+        Upload a document
+        <input id="file-input" type="file" accept="image/*" hidden>
+      </label>
+      <span id="upload-filename" class="muted"></span>
+    </div>
+  </section>
+
+  <section id="result-section" class="result-section" hidden>
+
+    <div class="card">
+      <h2>Extracted document</h2>
+      <div class="result-grid">
+        <div class="doc-preview">
+          <img id="doc-image" alt="document preview">
+        </div>
+        <dl class="field-list">
+          <dt>Vendor</dt><dd id="f-vendor"></dd>
+          <dt>Description</dt><dd id="f-description"></dd>
+          <dt>Date</dt><dd id="f-date"></dd>
+          <dt>Amount</dt><dd id="f-amount"></dd>
+          <dt>Status</dt><dd id="f-status"></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Predicted account</h2>
+      <div class="prediction-row">
+        <div>
+          <div id="predicted-account" class="predicted-account"></div>
+          <div class="confidence-bar-track">
+            <div id="confidence-bar" class="confidence-bar-fill"></div>
+          </div>
+          <div id="confidence-label" class="muted small"></div>
+        </div>
+        <div id="review-badge" class="badge"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Proposed journal entry</h2>
+      <table class="entry-table">
+        <thead>
+          <tr><th>Account</th><th>Debit</th><th>Credit</th></tr>
+        </thead>
+        <tbody id="entry-body"></tbody>
+      </table>
+      <div id="balance-check" class="muted small"></div>
+      <div id="rejection-note" class="error-note" hidden></div>
+    </div>
+
+    <div class="card correction-card">
+      <h2>Confirm or correct</h2>
+      <p class="muted">
+        Accepting logs nothing extra. Correcting the account files it to
+        <code>corrections.csv</code> so it can be folded into the next
+        training pass — no live retraining, just a periodic manual step.
+      </p>
+      <div class="correction-row">
+        <button id="accept-btn" class="btn btn-primary">Accept as shown</button>
+        <select id="account-select"></select>
+        <button id="correct-btn" class="btn btn-secondary">Correct &amp; log</button>
+      </div>
+      <div id="correction-status" class="muted small"></div>
+    </div>
+
+  </section>
+
+  <section id="loading" class="loading" hidden>Processing…</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    Fixed 8-account chart of accounts · synthetic training data · not a
+    validated accuracy figure — see README for scope and limitations.
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

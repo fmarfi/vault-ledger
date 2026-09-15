@@ -16,7 +16,7 @@ Reconstructed from Report 1's priority list and Report 3's mapping table
 | M4 | Two-field fusion classifier | `FusionClassifier.fit()` trains on labeled data with vendor+description as separate inputs; `predict()` returns `(account, confidence)`; `tests/test_fusion_classifier.py` passes, including the "unseen vendor, known description" case. |
 | M5 | End-to-end wiring | `python -m vault_ledger.pipeline <doc>` runs the full chain and prints a proposed journal entry (or a manual-review flag) for a real document. |
 | M6 | Confidence gate | `needs_manual_review()` gates on `CONFIDENCE_THRESHOLD`, wired into `pipeline.py`'s output. |
-| M7 | Correction loop | Accountant corrections get appended to `corrections.csv` (vendor, description, predicted vs. corrected account) -- manual is fine, no auto-retraining required yet. |
+| M7 | Correction loop | `record_correction()` (`src/vault_ledger/corrections.py`) appends accountant corrections to `corrections.csv`; the web app's "Correct & log" button and `apply_corrections.py` (folds the log into `labeled_transactions.csv` for the next manual retrain) both exercise it. Manual/periodic retraining is fine, no auto-retraining required. |
 | M8 | Real pilot run | Real documents from an actual SME/accountant, not synthetic data -- not started; requires real sample data first. |
 
 ## How to use this

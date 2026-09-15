@@ -36,6 +36,8 @@ rules layer are all tested independently of it.
 
 ## Running the demo
 
+### CLI
+
 ```
 .venv/bin/python data/synthetic/generate_documents.py   # generates 3 sample doc images
 .venv/bin/python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies.png
@@ -44,6 +46,20 @@ rules layer are all tested independently of it.
 Prints the parsed fields, predicted account + confidence, review flag, and
 the proposed journal entry (or the rejection reason if the rules layer
 refused it).
+
+### Web app (investor/customer-facing demo)
+
+```
+.venv/bin/python -m vault_ledger.webapp.app
+```
+
+Opens a Flask dev server at http://127.0.0.1:5050 — a single-page demo with
+the pipeline diagram, one-click sample documents (or upload your own),
+extracted fields, predicted account with a confidence bar, the proposed
+journal entry, and an accept/correct control that exercises the M7
+correction loop live. It's a thin UI layer over `vault_ledger.pipeline` --
+no separate business logic. Not a production deployment (Flask dev server,
+single in-memory classifier instance).
 
 ## Testing
 
@@ -80,11 +96,13 @@ General/Other Expense. See `src/vault_ledger/coa.py`.
 - No real pilot run (M8), no per-client custom COA, no fraud/anomaly
   detection, no live retraining, no polished correction UI -- all explicitly
   out of scope for this MVP pass per Report 1.
-- `corrections.csv` is a stub for M7's manual correction log; nothing
-  currently reads it back into training yet.
+- The web app is a demo UI, not a production accountant tool -- no auth,
+  no persistence beyond `corrections.csv`, single-process Flask dev server.
 
 ## Milestone status
 
 See `.claude/skills/vault-ledger-milestone-check/SKILL.md` for the full
-M1-M8 definitions. As of this scaffold: M1-M6 implemented and tested; M7 is
-a stub (log only, no retraining loop); M8 not started (needs real data).
+M1-M8 definitions. As of this scaffold: M1-M7 implemented and tested
+(M7's retraining step is manual/periodic by design, run via
+`python -m vault_ledger.classifier.apply_corrections`); M8 not started
+(needs real data).
