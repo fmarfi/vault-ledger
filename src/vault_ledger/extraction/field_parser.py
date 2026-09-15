@@ -2,8 +2,19 @@
 
 Report 1, item 3 -- the step flagged as most likely to silently undercut the
 two-field classifier gain. Vendor and description MUST come out as two
-separate fields, never concatenated. Regex/position heuristics are enough for
-the 3 target formats; no ML needed here.
+separate fields, never concatenated.
+
+Two tiers per field: an exact match against our synthetic samples' labeled
+convention (`Label: value`), tried first so the 3 target formats keep
+working exactly as before; then a looser real-world fallback for documents
+that don't follow that convention (table headers with no colon, "Total"
+with no label, vendor name buried in a footer rather than on line one).
+
+Honest limitation: these fallbacks are heuristics discovered from real
+documents encountered during development (see git history), not a general
+solution. They widen what parses successfully; they don't guarantee it.
+Expect to keep adding fallbacks as new real-world formats show up -- that's
+the intended way this file grows, not a sign something is broken.
 """
 
 from __future__ import annotations
@@ -16,6 +27,35 @@ _DESCRIPTION_LABELS = ("Description", "Service", "Items")
 
 _AMOUNT_PATTERN = re.compile(r"\$?\s*([0-9][0-9,]*\.[0-9]{2})")
 _DATE_PATTERN = re.compile(r"\b(\d{1,2}/\d{1,2}/\d{4})\b")
+_ISO_DATE_PATTERN = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
+
+# Fallback amount signal: a line with the standalone word "Total" (word
+# boundary excludes "Subtotal") and a currency amount on it, e.g.
+# "Total $10.00 USD*" -- common on receipts that don't use "Label:" at all.
+_TOTAL_WORD_PATTERN = re.compile(r"\btotal\b", re.IGNORECASE)
+
+# Fallback description signal: a table-style header line ("Description" or
+# "Description Amount Qty", no colon) -- take the next non-empty line as
+# the value, since that's the item row underneath the header.
+_DESCRIPTION_HEADER_PATTERN = re.compile(r"^(description|items?|service)\b", re.IGNORECASE)
+
+# Fallback vendor signal: real company names very often end in a legal
+# suffix (Inc, LLC, Corp, ...) -- e.g. a footer address block -- even when
+# the actual first line is a greeting/subject line rather than the vendor
+# name. Preferred over the first-line guess whenever it's present.
+#
+# Deliberately checks the LAST word of a line, not "does this line contain
+# the substring anywhere" -- a looser substring/regex search also matches a
+# suffix word used in ordinary prose (e.g. "...your Example Corp
+# subscription...", which is not a company-name line at all), and a real
+# fixture caught exactly that false positive during development.
+_COMPANY_SUFFIXES = {"inc", "llc", "ltd", "corp", "company", "gmbh", "plc", "co"}
+
+# Fallback paid/unpaid signal, used only when there's no explicit
+# "Status: PAID/UNPAID" line. Deliberately conservative: an unmatched
+# document defaults to unpaid (Accounts Payable) rather than guessing paid.
+_PAID_KEYWORDS = ("receipt", "payment received", "received payment", "charged to", "paid in full")
+_UNPAID_KEYWORDS = ("amount due", "balance due", "please pay", "payment due", "invoice due")
 
 
 class FieldParseError(Exception):
@@ -40,6 +80,56 @@ def _find_labeled_value(lines: list[str], labels: tuple[str, ...]) -> str | None
     return None
 
 
+def _find_vendor(lines: list[str]) -> str:
+    for line in lines:
+        words = line.split()
+        if words and words[-1].strip(".,").lower() in _COMPANY_SUFFIXES:
+            return line
+    # Fallback: vendor name is near the top (Report 1's own suggested
+    # heuristic) -- true for a business-letterhead-style document, though
+    # not for a transactional receipt where line one is a greeting/subject.
+    return lines[0]
+
+
+def _find_description_raw(lines: list[str]) -> str | None:
+    labeled = _find_labeled_value(lines, _DESCRIPTION_LABELS)
+    if labeled is not None:
+        return labeled
+
+    for i, line in enumerate(lines):
+        if _DESCRIPTION_HEADER_PATTERN.match(line) and i + 1 < len(lines):
+            return lines[i + 1]
+    return None
+
+
+def _find_amount_raw(lines: list[str]) -> str | None:
+    labeled = _find_labeled_value(lines, _AMOUNT_LABELS)
+    if labeled is not None:
+        return labeled
+
+    for line in lines:
+        if _TOTAL_WORD_PATTERN.search(line) and _AMOUNT_PATTERN.search(line):
+            return line
+    return None
+
+
+def _find_date(raw_text: str) -> str | None:
+    match = _DATE_PATTERN.search(raw_text) or _ISO_DATE_PATTERN.search(raw_text)
+    return match.group(1) if match else None
+
+
+def _infer_paid(raw_text: str, status_raw: str | None) -> bool:
+    if status_raw:
+        return status_raw.strip().upper() == "PAID"
+
+    lowered = raw_text.lower()
+    if any(keyword in lowered for keyword in _UNPAID_KEYWORDS):
+        return False
+    if any(keyword in lowered for keyword in _PAID_KEYWORDS):
+        return True
+    return False  # conservative default when genuinely ambiguous
+
+
 def parse_fields(raw_text: str) -> ExtractedFields:
     lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
     if not lines:
@@ -51,17 +141,13 @@ def parse_fields(raw_text: str) -> ExtractedFields:
             "photo or scan of the document."
         )
 
-    # Vendor: position-based heuristic -- vendor name is near the top
-    # (Report 1's own suggested heuristic). Kept as its own field, never
-    # merged with description below.
-    vendor = lines[0]
+    vendor = _find_vendor(lines)
 
-    description_raw = _find_labeled_value(lines, _DESCRIPTION_LABELS)
-    if description_raw is None:
+    description = _find_description_raw(lines)
+    if description is None:
         raise FieldParseError("could not locate a description/service/items field")
-    description = description_raw
 
-    amount_raw = _find_labeled_value(lines, _AMOUNT_LABELS)
+    amount_raw = _find_amount_raw(lines)
     if amount_raw is None:
         raise FieldParseError("could not locate an amount/total field")
     amount_match = _AMOUNT_PATTERN.search(amount_raw)
@@ -69,11 +155,10 @@ def parse_fields(raw_text: str) -> ExtractedFields:
         raise FieldParseError(f"could not parse a currency amount from '{amount_raw}'")
     amount = float(amount_match.group(1).replace(",", ""))
 
-    date_match = _DATE_PATTERN.search(raw_text)
-    date = date_match.group(1) if date_match else None
+    date = _find_date(raw_text)
 
     status_raw = _find_labeled_value(lines, ("Status",))
-    paid = bool(status_raw) and status_raw.strip().upper() == "PAID"
+    paid = _infer_paid(raw_text, status_raw)
 
     return ExtractedFields(
         vendor=vendor,

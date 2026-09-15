@@ -6,4 +6,5 @@ __pycache__/
 data/synthetic/documents/
 .DS_Store
 *.joblib
+Screenshot *.png
 

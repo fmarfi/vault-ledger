@@ -26,7 +26,15 @@ yet (Report 1, "Explicitly NOT ASAP").
   the page and runs it through the same OCR path as images.
 - Field parsing: regex/position heuristics, not ML
   (`src/vault_ledger/extraction/field_parser.py`). Report 1 is explicit that
-  this doesn't need ML for the 3 target formats.
+  this doesn't need ML for the 3 target formats. Each field tries an exact
+  match against our synthetic label convention first (`Label: value`), then
+  falls back to a looser real-world heuristic (company-suffix-based vendor,
+  table-header-based description, "Total" without a colon, ISO dates,
+  paid/unpaid inferred from receipt language) -- see the module docstring.
+  These fallbacks were built from real documents encountered during
+  development, not designed upfront; expect to keep adding to them as new
+  real-world formats show up, and add a synthetic regression test (not the
+  real file -- see below) for each one.
 - Synthetic samples: `src/vault_ledger/synthetic_samples.py` is the single
   source of truth for the 3 canonical sample documents, used by both the
   image generator (`data/synthetic/generate_documents.py`) and the tests.
@@ -80,3 +88,15 @@ is a standalone checkpoint independent of classifier accuracy, per Report 1.
   problem, not a research one.
 - Don't let extraction merge vendor and description "just this once" for
   convenience -- see the checkpoint above.
+- Don't commit a real document a user uploaded for testing into the repo or
+  the test suite, even as a fixture -- it may contain personal data (an
+  email address, a real billing account). Reproduce the tricky
+  characteristic that broke parsing in a fabricated synthetic fixture
+  instead (see the `_REALWORLD_RECEIPT_TEXT`-style fixtures in
+  `test_field_parser.py` for the pattern).
+- Don't expect the real-world fallbacks to generalize indefinitely. This is
+  heuristic pattern-matching, not a real invoice-understanding model --
+  it'll keep missing new formats. If real-world parsing failures become
+  frequent enough that heuristic patching stops keeping up, that's a signal
+  to revisit the local-only-heuristics vs. hosted-Document-AI tradeoff with
+  the user, not to keep silently bolting on more regexes.
