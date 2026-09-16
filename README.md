@@ -80,11 +80,14 @@ The 3 end-to-end OCR tests in `test_pipeline.py` auto-skip if `tesseract`
 isn't on PATH; everything else (rules layer, field parsing, classifier)
 runs without it.
 
-## Chart of accounts (fixed, 8 accounts)
+## Chart of accounts (fixed, 9 accounts)
 
 Cash/Bank, Accounts Payable, Utilities Expense, Office Supplies Expense,
 Professional Services Expense, Rent Expense, Travel & Transport Expense,
-General/Other Expense. See `src/vault_ledger/coa.py`.
+Software & Subscriptions Expense, General/Other Expense. See
+`src/vault_ledger/coa.py`. (Grown from 8 to 9 after a real SaaS billing
+receipt had no honest home in the original list -- see git history and the
+`vault-ledger-entry-rules` skill.)
 
 ## Claude Code tooling
 
