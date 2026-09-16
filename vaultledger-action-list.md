@@ -76,16 +76,44 @@ that the team is eligible/capable of delivering this).
    a customer's export before fine-tuning on it.
 
 5. **Document-extraction (OCR) reliability** for new incoming documents —
-   separate problem from categorization cold start, not yet addressed by any
-   of the training-architecture work above.
+   separate problem from categorization cold start. Now partially
+   addressed: field parsing is a 3-tier system (exact label match ->
+   real-world heuristics -> local LLM fallback via Ollama), verified to
+   correctly generalize past keyword-based heuristics on a document
+   containing none of their trigger words at all. Still open: no
+   systematic real-world document test set, so the actual hit rate across
+   real formats is unmeasured, only spot-checked against a handful of
+   examples found during development.
 
 6. **Retrain cadence** for the correction-logging loop — immediate vs.
    batched — so the accountant visibly sees the model improve.
 
 7. **Minimum hardware spec** for the on-device model (base classifier and,
-   later, the small LLM summary tier).
+   later, the small LLM summary tier). Real data point from dev work: a
+   representative low end (Intel i3-1000NG4, 8GB RAM, no GPU) could not
+   reasonably run the originally-planned 3-8B model class -- had to scale
+   down to ~1.5B (`qwen2.5:1.5b-instruct`) to get workable inference (~7-13s
+   per call on CPU alone). Treat 3-8B as an Apple-Silicon-or-better
+   assumption, not a safe default across arbitrary customer hardware.
 
-8. **Market research: USA chart-of-accounts/compliance landscape.** Turkey
+8. **Fine-tuning feasibility and tooling** (distinct from just *running* a
+   model, which item 7 covers). LoRA/QLoRA is the standard technique for
+   exactly the per-company fine-tune in decided-item 2 -- adapts a small
+   open-weight model to a customer's own historical categorized
+   transactions without full retraining. Not yet built or tested. Real
+   constraint found during dev work: fine-tuning is far more compute-heavy
+   than inference, and would be impractically slow on a CPU-only low-power
+   machine like the one above -- Apple Silicon (MLX, GPU-accelerated
+   on-device fine-tuning) or a modest GPU are the realistic targets. This
+   directly bounds item 7: if fine-tuning must also run on-device at the
+   customer's site (not just inference), the minimum hardware spec is
+   materially higher than what's needed to merely run the model.
+   Tooling not yet chosen: MLX (Apple Silicon only, fastest on-device path)
+   vs. Hugging Face `transformers`+`peft` (portable, CPU/GPU, slower) vs.
+   Unsloth (faster HF-ecosystem LoRA, GPU-oriented). Needs a decision once
+   target customer hardware is known.
+
+9. **Market research: USA chart-of-accounts/compliance landscape.** Turkey
    is researched (mandatory Tekdüzen Hesap Planı — see
    /areas/market-notes-turkey-usa.md). USA flagged as a good candidate
    market too but not yet researched — need to check whether a standardized/
