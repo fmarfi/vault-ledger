@@ -14,7 +14,7 @@ must never silently produce an unbalanced entry or a guessed account.
   in `{id, alternateExpression}` form (style borrowed from the VERAFI paper,
   Report 4 SS2).
 - `src/vault_ledger/rules/entry_rules.py` -- the code that enforces them.
-- `src/vault_ledger/coa.py` -- the fixed 8-account chart of accounts.
+- `src/vault_ledger/coa.py` -- the fixed chart of accounts (currently 9 accounts, grown once already -- check coa.py for the current list rather than trusting a hardcoded count).
 
 Keep the JSON spec and the code in sync. If you change one, update the other
 and re-run the tests below.

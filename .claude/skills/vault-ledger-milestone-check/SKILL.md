@@ -10,7 +10,7 @@ Reconstructed from Report 1's priority list and Report 3's mapping table
 
 | # | Milestone | Done when... |
 |---|---|---|
-| M1 | Fixed COA + deterministic debit/credit rules layer | `coa.py` has the 8 accounts; `entry_rules.py` enforces all 5 invariants in `rules_spec.json`; `tests/test_entry_rules.py` passes, covering paid/unpaid/zero/negative/unknown-account/mechanical-account cases. |
+| M1 | Fixed COA + deterministic debit/credit rules layer | `coa.py` has the fixed accounts; `entry_rules.py` enforces all 5 invariants in `rules_spec.json`; `tests/test_entry_rules.py` passes, covering paid/unpaid/zero/negative/unknown-account/mechanical-account cases. |
 | M2 | OCR extraction on 3 target formats | `extract_raw_text()` runs against a real (or synthetic) sample of each of the 3 formats and returns non-empty text. |
 | M3 | Field separation validated | `test_vendor_and_description_are_separate_fields` passes for all 3 formats -- this is its own checkpoint, not folded into M2. |
 | M4 | Two-field fusion classifier | `FusionClassifier.fit()` trains on labeled data with vendor+description as separate inputs; `predict()` returns `(account, confidence)`; `tests/test_fusion_classifier.py` passes, including the "unseen vendor, known description" case. |

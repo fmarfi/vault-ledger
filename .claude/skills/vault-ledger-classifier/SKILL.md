@@ -9,7 +9,7 @@ description: How to (re)train and evaluate Vault Ledger's two-field fusion class
 
 Two separate `TfidfVectorizer`s -- one for vendor, one for description --
 concatenated (`scipy.sparse.hstack`) before a single classifier
-(`LogisticRegression`) over the fixed 8-account COA. Implementation:
+(`LogisticRegression`) over the fixed COA. Implementation:
 `src/vault_ledger/classifier/fusion_classifier.py`.
 
 This exists because a reference paper (DragoNet, BTG Pactual, 150k+ real
