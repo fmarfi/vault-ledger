@@ -4,23 +4,28 @@ Report 1, item 3 -- the step flagged as most likely to silently undercut the
 two-field classifier gain. Vendor and description MUST come out as two
 separate fields, never concatenated.
 
-Two tiers per field: an exact match against our synthetic samples' labeled
-convention (`Label: value`), tried first so the 3 target formats keep
-working exactly as before; then a looser real-world fallback for documents
-that don't follow that convention (table headers with no colon, "Total"
-with no label, vendor name buried in a footer rather than on line one).
+Three tiers, in order: an exact match against our synthetic samples'
+labeled convention (`Label: value`); then a looser real-world heuristic
+fallback for documents that don't follow that convention (table headers
+with no colon, "Total" with no label, vendor name buried in a footer
+rather than on line one); then, only if both of those fail, a local LLM
+fallback (`extraction/llm_fallback.py`) that reads the whole document and
+proposes fields, with its claimed amount cross-checked against real
+currency values in the source text so it can't hallucinate a number.
 
-Honest limitation: these fallbacks are heuristics discovered from real
-documents encountered during development (see git history), not a general
-solution. They widen what parses successfully; they don't guarantee it.
-Expect to keep adding fallbacks as new real-world formats show up -- that's
-the intended way this file grows, not a sign something is broken.
+Honest limitation: tiers 1-2 are heuristics discovered from real documents
+encountered during development (see git history), not a general solution.
+They widen what parses successfully; they don't guarantee it. Tier 3
+generalizes further but is slower (seconds, not milliseconds) and requires
+Ollama running locally -- see llm_fallback.py's module docstring.
 """
 
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+
+from vault_ledger.extraction.llm_fallback import extract_fields_via_llm
 
 _AMOUNT_LABELS = ("Amount Due", "Total Amount", "Total")
 _DESCRIPTION_LABELS = ("Description", "Service", "Items")
@@ -130,17 +135,10 @@ def _infer_paid(raw_text: str, status_raw: str | None) -> bool:
     return False  # conservative default when genuinely ambiguous
 
 
-def parse_fields(raw_text: str) -> ExtractedFields:
-    lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
-    if not lines:
-        raise FieldParseError(
-            "OCR found no readable text in this image. This usually means the "
-            "source image is too low-resolution, too blurry, or too small "
-            "(well under ~900px on the short side) for Tesseract to read -- "
-            "not a bug in field parsing. Try a clearer, higher-resolution "
-            "photo or scan of the document."
-        )
-
+def _parse_fields_heuristic(lines: list[str], raw_text: str) -> ExtractedFields:
+    """Tiers 1-2: exact synthetic-label match, then real-world fallbacks.
+    Raises FieldParseError if a required field can't be located this way.
+    """
     vendor = _find_vendor(lines)
 
     description = _find_description_raw(lines)
@@ -167,3 +165,27 @@ def parse_fields(raw_text: str) -> ExtractedFields:
         amount=amount,
         paid=paid,
     )
+
+
+def parse_fields(raw_text: str) -> ExtractedFields:
+    lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
+    if not lines:
+        raise FieldParseError(
+            "OCR found no readable text in this image. This usually means the "
+            "source image is too low-resolution, too blurry, or too small "
+            "(well under ~900px on the short side) for Tesseract to read -- "
+            "not a bug in field parsing. Try a clearer, higher-resolution "
+            "photo or scan of the document."
+        )
+
+    try:
+        return _parse_fields_heuristic(lines, raw_text)
+    except FieldParseError as heuristic_error:
+        # Tier 3: local LLM, only reached when tiers 1-2 both fail. Fails
+        # closed (returns None) if Ollama isn't running/reachable or its
+        # output can't be trusted -- in which case the original, clearer
+        # heuristic error is what the caller sees, not a new one.
+        llm_result = extract_fields_via_llm(raw_text)
+        if llm_result is None:
+            raise heuristic_error
+        return ExtractedFields(**llm_result)

@@ -24,17 +24,26 @@ yet (Report 1, "Explicitly NOT ASAP").
   the native text layer first (via `pypdfium2`, exact and fast for
   born-digital PDFs); if that's empty/too sparse (a scanned PDF), rasterizes
   the page and runs it through the same OCR path as images.
-- Field parsing: regex/position heuristics, not ML
-  (`src/vault_ledger/extraction/field_parser.py`). Report 1 is explicit that
-  this doesn't need ML for the 3 target formats. Each field tries an exact
-  match against our synthetic label convention first (`Label: value`), then
-  falls back to a looser real-world heuristic (company-suffix-based vendor,
-  table-header-based description, "Total" without a colon, ISO dates,
-  paid/unpaid inferred from receipt language) -- see the module docstring.
-  These fallbacks were built from real documents encountered during
-  development, not designed upfront; expect to keep adding to them as new
-  real-world formats show up, and add a synthetic regression test (not the
-  real file -- see below) for each one.
+- Field parsing: three tiers, escalating only on failure
+  (`src/vault_ledger/extraction/field_parser.py`).
+  1. Exact match against our synthetic label convention (`Label: value`).
+  2. Real-world heuristic fallback (company-suffix-based vendor,
+     table-header-based description, "Total" without a colon, ISO dates,
+     paid/unpaid inferred from receipt language). Built from real documents
+     encountered during development, not designed upfront -- keep adding to
+     it as new formats show up, with a synthetic regression test (not the
+     real file -- see below) for each one.
+  3. Local LLM (`extraction/llm_fallback.py`), only reached when 1-2 both
+     fail. Reads the whole document and proposes fields; its claimed
+     amount is cross-checked against real currency values found by regex
+     in the source text, so it can't hallucinate a number that isn't
+     actually in the document. Requires Ollama running locally with a
+     small model pulled (see that module's docstring) -- fails closed
+     (falls through to the tier-2 error) if unavailable, never raises its
+     own exception. Genuinely generalizes past keyword-based heuristics
+     (verified on a document containing none of tier 1/2's trigger words
+     at all -- no "Total", no "Description/Items/Service" -- see git
+     history), at the cost of seconds instead of milliseconds per call.
 - Synthetic samples: `src/vault_ledger/synthetic_samples.py` is the single
   source of truth for the 3 canonical sample documents, used by both the
   image generator (`data/synthetic/generate_documents.py`) and the tests.
@@ -49,6 +58,26 @@ the machine and is processed by a third party. That's incompatible with
 Vault Ledger's privacy stance. **Do not add a hosted OCR/Document AI call
 without raising it with the user first** -- this isn't a "we haven't gotten
 to it yet" gap, it's a considered no.
+
+Tier 3's local LLM (Ollama) stays inside this same constraint -- it's the
+answer to "how do we generalize past heuristics without a hosted API," not
+an exception to the local-only rule. The deployment model is: Ollama runs
+on the company's own server/machine, the model weights are downloaded once
+(a generic public model, not customer data) and cached on local disk, and
+every extraction call after that is offline inference against the cache --
+no network call, no third party, ever, after that one-time download. The
+same local model is a plausible reuse point for account classification
+(few-shot from recent corrections instead of a hosted call) and for the
+plain-language summary feature -- not built yet, but the infrastructure
+choice here doesn't foreclose it.
+
+Model size on this dev machine (`qwen2.5:1.5b-instruct`, ~1.5B params) was
+picked down from the 3-8B range because this specific machine (Intel
+i3-1000NG4, 8GB RAM, no GPU) is close to a real lower bound for CPU-only
+inference, not just "slower than cloud." Fine-tuning (as opposed to just
+running) a model is a much heavier operation and would be impractically
+slow on hardware like this -- Apple Silicon (MLX) or a modest GPU are the
+realistic targets for an actual per-company fine-tuning step later.
 
 Also avoid **PyMuPDF/`fitz`** for any PDF work -- it's AGPL-3.0, which would
 force either open-sourcing the whole product or a paid Artifex commercial
@@ -94,9 +123,13 @@ is a standalone checkpoint independent of classifier accuracy, per Report 1.
   characteristic that broke parsing in a fabricated synthetic fixture
   instead (see the `_REALWORLD_RECEIPT_TEXT`-style fixtures in
   `test_field_parser.py` for the pattern).
-- Don't expect the real-world fallbacks to generalize indefinitely. This is
-  heuristic pattern-matching, not a real invoice-understanding model --
-  it'll keep missing new formats. If real-world parsing failures become
-  frequent enough that heuristic patching stops keeping up, that's a signal
-  to revisit the local-only-heuristics vs. hosted-Document-AI tradeoff with
-  the user, not to keep silently bolting on more regexes.
+- Don't expect tiers 1-2 to generalize indefinitely -- that's what tier 3
+  (local LLM) is for. If tier 3 itself starts missing things regularly,
+  that's a signal to revisit model size/prompt quality with the user, not
+  to reach for a hosted API (still a considered no, see above).
+- Don't let the LLM's output through unchecked. The amount-grounding check
+  in `llm_fallback.py` is load-bearing -- a small model asked to extract a
+  number will occasionally just make one up that looks plausible. Any new
+  field pulled from the LLM tier should get a similar "is this actually in
+  the source text" check before being trusted, not just whether the JSON
+  parsed.
