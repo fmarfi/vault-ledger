@@ -42,6 +42,20 @@ Everything except the real-OCR integration tests works without tesseract
 installed (see Testing below) -- field parsing, the classifier, and the
 rules layer are all tested independently of it.
 
+**Optional, for field-parsing tier 3 (local LLM fallback):**
+
+```
+brew install --cask ollama-app   # NOT `brew install ollama` -- that formula
+                                   # builds Go from source on unsupported
+                                   # platforms; the cask ships a prebuilt app
+ollama pull qwen2.5:1.5b-instruct
+```
+
+Only reached when tiers 1-2 (exact label match, real-world heuristics) both
+fail -- see the `vault-ledger-ocr-extraction` skill. Without Ollama
+installed, this tier fails closed and you just get tier 2's normal error
+message; nothing breaks.
+
 ## Running the demo
 
 ### CLI
@@ -111,15 +125,14 @@ receipt had no honest home in the original list -- see git history and the
 - The web app is a demo UI, not a production accountant tool -- no auth,
   no persistence beyond `corrections.csv`, single-process Flask dev server.
 - PDFs are read **first page only** -- multi-page statements aren't handled.
-- Field parsing now has real-world fallback heuristics (company-suffix
-  vendor detection, table-header descriptions, "Total" without a colon,
-  ISO dates, receipt-language paid/unpaid inference) on top of the exact
-  synthetic-label match, validated against a real SaaS billing receipt.
-  This widens what parses successfully; it's still heuristic pattern
-  matching, not general invoice understanding -- a sufficiently different
-  real-world layout can still fail to parse even when OCR reads it
-  perfectly. Expect to keep extending these heuristics as new formats show
-  up (see the `vault-ledger-ocr-extraction` skill).
+- Field parsing is now 3 tiers (exact label match -> real-world heuristics
+  -> local LLM fallback), validated against a real SaaS billing receipt and
+  a fabricated document containing none of the heuristic tiers' trigger
+  words at all. The LLM tier requires Ollama running locally (optional --
+  see Setup) and is slower (seconds, not milliseconds); without it, parsing
+  is limited to tiers 1-2. See the `vault-ledger-ocr-extraction` skill for
+  the full design, including the amount-grounding check that keeps the LLM
+  from hallucinating a number.
 
 ## Milestone status
 

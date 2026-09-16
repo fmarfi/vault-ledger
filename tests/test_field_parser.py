@@ -94,6 +94,29 @@ def test_paid_inferred_false_from_amount_due_language_with_no_status_line():
     assert fields.paid is False
 
 
-def test_still_raises_clearly_when_nothing_matches():
+def test_still_raises_clearly_when_nothing_matches(monkeypatch):
+    """LLM fallback (tier 3) is mocked off here -- this tests tiers 1-2
+    only. Real LLM-tier behavior is covered in test_llm_fallback.py,
+    isolated from the rest of the suite so it doesn't make every
+    heuristic-failure test slow/dependent on Ollama being installed."""
+    monkeypatch.setattr(
+        "vault_ledger.extraction.field_parser.extract_fields_via_llm", lambda text: None
+    )
     with pytest.raises(FieldParseError, match="description"):
         parse_fields("Just some unrelated text\nwith no structure at all")
+
+
+def test_llm_fallback_used_when_heuristics_fail(monkeypatch):
+    monkeypatch.setattr(
+        "vault_ledger.extraction.field_parser.extract_fields_via_llm",
+        lambda text: {
+            "vendor": "Some Vendor",
+            "description": "Some description",
+            "date": "2026-01-01",
+            "amount": 42.0,
+            "paid": True,
+        },
+    )
+    fields = parse_fields("Just some unrelated text\nwith no structure at all")
+    assert fields.vendor == "Some Vendor"
+    assert fields.amount == 42.0
