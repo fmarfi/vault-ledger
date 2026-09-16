@@ -1,6 +1,12 @@
 import pytest
 
-from vault_ledger.extraction.field_parser import FieldParseError, parse_fields
+from vault_ledger.extraction.field_parser import (
+    FieldParseError,
+    _find_amount_raw,
+    _find_date,
+    _find_vendor,
+    parse_fields,
+)
 from vault_ledger.synthetic_samples import SAMPLES
 
 
@@ -120,3 +126,72 @@ def test_llm_fallback_used_when_heuristics_fail(monkeypatch):
     fields = parse_fields("Just some unrelated text\nwith no structure at all")
     assert fields.vendor == "Some Vendor"
     assert fields.amount == 42.0
+
+
+# --- Ambiguity-detection tier-2 fixes --------------------------------------
+# Found via a real invoice (Lovable Labs): "Page 1 of 1" as line one (no
+# company-suffix line at all) picked as vendor, and "Total excluding tax
+# €20.66" picked over the real "Total €25.00" since it matched first. Fixed
+# by treating multiple plausible candidates as ambiguous (escalate, don't
+# guess) rather than hardcoding an ever-growing exclude-phrase list -- see
+# the module docstring. These test the private helpers directly since
+# they're the load-bearing logic the module docstring's design rule
+# describes; parse_fields-level coverage is above and in test_pdf_extraction.
+
+def test_vendor_ambiguous_suffix_matches_returns_none_not_first_match():
+    """A code-review finding: picking the first suffix-matching line among
+    several is the same silent-guess mistake this design rule forbids for
+    amount. A 'Bill To' line and the real vendor's footer can both carry a
+    legal suffix -- must not just take whichever appears first."""
+    lines = ["Bill To: ABC Corp", "some other line", "Remit payments to: XYZ Inc"]
+    assert _find_vendor(lines) is None
+
+
+def test_vendor_with_digit_is_not_rejected_when_unambiguous():
+    """A code-review finding: an earlier version of this fix rejected any
+    first line containing a digit at all, which would have broken every
+    legitimate vendor name with a digit in it (7-Eleven, Store 24, 3M)."""
+    assert _find_vendor(["7-Eleven", "Date: 03/14/2026"]) == "7-Eleven"
+    assert _find_vendor(["Store 24", "Date: 03/14/2026"]) == "Store 24"
+
+
+def test_vendor_rejects_page_number_boilerplate_as_first_line():
+    lines = ["Page 1 of 1", "Invoice", "Lovable Labs Incorporated"]
+    # No ambiguity here -- exactly one suffix match ("Incorporated").
+    assert _find_vendor(lines) == "Lovable Labs Incorporated"
+    # With no suffix anywhere, boilerplate must still not be trusted as vendor.
+    assert _find_vendor(["Page 1 of 1", "some content", "more content"]) is None
+
+
+def test_amount_ambiguous_total_candidates_returns_none_not_first_match():
+    lines = ["Subtotal €25.00", "Total excluding tax €20.66", "Total €25.00"]
+    assert _find_amount_raw(lines) is None
+
+
+def test_amount_single_total_candidate_still_works():
+    lines = ["Subtotal €25.00", "Total €25.00"]
+    assert _find_amount_raw(lines) == "Total €25.00"
+
+
+def test_date_parses_written_month_name_format():
+    assert _find_date("Date of issue June 18, 2026") == "June 18, 2026"
+
+
+def test_llm_escalation_does_not_override_confident_paid_heuristic(monkeypatch):
+    """A real invoice caught the LLM guessing paid=True for a document
+    explicitly reading '...due June 18, 2026 ... Pay online' -- our own
+    keyword heuristic has no ambiguity failure mode for this field and
+    should win over the LLM's guess when it has a real signal."""
+    monkeypatch.setattr(
+        "vault_ledger.extraction.field_parser.extract_fields_via_llm",
+        lambda text: {
+            "vendor": "Some Vendor",
+            "description": "Some description",
+            "date": "2026-01-01",
+            "amount": 42.0,
+            "paid": True,  # the LLM's (wrong) guess
+        },
+    )
+    text = "amount due\nJust some unrelated text\nwith no other structure"
+    fields = parse_fields(text)
+    assert fields.paid is False

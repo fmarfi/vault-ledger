@@ -28,11 +28,43 @@ yet (Report 1, "Explicitly NOT ASAP").
   (`src/vault_ledger/extraction/field_parser.py`).
   1. Exact match against our synthetic label convention (`Label: value`).
   2. Real-world heuristic fallback (company-suffix-based vendor,
-     table-header-based description, "Total" without a colon, ISO dates,
-     paid/unpaid inferred from receipt language). Built from real documents
-     encountered during development, not designed upfront -- keep adding to
-     it as new formats show up, with a synthetic regression test (not the
-     real file -- see below) for each one.
+     table-header-based description, "Total" without a colon, ISO and
+     written-month-name dates, paid/unpaid inferred from receipt language).
+     Built from real documents encountered during development, not designed
+     upfront -- keep adding to it as new formats show up, with a synthetic
+     regression test (not the real file -- see below) for each one.
+
+     **Load-bearing design rule, found via a real bug:** when a heuristic
+     finds more than one plausible candidate for a field (e.g. two lines
+     both look like "the total", or two lines both carry a company legal
+     suffix), it must treat that the same as finding zero -- raise, and let
+     tier 3 resolve it. It must NOT guess by picking whichever matched
+     first, and must NOT try to disambiguate by hardcoding a list of
+     qualifier phrases ("excluding tax", "before tax", ...) -- that list is
+     always incomplete and always one phrasing behind. Bounded, stable
+     lexical facts (currency symbols, legal-entity suffixes, month names)
+     are fine to enumerate -- they're closed sets. Open-ended judgment
+     calls about which of several plausible values is correct are not.
+     See `_find_vendor` and `_find_amount_raw` in field_parser.py, and the
+     module docstring, for the concrete pattern.
+
+     A related trap a code review caught: don't overcorrect a bad guess
+     into an overly broad rejection rule either. An early version of the
+     vendor fix rejected any candidate line containing a digit at all
+     (trying to reject "Page 1 of 1" generally) -- that would have broken
+     legitimate vendor names like "7-Eleven" or "Store 24". The fix that
+     survived review checks for actual ambiguity (multiple suffix matches)
+     and a narrow, stable boilerplate-line pattern (pagination, a bare
+     "Invoice"/"Receipt" label) instead of a content-free proxy signal.
+
+     Escalating to tier 3 for one ambiguous field must not discard a
+     *different* field's already-reliable heuristic result. `_infer_paid`
+     has no ambiguous-candidates failure mode (it's a keyword-presence
+     check, confident or not) -- `parse_fields` keeps its answer even when
+     the LLM tier ran to resolve a different field, and only defers to the
+     LLM's own paid/unpaid guess when the heuristic found no signal at all.
+     A real invoice caught the LLM getting this wrong when escalation
+     silently overrode an otherwise-correct heuristic result.
   3. Local LLM (`extraction/llm_fallback.py`), only reached when 1-2 both
      fail. Reads the whole document and proposes fields; its claimed
      amount is cross-checked against real currency values found by regex

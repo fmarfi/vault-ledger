@@ -18,6 +18,19 @@ encountered during development (see git history), not a general solution.
 They widen what parses successfully; they don't guarantee it. Tier 3
 generalizes further but is slower (seconds, not milliseconds) and requires
 Ollama running locally -- see llm_fallback.py's module docstring.
+
+A design rule that came out of a real bug (see git history: a real invoice
+had both "Total excluding tax" and "Total" lines; naively taking whichever
+matched first picked the wrong one): when a tier-2 heuristic finds more
+than one plausible candidate for a field, it must NOT guess between them
+by hardcoding a list of disambiguating phrases ("excluding", "before tax",
+...) -- that list is always incomplete and always one phrasing behind.
+Instead, treat multiple candidates the same as zero: raise, and let tier 3
+resolve it, since the LLM reads the whole document rather than pattern-
+matching one line at a time. Bounded, stable lexical facts (currency
+symbols, legal-entity suffixes, month names) are fine to enumerate --
+they're closed sets. Open-ended judgment calls about which of several
+plausible values is correct are not, and should escalate instead.
 """
 
 from __future__ import annotations
@@ -33,6 +46,13 @@ _DESCRIPTION_LABELS = ("Description", "Service", "Items")
 _AMOUNT_PATTERN = re.compile(r"\$?\s*([0-9][0-9,]*\.[0-9]{2})")
 _DATE_PATTERN = re.compile(r"\b(\d{1,2}/\d{1,2}/\d{4})\b")
 _ISO_DATE_PATTERN = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
+_MONTH_NAMES = (
+    "January|February|March|April|May|June|July|August|September|October|November|December"
+    "|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
+)
+_MONTH_NAME_DATE_PATTERN = re.compile(
+    rf"\b(({_MONTH_NAMES})\.?\s+\d{{1,2}},?\s+\d{{4}})\b", re.IGNORECASE
+)
 
 # Fallback amount signal: a line with the standalone word "Total" (word
 # boundary excludes "Subtotal") and a currency amount on it, e.g.
@@ -54,7 +74,16 @@ _DESCRIPTION_HEADER_PATTERN = re.compile(r"^(description|items?|service)\b", re.
 # suffix word used in ordinary prose (e.g. "...your Example Corp
 # subscription...", which is not a company-name line at all), and a real
 # fixture caught exactly that false positive during development.
-_COMPANY_SUFFIXES = {"inc", "llc", "ltd", "corp", "company", "gmbh", "plc", "co"}
+_COMPANY_SUFFIXES = {
+    "inc", "incorporated", "llc", "ltd", "limited", "corp", "corporation",
+    "company", "co", "gmbh", "plc",
+}
+
+# A narrow, stable structural pattern -- how documents render pagination or
+# a bare document-type label -- not an open-ended list of content
+# phrasings. There are only so many ways to write "page 1 of 1"; this
+# doesn't have the whack-a-mole problem an open-ended phrase list would.
+_BOILERPLATE_LINE_PATTERN = re.compile(r"^(page\s+\d+\s+of\s+\d+|invoice|receipt)$", re.IGNORECASE)
 
 # Fallback paid/unpaid signal, used only when there's no explicit
 # "Status: PAID/UNPAID" line. Deliberately conservative: an unmatched
@@ -85,14 +114,27 @@ def _find_labeled_value(lines: list[str], labels: tuple[str, ...]) -> str | None
     return None
 
 
-def _find_vendor(lines: list[str]) -> str:
-    for line in lines:
-        words = line.split()
-        if words and words[-1].strip(".,").lower() in _COMPANY_SUFFIXES:
-            return line
-    # Fallback: vendor name is near the top (Report 1's own suggested
-    # heuristic) -- true for a business-letterhead-style document, though
-    # not for a transactional receipt where line one is a greeting/subject.
+def _find_vendor(lines: list[str]) -> str | None:
+    suffix_matches = [
+        line
+        for line in lines
+        if (words := line.split()) and words[-1].strip(".,").lower() in _COMPANY_SUFFIXES
+    ]
+    if len(suffix_matches) == 1:
+        return suffix_matches[0]
+    if len(suffix_matches) > 1:
+        # More than one candidate company name (e.g. a "Bill To: ... Inc"
+        # line as well as the actual vendor's "... LLC" line) -- picking
+        # whichever happened to match first is exactly the kind of silent
+        # guess this module's docstring says not to make. Escalate instead.
+        return None
+
+    # No company-suffix line found. Fallback: vendor name is near the top
+    # (Report 1's own suggested heuristic) -- true for a business-
+    # letterhead-style document, though not for a transactional receipt
+    # where line one is a greeting/subject or generic document metadata.
+    if _BOILERPLATE_LINE_PATTERN.match(lines[0]):
+        return None
     return lines[0]
 
 
@@ -112,18 +154,38 @@ def _find_amount_raw(lines: list[str]) -> str | None:
     if labeled is not None:
         return labeled
 
-    for line in lines:
-        if _TOTAL_WORD_PATTERN.search(line) and _AMOUNT_PATTERN.search(line):
-            return line
+    candidates = [
+        line for line in lines if _TOTAL_WORD_PATTERN.search(line) and _AMOUNT_PATTERN.search(line)
+    ]
+    if len(candidates) == 1:
+        return candidates[0]
+    # Zero candidates: not found, nothing to guess from. More than one:
+    # genuinely ambiguous -- a real invoice had both "Total excluding tax
+    # €20.66" and "Total €25.00", and picking one via a hardcoded list of
+    # qualifier phrases ("excluding", "before tax", ...) is exactly the
+    # whack-a-mole this project keeps running into: infinite possible
+    # phrasings, always missing the next one. Refuse to guess instead and
+    # let the caller escalate to the LLM tier, which reads the whole
+    # document and correctly grounds to the real total (verified).
     return None
 
 
 def _find_date(raw_text: str) -> str | None:
-    match = _DATE_PATTERN.search(raw_text) or _ISO_DATE_PATTERN.search(raw_text)
+    match = (
+        _DATE_PATTERN.search(raw_text)
+        or _ISO_DATE_PATTERN.search(raw_text)
+        or _MONTH_NAME_DATE_PATTERN.search(raw_text)
+    )
     return match.group(1) if match else None
 
 
-def _infer_paid(raw_text: str, status_raw: str | None) -> bool:
+def _infer_paid(raw_text: str, status_raw: str | None) -> bool | None:
+    """Returns None when there's no confident signal either way -- distinct
+    from a real False, so callers can tell "genuinely unpaid" apart from
+    "we don't actually know" (see parse_fields: this heuristic has no
+    ambiguous-candidates failure mode the way vendor/amount do, so its
+    confident answers should be trusted even when the LLM tier ran for a
+    different field)."""
     if status_raw:
         return status_raw.strip().upper() == "PAID"
 
@@ -132,7 +194,7 @@ def _infer_paid(raw_text: str, status_raw: str | None) -> bool:
         return False
     if any(keyword in lowered for keyword in _PAID_KEYWORDS):
         return True
-    return False  # conservative default when genuinely ambiguous
+    return None
 
 
 def _parse_fields_heuristic(lines: list[str], raw_text: str) -> ExtractedFields:
@@ -140,6 +202,8 @@ def _parse_fields_heuristic(lines: list[str], raw_text: str) -> ExtractedFields:
     Raises FieldParseError if a required field can't be located this way.
     """
     vendor = _find_vendor(lines)
+    if vendor is None:
+        raise FieldParseError("could not confidently determine the vendor")
 
     description = _find_description_raw(lines)
     if description is None:
@@ -157,6 +221,8 @@ def _parse_fields_heuristic(lines: list[str], raw_text: str) -> ExtractedFields:
 
     status_raw = _find_labeled_value(lines, ("Status",))
     paid = _infer_paid(raw_text, status_raw)
+    if paid is None:
+        paid = False  # conservative default when genuinely ambiguous
 
     return ExtractedFields(
         vendor=vendor,
@@ -188,4 +254,17 @@ def parse_fields(raw_text: str) -> ExtractedFields:
         llm_result = extract_fields_via_llm(raw_text)
         if llm_result is None:
             raise heuristic_error
+
+        # Escalating for one field (e.g. an ambiguous amount) shouldn't
+        # throw away a field our own heuristic already handles reliably.
+        # _infer_paid has no ambiguous-candidates failure mode -- it's a
+        # keyword-presence check, either confident or not -- so trust it
+        # over the LLM's guess whenever it found a real signal. A real
+        # invoice caught the LLM getting this wrong (said paid=True for a
+        # document explicitly reading "€25.00 due ... Pay online").
+        status_raw = _find_labeled_value(lines, ("Status",))
+        confident_paid = _infer_paid(raw_text, status_raw)
+        if confident_paid is not None:
+            llm_result = {**llm_result, "paid": confident_paid}
+
         return ExtractedFields(**llm_result)
