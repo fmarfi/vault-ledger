@@ -1,0 +1,76 @@
+# Statistical audit, draw seed 1234 (stage 4 gate)
+
+Scope: `data/synthetic/generated/{transactions,metadata,train,val,test}_1234.csv`, manifest, against `spec/generative_spec.yaml`. Read-only; nothing regenerated. All thresholds are heuristics from CREW.md / the spec (not published standards) and are labelled as such. Synthetic-only: nothing here is a real-world accuracy figure.
+
+## Verdict: FAIL (conditional; see fixes). Not cleared for training use as is.
+
+Leakage, duplication and the row-level statistics are clean. Three things block use: (a) the top-10 vendor gate fails for General/Other when measured over the whole class, and the Zipf exponent is far from the spec, (b) vocabulary exclusivity is over the 30% gate in 5 of 7 classes, (c) the descriptions carry the label far more than the vendor does, and the fusion model overfits vendor features (diagnostic 10 below). Several spec-vs-realised gaps are WARN.
+
+## Results
+
+| # | Check | Value | Threshold (heuristic) | Result |
+|---|---|---|---|---|
+| 1a | Class mix chi-square vs prior x 4000 | counts 1080/880/560/440/440/360/240 exactly = prior x 4000; chi2 = 0.0, p = 1.0 | p > 0.01; min count met (all >= 240) | PASS (formal) |
+| 1b | Quota realism | zero sampling variance; a multinomial draw would give a chi2 near 6 (df 6) | should look sampled | WARN |
+| 2a | Impossible amounts | 0 values <= 0, 0 NaN, min 1.08, max 4982.67 | none | PASS |
+| 2b | KS statistic vs spec mixture (Monte Carlo n=40k from spec; statistic only, p uninformative) | Software 0.109, Travel 0.084, Office 0.028, Utilities 0.123, General 0.058, Professional 0.153, Rent 0.152 | none fixed; I flag > 0.10 | WARN (Prof, Rent, Util, Software) |
+| 2c | Point-mass accounts | Software: 45 distinct values, 60.7% on the 10 spec price points (spec-implied 56.6%), but q95 = 199 vs spec 612 (seat/annual tail thin). Rent: 51 vendors, median 1 distinct amount per vendor (per_vendor_constant honoured), tier mix 55/42% flex/office vs 45/55% spec | matches structure | WARN (Software tail, Rent tier mix) |
+| 2d | Utility credit notes | 0 negative utility amounts; spec implies about 5% of Utilities negative (settlement mu 0, sd 180). Emitted as positive (declared deviation). Min 12.5, so the low tail is also missing | as spec | WARN (declared) |
+| 2e | Professional KvK constant 85.15 | 3.1% of class vs 8% spec | as spec | WARN |
+| 3a | Realised Zipf exponent, canonical vendor, log-log OLS over all ranks | Software 1.12, Travel 1.16, Office 0.98, Util 0.91, General 0.93, Prof 0.84, Rent 0.67 (MLE, truncated Zipf: 0.43-0.88) | spec s = 1.1, tolerance unstated; I use +/-0.2 | FAIL (5 of 7 outside; MLE is well below 1.1 everywhere) |
+| 3b | Top-5 / top-10 vendor share, canonical, all rows | top-10: Software 0.321, Travel 0.330, Office 0.364, Util 0.330, General **0.514**, Prof 0.331, Rent 0.321. top-5 0.18-0.36 | top-10 < 0.40 in every class | FAIL (General/Other; the manifest's 0.331 counts clear rows only, but the gate says class) |
+| 3c | Same by raw vendor string (after noise/aliasing) | top-10 0.12-0.19 | < 0.40 | PASS |
+| 3d | One-off vendors | 26-35% of canonical vendors (spec 30%); 54-75% of raw strings | ~30% | PASS (canonical) |
+| 3e | Spec self-consistency | pure Zipf s=1.1 over K=50/70/110 vendors puts 0.70/0.66/0.62 in the top 10; spec s=1.1 and top-10 < 0.40 cannot both hold. Generator chose the gate. | consistent spec | FAIL (spec) |
+| 4a | Vendor / normalised vendor / canonical group overlap across splits | 0 / 0 / 0 for train-val, train-test, val-test | 0 | PASS |
+| 4b | Near-duplicate normalised vendor+description pairs across splits | exact-normalised 0; char-ngram cosine >= 0.9: val 0/600, test 4/599 (0.7%); vendor-only fuzzy >= 0.9: 0 | ~0 | PASS (4 test rows are generic-description twins) |
+| 4c | Description-level overlap | 53/48/20 exact strings shared (train-val/train-test/val-test); 10.3% of val rows and 9.3% of test rows have an exact description in train (18-20% after masking digits). 9 of 48 shared train-test strings map to more than one account. | generic strings shared on purpose; monitor | PASS with note (this is the mechanism that lets description-only reach 0.77 on test) |
+| 5a | Exact dup (vendor, description) | 0.0% | < 2% | PASS |
+| 5b | Exact dup (vendor, description, amount, date) | 0.0% | < 2% | PASS |
+| 5c | Dup after normalisation (case/digits masked) | (vendor, desc) 4.3%; (canonical vendor, desc) 5.5% | < 2% | WARN (the "0.0" in the manifest only means byte-identical) |
+| 5d | Repair artifact | 86 rows end in " MM/YYYY" or " DD-MM" that equals the row's own date (82 repairs plus a few natural). 2.15% of rows, class-skewed: Software 40, Utilities 14, Rent 9 (47% of tagged rows from Software vs 27% of the data). Tag sits after paid/terms markers in some rows, and sometimes contradicts the text ("Tweede kwartaal 2026 - factuur 8231 12/2025"). 7 other rows have a non-matching date-like ending. | no artifact on > 10% rows | WARN (small but detectable, and label-correlated) |
+| 6 | Keyword shortcut, independent stem list (below); description-only own-class keyword hit | overall 35.0%; per class: Software 49.1, Travel 21.9, Office 36.6, Util 26.4, General 28.0, Prof 31.9, Rent 49.6. Including vendor text: 32.5-61.2%. Other-class leakage of the same stems 0.7-2.8%. Any-class keyword 38.7%, keyword-free 61.3% | band 45-65% keyword-bearing, 30-45% keyword-free | WARN (below band; not trivially easy, but off spec; my list is coarse and may undercount) |
+| 7a | Hard/ambiguous share | 14.0% (hard 7.5%, ambiguous 6.5%) | 10-15% | PASS |
+| 7b | Escalate share of hard rows | 46.4% (260/560) vs 38% headline. Spec's own case weights x escalate shares imply 52%, so the 38% figure is internally inconsistent; realised sits between. Per case: bol 27% (spec ~40), amazon 36% (~40), coolblue 43% (~50), AH/HEMA 64% (~60), Google 66% (spec ~100), fuel 52% (~50), generic 100%, disagree 0% | ~38% | WARN (spec arithmetic error; Google-ads escalate 66% vs 100% specified) |
+| 7c | Escalate labelling | 260 escalate rows = 6.5% of all; only 60 have true_account != General, so 200 escalate rows are indistinguishable from ordinary General rows by label | n/a | note |
+| 8 | Noise rates (metadata `noise_applied`, n=4000, z vs spec) | typo 6.25 (6), abbreviation **5.35 (10), z = -9.8**, casing 19.5 (20), nl_en_mix 11.95 (12), ocr 4.42 (5), truncation 7.45 (8), bank prefix 29.4 (30), terminal code 9.75 (10), legal suffix 23.9 (25), missing/generic 3.5 (4). Independent regex for abbreviations with a dot (fact., abon., ...) hits 1.85% of rows. | within about 3 sigma of spec | FAIL (abbreviation only; rest PASS, though 8 of 10 sit slightly below spec, consistent with ops that no-op when their pattern is absent) |
+| 8b | Casing visible in text | 5.8% of descriptions all upper, 2.7% all lower | spec 20% casing rows (UPPER 50% of them = 10%) | WARN (vendor field may carry most casing; not resolved) |
+| 9 | Top-20 TF-IDF tokens per class exclusive to that class (vendor + description tokens, all rows) | General 0.20, Software 0.30, Util 0.35, Prof 0.45, Rent 0.45, Office 0.55, Travel 0.65; mean 0.42. On train only: mean 0.45, max 0.65. Description-only: mean 0.46 (Office 0.75); vendor-only: mean 0.65. | <= 0.30 per class | FAIL (5 of 7 classes) |
+| 10 | Diagnostic (NOT a result): TF-IDF (char vendor + word description) + LogisticRegression, trained on train | TRAIN resubstitution acc 1.000 / macro-F1 1.000. Vendor-disjoint VAL 0.622 / 0.574, TEST 0.589 / 0.559. Random (leaky) row split 0.980 / 0.978. Test by class: General 0.21, Utilities 0.34, Office 0.56, Software 0.62, Prof 0.63, Rent 0.67, Travel 0.85. Vendor-only test 0.301, description-only test 0.771 | in-domain <= 0.98 (CREW); vendor-disjoint within 10 pts of non-disjoint | FAIL on the CREW disjoint-vs-nondisjoint gap (0.98 vs 0.59 = 39 pts). Diagnostic only. |
+
+Keyword stems used (independent of the corpus checker; regex on lower-cased description):
+- Software: subscri, abonnement, abon, licen[cs]e, licentie, saas, software, seat(s), workspace, hosting, domain, domein, cloud, plan, pro
+- Travel: parking, parkeer, fuel, brandstof, benzine, diesel, tank, ov, reis, ticket, treinkaart, taxi, ritje, ride, flight, vlucht, charging, laden, kwh, transit, trip, fare, check-in, tarief
+- Office: toner, inkt, ink, paper, papier, kantoor, stationery, pennen, pen, map, folder(s), ordner, printer, whiteboard, markers, batterij, stekker, office, bureau, envelop, notitie, labels, cartridge
+- Utilities: electric, elektr, energie, energy, stroom, gas, water, internet, mobiel, mobile, telecom, kwh, m3, verbruik, usage, sim, voorschot, meter, fibre, glasvezel, broadband
+- General: diversen, misc, kantine, bloem, flowers, lunch, snack, koffie, coffee, groceries, boodschap, tosti, gift, cadeau, representatie, relatiegeschenk, advert, ads, campaign, tuin, verf
+- Professional: advies, consult, accountant, jaarrekening, notaris, akte, legal, juridisch, advocaat, law, honorarium, uren, hours, boekhoud, kvk, belasting, tax, retainer, zaak, declaratie, bookkeep, audit, fee
+- Rent: huur, rent, lease, verhuur, flexwerk, desk, kantoorruimte, workspace, bedrijfsruimte, praktijkruimte, servicekosten, office space, coworking, unit, maandhuur, instalment
+
+## Probe answers
+
+1. **Class mix.** chi2 = 0, p = 1. A perfect match is itself a signal: under real sampling of 4000 rows the statistic would be around 6 (df 6), and p = 1.0 has probability near zero. The counts are deterministic quotas (prior x 4000). For training a classifier this is mostly harmless: fixed quotas remove class-prior noise and the priors are assumptions anyway. It does matter in two ways: the learned prior is exactly the assumed one (there is no real information in it), and any prior-shift test or calibration on this data cannot show variance. Real books never look like this; monthly counts per category vary. Do not present the mix as a sampled distribution.
+2. **Amounts.** See 2b-2e. Best fits: Office (0.028), General (0.058). Worst: Professional 0.153 and Rent 0.152. Rent differs because 51 vendors each draw one base value (tier mix in a small vendor sample), so a KS test against the row-level mixture is expected to be poor; that is not a defect. Utility credit notes are all positive, as declared; combined with the missing near-zero values this removes the one class-defining sign signal. Software q95 is 199 vs spec 612: seats x annual x price tails are under-realised.
+3. **Vendors.** Realised exponent is about 1.0 by log-log OLS over all ranks on some classes and 0.4-0.9 by MLE; head-only fits are 0.25-0.84. Spec s = 1.1 is not reproduced. Spec and gate are mutually inconsistent (3e); the generator flattened the head to satisfy the gate, as it says. General/Other still breaches 0.40 over the whole class because hard-case brands (Albert Heijn, HEMA, Shell shop) are added on top of the flattened clear rows.
+4. **Leakage.** Zero at every vendor level; 4 test rows above 0.9 char cosine to a train row (generic twins). Description sharing is 9-10% of held-out rows by exact string, 18-20% after digit masking; shared strings are label-ambiguous in 9 of 48 cases, so they are not a clean shortcut.
+5. **Duplication.** Zero exact. Normalised dups 4.3-5.5% (WARN). The period-tag repair is detectable: date-equal suffixes on 2.15% of rows, concentrated in recurring classes.
+6. **Keyword shortcut.** Description-only hit rate 35% overall, below the 45-65% band. Vendor text adds the rest (up to 61%), i.e. the label is carried partly by vendor names.
+7. **Difficulty.** In band. Escalate realised 46% vs 38% specced; the spec's own arithmetic gives 52%.
+8. **Noise.** Only abbreviation is off, and the generator's 5.4% is confirmed (5.35%); an independent dotted-abbreviation regex sees 1.85%.
+9. **Exclusivity.** Mostly vendor names (bdo, vodafone, easypark, oxxio) and class nouns (toner, huur, printer). Vendor tokens are exclusive by construction when vendors are per class; the gate counts them, so it fails.
+10. **Sanity.** Diagnostic only. The in-domain (train, resubstitution) score is 1.000 vs 0.589 on vendor-disjoint test; random row split 0.980. Description-only beats the fusion model on test (0.771 vs 0.589), so the vendor features overfit train vendors: vendor-disjointness is doing its job, but the vendor field currently has little transferable signal.
+
+## Fixes for each FAIL / WARN (responsible parameter, then fix)
+
+- **3a/3b/3e Zipf and top-10 (spec `vendor_frequency.exponent_s`, `top10_vendor_share_max`; generator head flattening; hard-case rows):** the spec asks for the impossible. Fix the spec: choose either s about 0.6-0.8 (matches the realised MLE) with the 0.40 gate, or drop the gate for the head. Measure the gate on all rows (not clear rows only) in the manifest, and cap hard-case rows in General/Other (`hard_cases` albert_heijn_hema, fuel_station_shop weights) or count their vendors into the flattening.
+- **9 Exclusivity (corpus vendor lists per account, description templates):** allow shared vendors across accounts (multi-service brands and generic "bureau/ICT/consultancy" vendors) and add class-neutral vocabulary to description templates; mix vendor tokens across classes. Report the gate on description tokens only, or separate vendor tokens explicitly.
+- **8 Abbreviation (noise op `abbreviation_nl_en` in `apply_noise`, spec rate 0.10):** the op only fires when a substitutable word exists. Either lower the spec rate to about 0.055 or apply the op to a wider word list / retry until it fires.
+- **2 Amounts (Software `seats`/`annual_multiplier`, Rent `tiers`, Professional KvK weight, utilities `energy_annual_settlement`):** apply the seat/annual multiplier at the specified rate; sample rent tiers per vendor stratified 45/55; fix the KvK constant share; emit credit notes as negative amounts or change the spec to say positive. Only the spec says negative, so the current deviation is a decision for the spec owner.
+- **5c/5d Repairs (generator dedup repair, ~82 rows):** vary the appended text (invoice number, reference, a different template) rather than a date, and de-duplicate at the template stage. Never place the tag after paid/terms markers.
+- **6 Keyword band (`keyword_shortcut_band`, corpus keyword-free fraction 0.33):** re-check with the corpus checker's lexicon; my independent list finds 35-39% keyword-bearing in descriptions, below 45%. Raise keyword-bearing descriptions by about 10 points if the spec band is meant to apply to descriptions.
+- **7b Escalate (`overall_escalate_fraction_of_hard` = 0.38):** correct the spec to the arithmetic of its own case table (0.52) or change the case shares; make google_ads escalate 100% as specified (realised 66%).
+- **1b Quotas:** if the exact quotas are intentional, state so in the spec; otherwise sample the class counts from a multinomial with the fixed seed.
+
+## Recommendation
+
+Do not merge into training as is. Before use: fix the top-10/Zipf spec contradiction and the General/Other breach, bring vocabulary exclusivity to <= 30% by sharing vendors/terms across classes, and correct the abbreviation rate. The WARNs (amount tails, credit notes, repair artifact, keyword band) should be fixed or documented. Re-run seed 1234 plus at least one other seed, then re-audit.
