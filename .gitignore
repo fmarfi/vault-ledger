@@ -8,3 +8,9 @@ data/synthetic/documents/
 *.joblib
 Screenshot *.png
 
+
+# runtime data + real documents dropped in for testing (private, never commit)
+data/ledger.csv
+data/pending_queue.csv
+data/accounts.json
+/*.pdf
