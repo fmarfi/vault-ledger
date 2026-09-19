@@ -12,6 +12,8 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+from vault_ledger.userdata import resolve
+
 CORRECTIONS_PATH = Path(__file__).resolve().parents[2] / "corrections.csv"
 FIELDNAMES = ["vendor", "description", "predicted_account", "corrected_account", "amount", "date"]
 
@@ -23,9 +25,10 @@ def record_correction(
     corrected_account: str,
     amount: float,
     date: str | None,
-    path: str | Path = CORRECTIONS_PATH,
+    path: str | Path | None = None,
 ) -> None:
-    path = Path(path)
+    path = resolve("corrections.csv", CORRECTIONS_PATH, path)
+    path.parent.mkdir(parents=True, exist_ok=True)
     is_new = not path.exists()
     with path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)

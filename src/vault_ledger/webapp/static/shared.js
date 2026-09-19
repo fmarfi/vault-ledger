@@ -42,10 +42,29 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
-async function fetchJson(url, options) {
-  const res = await fetch(url, options);
+function csrfToken() {
+  const meta = document.querySelector('meta[name="csrf-token"]');
+  return meta ? meta.content : "";
+}
+
+// Every state-changing request carries the per-session CSRF token; the server
+// rejects it with 403 otherwise. 401 means the session ended -> sign in again.
+async function fetchJson(url, options = {}) {
+  const method = (options.method || "GET").toUpperCase();
+  const headers = Object.assign({}, options.headers || {});
+  if (method !== "GET" && method !== "HEAD") headers["X-CSRF-Token"] = csrfToken();
+  const res = await fetch(url, Object.assign({}, options, { headers, credentials: "same-origin" }));
   const body = await res.json().catch(() => ({}));
+  if (res.status === 401) {
+    if (!window.location.pathname.startsWith("/login")) {
+      window.location.href = "/login?next=" + encodeURIComponent(window.location.pathname + window.location.search);
+    }
+    throw new Error("Your session has ended. Please sign in again.");
+  }
   if (!res.ok) {
+    if (res.status === 403) throw new Error("This page is out of date or your session expired. Reload the page and try again.");
+    if (res.status === 429) throw new Error("Too many requests. Please wait a moment and try again.");
+    if (res.status === 413) throw new Error(body.error || "That file is too large.");
     throw new Error(body.error || res.statusText);
   }
   return body;
@@ -77,4 +96,4 @@ async function showHardwareBannerIfNeeded() {
     banner.hidden = false;
   } catch (e) { /* preflight is advisory; never block the page */ }
 }
-showHardwareBannerIfNeeded();
+if (document.body.dataset.auth === "1") showHardwareBannerIfNeeded();

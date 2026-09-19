@@ -29,13 +29,21 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+from vault_ledger.userdata import current_user_id, lock_for, resolve
+
 PENDING_PATH = Path(__file__).resolve().parents[2] / "data" / "pending_queue.csv"
-# One lock for every read-modify-write on the queue file, and for the
-# confirm flow in app.py (get -> post to ledger -> remove) so two tabs or a
-# double-click can't both post the same item. RLock: confirm holds it while
-# calling remove_pending, which takes it again. Single-process only, which
-# matches the on-device, single-user deployment.
-QUEUE_LOCK = threading.RLock()
+
+
+def queue_lock() -> threading.RLock:
+    """The lock for the current user's queue (one RLock per user id, so users
+    don't block each other). It guards every read-modify-write on the queue
+    file and the confirm flow in app.py (get -> post to ledger -> remove) so
+    two tabs or a double-click can't both post the same item. RLock: confirm
+    holds it while calling remove_pending, which takes it again. In-process
+    only: run ONE server process (threads are fine)."""
+    return lock_for(current_user_id())
+
+
 FIELDNAMES = [
     "id",
     "queued_at",
@@ -65,13 +73,13 @@ def enqueue(
     needs_review: bool,
     rejection_reason: str | None,
     entry_json: str,
-    path: str | Path = PENDING_PATH,
+    path: str | Path | None = None,
 ) -> str:
     """Persist a processed-but-unconfirmed result and return its id."""
-    path = Path(path)
+    path = resolve("pending_queue.csv", PENDING_PATH, path)
     path.parent.mkdir(parents=True, exist_ok=True)
     item_id = uuid.uuid4().hex[:12]
-    with QUEUE_LOCK, path.open("a", newline="") as f:
+    with queue_lock(), path.open("a", newline="") as f:
         is_new = f.tell() == 0
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         if is_new:
@@ -96,27 +104,27 @@ def enqueue(
     return item_id
 
 
-def read_pending(path: str | Path = PENDING_PATH) -> list[dict]:
-    path = Path(path)
+def read_pending(path: str | Path | None = None) -> list[dict]:
+    path = resolve("pending_queue.csv", PENDING_PATH, path)
     if not path.exists():
         return []
     with path.open(newline="") as f:
         return list(csv.DictReader(f))
 
 
-def get_pending(item_id: str, path: str | Path = PENDING_PATH) -> dict | None:
+def get_pending(item_id: str, path: str | Path | None = None) -> dict | None:
     for row in read_pending(path):
         if row["id"] == item_id:
             return row
     return None
 
 
-def remove_pending(item_id: str, path: str | Path = PENDING_PATH) -> bool:
+def remove_pending(item_id: str, path: str | Path | None = None) -> bool:
     """Remove one item (confirmed, corrected, or dismissed). Returns False
     if the id wasn't found -- lets callers 404 instead of silently no-op'ing
     on a stale id (e.g. two tabs racing to confirm the same document)."""
-    path = Path(path)
-    with QUEUE_LOCK:
+    path = resolve("pending_queue.csv", PENDING_PATH, path)
+    with queue_lock():
         rows = read_pending(path)
         remaining = [row for row in rows if row["id"] != item_id]
         if len(remaining) == len(rows):

@@ -76,8 +76,6 @@ refused it).
 .venv/bin/python -m vault_ledger.webapp.app
 ```
 
-Opens a Flask dev server at http://127.0.0.1:5050 with four pages
-
 Opens a Flask dev server at http://127.0.0.1:5050 with three pages
 (`templates/base.html` + `static/style.css`'s token system are shared
 across all of them -- see that CSS file's `:root` to change the whole
@@ -113,6 +111,99 @@ under the recommended 16 GB RAM (`hardware.py`).
 It's a thin UI layer over `vault_ledger.pipeline` and `vault_ledger.ledger`
 -- no separate business logic. Not a production deployment (Flask dev
 server, single in-memory classifier instance).
+
+## Accounts, sessions and running it for other people
+
+The web app requires a login. Every user gets a private directory
+`data/users/<random id>/` holding their own `ledger.csv`, `pending_queue.csv`,
+`corrections.csv`, `accounts.json`, `backups/` and `training.csv`. Paths are
+built from the random id only, never from the username, and the storage layer
+(`src/vault_ledger/userdata.py`) refuses any path outside the signed-in user's
+directory. The CLI, the classifier scripts and the tests still use the old
+single-user locations when no user is set.
+
+**Create users** (there is no open registration):
+
+```
+.venv/bin/python -m vault_ledger.auth add-user alice        # asks for a password twice
+.venv/bin/python -m vault_ledger.auth list-users
+.venv/bin/python -m vault_ledger.auth set-password alice     # also ends alice's sessions
+.venv/bin/python -m vault_ledger.auth delete-user alice      # asks you to retype the name; deletes only alice's data dir
+```
+
+Usernames are 3-32 characters of `a-z 0-9 _ . -`, unique case-insensitively.
+Passwords: at least 10 characters and not equal to the username; stored as
+salted scrypt hashes in `data/users.json` (mode 0600, written atomically).
+
+**Move your existing single-user data** (the pre-login `data/ledger.csv`,
+`data/pending_queue.csv`, `corrections.csv`, `data/accounts.json`,
+`data/backups/`) into a user, once:
+
+```
+.venv/bin/python -m vault_ledger.auth add-user alice
+.venv/bin/python -m vault_ledger.auth migrate-legacy alice
+```
+
+It copies, verifies each copy byte for byte, and writes `data/.migrated`. The
+originals are left where they are (never deleted for you); delete them by hand
+once you have checked. It refuses to run twice.
+
+**Environment variables**
+
+| Variable | Meaning |
+|---|---|
+| `VAULT_SECRET_KEY` | Session signing key. If unset, a random one is generated once into `data/.secret_key` (0600). There is no built-in default. |
+| `VAULT_COOKIE_SECURE=1` | Mark the session cookie `Secure`. **Set this whenever the app is served over HTTPS**, and serve it over HTTPS (reverse proxy such as Caddy/nginx) if it is reachable by anyone else. |
+| `VAULT_ALLOW_SIGNUP=1` | Enable a self-service `/signup` page. Off by default. |
+| `VAULT_HOST` / `VAULT_PORT` | Bind address (default `127.0.0.1`) and port (default `5050`). |
+| `VAULT_DEBUG=1` | Flask debug mode. Off by default; the app refuses to start with it on a non-loopback host. |
+| `VAULT_TRUST_PROXY=1` | Trust one `X-Forwarded-For/Proto/Host` hop from a reverse proxy (so the login throttle sees real client IPs). Only set behind a proxy that overwrites those headers. |
+| `VAULT_DATA_DIR` | Where `users.json`, `.secret_key` and `users/` live (default `data/`). |
+
+**How it behaves.** Signed-cookie sessions (HttpOnly, SameSite=Lax, 8-hour
+lifetime, replaced on login, cleared on `POST /logout`). Every state-changing
+request needs the per-session `X-CSRF-Token` header (the pages read it from a
+`<meta>` tag). 5 failed logins per (IP, username) in 15 minutes gives HTTP 429;
+unknown user and wrong password produce the same message. Everything except
+`/login`, `/logout`, `/healthz` and `/static/*` requires login (`/api/*` answers
+401, pages redirect to `/login`). Responses carry `nosniff`, `X-Frame-Options:
+DENY`, `Referrer-Policy: same-origin`, `Cache-Control: no-store`, and a CSP with
+`frame-ancestors 'none'`. Uploads are capped at 20 MB. Backup restore accepts
+only the fixed member names, refuses symlinks and oversized archives, and only
+ever writes the caller's own directory.
+
+**Running it for several people.** Use a real WSGI server, and run exactly ONE
+process (threads are fine), because the login throttle and the per-user locks
+live in that process:
+
+```
+.venv/bin/pip install waitress      # or gunicorn; not a project dependency
+VAULT_COOKIE_SECURE=1 .venv/bin/waitress-serve --host 127.0.0.1 --port 5050 --threads 8 vault_ledger.webapp.wsgi:app
+# gunicorn equivalent: gunicorn -w 1 --threads 8 vault_ledger.webapp.wsgi:app
+```
+
+**What this does NOT do** (be honest with your users):
+
+- No encryption at rest: anyone with read access to the machine's disk or
+  backups can read every user's files. Users are separated by the app, not by
+  the operating system.
+- No password reset flow, no email, no 2FA, no account lockout beyond the
+  throttle. The operator resets passwords with the CLI.
+- No per-user classifier. The trained model is shared and read-only; a user's
+  corrections are stored in their own `corrections.csv` and never folded into
+  the shared training data or model, so one user's data cannot influence
+  another's predictions. The web app has no retrain button; the existing CLI
+  (`apply_corrections`, `train`) still works on the legacy single-user files
+  and is not per-user. Per-user `training.csv` exists (and is in backups) but
+  nothing trains on it yet.
+- The login throttle is in memory: it resets on restart and is not shared
+  between processes.
+- Sessions are stateless signed cookies: "Sign out" clears the browser's copy
+  but a stolen cookie stays valid until it expires (8 h) unless the user's
+  password is changed or the user is deleted.
+- Single process only. `is_admin` is recorded but currently grants nothing.
+- Uploaded documents' OCR temp files pass through the shared OS temp dir
+  briefly and are deleted immediately.
 
 ## Testing
 

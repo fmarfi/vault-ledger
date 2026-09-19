@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Create account · Vault Ledger{% endblock %}
+{% block page_name %}Create account{% endblock %}
+{% block content %}
+<section class="card auth-card">
+  <h2>Create an account</h2>
+  {% if error %}<p class="status status-error" role="alert">{{ error }}</p>{% endif %}
+  <form method="post" action="{{ url_for('signup') }}" class="auth-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label>Username (3-32 characters: a-z, 0-9, _ . -)
+      <input type="text" name="username" value="{{ username }}" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="32">
+    </label>
+    <label>Password (at least 10 characters)
+      <input type="password" name="password" autocomplete="new-password" required minlength="10">
+    </label>
+    <label>Repeat password
+      <input type="password" name="password2" autocomplete="new-password" required minlength="10">
+    </label>
+    <button type="submit" class="btn btn-dark">Create account</button>
+  </form>
+  <p class="auth-alt"><a href="{{ url_for('login') }}">Back to sign in</a></p>
+</section>
+{% endblock %}

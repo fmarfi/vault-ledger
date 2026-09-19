@@ -30,7 +30,10 @@ import io
 import json
 import logging
 import math
+import os
+import re
 import tempfile
+import threading
 from datetime import date, datetime
 from pathlib import Path
 
@@ -43,14 +46,17 @@ from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
 from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, run_pipeline
-from vault_ledger.queue import QUEUE_LOCK, enqueue, get_pending, read_pending, remove_pending
+from vault_ledger.queue import queue_lock, enqueue, get_pending, read_pending, remove_pending
 from vault_ledger.reports import audit_csv, books_csv, period_summary
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
 from vault_ledger.synthetic_samples import SAMPLES
+from vault_ledger.userdata import current_user_dir
+from vault_ledger.webapp import security
 
 DOCUMENTS_DIR = Path(__file__).resolve().parents[3] / "data" / "synthetic" / "documents"
 
 app = Flask(__name__)
+security.init_app(app)  # login, sessions, CSRF, per-user data dir, headers
 log = logging.getLogger(__name__)
 
 
@@ -61,14 +67,23 @@ class PendingNotFound(ValueError):
 class NeedsIndividualReview(ValueError):
     """A flagged item was submitted through the bulk path. Ambiguity escalates
     to a human -- only a per-item confirm/correct may post it."""
+# The trained classifier is shared by every user and never modified by a
+# request: no user's corrections are folded into it (see README).
 _classifier: FusionClassifier | None = None
+_classifier_lock = threading.Lock()
 
 
 def _get_classifier() -> FusionClassifier:
     global _classifier
-    if _classifier is None:
-        _classifier = _load_or_train_classifier()
-    return _classifier
+    with _classifier_lock:
+        if _classifier is None:
+            _classifier = _load_or_train_classifier()
+        return _classifier
+
+
+def _json_body() -> dict:
+    body = request.get_json(silent=True)
+    return body if isinstance(body, dict) else {}
 
 
 def _str_to_bool(value: str) -> bool:
@@ -181,19 +196,19 @@ def _account_action(action):
 
 @app.route("/api/accounts/add", methods=["POST"])
 def api_accounts_add():
-    name = (request.json or {}).get("name", "")
+    name = _json_body().get("name", "")
     return _account_action(lambda: coa.add_expense_account(name))
 
 
 @app.route("/api/accounts/retire", methods=["POST"])
 def api_accounts_retire():
-    name = (request.json or {}).get("name", "")
+    name = _json_body().get("name", "")
     return _account_action(lambda: coa.retire_expense_account(name))
 
 
 @app.route("/api/accounts/template", methods=["POST"])
 def api_accounts_template():
-    template = (request.json or {}).get("template", "")
+    template = _json_body().get("template", "")
     return _account_action(lambda: coa.apply_template(template))
 
 
@@ -216,7 +231,7 @@ def api_restore():
 
     # Safety net: snapshot current data next to the live files before
     # overwriting anything, so a wrong restore is itself recoverable.
-    safety_dir = coa.ACCOUNTS_PATH.parent / "backups"
+    safety_dir = current_user_dir.get() / "backups"
     safety_dir.mkdir(parents=True, exist_ok=True)
     safety_name = f"pre-restore-{datetime.now().strftime('%Y%m%d-%H%M%S')}.zip"
     (safety_dir / safety_name).write_bytes(backup.create_backup())
@@ -236,12 +251,14 @@ def api_process():
     if "document" in request.files and request.files["document"].filename:
         upload = request.files["document"]
         filename = upload.filename
-        suffix = Path(filename).suffix or ".png"
+        suffix = Path(filename).suffix
+        if not re.fullmatch(r"\.[A-Za-z0-9]{1,8}", suffix):
+            suffix = ".png"
         with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
             upload.save(tmp.name)
             document_path = temp_path = tmp.name
     else:
-        sample_name = (request.json or {}).get("sample")
+        sample_name = _json_body().get("sample")
         matching = [s for s in SAMPLES if s.name == sample_name]
         if not matching:
             return jsonify({"error": "no document uploaded and no valid sample selected"}), 400
@@ -306,7 +323,7 @@ def _confirm_pending_item(
     same item. Bulk confirm passes allow_flagged=False: an item the pipeline
     flagged needs_review (vendor/amount ambiguity, low confidence gate) must
     be resolved by a human individually, never posted on a guess."""
-    with QUEUE_LOCK:
+    with queue_lock():
         row = get_pending(item_id)
         if row is None:
             raise PendingNotFound(f"no pending item with id '{item_id}'")
@@ -359,7 +376,7 @@ def api_confirm():
     of the posted ledger and leaves the pending queue. No training signal
     here (the prediction wasn't wrong); see /api/correct for the case that
     also logs a correction."""
-    body = request.json or {}
+    body = _json_body()
     item_id = body.get("id")
     if not item_id:
         return jsonify({"error": "'id' is required"}), 400
@@ -378,7 +395,7 @@ def api_confirm():
 
 @app.route("/api/correct", methods=["POST"])
 def api_correct():
-    body = request.json or {}
+    body = _json_body()
     item_id = body.get("id")
     corrected_account = body.get("corrected_account")
     if not item_id:
@@ -404,7 +421,7 @@ def api_bulk_confirm():
     account (diagnostics report, feature 2). Not all-or-nothing -- one bad
     id or rule violation doesn't block the rest of the batch; every outcome
     is reported back so the UI can show exactly what happened."""
-    body = request.json or {}
+    body = _json_body()
     ids = body.get("ids") or []
     if not isinstance(ids, list) or not ids:
         return jsonify({"error": "'ids' must be a non-empty list"}), 400
@@ -476,7 +493,7 @@ def api_ledger():
             float(e["amount"])
             account = e["account"]
         except (KeyError, TypeError, ValueError):
-            log.warning("skipping malformed ledger row: %r", e)
+            log.warning("skipping a malformed ledger row")
             continue
         grouped.setdefault(account, []).append(e)
     return jsonify(
@@ -490,11 +507,27 @@ def api_ledger():
     )
 
 
+def _is_loopback(host: str) -> bool:
+    import ipaddress
+
+    if host == "localhost":
+        return True
+    try:
+        return ipaddress.ip_address(host.strip("[]")).is_loopback
+    except ValueError:
+        return False
+
+
 def main() -> None:
     report = hardware.check()
     if report["level"] in {"low", "critical"}:
         print(f"[hardware] {report['level'].upper()}: {report['message']}")
-    app.run(debug=True, port=5050)
+    host = os.environ.get("VAULT_HOST", "127.0.0.1")
+    port = int(os.environ.get("VAULT_PORT", "5050"))
+    debug = os.environ.get("VAULT_DEBUG") == "1"
+    if debug and not _is_loopback(host):
+        raise SystemExit("refusing to start: VAULT_DEBUG=1 (Werkzeug debugger) on a non-loopback host")
+    app.run(host=host, port=port, debug=debug)
 
 
 if __name__ == "__main__":

@@ -17,3 +17,9 @@ data/accounts.json
 data/backups/
 .venv
 data/synthetic/fusion_classifier.json
+
+# accounts, sessions and per-user data (private, never commit)
+data/users/
+data/users.json
+data/.secret_key
+data/.migrated

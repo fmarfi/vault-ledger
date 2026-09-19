@@ -468,3 +468,22 @@ select {
 .hardware-banner span { flex: 1; min-width: 240px; }
 .hardware-low { background: #f0e3d6; color: #7a5628; }
 .hardware-critical { background: #f6e2df; color: var(--color-flag); }
+
+/* ---- Sign-in, and the user control in the nav ---- */
+.nav-user { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.nav-username { font-family: var(--font-figure); font-size: 13px; color: var(--color-on-ink-muted); }
+.nav-logout { margin: 0; }
+.nav-signout {
+  background: none; border: 1px solid var(--color-on-ink-muted); color: var(--color-on-ink);
+  font: inherit; font-size: 13px; padding: 3px 10px; border-radius: var(--radius-sm); cursor: pointer;
+}
+.nav-signout:hover { border-color: var(--color-on-ink); }
+.auth-card { max-width: 380px; margin: 48px auto; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.auth-form label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; color: var(--color-ink-soft); }
+.auth-form input[type="text"], .auth-form input[type="password"] {
+  font: inherit; font-size: 15px; padding: 8px 10px; color: var(--color-ink);
+  background: var(--color-page); border: 1px solid var(--color-rule); border-radius: var(--radius-sm);
+}
+.auth-form input:focus { outline: 2px solid var(--color-brass); outline-offset: 1px; }
+.auth-alt { margin: 14px 0 0; font-size: 13px; }

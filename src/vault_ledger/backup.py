@@ -17,6 +17,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import stat
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,9 +25,12 @@ from pathlib import Path
 from vault_ledger import coa, corrections, ledger, queue
 from vault_ledger.classifier import apply_corrections as _apply
 from vault_ledger.classifier.train import MODEL_PATH
+from vault_ledger.userdata import current_user_dir, resolve
 
 BACKUP_FORMAT_VERSION = 1
 MAX_MEMBER_BYTES = 50 * 1024 * 1024
+MAX_TOTAL_BYTES = 100 * 1024 * 1024
+MAX_MEMBERS = 16
 
 # Expected CSV header per archive member (None = JSON, validated separately).
 _CSV_HEADERS = {
@@ -44,11 +48,13 @@ class BackupError(ValueError):
 def default_files() -> dict[str, Path]:
     """archive member name -> live file. Read at call time so tests can monkeypatch."""
     return {
-        "ledger.csv": ledger.LEDGER_PATH,
-        "pending_queue.csv": queue.PENDING_PATH,
-        "corrections.csv": corrections.CORRECTIONS_PATH,
-        "labeled_transactions.csv": _apply.TRAINING_DATA_PATH,
-        "accounts.json": coa.ACCOUNTS_PATH,
+        "ledger.csv": resolve("ledger.csv", ledger.LEDGER_PATH),
+        "pending_queue.csv": resolve("pending_queue.csv", queue.PENDING_PATH),
+        "corrections.csv": resolve("corrections.csv", corrections.CORRECTIONS_PATH),
+        # Per user, "labeled_transactions.csv" is that user's own training.csv;
+        # the shared training set is never included in or replaced by a restore.
+        "labeled_transactions.csv": resolve("training.csv", _apply.TRAINING_DATA_PATH),
+        "accounts.json": resolve("accounts.json", coa.ACCOUNTS_PATH),
     }
 
 
@@ -86,15 +92,27 @@ def _validate(zf: zipfile.ZipFile, allowed: set[str]) -> dict[str, bytes]:
     if manifest.get("format_version") != BACKUP_FORMAT_VERSION:
         raise BackupError("this backup was made by an incompatible version")
 
+    infos = zf.infolist()
+    if len(infos) > MAX_MEMBERS or len({i.filename for i in infos}) != len(infos):
+        raise BackupError("backup has too many or duplicate members")
+    if sum(i.file_size for i in infos) > MAX_TOTAL_BYTES:
+        raise BackupError("backup is too large")
+
     contents: dict[str, bytes] = {}
-    for info in zf.infolist():
+    for info in infos:
+        if stat.S_ISLNK(info.external_attr >> 16):
+            raise BackupError(f"unexpected symlink in backup: {info.filename!r}")
         if info.filename == "manifest.json":
             continue
         if info.filename not in allowed:
             raise BackupError(f"unexpected file in backup: {info.filename!r}")
         if info.file_size > MAX_MEMBER_BYTES:
             raise BackupError(f"{info.filename} is too large to be a real backup member")
-        contents[info.filename] = zf.read(info)
+        with zf.open(info) as member:
+            payload = member.read(MAX_MEMBER_BYTES + 1)  # bound the read, not just the header
+        if len(payload) > MAX_MEMBER_BYTES:
+            raise BackupError(f"{info.filename} is too large to be a real backup member")
+        contents[info.filename] = payload
 
     for name, data in contents.items():
         if name == "accounts.json":
@@ -133,6 +151,8 @@ def restore_backup(data: bytes, files: dict[str, Path] | None = None, model_path
         tmp.replace(target)
 
     stale_model = Path(model_path or MODEL_PATH)
-    if "labeled_transactions.csv" in contents and stale_model.exists():
+    # The model is shared by every user: only the single-user/CLI mode may
+    # discard it. A per-user restore of training.csv never touches it.
+    if current_user_dir.get() is None and "labeled_transactions.csv" in contents and stale_model.exists():
         stale_model.unlink()
     return sorted(contents)
