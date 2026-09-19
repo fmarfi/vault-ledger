@@ -30,6 +30,15 @@ greenlight independently:
 5. Honest accuracy panel (SMALL) — **done**
 6. Preflight hardware check (SMALL) — **done**
 
+1. Persistent review queue (SMALL–MEDIUM) — **building now**
+2. Bulk confirm (SMALL) — **building now**
+3. Custom / region-flexible chart of accounts (MEDIUM) — approved in
+   principle, **not started**; see the caveat under Open item 10 below
+   before picking this back up
+4. Manual backup & restore (SMALL–MEDIUM) — not started
+5. Honest accuracy panel (SMALL) — not started
+6. Preflight hardware check (SMALL) — not started
+
 ---
 
 ## ✅ Decided — build against these
