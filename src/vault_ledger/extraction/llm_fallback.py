@@ -27,16 +27,37 @@ Report 4 SS2).
 from __future__ import annotations
 
 import json
+import logging
 import re
+import threading
 import urllib.error
 import urllib.request
 from typing import TypedDict
+
+logger = logging.getLogger(__name__)
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5:1.5b-instruct"
 TIMEOUT_SECONDS = 60  # CPU-only inference on modest hardware can be slow
 
+# Batch processing (batch.py) runs documents concurrently, but this machine
+# has one small model on 8GB RAM / 2 cores -- two inferences at once would
+# fight over the same limited memory and likely be slower than one at a
+# time, not faster. This serializes tier-3 calls specifically: tiers 1-2
+# still run fully in parallel across a batch, only the LLM call itself
+# queues, and only for documents that actually needed it.
+_INFERENCE_LOCK = threading.Lock()
+
 _AMOUNT_PATTERN = re.compile(r"\$?\s*([0-9][0-9,]*\.[0-9]{2})")
+_TOTAL_WORD_PATTERN = re.compile(r"\b(total|amount\s+due)\b", re.IGNORECASE)  # \b excludes "Subtotal"
+
+
+def _amounts_on_total_lines(raw_text: str) -> set[str]:
+    amounts: set[str] = set()
+    for line in raw_text.splitlines():
+        if _TOTAL_WORD_PATTERN.search(line):
+            amounts.update(m.replace(",", "") for m in _AMOUNT_PATTERN.findall(line))
+    return amounts
 
 _PROMPT_TEMPLATE = """Extract fields from this business document text. Respond with ONLY a JSON object, no other text, in this exact shape:
 {{"vendor": "...", "description": "...", "date": "...", "amount": "...", "paid": true or false}}
@@ -85,29 +106,51 @@ def extract_fields_via_llm(raw_text: str) -> LlmExtractedFields | None:
     )
 
     try:
-        with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
-            body = json.loads(response.read())
-    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError):
-        return None  # Ollama not running / not reachable -- not an error, just unavailable
+        with _INFERENCE_LOCK:
+            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+                body = json.loads(response.read())
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        # Ollama not running / not reachable / too slow -- unavailable, not a bug.
+        logger.warning("LLM fallback unavailable (%s): %s", type(exc).__name__, exc)
+        return None
 
     try:
         parsed = json.loads(body["response"])
     except (KeyError, json.JSONDecodeError, TypeError):
+        logger.warning("LLM fallback returned a response that is not valid JSON")
+        return None
+    if not isinstance(parsed, dict):
+        logger.warning("LLM fallback returned JSON that is not an object")
         return None
 
     vendor = parsed.get("vendor")
     description = parsed.get("description")
     if not vendor or not description:
+        logger.warning("LLM fallback rejected: missing vendor or description")
         return None
 
     amount_match = _AMOUNT_PATTERN.search(str(parsed.get("amount", "")))
     if amount_match is None:
+        logger.warning("LLM fallback rejected: no parseable amount in %r", parsed.get("amount"))
         return None
     claimed_amount = amount_match.group(1).replace(",", "")
 
     real_amounts = {m.replace(",", "") for m in _AMOUNT_PATTERN.findall(raw_text)}
     if claimed_amount not in real_amounts:
+        logger.warning("LLM fallback rejected: amount %s is not in the document text", claimed_amount)
         return None  # the model named a number that isn't actually in the document
+
+    # Real-but-wrong-line check: if the document has explicit "Total" /
+    # "Amount due" lines with amounts, the claim must be one of those. A
+    # model echoing a tax, cash-tendered, or line-item figure otherwise
+    # passes grounding.
+    total_line_amounts = _amounts_on_total_lines(raw_text)
+    if total_line_amounts and claimed_amount not in total_line_amounts:
+        logger.warning(
+            "LLM fallback rejected: amount %s is in the text but not on a total line",
+            claimed_amount,
+        )
+        return None
 
     return {
         "vendor": vendor,

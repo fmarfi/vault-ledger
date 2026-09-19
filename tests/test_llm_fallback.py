@@ -62,6 +62,43 @@ def test_returns_fields_when_amount_is_grounded_in_source_text():
     }
 
 
+def test_returns_none_when_amount_is_real_but_not_on_the_total_line():
+    """Grounded in the text, but it's the tax line, not the total."""
+    response = {"vendor": "Acme Inc", "description": "Widgets", "amount": "$2.00", "paid": True}
+    text = "Acme Inc\nSubtotal $10.00\nTax $2.00\nTotal $12.00"
+    with patch("urllib.request.urlopen", return_value=_mock_response(response)):
+        assert extract_fields_via_llm(text) is None
+
+
+def test_accepts_largest_amount_when_total_lines_are_only_tax_or_subtotal_style():
+    response = {"vendor": "Acme Inc", "description": "Widgets", "amount": "12.00", "paid": False}
+    text = "Acme Inc\nTotal Tax $2.00\nAmount due $12.00"
+    with patch("urllib.request.urlopen", return_value=_mock_response(response)):
+        result = extract_fields_via_llm(text)
+    assert result is not None and result["amount"] == 12.0
+
+
+def test_accepts_amount_due_smaller_than_total_on_partial_payment():
+    response = {"vendor": "Acme Inc", "description": "Widgets", "amount": "40.00", "paid": False}
+    text = "Acme Inc\nTotal Amount 100.00\nAmount Due 40.00"
+    with patch("urllib.request.urlopen", return_value=_mock_response(response)):
+        result = extract_fields_via_llm(text)
+    assert result is not None and result["amount"] == 40.0
+
+
+def test_rejects_cash_tendered_even_though_it_is_the_largest_amount():
+    response = {"vendor": "Acme Inc", "description": "Widgets", "amount": "50.00", "paid": True}
+    text = "Acme Inc\nTotal 45.00\nCash 50.00"
+    with patch("urllib.request.urlopen", return_value=_mock_response(response)):
+        assert extract_fields_via_llm(text) is None
+
+
+def test_logs_a_distinct_warning_when_ollama_is_unreachable(caplog):
+    with patch("urllib.request.urlopen", side_effect=urllib.error.URLError("refused")):
+        extract_fields_via_llm("some text")
+    assert "unavailable" in caplog.text
+
+
 def test_returns_none_when_vendor_or_description_missing():
     response = {"vendor": "", "description": "Widgets", "amount": "10.00", "paid": True}
     with patch("urllib.request.urlopen", return_value=_mock_response(response)):

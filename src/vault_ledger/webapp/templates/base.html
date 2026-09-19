@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Vault Ledger{% endblock %}</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-name">Vault Ledger</span>
+    <span class="page-name">{% block page_name %}{% endblock %}</span>
+  </div>
+  <div class="trust-badge">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="3" y="6" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 6V4.5a2.5 2.5 0 0 1 5 0V6" stroke="currentColor" stroke-width="1.2"/></svg>
+    <span>{% block trust_text %}On-device — nothing here has left the machine{% endblock %}</span>
+  </div>
+</header>
+
+<nav class="app-nav">
+  <a href="{{ url_for('index') }}" class="{{ 'active' if active_page == 'review' else '' }}">Review queue</a>
+  <a href="{{ url_for('documents_page') }}" class="{{ 'active' if active_page == 'documents' else '' }}">Documents</a>
+  <a href="{{ url_for('ledger_page') }}" class="{{ 'active' if active_page == 'ledger' else '' }}">Account ledger</a>
+</nav>
+
+<main class="page-wrap">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  Fixed 9-account chart of accounts · synthetic training data · not a
+  validated accuracy figure — see README for scope and limitations.
+</footer>
+
+<script src="{{ url_for('static', filename='shared.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>
