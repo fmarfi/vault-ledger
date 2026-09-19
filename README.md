@@ -77,6 +77,8 @@ refused it).
 ```
 
 Opens a Flask dev server at http://127.0.0.1:5050 with four pages
+
+Opens a Flask dev server at http://127.0.0.1:5050 with three pages
 (`templates/base.html` + `static/style.css`'s token system are shared
 across all of them -- see that CSS file's `:root` to change the whole
 look in one place):
@@ -106,6 +108,7 @@ The Review Queue is a persistent multi-item queue (`queue.py`) with bulk
 confirm; the Documents page shows an honest "accepted as-is" rate computed
 from the ledger (`stats.py`); every page shows a banner when this machine is
 under the recommended 16 GB RAM (`hardware.py`).
+
 
 It's a thin UI layer over `vault_ledger.pipeline` and `vault_ledger.ledger`
 -- no separate business logic. Not a production deployment (Flask dev
