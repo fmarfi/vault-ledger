@@ -6,12 +6,6 @@ let queueItems = []; // last-loaded /api/queue rows -- the single source of
                       // confirm/correct/dismiss just refetches this.
 let selectedIds = new Set();
 
-function escapeHtml(value) {
-  const div = document.createElement("div");
-  div.textContent = value ?? "";
-  return div.innerHTML;
-}
-
 function csvBool(value) {
   // Every field coming back from /api/queue has passed through a CSV
   // round-trip, so booleans arrive as the strings "True"/"False", not
@@ -117,7 +111,8 @@ function renderQueueCard(item) {
   const needsReview = csvBool(item.needs_review);
   const paid = csvBool(item.paid);
   const confidence = Number(item.confidence);
-  const entry = item.entry_json ? JSON.parse(item.entry_json) : null;
+  let entry = null;
+  try { entry = item.entry_json ? JSON.parse(item.entry_json) : null; } catch (_) { entry = null; }
 
   card.innerHTML = `
     <div class="queue-item-header">
@@ -231,7 +226,7 @@ function updateBulkToolbar() {
 
 document.getElementById("select-high-confidence-btn").addEventListener("click", () => {
   selectedIds = new Set(
-    queueItems.filter((item) => Number(item.confidence) >= CONFIDENCE_THRESHOLD).map((item) => item.id)
+    queueItems.filter((item) => !csvBool(item.needs_review) && Number(item.confidence) >= CONFIDENCE_THRESHOLD).map((item) => item.id)
   );
   renderQueue();
 });
