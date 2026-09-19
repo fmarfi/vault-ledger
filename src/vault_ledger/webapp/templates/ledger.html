@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Account ledger{% endblock %}
+{% block page_name %}Account ledger{% endblock %}
+{% block trust_text %}Every record below stays on this machine{% endblock %}
+
+{% block content %}
+
+<div class="ledger-layout" style="margin: 0 -32px;">
+  <div class="account-sidebar">
+    <div class="sidebar-title">Chart of accounts</div>
+    <div id="account-tabs"></div>
+  </div>
+
+  <div class="ledger-content">
+    <h1 id="active-account-name">—</h1>
+    <div style="display: flex; align-items: baseline; gap: 10px; margin: 4px 0 28px;">
+      <span id="active-total" class="ledger-total-figure">$0.00</span>
+      <span id="active-count" class="muted small"></span>
+    </div>
+
+    <div id="empty-state" class="card" hidden>
+      <p class="muted" style="margin: 0;">No entries posted to any account yet. Confirm a document from the Review Queue first.</p>
+    </div>
+
+    <div id="ledger-table-wrap" class="ledger-table" hidden>
+      <div class="ledger-head" style="grid-template-columns: 110px 2fr 2fr 100px;">
+        <div>Date</div>
+        <div>Vendor</div>
+        <div>Description</div>
+        <div class="ledger-num">Amount</div>
+      </div>
+      <div id="account-rows"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='ledger.js') }}"></script>
+{% endblock %}
