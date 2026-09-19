@@ -8,3 +8,4 @@ data/synthetic/documents/
 *.joblib
 Screenshot *.png
 
+data/synthetic/fusion_classifier.json
