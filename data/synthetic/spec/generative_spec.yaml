@@ -1,0 +1,265 @@
+# Generative spec for Vault Ledger synthetic transactions (stage 1).
+# Tags: every leaf parameter group has tag: sourced|assumption. Sourced items carry
+# a url (domain-level, as recorded in spec/research_nl_expenses.md; not full-page reads).
+# Synthetic-only: never quote accuracy on this data as real-world accuracy.
+meta:
+  version: 1
+  market: NL
+  languages: {en: 0.45, nl: 0.55, tag: assumption}
+  currency: EUR
+  vat_default_rate: 0.21
+  target_rows: 4000
+  tag: assumption
+  label_space_note: >
+    Only the 7 default active expense accounts (coa.EXPENSE_ACCOUNTS; data/accounts.json
+    may customize, generator must not). Mechanical accounts Cash/Bank and Accounts
+    Payable are never labels. Output columns match labeled_transactions.csv
+    (vendor,description,account); metadata (archetype, difficulty, noise_applied,
+    escalate, split) go in a separate file, never a model feature.
+  sources:
+    google_workspace: https://medhacloud.com
+    m365: https://m365.de
+    accountant_fees: https://qonto.com
+    kvk_fee: https://zzp-kompas.nl
+    belastingdienst_invoice_fields: https://www.belastingdienst.nl
+    btw_deadlines: https://www.kvk.nl
+    bol_marketplace: https://www.bol.com
+
+seed: {default: 1337, run_seeds: [1337, 2024, 7], tag: assumption}
+
+# Class prior over final labels (row count fraction). Must sum to 1.
+# No authoritative NL split exists; all assumption (freelancer/ZZP mix).
+class_prior:
+  tag: assumption
+  values:
+    "Software & Subscriptions Expense": 0.27
+    "Travel & Transport Expense": 0.22
+    "Office Supplies Expense": 0.14
+    "Utilities Expense": 0.11
+    "General/Other Expense": 0.11
+    "Professional Services Expense": 0.09
+    "Rent Expense": 0.06
+
+# Amounts in EUR ex-VAT unless noted. Sample, round to cents.
+amounts:
+  "Software & Subscriptions Expense":
+    family: mixture_point_masses_times_seats
+    params:
+      masses: [[6.90, 0.12], [13.80, 0.10], [10.93, 0.08], [9.99, 0.10], [19.99, 0.12], [29.00, 0.10], [49.00, 0.10], [99.00, 0.10], [199.00, 0.06], [12.00, 0.12]]
+      seats: {1: 0.65, 2: 0.15, 3: 0.10, 5: 0.06, 10: 0.04}
+      annual_multiplier: {p: 0.15, factor: 12, discount: 0.85}
+    reason: SaaS is priced in tiers times seats; annual plans are rarer.
+    tag: "sourced (Google 6.90/13.80, M365 ~10.93 unverified ex-VAT); other tiers assumption"
+    url: [https://medhacloud.com, https://m365.de]
+  "Travel & Transport Expense":
+    family: mixture_lognormal
+    components:
+      - {name: ns_ov_tap, weight: 0.40, mu: 2.30, sigma: 0.70, clip: [2, 40]}      # median ~10
+      - {name: fuel, weight: 0.20, mu: 4.10, sigma: 0.30, clip: [30, 110]}         # median ~60
+      - {name: parking, weight: 0.20, mu: 1.90, sigma: 0.70, clip: [2, 25]}
+      - {name: taxi_ride_share, weight: 0.10, mu: 3.00, sigma: 0.60, clip: [8, 80]}
+      - {name: ov_subscription_or_flight, weight: 0.10, mu: 5.20, sigma: 0.60, clip: [100, 900]}
+    reason: Heavy right tail from subscriptions/flights over many small fares.
+    tag: assumption
+  "Office Supplies Expense":
+    family: lognormal
+    params: {mu: 3.40, sigma: 1.00, clip: [2, 900]}   # median ~30, tail 500+
+    reason: Discretionary purchases, right-skewed.
+    tag: assumption
+  "Utilities Expense":
+    family: mixture
+    components:
+      - {name: energy, weight: 0.40, family: lognormal, mu: 4.60, sigma: 0.40, clip: [40, 320], seasonal_uplift: {oct_mar: 1.30, apr_sep: 0.85}}
+      - {name: telecom, weight: 0.40, family: fixed_tiers, values: [12.50, 20.00, 29.00, 39.00, 55.00, 79.00], jitter_sd: 0.0}
+      - {name: water, weight: 0.10, family: lognormal, mu: 3.40, sigma: 0.30, clip: [15, 80]}
+      - {name: energy_annual_settlement, weight: 0.10, family: normal, mu: 0.0, sd: 180, note: negative = credit note}
+    reason: Energy 60-250/mo with winter uplift; telecom near-fixed; annual settlement may be a credit.
+    tag: assumption
+  "Professional Services Expense":
+    family: mixture
+    components:
+      - {name: accountant, weight: 0.35, family: lognormal, mu: 5.90, sigma: 0.50, clip: [150, 2500], note: 600-2500/yr split into installments, round_to: 5}
+      - {name: consultant_legal, weight: 0.45, family: lognormal, mu: 6.40, sigma: 1.00, clip: [200, 5000], round_to: 50, round_prob: 0.6}
+      - {name: notaris, weight: 0.12, family: lognormal, mu: 6.60, sigma: 0.70, clip: [300, 1500]}
+      - {name: kvk_registration, weight: 0.08, family: constant, value: 85.15}
+    tag: "sourced (accountant 600-2500/yr; KvK 85.15); shapes assumption"
+    url: [https://qonto.com, https://zzp-kompas.nl]
+  "Rent Expense":
+    family: near_constant
+    params:
+      tiers: [{name: flexdesk, weight: 0.45, value_range: [150, 400]}, {name: office, weight: 0.55, value_range: [500, 1500]}]
+      per_vendor_constant: true        # each vendor draws one base, then jitter
+      jitter_sd_frac: 0.0              # rent identical month to month; indexation +2-4%/yr, 1 step at most
+    tag: assumption
+  "General/Other Expense":
+    family: lognormal
+    params: {mu: 3.20, sigma: 1.10, clip: [1, 700]}
+    tag: assumption
+
+vendor_frequency:
+  family: zipf
+  exponent_s: 1.1              # within each class; head vendors dominate, long tail of one-offs
+  one_off_tail_fraction: 0.30  # of a class's distinct vendors appear once
+  min_vendor_strings_per_class: 30
+  top10_vendor_share_max: 0.40 # gate: top-10 vendors < 40% of any class
+  tag: assumption
+
+vendor_archetypes:   # public business names as archetypes only; corpus-builder expands
+  tag: assumption   # NL vendor lists per research file (A)
+  "Software & Subscriptions Expense": [Microsoft 365, Google Workspace, Adobe, Slack, Zoom, Dropbox, Notion, GitHub, Moneybird, Exact, AWS, Azure, Atlassian, Canva, generic_saas_bv]
+  "Travel & Transport Expense": [NS, GVB, RET, HTM, "Shell (fuel)", "BP (fuel)", "Tango (fuel)", Q-Park, Parkmobile, EasyPark, Uber, Swapfiets, KLM, Transavia, taxi_local]
+  "Office Supplies Expense": [Staples, Viking, Coolblue (stationery/hardware), Bol.com (stationery), Amazon.nl (stationery), Action (stationery), Office Centre, papierwaren_local, printer_inkt_shop]
+  "Utilities Expense": [Eneco, Vattenfall, Essent, Greenchoice, Vitens, Dunea, Stedin, Liander, KPN, Odido, Vodafone, Ziggo]
+  "Professional Services Expense": [accountantskantoor_generic, notariskantoor_generic, advocaten_generic, consultancy_bv_generic, KvK, boekhouder_zzp]
+  "Rent Expense": [flexwerkplek_generic, kantoorverhuur_generic, vastgoed_bv_generic, coworking_generic]
+  "General/Other Expense": [HEMA (misc), Albert Heijn (misc), Gamma, Praxis, kantine_local, bloemist_local, representatie_local]
+
+recurrence:
+  tag: assumption   # BTW deadlines themselves are sourced (kvk.nl) but not used as row generators
+  rules:
+    - {account: "Rent Expense", cadence: monthly, day_of_month: 1, vendor_persistence: 1.0, share_of_class_rows_recurring: 0.95}
+    - {account: "Utilities Expense", sub: energy, cadence: monthly, day_of_month_choices: [1, 15, 25], annual_settlement_once_per_year_p: 0.10}
+    - {account: "Utilities Expense", sub: telecom_water, cadence: monthly, day_of_month_choices: [3, 10, 20, 28]}
+    - {account: "Software & Subscriptions Expense", cadence: monthly, share_of_class_rows_recurring: 0.75, day_of_month: fixed_per_vendor_uniform_1_28}
+    - {account: "Software & Subscriptions Expense", cadence: annual, share_of_class_rows: 0.15, note: domains, licences}
+    - {account: "Professional Services Expense", cadence: mixed, monthly_retainer_share: 0.15, quarterly_share: 0.15, one_off_share: 0.70, kvk_annual: true}
+    - {account: "Travel & Transport Expense", cadence: irregular, ov_subscription_monthly_share: 0.05}
+    - {account: "Office Supplies Expense", cadence: irregular}
+    - {account: "General/Other Expense", cadence: irregular}
+  date_range: {start: 2025-01-01, end: 2026-08-31, tag: assumption}
+  recurring_vendor_note: >
+    A recurring vendor's series must stay inside one split (vendor-disjoint).
+
+paid_unpaid:
+  tag: assumption   # feeds paid heuristic; verify against real documents
+  paid_at_document_date_fraction:
+    "Software & Subscriptions Expense": 0.97
+    "Travel & Transport Expense": 0.98
+    "Office Supplies Expense": 0.92
+    "Utilities Expense": 0.93
+    "General/Other Expense": 0.95
+    "Professional Services Expense": 0.50   # B2B invoices 40-60% unpaid at receipt
+    "Rent Expense": 0.95
+  payment_terms_days: {14: 0.30, 30: 0.70}
+  overdue_tail_fraction_of_unpaid: 0.08
+  paid_markers: {nl: ["Reeds voldaan", "Betaald via SEPA Incasso", "iDEAL betaling"], en: ["Paid", "Already paid", "Paid by card"]}
+  unpaid_markers: {nl: ["Te betalen voor {date}", "Betaaltermijn 14 dagen"], en: ["Total due", "Payable within 30 days"]}
+
+description_formats:
+  tag: "sourced (invoice fields, bank channels: belastingdienst.nl); templates and number formats assumption"
+  url: https://www.belastingdienst.nl
+  invoice_number_formats: ["2026-0142", "INV-2026-00123", "F2026/0087"]
+  period_formats: ["Periode 01-08-2026 t/m 31-08-2026", "Q3 2026", "Aug 2026"]
+  bank_channels: ["SEPA Incasso algemeen doorlopend", "SEPA Overboeking", "Betaalautomaat", "BEA NR:", "iDEAL"]
+  keyword_free_fraction: 0.33  # descriptions with no class keyword (see shortcut band)
+
+# Fraction of rows whose description contains an obvious class keyword ("toner", "huur",
+# "abonnement", "parking"). Too high = trivial keyword classifier; too low = unrealistic.
+keyword_shortcut_band:
+  tag: assumption
+  keyword_bearing_fraction: {min: 0.45, target: 0.55, max: 0.65}
+  keyword_free_fraction: {min: 0.30, target: 0.35, max: 0.45}   # rest: generic/ambiguous handled by hard cases
+  no_class_exclusive_vocabulary: true
+  max_exclusive_tokens_in_top20_per_class: 0.30
+  max_description_pattern_share_per_class: 0.03
+
+noise_model:
+  tag: assumption   # rates are tunable, not measured
+  applied_per_row_independently: true
+  operations:
+    - {name: typo_char_swap_drop_dup, rate: 0.06}
+    - {name: abbreviation_nl_en, rate: 0.10, examples: ["fact.", "mnd", "abon.", "subscr."]}
+    - {name: casing_variation, rate: 0.20, modes: {UPPER: 0.5, lower: 0.2, Title: 0.3}}
+    - {name: nl_en_mix_in_one_row, rate: 0.12}
+    - {name: ocr_confusion, rate: 0.05, pairs: ["0<->O", "1<->l", "5<->S", "rn<->m"]}
+    - {name: truncated_description, rate: 0.08, keep_chars: [20, 40]}
+    - {name: bank_prefix_suffix, rate: 0.30, examples: ["BEA NR:1234", "SEPA Incasso", "Betaalautomaat"]}
+    - {name: store_terminal_code, rate: 0.10}
+    - {name: vendor_legal_suffix_variation, rate: 0.25, examples: ["B.V.", "BV", "Holding", "Inc"]}
+    - {name: missing_or_generic_description, rate: 0.04}
+  max_ops_per_row: 3
+
+difficulty_mix:
+  tag: assumption
+  clear: 0.86
+  hard_ambiguous: 0.14      # target band 10-15%; hard_cases weights below partition this
+  hard_ambiguous_band: [0.10, 0.15]
+  hard_row_class_impact: >
+    Hard rows are counted inside class_prior by their true_account; escalate rows are
+    labelled General/Other with escalate=true in metadata.
+
+hard_cases:
+  tag: assumption   # except marketplace fact (sourced, bol.com)
+  url: https://www.bol.com
+  weights_sum_to_1: true
+  cases:
+    - id: bol_marketplace
+      weight: 0.15
+      vendor: [Bol.com, bol]
+      rule: >
+        Stationery/ink/small hardware -> Office Supplies; software licence -> Software;
+        otherwise generic description -> escalate.
+      true_account_by_description: {stationery_ink_hardware: "Office Supplies Expense", licence: "Software & Subscriptions Expense", generic: "General/Other Expense"}
+      escalate_when: generic description (about 40% of this case)
+      reason: marketplace invoice comes from the seller; item decides account (sourced).
+    - id: amazon_nl
+      weight: 0.13
+      vendor: [Amazon.nl, Amazon EU SARL]
+      rule: same as bol_marketplace, plus AWS confusion (Amazon Web Services -> Software)
+      escalate_when: generic description (~40%)
+      reason: retail + cloud under one brand.
+    - id: coolblue_action
+      weight: 0.10
+      vendor: [Coolblue, Action]
+      true_account_by_description: {stationery_small_hardware: "Office Supplies Expense", other: "General/Other Expense"}
+      escalate_when: generic description (~50%)
+      reason: general retailers.
+    - id: albert_heijn_hema
+      weight: 0.15
+      vendor: [Albert Heijn, HEMA]
+      true_account: "General/Other Expense"
+      exception: HEMA with office-item description -> Office Supplies Expense (~25% of HEMA rows)
+      escalate_when: groceries description (private-spend risk), ~60%
+      reason: mostly groceries/private; HEMA can be office.
+    - id: google_ads_vs_workspace
+      weight: 0.10
+      vendor: [Google, Google Ireland Ltd]
+      true_account_by_description: {workspace: "Software & Subscriptions Expense", ads: "General/Other Expense", cloud: "Software & Subscriptions Expense"}
+      escalate_when: ads (no marketing account in default set), ~100% of ads rows
+      reason: same vendor, different service; Google Ads has no account.
+    - id: fuel_station_shop
+      weight: 0.10
+      vendor: [Shell, Tango, BP]
+      true_account_by_description: {fuel_brandstof: "Travel & Transport Expense", shop_items: "General/Other Expense"}
+      escalate_when: shop items ~50%
+      reason: fuel is travel; shop purchases are not.
+    - id: generic_description
+      weight: 0.12
+      vendor: [any tail vendor]
+      description: ["Factuur 2026-0142", "Betaling", "Invoice", "Diversen", "Overboeking"]
+      true_account: drawn from class_prior of clear rows
+      escalate_when: always (nothing to classify on)
+      reason: description carries no signal; vendor alone decides.
+    - id: vendor_description_disagree
+      weight: 0.15
+      vendor: [software vendor with travel-like description, utility vendor with office-like description, etc.]
+      true_account: account implied by the description (vendor-only rule would be wrong)
+      escalate_when: never; label is deterministic from description
+      reason: tests two-field fusion; vendor and description point to different accounts.
+  overall_escalate_fraction_of_hard: 0.38   # derived from case weights x escalate shares above (approx, assumption)
+
+splits:
+  tag: assumption
+  fractions: {train: 0.70, val: 0.15, test: 0.15}
+  unit: vendor    # vendor-disjoint; random row splits forbidden
+  stratify_by_class: true
+  ambiguous_vendors_note: >
+    Named ambiguous vendors (Bol.com, Amazon, Albert Heijn...) are few; assign whole vendors
+    to splits so each split contains hard cases (test must have >=1 named ambiguous vendor per case where possible).
+  tolerance: {row_fraction_abs: 0.03, class_min_rows_in_test: 30}
+
+quality_gates:
+  tag: assumption   # heuristic thresholds from CREW.md
+  unique_after_normalization_min: 0.95
+  dup_max: 0.02
+  synthetic_in_domain_accuracy_max: 0.98
