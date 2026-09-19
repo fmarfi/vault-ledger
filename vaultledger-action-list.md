@@ -8,6 +8,30 @@ that the team is eligible/capable of delivering this).
 
 ---
 
+## 📋 2026-09-18 — Diagnostics report + customer panel
+
+Full report (pipeline bottleneck audit + a simulated 6-persona customer
+panel — Marijke/freelancer, Tomasz/SME owner, Aisha/bookkeeping firm,
+Priya/healthtech founder, Jake/US retailer, Sanne/CFO consultant):
+https://claude.ai/artifact/UDCykwi3X8fRYGMb4Gjem1
+
+Bottom line: the deterministic core (rules layer, balance invariant) is
+solid and fully tested; everything upstream of it (extraction, category
+prediction) is weak for a structural reason — almost no real data has
+touched the system yet. Six features came out of the panel, each scoped to
+greenlight independently:
+
+1. Persistent review queue (SMALL–MEDIUM) — **building now**
+2. Bulk confirm (SMALL) — **building now**
+3. Custom / region-flexible chart of accounts (MEDIUM) — approved in
+   principle, **not started**; see the caveat under Open item 10 below
+   before picking this back up
+4. Manual backup & restore (SMALL–MEDIUM) — not started
+5. Honest accuracy panel (SMALL) — not started
+6. Preflight hardware check (SMALL) — not started
+
+---
+
 ## ✅ Decided — build against these
 
 1. **Architecture is on-device.** No company data leaves the device. This is
@@ -118,6 +142,33 @@ that the team is eligible/capable of delivering this).
    /areas/market-notes-turkey-usa.md). USA flagged as a good candidate
    market too but not yet researched — need to check whether a standardized/
    reference COA equivalent exists there before treating anything as fact.
+
+10. **Custom/region-flexible chart of accounts (feature 3, approved in
+    principle 2026-09-18) has a real coupling into the classifier that
+    needs solving before it's built, not after:**
+    - The classifier itself has no hardcoded account list —
+      `LogisticRegression.classes_` is just `np.unique()` of whatever
+      labels are in `labeled_transactions.csv` at train time
+      (`fusion_classifier.py`), so no model weights/parameters are tied to
+      the fixed 9-account list.
+    - What IS hardcoded is the **validation gate**: `coa.py`'s
+      `EXPENSE_ACCOUNTS` is a fixed Python `set`, imported directly by
+      `entry_rules.py`, `/api/confirm`, `/api/correct`, and `/api/accounts`.
+      Making accounts custom means turning this into a per-installation
+      dynamic set read from storage, and swapping every one of those
+      call sites from a static import to a lookup.
+    - **Cold start per new account**: a brand-new custom account has zero
+      training rows, so the model literally cannot predict it until at
+      least one document has been manually corrected into it — that
+      correction becomes a training row through the M7 loop that already
+      exists (`corrections.csv` → `apply_corrections.py` → retrain), so
+      the self-healing path already works, it just needs to be surfaced
+      in the UI ("new accounts start with no suggestions until you
+      correct a few into it") rather than left implicit.
+    - **Rename/remove isn't a safe in-place edit**: existing training rows
+      and ledger entries reference the old label string. Treat a
+      rename/removal as archive-old + add-new, not a mutation, or history
+      goes stale.
 
 ---
 
