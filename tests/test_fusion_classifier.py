@@ -1,3 +1,5 @@
+import pytest
+
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
 from vault_ledger.coa import UTILITIES_EXPENSE, OFFICE_SUPPLIES_EXPENSE
 
@@ -53,3 +55,36 @@ def test_predict_before_fit_raises():
         assert False, "expected RuntimeError"
     except RuntimeError:
         pass
+
+
+def test_fast_classifier_matches_sklearn(tmp_path):
+    from vault_ledger.classifier.fast_inference import FastClassifier, export_fast_model
+
+    classifier = _toy_classifier()
+    path = tmp_path / "model.json"
+    export_fast_model(classifier, path)
+    fast = FastClassifier.load(path)
+
+    cases = [
+        ("CityPower & Gas Utility Co", "Electricity and gas usage for March"),
+        ("Unseen Vendor Ltd", "Printer paper and toner"),
+        ("", ""),
+        ("Ünïcode Café", "water; 100% (usage)"),
+    ]
+    for vendor, description in cases:
+        expected_account, expected_conf = classifier.predict(vendor, description)
+        account, conf = fast.predict(vendor, description)
+        assert account == expected_account
+        assert conf == pytest.approx(expected_conf, abs=1e-9)
+
+
+def test_fusion_module_import_is_light():
+    import subprocess
+    import sys
+
+    code = (
+        "import sys; import vault_ledger.pipeline, vault_ledger.classifier.fusion_classifier;"
+        "assert 'sklearn' not in sys.modules and 'scipy' not in sys.modules "
+        "and 'pandas' not in sys.modules"
+    )
+    subprocess.run([sys.executable, "-c", code], check=True)

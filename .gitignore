@@ -16,3 +16,4 @@ data/accounts.json
 /*.pdf
 data/backups/
 .venv
+data/synthetic/fusion_classifier.json

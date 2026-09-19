@@ -1,14 +1,14 @@
-import shutil
 from pathlib import Path
 
 import pytest
 
+from vault_ledger.extraction.ocr import find_tesseract
 from vault_ledger.extraction.pdf import _native_text_sufficient, extract_pdf_text
 from vault_ledger.synthetic_samples import SAMPLES
 
 DOCUMENTS_DIR = Path(__file__).resolve().parents[1] / "data" / "synthetic" / "documents"
 
-TESSERACT_AVAILABLE = shutil.which("tesseract") is not None
+TESSERACT_AVAILABLE = find_tesseract() is not None
 
 
 @pytest.mark.parametrize("text,expected", [
@@ -45,3 +45,16 @@ def test_scanned_pdf_falls_back_to_ocr(sample):
     text = extract_pdf_text(pdf_path)
 
     assert sample.expected_vendor.split()[0] in text
+
+
+def test_find_tesseract_honors_env_override(tmp_path, monkeypatch):
+    fake = tmp_path / "tesseract-fake"
+    fake.write_text("")
+    monkeypatch.setenv("TESSERACT_CMD", str(fake))
+    assert find_tesseract() == str(fake)
+
+
+def test_find_tesseract_ignores_missing_env_override(monkeypatch, tmp_path):
+    monkeypatch.setenv("TESSERACT_CMD", str(tmp_path / "does-not-exist"))
+    result = find_tesseract()
+    assert result != str(tmp_path / "does-not-exist")

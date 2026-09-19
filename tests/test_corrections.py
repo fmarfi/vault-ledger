@@ -16,7 +16,7 @@ def test_record_correction_writes_header_and_row(tmp_path):
         path=path,
     )
 
-    with path.open() as f:
+    with path.open(encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
 
     assert len(rows) == 1
@@ -37,7 +37,7 @@ def test_record_correction_appends_without_duplicating_header(tmp_path):
             path=path,
         )
 
-    with path.open() as f:
+    with path.open(encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 3
 
@@ -60,7 +60,7 @@ def test_apply_corrections_folds_into_training_data_and_resets_log(tmp_path):
     count = apply_corrections(corrections_path=corrections_path, training_data_path=training_path)
     assert count == 1
 
-    with training_path.open() as f:
+    with training_path.open(encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 2
     assert rows[-1] == {
@@ -69,7 +69,7 @@ def test_apply_corrections_folds_into_training_data_and_resets_log(tmp_path):
         "account": "General/Other Expense",
     }
 
-    with corrections_path.open() as f:
+    with corrections_path.open(encoding="utf-8") as f:
         remaining = list(csv.DictReader(f))
     assert remaining == []
 

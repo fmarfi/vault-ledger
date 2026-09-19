@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Overview{% endblock %}
+{% block page_name %}Overview{% endblock %}
+{% block trust_text %}Totals computed on this device from your posted ledger{% endblock %}
+
+{% block content %}
+
+<section class="overview-wrap">
+  <div id="overview-month" class="muted small overview-month"></div>
+
+  <div class="overview-toggle" role="group" aria-label="Period">
+    <button id="period-this" class="period-btn active" type="button">This month</button>
+    <button id="period-last" class="period-btn" type="button">Last month</button>
+  </div>
+
+  <div id="overview-total" class="overview-figure">$0.00</div>
+  <p id="overview-change" class="overview-change muted"></p>
+
+  <div id="overview-empty" class="card" hidden>
+    <p class="muted" style="margin: 0;">
+      Nothing posted in this period. Confirm a document from the
+      <a href="{{ url_for('index') }}">Review queue</a> and it shows up here.
+    </p>
+  </div>
+
+  <div id="overview-breakdown" class="overview-breakdown" hidden>
+    <div class="small muted overview-breakdown-title">Where it went</div>
+    <div id="overview-lines"></div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='overview.js') }}"></script>
+{% endblock %}
