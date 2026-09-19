@@ -76,13 +76,29 @@ refused it).
 .venv/bin/python -m vault_ledger.webapp.app
 ```
 
-Opens a Flask dev server at http://127.0.0.1:5050 — a single-page demo with
-the pipeline diagram, one-click sample documents (or upload your own),
-extracted fields, predicted account with a confidence bar, the proposed
-journal entry, and an accept/correct control that exercises the M7
-correction loop live. It's a thin UI layer over `vault_ledger.pipeline` --
-no separate business logic. Not a production deployment (Flask dev server,
-single in-memory classifier instance).
+Opens a Flask dev server at http://127.0.0.1:5050 with three pages
+(`templates/base.html` + `static/style.css`'s token system are shared
+across all of them -- see that CSS file's `:root` to change the whole
+look in one place):
+
+- **/ — Review Queue.** Process one document at a time (sample or
+  upload), see the extracted fields, predicted account, and confidence --
+  shown as a pencil/ink mark, not a percentage bar (the raw number is
+  there on hover). Accept posts the entry to the ledger as shown; Correct
+  posts it under a different account and logs the correction for the next
+  training pass (M7). Still single-document, not a true multi-item queue --
+  see the honest limitation in `webapp/app.py`'s module docstring.
+- **/documents — Documents.** Every document that's been confirmed, with
+  what it turned into and whether it needed a correction. Backed by
+  `vault_ledger/ledger.py`, a new CSV-backed posted-entry record (separate
+  from `corrections.py`, which is training signal only).
+- **/ledger — Account ledger.** Confirmed entries grouped by account, with
+  running totals -- styled as a ledger book's thumb-index tabs, not a plain
+  tab bar.
+
+It's a thin UI layer over `vault_ledger.pipeline` and `vault_ledger.ledger`
+-- no separate business logic. Not a production deployment (Flask dev
+server, single in-memory classifier instance).
 
 ## Testing
 

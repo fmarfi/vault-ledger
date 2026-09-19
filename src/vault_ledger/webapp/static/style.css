@@ -1,78 +1,149 @@
+/* ============================================================
+   Design tokens -- change the look here, nowhere else.
+   Ledger-book / vault theme: ruled paper, ink vs. pencil for
+   confidence, engineered-instrument type. See report-5 / the
+   UI brief for the reasoning.
+   ============================================================ */
 :root {
-  --ink: #14213d;
-  --ink-soft: #4b5675;
-  --muted: #7a8299;
-  --line: #e4e7f0;
-  --bg: #f6f7fb;
-  --card: #ffffff;
-  --accent: #1c6e5c;
-  --accent-soft: #e4f3ee;
-  --danger: #b3261e;
-  --danger-soft: #fbeceb;
-  --radius: 12px;
+  --color-page: #EEF0E4;
+  --color-card: #F7F8F2;
+  --color-rule: #B9C2AC;
+  --color-rule-soft: #DCE0D2;
+  --color-ink: #1C2B24;
+  --color-ink-soft: #4a544c;
+  --color-pencil: #6B7566;
+  --color-pencil-soft: #9aa192;
+  --color-brass: #8C7A4E;
+  --color-flag: #A23B2E;
+  --color-header-badge: #33453a;
+  --color-on-ink: #EEF0E4;
+  --color-on-ink-muted: #B9C2AC;
+
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-figure: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --radius-sm: 3px;
+  --sidebar-width: 260px;
+  --content-max: 1240px;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  color: var(--ink);
-  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-page);
   line-height: 1.5;
 }
 
-.wrap {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+a { color: var(--color-brass); }
+a:hover { color: #6e5f3c; }
 
-.site-header {
-  border-bottom: 1px solid var(--line);
-  background: var(--card);
-}
+.figure { font-family: var(--font-figure); font-variant-numeric: tabular-nums; }
+.muted { color: var(--color-pencil); }
+.small { font-size: 12.5px; }
 
-.header-row {
+/* ============================================================
+   Shared shell: header banner + nav. One definition, every page
+   extends base.html so this never gets copy-pasted.
+   ============================================================ */
+.app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 24px;
+  padding: 16px 32px;
+  background: var(--color-ink);
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.brand { display: flex; align-items: center; gap: 10px; }
+.app-header .brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: #fff;
-  font-weight: 700;
+.app-header .brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--color-on-ink);
+}
+
+.app-header .page-name {
   font-size: 13px;
-  letter-spacing: 0.02em;
+  color: var(--color-on-ink-muted);
 }
 
-.brand-name { font-weight: 700; font-size: 18px; }
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--color-on-ink);
+  background: var(--color-header-badge);
+  padding: 7px 12px;
+}
 
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
+.app-nav {
+  display: flex;
+  gap: 4px;
+  padding: 0 32px;
+  background: var(--color-ink);
+  border-bottom: 1px solid #33453a;
+}
+
+.app-nav a {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-on-ink-muted);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-bottom: 2px solid transparent;
+}
+
+.app-nav a:hover { color: var(--color-on-ink); }
+.app-nav a.active { color: var(--color-on-ink); border-bottom-color: var(--color-brass); }
+
+.page-wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 32px 48px;
+}
+
+.site-footer {
+  margin-top: 40px;
+  padding: 24px 32px 40px;
+  color: var(--color-pencil);
+  font-size: 12.5px;
+  text-align: center;
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  font-family: var(--font-display);
+  margin: 0 0 8px;
+  font-size: 17px;
   font-weight: 600;
 }
 
-.badge-muted { background: var(--line); color: var(--ink-soft); }
-.badge-ok { background: var(--accent-soft); color: var(--accent); }
-.badge-review { background: #fff3d6; color: #8a5a00; }
-
-.hero { padding: 48px 0 24px; }
-.hero h1 { font-size: 34px; margin: 0 0 12px; letter-spacing: -0.01em; }
-.lede { color: var(--ink-soft); font-size: 16px; max-width: 640px; }
+/* ============================================================
+   Hero / pipeline strip (landing content on the review queue)
+   ============================================================ */
+.hero { padding: 40px 0 24px; }
+.hero h1 { font-family: var(--font-display); font-size: 30px; font-weight: 600; margin: 0 0 12px; }
+.lede { color: var(--color-ink-soft); font-size: 15px; max-width: 620px; line-height: 1.6; }
 
 .pipeline {
   display: flex;
@@ -80,135 +151,238 @@ body {
   justify-content: space-between;
   gap: 6px;
   padding: 20px;
-  margin-bottom: 28px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  margin-bottom: 24px;
+  background: var(--color-card);
+  border: 1px solid var(--color-rule);
   flex-wrap: wrap;
 }
-
 .pipeline-step { text-align: center; flex: 1; min-width: 90px; }
 .step-num {
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--ink); color: #fff;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--color-ink); color: var(--color-on-ink);
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; margin: 0 auto 6px;
+  font-size: 12px; font-weight: 600; margin: 0 auto 6px;
 }
-.step-label { font-weight: 600; font-size: 13px; }
-.step-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.pipeline-arrow { color: var(--muted); font-size: 16px; }
+.step-label { font-family: var(--font-display); font-weight: 600; font-size: 13px; }
+.step-sub { font-size: 11px; color: var(--color-pencil); margin-top: 2px; }
+.pipeline-arrow { color: var(--color-pencil); font-size: 16px; }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 20px;
-}
-
-.card h2 { margin: 0 0 8px; font-size: 17px; }
-
-.muted { color: var(--muted); }
-.small { font-size: 12.5px; }
-
-.samples {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 16px 0;
-}
-
+/* ============================================================
+   Sample / upload row
+   ============================================================ */
+.samples { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
 .sample-btn {
-  border: 1px solid var(--line);
-  background: var(--bg);
-  border-radius: 10px;
+  border: 1px solid var(--color-rule);
+  background: var(--color-page);
   padding: 10px 14px;
   font-size: 13.5px;
   cursor: pointer;
-  color: var(--ink);
-  font-weight: 600;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 500;
 }
-
-.sample-btn:hover { border-color: var(--accent); color: var(--accent); }
-.sample-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sample-btn:hover { border-color: var(--color-ink); }
+.sample-btn.active { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-on-ink); }
 
 .upload-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
-
 .upload-btn {
   display: inline-block;
-  border: 1px dashed var(--line);
-  border-radius: 10px;
+  border: 1px dashed var(--color-rule);
   padding: 10px 14px;
   font-size: 13.5px;
   cursor: pointer;
-  color: var(--ink-soft);
+  color: var(--color-pencil);
 }
+.upload-btn:hover { border-color: var(--color-ink); color: var(--color-ink); }
 
-.upload-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-.result-grid {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.doc-preview img {
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-}
+/* ============================================================
+   Document / field display
+   ============================================================ */
+.result-grid { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: start; }
+.doc-preview img { width: 100%; border: 1px solid var(--color-rule); }
 
 .field-list { margin: 0; display: grid; grid-template-columns: 110px 1fr; row-gap: 8px; }
-.field-list dt { color: var(--muted); font-size: 13px; }
-.field-list dd { margin: 0; font-weight: 600; font-size: 14px; }
+.field-list dt { color: var(--color-pencil); font-size: 13px; }
+.field-list dd { margin: 0; font-weight: 500; font-size: 14px; }
+
+/* ============================================================
+   Confidence: pencil vs. ink, not a percentage bar.
+   Solid ink mark = high confidence. Dashed pencil outline = low.
+   Percentage stays hidden until hover -- secondary info only.
+   ============================================================ */
+.confidence-row { display: flex; align-items: center; gap: 7px; }
+.confidence-glyph { flex-shrink: 0; }
+.confidence-word { font-size: 13px; }
+.confidence-pct {
+  font-family: var(--font-figure);
+  font-size: 10.5px;
+  color: var(--color-pencil-soft);
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.confidence-row:hover .confidence-pct { opacity: 1; }
 
 .prediction-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.predicted-account { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.predicted-account { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 8px; }
 
-.confidence-bar-track {
-  width: 260px; max-width: 60vw; height: 8px; border-radius: 999px;
-  background: var(--line); overflow: hidden;
+.badge {
+  display: inline-block;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-display);
 }
-.confidence-bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+.badge-muted { background: var(--color-rule-soft); color: var(--color-ink-soft); }
+.badge-ok { background: #e4e8dc; color: var(--color-ink); }
+.badge-review { background: #f0e3d6; color: #7a5628; }
+
+/* ============================================================
+   Ruled tables -- the ledger-row pattern, shared by the review
+   queue, documents list, and account ledger.
+   ============================================================ */
+.ledger-table { width: 100%; }
+.ledger-head {
+  display: grid;
+  gap: 16px;
+  padding: 10px 8px;
+  font-size: 11.5px;
+  color: var(--color-pencil);
+  border-top: 2px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-rule);
+}
+.ledger-row {
+  display: grid;
+  gap: 16px;
+  padding: 13px 8px;
+  align-items: center;
+  border-bottom: 1px solid var(--color-rule);
+}
+.ledger-row-group { border-bottom: 1px solid var(--color-rule); }
+.ledger-row-group .ledger-row { border-bottom: none; }
+.ledger-num { text-align: right; }
+.ledger-reasoning {
+  padding: 0 8px 14px 44px;
+  font-size: 12.5px;
+  color: var(--color-pencil);
+  max-width: 520px;
+}
+.ledger-detail {
+  padding: 0 8px 20px 8px;
+}
+.ledger-detail-card {
+  border: 1px solid var(--color-rule);
+  background: var(--color-page);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 480px;
+}
 
 .entry-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
 .entry-table th {
-  text-align: left; font-size: 12px; color: var(--muted);
-  border-bottom: 1px solid var(--line); padding: 6px 4px;
+  text-align: left; font-size: 12px; color: var(--color-pencil);
+  border-bottom: 1px solid var(--color-rule); padding: 6px 4px;
 }
-.entry-table td { padding: 10px 4px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.entry-table td { padding: 10px 4px; border-bottom: 1px solid var(--color-rule); font-size: 14px; }
 .entry-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .error-note {
-  background: var(--danger-soft); color: var(--danger);
-  border-radius: 8px; padding: 10px 12px; font-size: 13.5px; margin-top: 8px;
+  background: #f6e2df; color: var(--color-flag);
+  padding: 10px 12px; font-size: 13.5px; margin-top: 8px;
 }
 
+/* ============================================================
+   Account ledger sidebar -- styled like a physical ledger book's
+   thumb-index tabs. The active account "pops" into the content
+   area (same fill as the page) instead of a colored border.
+   ============================================================ */
+.ledger-layout { display: flex; align-items: flex-start; gap: 0; }
+.account-sidebar {
+  width: var(--sidebar-width);
+  background: var(--color-ink);
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+.account-sidebar .sidebar-title {
+  font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: #7d8a7f; padding: 0 20px 14px;
+}
+.account-tab {
+  width: 100%; text-align: left; display: block; border: none; cursor: pointer;
+  padding: 13px 16px 13px 20px; margin-bottom: 2px; background: transparent;
+  font-family: var(--font-body);
+}
+.account-tab .tab-name { font-size: 13px; font-weight: 500; color: #c9cfc0; }
+.account-tab .tab-total { font-family: var(--font-figure); font-size: 12px; color: #7d8a7f; margin-top: 3px; }
+.account-tab.active { background: var(--color-page); border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.account-tab.active .tab-name { color: var(--color-ink); font-weight: 600; }
+.account-tab.active .tab-total { color: var(--color-pencil); }
+.ledger-content { flex: 1; padding: 28px 36px; min-width: 0; }
+.ledger-content h1 { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin: 0; }
+.ledger-total-figure { font-family: var(--font-figure); font-size: 32px; font-weight: 500; }
+
+/* ============================================================
+   Buttons + inputs
+   ============================================================ */
 .correction-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
 
 select {
-  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 13.5px;
-  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body);
+  border: 1px solid var(--color-rule); padding: 8px 10px; font-size: 13.5px;
+  background: var(--color-page); color: var(--color-ink);
 }
 
 .btn {
-  border: none; border-radius: 8px; padding: 9px 16px; font-size: 13.5px;
-  font-weight: 600; cursor: pointer;
+  font-family: var(--font-display);
+  border: none; padding: 9px 16px; font-size: 13.5px;
+  font-weight: 500; cursor: pointer;
 }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: #175a4b; }
-.btn-secondary { background: var(--line); color: var(--ink); }
-.btn-secondary:hover { background: #d7dbe8; }
+.btn-primary { background: var(--color-brass); color: var(--color-card); }
+.btn-primary:hover { background: #6e5f3c; }
+.btn-secondary { background: var(--color-rule-soft); color: var(--color-ink); }
+.btn-secondary:hover { background: #cdd3bd; }
+.btn-outline { background: none; border: 1px solid var(--color-rule); color: var(--color-ink); }
+.btn-outline:hover { border-color: var(--color-ink); }
+.btn-dark { background: var(--color-ink); color: var(--color-on-ink); }
+.btn:disabled { opacity: 0.4; cursor: default; }
 
-.loading { text-align: center; color: var(--muted); padding: 30px 0; }
+.loading { text-align: center; color: var(--color-pencil); padding: 30px 0; }
 
-.site-footer {
-  margin-top: 40px; padding: 24px 0 40px;
-  color: var(--muted); font-size: 12.5px; text-align: center;
+/* ============================================================
+   Review queue -- a persistent, multi-item list (each processed
+   document stays here until confirmed/corrected/dismissed), with
+   a bulk-select toolbar above it.
+   ============================================================ */
+.queue-toolbar {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.queue-toolbar-actions { display: flex; gap: 10px; margin-left: auto; }
+
+.queue-item-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 16px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-rule);
+}
+.queue-item-select { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.queue-item-select input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--color-ink); }
+.queue-item .filename { font-family: var(--font-figure); }
+
+.queue-item .result-grid,
+.queue-item .prediction-row,
+.queue-item .entry-block { margin-bottom: 16px; }
+.queue-item .entry-block:last-of-type { margin-bottom: 0; }
+
+.doc-preview-fallback {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 3 / 4; border: 1px dashed var(--color-rule);
+  background: var(--color-page);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 720px) {
   .result-grid { grid-template-columns: 1fr; }
   .pipeline { display: none; }
+  .ledger-layout { flex-direction: column; }
+  .account-sidebar { width: 100%; display: flex; overflow-x: auto; padding: 12px; gap: 4px; }
+  .account-tab.active { border-radius: var(--radius-sm); }
 }
