@@ -31,10 +31,10 @@ import json
 import logging
 import math
 import tempfile
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
-from flask import Flask, jsonify, request, send_file, send_from_directory
+from flask import Flask, Response, jsonify, request, send_file, send_from_directory
 from flask import render_template
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
@@ -44,6 +44,7 @@ from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
 from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, run_pipeline
 from vault_ledger.queue import QUEUE_LOCK, enqueue, get_pending, read_pending, remove_pending
+from vault_ledger.reports import audit_csv, books_csv, period_summary
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
 from vault_ledger.synthetic_samples import SAMPLES
 
@@ -117,6 +118,16 @@ def documents_page():
 @app.route("/ledger")
 def ledger_page():
     return render_template("ledger.html", active_page="ledger")
+
+
+@app.route("/overview")
+def overview_page():
+    return render_template("overview.html", active_page="overview")
+
+
+@app.route("/export")
+def export_page():
+    return render_template("export.html", active_page="export")
 
 
 @app.route("/api/samples")
@@ -426,6 +437,35 @@ def api_stats():
 @app.route("/api/health")
 def api_health():
     return jsonify({"hardware": hardware.check()})
+
+
+@app.route("/api/overview")
+def api_overview():
+    period = "last" if request.args.get("period") == "last" else "this"
+    return jsonify(period_summary(read_entries(), period))
+
+
+@app.route("/api/export/summary")
+def api_export_summary():
+    return jsonify({"count": len(read_entries())})
+
+
+def _csv_download(text: str, name: str) -> Response:
+    return Response(
+        text,
+        mimetype="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="{name}-{date.today().isoformat()}.csv"'},
+    )
+
+
+@app.route("/api/export/books")
+def api_export_books():
+    return _csv_download(books_csv(read_entries()), "vault-ledger-bookkeeping")
+
+
+@app.route("/api/export/audit")
+def api_export_audit():
+    return _csv_download(audit_csv(read_entries()), "vault-ledger-audit-record")
 
 
 @app.route("/api/ledger")

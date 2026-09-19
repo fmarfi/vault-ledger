@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Export{% endblock %}
+{% block page_name %}Export{% endblock %}
+{% block trust_text %}Nothing leaves this device until you export{% endblock %}
+
+{% block content %}
+
+<section style="padding-top: 32px;">
+  <p class="muted" style="max-width: 480px; margin: 0 0 28px; line-height: 1.6;">
+    Two separate files, for two different jobs. Nothing exports
+    automatically — you choose when, and what leaves this device.
+  </p>
+
+  <div class="export-grid">
+    <div class="card export-card">
+      <h2>Bookkeeping export</h2>
+      <p class="muted small export-blurb">
+        A clean CSV — date, vendor, description, amount, account. One row
+        per confirmed entry, ready to import into your bookkeeping software.
+      </p>
+      <div id="books-count" class="figure small muted export-count">&nbsp;</div>
+      <button id="export-books-btn" class="btn btn-primary" type="button" disabled>Export to CSV</button>
+    </div>
+
+    <div class="card export-card">
+      <h2>Audit &amp; compliance record</h2>
+      <p class="muted small export-blurb">
+        The complete record — every entry with when it was posted, the
+        model's confidence score, and whether a reviewer corrected it.
+        CSV for now; a Dutch tax-audit format (XAF) isn't built yet.
+      </p>
+      <div id="audit-count" class="figure small muted export-count">&nbsp;</div>
+      <button id="export-audit-btn" class="btn btn-secondary" type="button" disabled>Export audit record</button>
+    </div>
+  </div>
+
+  <div id="export-empty" class="card" hidden style="margin-top: 20px;">
+    <p class="muted" style="margin: 0;">
+      Nothing to export yet. Confirm a document from the
+      <a href="{{ url_for('index') }}">Review queue</a> first.
+    </p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='export.js') }}"></script>
+{% endblock %}
