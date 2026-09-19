@@ -21,6 +21,8 @@ import csv
 from datetime import datetime, timezone
 from pathlib import Path
 
+from vault_ledger.userdata import resolve
+
 LEDGER_PATH = Path(__file__).resolve().parents[2] / "data" / "ledger.csv"
 FIELDNAMES = [
     "confirmed_at",
@@ -44,9 +46,9 @@ def append_entry(
     account: str,
     confidence: float,
     was_corrected: bool,
-    path: str | Path = LEDGER_PATH,
+    path: str | Path | None = None,
 ) -> None:
-    path = Path(path)
+    path = resolve("ledger.csv", LEDGER_PATH, path)
     path.parent.mkdir(parents=True, exist_ok=True)
     is_new = not path.exists()
     with path.open("a", newline="") as f:
@@ -68,15 +70,15 @@ def append_entry(
         )
 
 
-def read_entries(path: str | Path = LEDGER_PATH) -> list[dict]:
-    path = Path(path)
+def read_entries(path: str | Path | None = None) -> list[dict]:
+    path = resolve("ledger.csv", LEDGER_PATH, path)
     if not path.exists():
         return []
     with path.open(newline="") as f:
         return list(csv.DictReader(f))
 
 
-def entries_by_account(path: str | Path = LEDGER_PATH) -> dict[str, list[dict]]:
+def entries_by_account(path: str | Path | None = None) -> dict[str, list[dict]]:
     grouped: dict[str, list[dict]] = {}
     for entry in read_entries(path):
         grouped.setdefault(entry["account"], []).append(entry)

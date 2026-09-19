@@ -1,0 +1,319 @@
+"""Login, sessions, CSRF, login throttling, access control and security
+headers for the web app. `init_app(app)` wires everything up; app.py calls it
+once. Nothing here knows about ledgers or queues -- it only decides who the
+caller is, and points the storage layer (vault_ledger.userdata) at that
+user's private directory for the duration of the request.
+
+Deliberately in-process: the throttle and the per-user locks live in this
+Python process, so run ONE server process (threads are fine).
+"""
+
+from __future__ import annotations
+
+import collections
+import contextlib
+import hmac
+import os
+import secrets
+import threading
+import time
+from datetime import timedelta
+from urllib.parse import quote, urlsplit
+
+from flask import (
+    Flask, g, jsonify, redirect, render_template, request, session, url_for,
+)
+from flask.sessions import SecureCookieSessionInterface
+from werkzeug.exceptions import HTTPException
+
+from vault_ledger import auth, userdata
+
+# Endpoints reachable without a login. Everything else is protected by default,
+# so a route added later is protected unless someone opts it out here.
+PUBLIC_ENDPOINTS = frozenset({"login", "logout", "signup", "healthz", "static"})
+MUTATING = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+SESSION_HOURS = 8
+MAX_UPLOAD_BYTES = 20 * 1024 * 1024
+CSRF_HEADER = "X-CSRF-Token"
+GENERIC_LOGIN_ERROR = "Invalid username or password."
+THROTTLED_ERROR = "Too many failed attempts. Please wait a few minutes and try again."
+
+
+# ---- secret key ------------------------------------------------------------
+
+_key_cache: dict[str, str] = {}
+
+
+def secret_key() -> str:
+    """VAULT_SECRET_KEY, else a random key generated once into
+    <data>/.secret_key (mode 0600). There is no built-in default."""
+    env = os.environ.get("VAULT_SECRET_KEY")
+    if env:
+        return env
+    path = userdata.data_dir() / ".secret_key"
+    cached = _key_cache.get(str(path))
+    if cached:
+        return cached
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(fd, "w") as f:
+            f.write(secrets.token_hex(32))
+    except FileExistsError:
+        pass
+    with contextlib.suppress(OSError):
+        if os.stat(path).st_mode & 0o077:
+            os.chmod(path, 0o600)
+    key = path.read_text().strip()
+    if len(key) < 32:
+        raise RuntimeError(f"{path} is empty or too short; delete it to generate a new key")
+    _key_cache[str(path)] = key
+    return key
+
+
+class _SessionInterface(SecureCookieSessionInterface):
+    """Looks the signing key and the Secure flag up per request, so nothing
+    touches the data dir at import time and tests can point at a tmp dir."""
+
+    def get_signing_serializer(self, app):
+        app.secret_key = secret_key()
+        return super().get_signing_serializer(app)
+
+    def get_cookie_secure(self, app):
+        return os.environ.get("VAULT_COOKIE_SECURE") == "1"
+
+
+# ---- login throttle --------------------------------------------------------
+
+class Throttle:
+    """Sliding window of failures per key, in memory (resets on restart)."""
+
+    def __init__(self, window: float = 15 * 60):
+        self.window = window
+        self._hits: dict[tuple, collections.deque] = {}
+        self._lock = threading.Lock()
+
+    def _prune(self, key, now):
+        q = self._hits.get(key)
+        while q and now - q[0] > self.window:
+            q.popleft()
+        if q is not None and not q:
+            del self._hits[key]
+        return self._hits.get(key)
+
+    def blocked(self, key: tuple, limit: int) -> bool:
+        with self._lock:
+            q = self._prune(key, time.monotonic())
+            return bool(q) and len(q) >= limit
+
+    def fail(self, key: tuple) -> None:
+        with self._lock:
+            now = time.monotonic()
+            if len(self._hits) > 20000:  # bound memory under a username spray
+                for k in list(self._hits):
+                    self._prune(k, now)
+                if len(self._hits) > 20000:
+                    self._hits.clear()
+            self._hits.setdefault(key, collections.deque()).append(now)
+
+    def reset(self, key: tuple) -> None:
+        with self._lock:
+            self._hits.pop(key, None)
+
+    def clear(self) -> None:
+        with self._lock:
+            self._hits.clear()
+
+
+throttle = Throttle()
+MAX_FAILURES = 5          # per (ip, username)
+MAX_FAILURES_PER_IP = 30  # across usernames, so one IP can't spray usernames forever
+
+
+def _client_ip() -> str:
+    return request.remote_addr or "?"
+
+
+# ---- helpers ---------------------------------------------------------------
+
+def safe_next(target: str | None) -> str:
+    """Only same-site relative paths; anything else becomes '/'."""
+    if not target or not isinstance(target, str) or len(target) > 512:
+        return "/"
+    if not target.startswith("/") or target.startswith("//") or "\\" in target:
+        return "/"
+    if any(ord(c) < 32 or ord(c) == 127 for c in target):
+        return "/"
+    parts = urlsplit(target)
+    if parts.scheme or parts.netloc:
+        return "/"
+    if parts.path.rstrip("/") in ("/login", "/logout", "/signup"):
+        return "/"
+    return target
+
+
+def csrf_token() -> str:
+    token = session.get("csrf")
+    if not token:
+        token = session["csrf"] = secrets.token_urlsafe(32)
+        session.permanent = True
+    return token
+
+
+def _csrf_ok() -> bool:
+    expected = session.get("csrf")
+    supplied = request.headers.get(CSRF_HEADER) or request.form.get("csrf_token") or ""
+    return bool(expected) and hmac.compare_digest(str(expected), str(supplied))
+
+
+def _wants_json() -> bool:
+    return (
+        request.path.startswith(("/api/", "/samples/"))
+        or request.method not in ("GET", "HEAD")
+    )
+
+
+def _session_user() -> dict | None:
+    uid = session.get("uid")
+    if not uid:
+        return None
+    try:
+        user = auth.get_user(uid)
+    except (OSError, ValueError, KeyError):
+        user = None
+    if user is None or not hmac.compare_digest(session.get("ph", ""), auth.password_stamp(user)):
+        session.pop("uid", None)
+        session.pop("ph", None)
+        return None
+    return user
+
+
+def _start_session(user: dict) -> None:
+    session.clear()
+    session.permanent = True
+    session["uid"] = user["id"]
+    session["ph"] = auth.password_stamp(user)
+    session["csrf"] = secrets.token_urlsafe(32)
+
+
+def signup_enabled() -> bool:
+    return os.environ.get("VAULT_ALLOW_SIGNUP") == "1"
+
+
+# ---- wiring ----------------------------------------------------------------
+
+def init_app(app: Flask) -> None:
+    app.session_interface = _SessionInterface()
+    app.config.update(
+        MAX_CONTENT_LENGTH=MAX_UPLOAD_BYTES,
+        PERMANENT_SESSION_LIFETIME=timedelta(hours=SESSION_HOURS),
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE="Lax",
+        SESSION_REFRESH_EACH_REQUEST=False,  # absolute 8h lifetime, not sliding
+    )
+    if os.environ.get("VAULT_TRUST_PROXY") == "1":
+        from werkzeug.middleware.proxy_fix import ProxyFix
+
+        app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
+
+    @app.before_request
+    def _gate():
+        g.user = None
+        g._dir_token = None
+        endpoint = request.endpoint
+        if endpoint is None:  # 404 / 405: nothing to protect, nothing served
+            return None
+        user = _session_user()
+        if endpoint not in PUBLIC_ENDPOINTS and user is None:
+            if _wants_json():
+                return jsonify({"error": "authentication required"}), 401
+            return redirect(url_for("login", next=safe_next(request.full_path.rstrip("?"))))
+        if user is not None:
+            g.user = user
+            g._dir_token = userdata.current_user_dir.set(userdata.user_dir_for(user["id"], create=True))
+        if request.method in MUTATING and not _csrf_ok():
+            if endpoint == "logout" and user is None:
+                return None  # stale page, nothing to protect: the view just clears
+            return jsonify({"error": "missing or invalid CSRF token; reload the page and try again"}), 403
+        return None
+
+    @app.teardown_request
+    def _release(_exc):
+        token = getattr(g, "_dir_token", None)
+        if token is not None:
+            with contextlib.suppress(ValueError):
+                userdata.current_user_dir.reset(token)
+
+    @app.after_request
+    def _headers(resp):
+        resp.headers["X-Content-Type-Options"] = "nosniff"
+        resp.headers["X-Frame-Options"] = "DENY"
+        resp.headers["Referrer-Policy"] = "same-origin"
+        resp.headers["Content-Security-Policy"] = "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        if not request.path.startswith("/static/"):
+            resp.headers["Cache-Control"] = "no-store"
+        return resp
+
+    @app.errorhandler(HTTPException)
+    def _http_error(exc):
+        if _wants_json():
+            message = "that upload is too large (limit 20 MB)" if exc.code == 413 else exc.description
+            return jsonify({"error": message}), exc.code
+        return exc
+
+    @app.context_processor
+    def _inject():
+        return {"current_user": getattr(g, "user", None), "csrf_token": csrf_token, "signup_enabled": signup_enabled()}
+
+    @app.route("/healthz")
+    def healthz():
+        return jsonify({"status": "ok"})
+
+    @app.route("/login", methods=["GET", "POST"])
+    def login():
+        next_url = safe_next(request.values.get("next"))
+        if request.method == "GET":
+            if g.user is not None:
+                return redirect(next_url)
+            return render_template("login.html", next_url=next_url, error=None, username="")
+
+        username = (request.form.get("username") or "")[:64].strip().lower()
+        password = request.form.get("password") or ""
+        ip = _client_ip()
+        key, ip_key = (ip, username), (ip, "*")
+        if throttle.blocked(key, MAX_FAILURES) or throttle.blocked(ip_key, MAX_FAILURES_PER_IP):
+            return render_template("login.html", next_url=next_url, error=THROTTLED_ERROR, username=username), 429
+        user = auth.authenticate(username, password)
+        if user is None:
+            throttle.fail(key)
+            throttle.fail(ip_key)
+            return render_template("login.html", next_url=next_url, error=GENERIC_LOGIN_ERROR, username=username), 401
+        throttle.reset(key)
+        _start_session(user)
+        return redirect(next_url)
+
+    @app.route("/logout", methods=["POST"])
+    def logout():
+        session.clear()
+        return redirect(url_for("login"))
+
+    @app.route("/signup", methods=["GET", "POST"])
+    def signup():
+        if not signup_enabled():
+            return jsonify({"error": "not found"}), 404
+        if request.method == "GET":
+            return render_template("signup.html", error=None, username="")
+        username = (request.form.get("username") or "")[:64]
+        key = (_client_ip(), "*signup")
+        if throttle.blocked(key, 10):
+            return render_template("signup.html", error=THROTTLED_ERROR, username=username), 429
+        throttle.fail(key)  # every attempt counts
+        password = request.form.get("password") or ""
+        try:
+            if password != (request.form.get("password2") or ""):
+                raise auth.AuthError("passwords did not match")
+            user = auth.create_user(username, password)
+        except auth.AuthError as exc:
+            return render_template("signup.html", error=str(exc), username=username), 400
+        _start_session(user)
+        return redirect(url_for("index"))

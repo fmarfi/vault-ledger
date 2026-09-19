@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{% block title %}Vault Ledger{% endblock %}</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body data-auth="{{ '1' if current_user else '0' }}">
 
 <header class="app-header">
   <div class="brand">
@@ -21,6 +22,7 @@
   </div>
 </header>
 
+{% if current_user %}
 <nav class="app-nav">
   <a href="{{ url_for('index') }}" class="{{ 'active' if active_page == 'review' else '' }}">Review queue</a>
   <a href="{{ url_for('documents_page') }}" class="{{ 'active' if active_page == 'documents' else '' }}">Documents</a>
@@ -28,7 +30,15 @@
   <a href="{{ url_for('overview_page') }}" class="{{ 'active' if active_page == 'overview' else '' }}">Overview</a>
   <a href="{{ url_for('export_page') }}" class="{{ 'active' if active_page == 'export' else '' }}">Export</a>
   <a href="{{ url_for('settings_page') }}" class="{{ 'active' if active_page == 'settings' else '' }}">Settings</a>
+  <span class="nav-user">
+    <span class="nav-username">{{ current_user.username }}</span>
+    <form method="post" action="{{ url_for('logout') }}" class="nav-logout">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="nav-signout">Sign out</button>
+    </form>
+  </span>
 </nav>
+{% endif %}
 
 <div id="hardware-banner" class="hardware-banner" hidden></div>
 

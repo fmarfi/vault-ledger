@@ -61,10 +61,32 @@ ALL_ACCOUNTS = MECHANICAL_ACCOUNTS | EXPENSE_ACCOUNTS
 # how predictions of a since-retired account are handled.
 # ---------------------------------------------------------------------------
 import json
+import os
+import tempfile
 from pathlib import Path
+
+from vault_ledger.userdata import current_user_id, lock_for, resolve
 
 ACCOUNTS_PATH = Path(__file__).resolve().parents[2] / "data" / "accounts.json"
 MAX_ACCOUNT_NAME_LEN = 60
+
+
+def _locked(fn):
+    """Serialize a read-modify-write of the accounts file per user."""
+    import functools
+
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        with lock_for(current_user_id()):
+            return fn(*args, **kwargs)
+
+    return wrapper
+
+
+def _path(path=None) -> Path:
+    """Resolved at call time: the current user's accounts.json inside a web
+    request, the legacy data/accounts.json otherwise."""
+    return resolve("accounts.json", ACCOUNTS_PATH, path)
 
 TEMPLATES = {
     "default": sorted(EXPENSE_ACCOUNTS),
@@ -111,23 +133,31 @@ def _load(path) -> dict:
 def _save(state: dict, path) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(state, indent=2, sort_keys=True))
+    fd, tmp = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w") as f:
+            f.write(json.dumps(state, indent=2, sort_keys=True))
+        os.replace(tmp, path)
+    except BaseException:
+        Path(tmp).unlink(missing_ok=True)
+        raise
 
 
 def active_expense_accounts(path=None) -> set:
-    return set(_load(path or ACCOUNTS_PATH)["active"])
+    return set(_load(_path(path))["active"])
 
 
 def retired_expense_accounts(path=None) -> list:
-    return sorted(_load(path or ACCOUNTS_PATH)["retired"])
+    return sorted(_load(_path(path))["retired"])
 
 
 def is_valid_expense_account(account: str) -> bool:
     return account in active_expense_accounts()
 
 
+@_locked
 def add_expense_account(name: str, path=None) -> None:
-    path = path or ACCOUNTS_PATH
+    path = _path(path)
     name = " ".join((name or "").split())
     if not name:
         raise AccountError("account name can't be empty")
@@ -144,8 +174,9 @@ def add_expense_account(name: str, path=None) -> None:
     _save(state, path)
 
 
+@_locked
 def retire_expense_account(name: str, path=None) -> None:
-    path = path or ACCOUNTS_PATH
+    path = _path(path)
     if name == GENERAL_EXPENSE:
         raise AccountError(f"'{GENERAL_EXPENSE}' is the fallback account and can't be retired")
     state = _load(path)
@@ -156,10 +187,11 @@ def retire_expense_account(name: str, path=None) -> None:
     _save(state, path)
 
 
+@_locked
 def apply_template(template: str, path=None) -> None:
     """Switch the active set to a starter template. Accounts that were active
     but aren't in the template are retired, not deleted."""
-    path = path or ACCOUNTS_PATH
+    path = _path(path)
     if template not in TEMPLATES:
         raise AccountError(f"unknown template '{template}'")
     state = _load(path)

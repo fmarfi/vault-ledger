@@ -1,35 +1,29 @@
 """Endpoint tests for the review queue / confirm / bulk-confirm / ledger API.
 
-The storage modules take a `path` default bound at import time, so instead
-of patching constants we rebind the names app.py imported to partials that
-point at tmp_path files -- nothing touches the real data/ directory.
+The app now requires a login and stores each user's files under
+data/users/<id>/ (VAULT_DATA_DIR is a tmp dir here, see conftest), so the
+fixture logs in a throwaway user and the tests read that user's real files
+-- nothing touches the real data/ directory.
 """
 
 import csv
 import threading
-from functools import partial
 
 import pytest
 
 from vault_ledger import queue as queue_mod
+from vault_ledger.userdata import use_user_dir
 from vault_ledger.webapp import app as app_mod
+
+from tests.helpers import PASSWORD, login, make_user_client, new_client
 
 
 @pytest.fixture
-def client(tmp_path, monkeypatch):
-    pending = tmp_path / "pending.csv"
-    ledger = tmp_path / "ledger.csv"
-    corrections = tmp_path / "corrections.csv"
-    monkeypatch.setattr(app_mod, "enqueue", partial(queue_mod.enqueue, path=pending))
-    monkeypatch.setattr(app_mod, "get_pending", partial(queue_mod.get_pending, path=pending))
-    monkeypatch.setattr(app_mod, "read_pending", partial(queue_mod.read_pending, path=pending))
-    monkeypatch.setattr(app_mod, "remove_pending", partial(queue_mod.remove_pending, path=pending))
-    monkeypatch.setattr(app_mod, "append_entry", partial(app_mod.append_entry, path=ledger))
-    monkeypatch.setattr(app_mod, "read_entries", partial(app_mod.read_entries, path=ledger))
-    monkeypatch.setattr(app_mod, "record_correction", partial(app_mod.record_correction, path=corrections))
-    app_mod.app.config["TESTING"] = True
-    c = app_mod.app.test_client()
-    c.pending_path, c.ledger_path, c.corrections_path = pending, ledger, corrections
+def client(tmp_path):
+    c = make_user_client(app_mod.app, "tester")
+    c.pending_path = c.user_dir / "pending_queue.csv"
+    c.ledger_path = c.user_dir / "ledger.csv"
+    c.corrections_path = c.user_dir / "corrections.csv"
     return c
 
 
@@ -48,7 +42,8 @@ def _add(client, **overrides):
         entry_json="{}",
     )
     fields.update(overrides)
-    return app_mod.enqueue(**fields)
+    with use_user_dir(client.user_dir):
+        return app_mod.enqueue(**fields)
 
 
 def _rows(path):
@@ -79,7 +74,8 @@ def test_concurrent_confirm_posts_once(client):
     statuses = []
 
     def go():
-        with app_mod.app.test_client() as c:
+        c = login(new_client(app_mod.app), "tester")
+        if True:
             statuses.append(c.post("/api/confirm", json={"id": item_id}).status_code)
 
     threads = [threading.Thread(target=go) for _ in range(8)]
