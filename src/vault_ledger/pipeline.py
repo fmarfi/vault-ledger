@@ -16,6 +16,7 @@ from pathlib import Path
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
 from vault_ledger.classifier.train import MODEL_PATH, main as train_and_save_model
+from vault_ledger.coa import GENERAL_EXPENSE, active_expense_accounts
 from vault_ledger.confidence_gate import needs_manual_review
 from vault_ledger.extraction.field_parser import parse_fields
 from vault_ledger.extraction.ocr import extract_raw_text
@@ -42,6 +43,13 @@ def run_pipeline(document_path: str | Path, classifier: FusionClassifier) -> Pip
 
     predicted_account, confidence = classifier.predict(fields.vendor, fields.description)
     review_flag = needs_manual_review(confidence)
+
+    # The model can still predict an account that has since been retired
+    # (it was trained on it). Don't propose a retired account: fall back to
+    # the always-active catch-all and force a human look.
+    if predicted_account not in active_expense_accounts():
+        predicted_account = GENERAL_EXPENSE
+        review_flag = True
 
     try:
         entry = construct_entry(predicted_account, fields.amount, fields.paid)

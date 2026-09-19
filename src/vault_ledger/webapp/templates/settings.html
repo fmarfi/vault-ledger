@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Settings{% endblock %}
+{% block page_name %}Settings{% endblock %}
+{% block trust_text %}Everything here is stored on this machine{% endblock %}
+
+{% block content %}
+
+<section class="card" id="accounts-card">
+  <h2>Chart of accounts</h2>
+  <p class="muted small">
+    Expense accounts new documents can be filed under. Retiring an account
+    hides it from new entries but keeps every past entry intact. A new
+    account starts with no suggestions — the model learns it as you correct
+    documents into it.
+  </p>
+
+  <div class="settings-row">
+    <label for="template-select" class="small muted">Start from a template</label>
+    <select id="template-select"></select>
+    <button id="template-apply-btn" class="btn btn-secondary" type="button">Apply template</button>
+  </div>
+
+  <div class="settings-row">
+    <input id="new-account-input" class="text-input" type="text" maxlength="60" placeholder="New account name, e.g. Marketing Expense">
+    <button id="add-account-btn" class="btn btn-primary" type="button">Add account</button>
+  </div>
+  <div id="accounts-status" class="muted small"></div>
+
+  <h3 class="settings-h3">Active</h3>
+  <div id="active-accounts"></div>
+  <h3 class="settings-h3">Retired</h3>
+  <div id="retired-accounts"></div>
+</section>
+
+<section class="card" id="backup-card">
+  <h2>Backup &amp; restore</h2>
+  <p class="muted small">
+    One file with your ledger, review queue, corrections, training data and
+    chart of accounts. Keep it wherever you like — nothing is uploaded
+    anywhere. Restoring replaces the current data (a safety copy is saved
+    first) and the model retrains from the restored data.
+  </p>
+  <div class="settings-row">
+    <a class="btn btn-primary" href="/api/backup" download>Download backup</a>
+  </div>
+  <div class="settings-row">
+    <input id="restore-input" type="file" accept=".zip,application/zip">
+    <button id="restore-btn" class="btn btn-secondary" type="button">Restore from file</button>
+  </div>
+  <div id="backup-status" class="muted small"></div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='settings.js') }}"></script>
+{% endblock %}

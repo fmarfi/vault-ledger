@@ -14,3 +14,4 @@ data/ledger.csv
 data/pending_queue.csv
 data/accounts.json
 /*.pdf
+data/backups/

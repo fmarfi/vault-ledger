@@ -42,3 +42,31 @@ async function fetchJson(url, options) {
   }
   return body;
 }
+
+
+// Hardware preflight: warn (once per tab session) when this machine is
+// below the recommended spec, on every page. Silent when everything is fine.
+async function showHardwareBannerIfNeeded() {
+  try {
+    if (sessionStorage.getItem("hardware-banner-dismissed")) return;
+    const { hardware } = await fetchJson("/api/health");
+    if (hardware.level !== "low" && hardware.level !== "critical") return;
+
+    const banner = document.getElementById("hardware-banner");
+    banner.className = "hardware-banner hardware-" + hardware.level;
+    const text = document.createElement("span");
+    text.textContent = hardware.message;
+    banner.appendChild(text);
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "btn btn-outline";
+    dismiss.textContent = "Dismiss";
+    dismiss.addEventListener("click", () => {
+      banner.hidden = true;
+      try { sessionStorage.setItem("hardware-banner-dismissed", "1"); } catch (e) {}
+    });
+    banner.appendChild(dismiss);
+    banner.hidden = false;
+  } catch (e) { /* preflight is advisory; never block the page */ }
+}
+showHardwareBannerIfNeeded();

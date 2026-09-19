@@ -21,14 +21,14 @@ prediction) is weak for a structural reason — almost no real data has
 touched the system yet. Six features came out of the panel, each scoped to
 greenlight independently:
 
-1. Persistent review queue (SMALL–MEDIUM) — **building now**
-2. Bulk confirm (SMALL) — **building now**
-3. Custom / region-flexible chart of accounts (MEDIUM) — approved in
-   principle, **not started**; see the caveat under Open item 10 below
-   before picking this back up
-4. Manual backup & restore (SMALL–MEDIUM) — not started
-5. Honest accuracy panel (SMALL) — not started
-6. Preflight hardware check (SMALL) — not started
+1. Persistent review queue (SMALL–MEDIUM) — **done**
+2. Bulk confirm (SMALL) — **done**
+3. Custom / region-flexible chart of accounts (MEDIUM) — **done** (see
+   Open item 10: caveats handled; the US/EU templates are generic
+   placeholders, not researched against any real standard)
+4. Manual backup & restore (SMALL–MEDIUM) — **done**
+5. Honest accuracy panel (SMALL) — **done**
+6. Preflight hardware check (SMALL) — **done**
 
 ---
 

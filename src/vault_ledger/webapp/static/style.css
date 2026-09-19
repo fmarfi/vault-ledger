@@ -386,3 +386,25 @@ select {
   .account-sidebar { width: 100%; display: flex; overflow-x: auto; padding: 12px; gap: 4px; }
   .account-tab.active { border-radius: var(--radius-sm); }
 }
+
+/* ============================================================
+   Settings page
+   ============================================================ */
+.settings-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 14px 0; }
+.text-input {
+  font-family: var(--font-body); border: 1px solid var(--color-rule);
+  padding: 8px 10px; font-size: 13.5px; background: var(--color-page);
+  color: var(--color-ink); min-width: 260px; flex: 1;
+}
+.settings-h3 { font-family: var(--font-display); font-size: 13px; margin: 22px 0 6px; color: var(--color-pencil); font-weight: 600; }
+.settings-account-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 9px 0; border-bottom: 1px solid var(--color-rule); font-size: 14px;
+}
+.status-error { color: var(--color-flag); }
+
+/* Hardware preflight banner */
+.hardware-banner { padding: 10px 32px; font-size: 13.5px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.hardware-banner span { flex: 1; min-width: 240px; }
+.hardware-low { background: #f0e3d6; color: #7a5628; }
+.hardware-critical { background: #f6e2df; color: var(--color-flag); }
