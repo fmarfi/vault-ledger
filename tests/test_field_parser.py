@@ -4,6 +4,7 @@ from vault_ledger.extraction.field_parser import (
     FieldParseError,
     _find_amount_raw,
     _find_date,
+    _find_description_raw,
     _find_vendor,
     parse_fields,
 )
@@ -195,3 +196,25 @@ def test_llm_escalation_does_not_override_confident_paid_heuristic(monkeypatch):
     text = "amount due\nJust some unrelated text\nwith no other structure"
     fields = parse_fields(text)
     assert fields.paid is False
+
+
+def test_conflicting_labeled_totals_raise_instead_of_taking_the_first():
+    with pytest.raises(FieldParseError):
+        _find_amount_raw(["Total: $10.00", "Total: $12.00"])
+
+
+def test_duplicate_labeled_total_with_same_value_is_not_ambiguous():
+    assert _find_amount_raw(["Total: $10.00", "Total: $10.00"]) == "$10.00"
+
+
+def test_conflicting_labeled_descriptions_raise_instead_of_taking_the_first():
+    with pytest.raises(FieldParseError):
+        _find_description_raw(["Description: Widgets", "Description: Gadgets"])
+
+
+def test_same_total_in_different_formats_is_not_a_conflict():
+    assert _find_amount_raw(["Total: $1,000.00", "Total: 1000.00"]) == "$1,000.00"
+
+
+def test_total_amount_and_amount_due_are_different_fields_not_a_conflict():
+    assert _find_amount_raw(["Total Amount: 100.00", "Amount Due: 40.00"]) == "100.00"
