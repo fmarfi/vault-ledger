@@ -23,7 +23,7 @@ function renderTabs(names) {
     const btn = document.createElement("button");
     btn.className = "account-tab" + (name === activeAccount ? " active" : "");
     btn.innerHTML = `
-      <div class="tab-name">${name}</div>
+      <div class="tab-name">${escapeHtml(name)}</div>
       <div class="tab-total">${formatCurrency(ledgerData[name].total)}</div>
     `;
     btn.addEventListener("click", () => {
@@ -53,9 +53,9 @@ function renderAccount(name) {
     row.className = "ledger-row";
     row.style.gridTemplateColumns = "110px 2fr 2fr 100px";
     row.innerHTML = `
-      <div class="figure small muted">${entry.date || "—"}</div>
-      <div style="font-weight: 500; font-size: 13.5px;">${entry.vendor}</div>
-      <div class="small" style="color: var(--color-ink-soft);">${entry.description}</div>
+      <div class="figure small muted">${escapeHtml(entry.date) || "—"}</div>
+      <div style="font-weight: 500; font-size: 13.5px;">${escapeHtml(entry.vendor)}</div>
+      <div class="small" style="color: var(--color-ink-soft);">${escapeHtml(entry.description)}</div>
       <div class="figure ledger-num">${formatCurrency(entry.amount)}</div>
     `;
     rowsContainer.appendChild(row);
