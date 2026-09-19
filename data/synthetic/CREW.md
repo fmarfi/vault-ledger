@@ -96,3 +96,23 @@ external dataset.
 
 **Unverified.** NL category shares, most NL amounts and vendor wording, and paid/unpaid
 shares are assumptions until checked against real documents.
+
+## Generator (stage 3)
+
+Run: `PYTHONPATH=src .venv/bin/python data/synthetic/generate_transactions.py [--seed 1234] [--rows 4000] [--out-dir data/synthetic/generated]`
+
+Same seed + spec + corpus gives byte-identical output (per-stage `random.Random` streams; no set/hash ordering).
+
+Outputs in `data/synthetic/generated/` (never `labeled_transactions.csv`):
+- `transactions_<seed>.csv`: vendor, description, date, amount, paid, account.
+- `metadata_<seed>.csv`: row-aligned ground truth (id, source=synthetic, archetype, difficulty, escalate, noise_applied, language, vendor_unverified, vendor_canonical, true_account, hard_case, split). Never a feature.
+- `train_/val_/test_<seed>.csv`: `vendor,description,account` only.
+- `manifest_<seed>.json`: seed, spec/corpus/generator SHA-256, realised stats.
+
+Conventions and deviations (honest limits):
+- **Escalate rows** carry `account = General/Other Expense` with `escalate=true` in metadata; `true_account` holds the account the row would otherwise have.
+- **Vendor-disjoint splits** assign whole brand groups (aliases, alias-string collisions, and linked brands such as Google/Google Workspace) to one split, greedily stratified per account. Row fractions are reported in the manifest, not forced.
+- **Top-10 gate vs Zipf**: pure Zipf s=1.1 over ~50 vendors puts ~65% of mass in the top 10, contradicting the <40% gate. The gate wins: the head is iteratively flattened (rank order kept), and the 30% one-off tail gets exactly one row each.
+- Credit-note utility settlements are emitted as positive amounts.
+- Realised escalate share of hard rows follows the hard_cases corpus composition (~46%), not the spec's ~38%.
+- Recurring-series duplicates are repaired by appending a period tag; the count is in the manifest (`dedup_repairs`).

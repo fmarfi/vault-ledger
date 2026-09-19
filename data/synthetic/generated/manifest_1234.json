@@ -1,0 +1,175 @@
+{
+  "corpus_sha256": "786e2e3f2c44bc6ceae252c1155192881e8252c2fefd4a9fb69ea9498a6986d6",
+  "generator_sha256": "bc7e8cfd364d0d5cb77b14f670bea40b55c0fe69fd3284bde6f37a5cd66b794a",
+  "notes": [
+    "escalate rows carry account=General/Other Expense and escalate=true in metadata",
+    "metadata is row-aligned with transactions and never a feature",
+    "synthetic-only: do not quote accuracy on this data as real-world accuracy"
+  ],
+  "rows_requested": 4000,
+  "seed": 1234,
+  "source": "synthetic",
+  "spec_path": "data/synthetic/spec/generative_spec.yaml",
+  "spec_sha256": "6bb4a871f9f3da75590473266563ef7b898596f0f35746385a7393f44775dc7b",
+  "stats": {
+    "account_fraction": {
+      "General/Other Expense": 0.11,
+      "Office Supplies Expense": 0.14,
+      "Professional Services Expense": 0.09,
+      "Rent Expense": 0.06,
+      "Software & Subscriptions Expense": 0.27,
+      "Travel & Transport Expense": 0.22,
+      "Utilities Expense": 0.11
+    },
+    "dedup_repairs": 82,
+    "difficulty": {
+      "ambiguous": 0.065,
+      "easy": 0.86,
+      "hard": 0.075
+    },
+    "distinct_vendor_strings_per_account": {
+      "General/Other Expense": 231,
+      "Office Supplies Expense": 228,
+      "Professional Services Expense": 165,
+      "Rent Expense": 123,
+      "Software & Subscriptions Expense": 315,
+      "Travel & Transport Expense": 298,
+      "Utilities Expense": 146
+    },
+    "dup_rate_vendor_description": 0.0,
+    "dup_rate_vendor_description_date_amount": 0.0,
+    "escalate_fraction_of_all": 0.065,
+    "escalate_fraction_of_hard": 0.4643,
+    "language": {
+      "en": 0.4168,
+      "mixed": 0.1195,
+      "nl": 0.4637
+    },
+    "noise_realised_rate": {
+      "abbreviation_nl_en": 0.0535,
+      "bank_prefix_suffix": 0.294,
+      "casing_variation": 0.195,
+      "missing_or_generic_description": 0.035,
+      "nl_en_mix_in_one_row": 0.1195,
+      "ocr_confusion": 0.0442,
+      "store_terminal_code": 0.0975,
+      "truncated_description": 0.0745,
+      "typo_char_swap_drop_dup": 0.0625,
+      "vendor_legal_suffix_variation": 0.2392
+    },
+    "paid_rate": {
+      "General/Other Expense": 0.945,
+      "Office Supplies Expense": 0.92,
+      "Professional Services Expense": 0.55,
+      "Rent Expense": 0.942,
+      "Software & Subscriptions Expense": 0.968,
+      "Travel & Transport Expense": 0.983,
+      "Utilities Expense": 0.927
+    },
+    "row_fraction_per_split": {
+      "test": 0.1497,
+      "train": 0.7003,
+      "val": 0.15
+    },
+    "rows": 4000,
+    "rows_per_account": {
+      "General/Other Expense": 440,
+      "Office Supplies Expense": 560,
+      "Professional Services Expense": 360,
+      "Rent Expense": 240,
+      "Software & Subscriptions Expense": 1080,
+      "Travel & Transport Expense": 880,
+      "Utilities Expense": 440
+    },
+    "rows_per_account_per_split": {
+      "General/Other Expense": {
+        "test": 66,
+        "train": 308,
+        "val": 66
+      },
+      "Office Supplies Expense": {
+        "test": 84,
+        "train": 392,
+        "val": 84
+      },
+      "Professional Services Expense": {
+        "test": 54,
+        "train": 252,
+        "val": 54
+      },
+      "Rent Expense": {
+        "test": 36,
+        "train": 168,
+        "val": 36
+      },
+      "Software & Subscriptions Expense": {
+        "test": 162,
+        "train": 756,
+        "val": 162
+      },
+      "Travel & Transport Expense": {
+        "test": 132,
+        "train": 616,
+        "val": 132
+      },
+      "Utilities Expense": {
+        "test": 65,
+        "train": 309,
+        "val": 66
+      }
+    },
+    "rows_per_split": {
+      "test": 599,
+      "train": 2801,
+      "val": 600
+    },
+    "top10_vendor_share_clear_rows": {
+      "General/Other Expense": 0.331,
+      "Office Supplies Expense": 0.336,
+      "Professional Services Expense": 0.343,
+      "Rent Expense": 0.333,
+      "Software & Subscriptions Expense": 0.344,
+      "Travel & Transport Expense": 0.346,
+      "Utilities Expense": 0.336
+    },
+    "vendor_groups_in_multiple_splits": 0,
+    "vendor_groups_per_account_per_split": {
+      "General/Other Expense": {
+        "test": 32,
+        "train": 45,
+        "val": 31
+      },
+      "Office Supplies Expense": {
+        "test": 15,
+        "train": 39,
+        "val": 14
+      },
+      "Professional Services Expense": {
+        "test": 13,
+        "train": 30,
+        "val": 11
+      },
+      "Rent Expense": {
+        "test": 12,
+        "train": 31,
+        "val": 8
+      },
+      "Software & Subscriptions Expense": {
+        "test": 15,
+        "train": 38,
+        "val": 15
+      },
+      "Travel & Transport Expense": {
+        "test": 16,
+        "train": 34,
+        "val": 15
+      },
+      "Utilities Expense": {
+        "test": 11,
+        "train": 21,
+        "val": 13
+      }
+    },
+    "vendor_strings_in_multiple_splits": 0
+  }
+}
