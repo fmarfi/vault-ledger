@@ -22,11 +22,20 @@ it's a cache of a pure-function result, not a second source of truth.
 from __future__ import annotations
 
 import csv
+import os
+import tempfile
+import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
 PENDING_PATH = Path(__file__).resolve().parents[2] / "data" / "pending_queue.csv"
+# One lock for every read-modify-write on the queue file, and for the
+# confirm flow in app.py (get -> post to ledger -> remove) so two tabs or a
+# double-click can't both post the same item. RLock: confirm holds it while
+# calling remove_pending, which takes it again. Single-process only, which
+# matches the on-device, single-user deployment.
+QUEUE_LOCK = threading.RLock()
 FIELDNAMES = [
     "id",
     "queued_at",
@@ -62,8 +71,8 @@ def enqueue(
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     item_id = uuid.uuid4().hex[:12]
-    is_new = not path.exists()
-    with path.open("a", newline="") as f:
+    with QUEUE_LOCK, path.open("a", newline="") as f:
+        is_new = f.tell() == 0
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         if is_new:
             writer.writeheader()
@@ -107,12 +116,23 @@ def remove_pending(item_id: str, path: str | Path = PENDING_PATH) -> bool:
     if the id wasn't found -- lets callers 404 instead of silently no-op'ing
     on a stale id (e.g. two tabs racing to confirm the same document)."""
     path = Path(path)
-    rows = read_pending(path)
-    remaining = [row for row in rows if row["id"] != item_id]
-    if len(remaining) == len(rows):
-        return False
-    with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
-        writer.writeheader()
-        writer.writerows(remaining)
+    with QUEUE_LOCK:
+        rows = read_pending(path)
+        remaining = [row for row in rows if row["id"] != item_id]
+        if len(remaining) == len(rows):
+            return False
+        # Write a temp file then os.replace: a crash or full disk mid-write
+        # leaves the old queue intact instead of a truncated one.
+        fd, tmp_name = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+                writer.writeheader()
+                writer.writerows(remaining)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp_name, path)
+        except BaseException:
+            Path(tmp_name).unlink(missing_ok=True)
+            raise
     return True
