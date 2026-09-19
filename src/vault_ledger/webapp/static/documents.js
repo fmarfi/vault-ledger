@@ -35,12 +35,12 @@ async function loadDocuments() {
     row.innerHTML = `
       <div style="display:flex;align-items:center;gap:10px;">
         ${documentIconHtml()}
-        <span class="figure small">${doc.filename}</span>
+        <span class="figure small">${escapeHtml(doc.filename)}</span>
       </div>
-      <div>${doc.vendor}</div>
+      <div>${escapeHtml(doc.vendor)}</div>
       <div class="figure small muted">${postedDate}</div>
       <div>${statusGlyphHtml(doc.was_corrected === "True")}</div>
-      <div class="small" style="color: var(--color-ink-soft);">${doc.account}</div>
+      <div class="small" style="color: var(--color-ink-soft);">${escapeHtml(doc.account)}</div>
     `;
     rowsContainer.appendChild(row);
   });
