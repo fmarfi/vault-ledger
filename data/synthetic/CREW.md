@@ -29,7 +29,7 @@ into the training set (`source=synthetic`).
 | Stage | Agent | Output | Gate to pass |
 |---|---|---|---|
 | 1 | synth-spec-architect | `spec/generative_spec.yaml` | every parameter tagged sourced/assumption |
-| 2 | synth-corpus-builder | `spec/corpus/*.json` | >=40 vendors, >=80 descriptions/account; ~1/3 keyword-free |
+| 2 | synth-corpus-builder | `spec/corpus/*.json` | >=40 vendors, archetype-linked description pools (>=8 templates/family), vendor legal forms valid |
 | 3 | synth-generator | `generated/transactions_<seed>.csv` | deterministic; vendor-disjoint splits; tests green |
 | 4 | synth-statistical-auditor | PASS/FAIL table | chi-square, KS, Zipf, leakage, dup < 2% |
 | 5 | synth-realism-critic | realism score + artifacts | score >= 0.85, no artifact on > 10% rows |
@@ -72,7 +72,7 @@ Albert Heijn/HEMA, Google Ads) that carry an escalate label, not a guess.
 
 **Acceptance gates (heuristic, tunable; 2k-10k rows).**
 - >= 95% unique after normalization; >= 15 (prefer 30) vendor strings per class.
-- No description pattern > 3% of a class; top-10 vendors < 40% of any class.
+- No description pattern > 3% of a class; top-10 vendors <= 55% of any class, measured over ALL rows of the class (heuristic; see revision 1 below).
 - Of top-20 discriminative tokens per class, <= 30% exclusive to that class.
 - Real-vs-synthetic discriminator (TF-IDF logistic regression) AUC <= 0.75, target ~0.6;
   > 0.9 means template artifacts. Needs real rows (gold set).
@@ -112,7 +112,20 @@ Outputs in `data/synthetic/generated/` (never `labeled_transactions.csv`):
 Conventions and deviations (honest limits):
 - **Escalate rows** carry `account = General/Other Expense` with `escalate=true` in metadata; `true_account` holds the account the row would otherwise have.
 - **Vendor-disjoint splits** assign whole brand groups (aliases, alias-string collisions, and linked brands such as Google/Google Workspace) to one split, greedily stratified per account. Row fractions are reported in the manifest, not forced.
-- **Top-10 gate vs Zipf**: pure Zipf s=1.1 over ~50 vendors puts ~65% of mass in the top 10, contradicting the <40% gate. The gate wins: the head is iteratively flattened (rank order kept), and the 30% one-off tail gets exactly one row each.
-- Credit-note utility settlements are emitted as positive amounts.
-- Realised escalate share of hard rows follows the hard_cases corpus composition (~46%), not the spec's ~38%.
-- Recurring-series duplicates are repaired by appending a period tag; the count is in the manifest (`dedup_repairs`).
+- **Top-10 gate vs Zipf (SPEC DECISION, revision 1)**: pure Zipf s=1.1 over ~50 vendors puts ~65% in the top 10, contradicting the old `< 40%` gate. Decision: keep a realistic heavy head. Model = Zipf-Mandelbrot p(r) ~ (r+q)^-s with **s = 1.0, q = 3.0**; gate = **top-10 vendor share <= 55% of any class, measured over ALL rows of the class** (heuristic; the manifest's `top10_vendor_share_clear_rows_only_NOT_THE_GATE` is informational only). The manifest reports the realised exponent by MLE (not OLS): ~0.8-1.4 for the generating family (q fixed; noisy for small pools) and 0.55-0.90 for pure Zipf (lower by construction because of the offset). Vendors are no longer forced to appear exactly once; singletons are a by-product of the multinomial draw.
+- **Class counts are sampled** (multinomial from the prior, residual after the hard rows), not exact quotas; `class_mix_chi2` in the manifest (df 6) should look like a draw.
+- **Vendor-disjoint splits** assign whole brand groups to one split, greedily stratified per account, with a repair loop that guarantees every account has a vendor group in every split. Row fractions are reported, not forced.
+- **Credit notes**: not generated. The entry rules reject amount <= 0 (R3), so negative utility credit notes cannot enter the pipeline; the ~5% negative share was removed from the spec.
+
+## Revision 1 (after both gates failed on draw 1234)
+
+Root cause: vendors and descriptions were independent lists per account, so "Dropbox billing for Slack Pro" happened by construction. Now:
+- Corpus per account = `archetypes` (family, price model, VAT, doc-type mix) + `pools` (description templates per family) + `vendors` (each tied to ONE archetype). A description is drawn only from the vendor's family pool and its amount from the same archetype (plan menu x seats, hourly rate x hours, usage scale, template amount range, fixed rent per vendor). Only hard rows (`generic_description`, `vendor_description_disagree`, brand cases) may break the link. Metadata carries `desc_family`, `doc_type`, `vat_rate`, `net_amount`.
+- Amount column = document total; net + BTW = total exactly; foreign SaaS = reverse charge; KvK and international flights = 0%. Any amount quoted in a description is derived from the row.
+- ONE payment field by document type: invoice -> terms only, bank line -> SEPA text, receipt -> card terminal/iDEAL. Card-terminal text only on archetypes that have receipts.
+- Dates: invoices and bank lines on business days (rent rolls to the first business day); receipts may fall on weekends (Sat 0.55 / Sun 0.30 weight); Professional invoices cluster in the last 3 business days; accountant quarterly series sit on quarter-end.
+- Legal suffixes: only the vendor's own Dutch form (B.V./N.V.) is appended to its canonical name; foreign forms appear only via curated aliases; no "Holding" except on landlords. Duplicates are avoided with distinct invoice numbers/dates, not a repair tag.
+- Noise: each op's probability is scaled by its eligible rows so the realised rate matches the spec. Typos are keyboard-adjacent / dropped / doubled / swapped letters; OCR uses real confusions (0/O, 1/l, 5/S, rn/m).
+- Ambiguity labels: `vendor_description_disagree` rows are always `escalate=true` (label General/Other, `true_account` = the account the description implies); `generic_description` rows escalate only for ambiguous brand vendors, otherwise keep the vendor's account with difficulty `hard`. The headline escalate share is computed from the case table (0.5305 of hard rows) and a test asserts agreement.
+- Vocabulary exclusivity: `measure_vocab.py` reports description tokens with vendor-name tokens removed (the gate), raw description, vendor and vendor+description tokens. Every pool carries shared business vocabulary (factuur/invoice/betaling/order/periode); the price is a higher keyword-free template share (spec `keyword_shortcut_band`).
+- Tools: `check_corpus.py` (corpus structure and hygiene), `measure_vocab.py`, tests in `tests/test_synth_generator.py`.

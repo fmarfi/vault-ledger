@@ -1,6 +1,2058 @@
 {
  "account": "Software & Subscriptions Expense",
  "slug": "software",
+ "archetypes": {
+  "saas_productivity": {
+   "family": "suite",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Business Starter",
+     6.9,
+     1,
+     "m"
+    ],
+    [
+     "Business Standard",
+     13.8,
+     1,
+     "m"
+    ],
+    [
+     "Business Plus",
+     20.7,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "saas_collab": {
+   "family": "collab",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Pro",
+     8.0,
+     1,
+     "m"
+    ],
+    [
+     "Plus",
+     10.0,
+     1,
+     "m"
+    ],
+    [
+     "Business",
+     15.0,
+     1,
+     "m"
+    ],
+    [
+     "Enterprise",
+     24.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "design_saas": {
+   "family": "design",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Pro",
+     12.0,
+     1,
+     "m"
+    ],
+    [
+     "Team",
+     15.0,
+     1,
+     "m"
+    ],
+    [
+     "All Apps",
+     59.99,
+     0,
+     "m"
+    ],
+    [
+     "Business",
+     29.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "cloud_storage": {
+   "family": "storage",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Plus",
+     9.99,
+     0,
+     "m"
+    ],
+    [
+     "Business",
+     12.0,
+     1,
+     "m"
+    ],
+    [
+     "Advanced",
+     18.0,
+     1,
+     "m"
+    ],
+    [
+     "Enterprise",
+     30.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "dev_tools": {
+   "family": "devtools",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Team",
+     4.0,
+     1,
+     "m"
+    ],
+    [
+     "Standard",
+     7.75,
+     1,
+     "m"
+    ],
+    [
+     "Pro",
+     21.0,
+     1,
+     "m"
+    ],
+    [
+     "Enterprise",
+     49.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "accounting_software": {
+   "family": "accounting",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Starter",
+     12.5,
+     0,
+     "m"
+    ],
+    [
+     "Plus",
+     24.0,
+     0,
+     "m"
+    ],
+    [
+     "Pro",
+     39.0,
+     0,
+     "m"
+    ],
+    [
+     "Premium",
+     99.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "cloud_infra": {
+   "family": "cloud",
+   "mode": "usage",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.85,
+    "irregular": 0.15
+   },
+   "amt_is": "net",
+   "usage": {
+    "mu": 4.1,
+    "sigma": 1.0
+   },
+   "seg_jitter": 0.3,
+   "billing": "arrears"
+  },
+  "hosting_domain": {
+   "family": "hosting",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.55,
+    "annual": 0.35,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Webhosting Basic",
+     4.95,
+     0,
+     "m"
+    ],
+    [
+     "Webhosting Plus",
+     9.95,
+     0,
+     "m"
+    ],
+    [
+     "VPS Small",
+     12.5,
+     0,
+     "m"
+    ],
+    [
+     "Dedicated",
+     99.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "security_saas": {
+   "family": "security",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Business",
+     3.99,
+     1,
+     "m"
+    ],
+    [
+     "Teams",
+     7.99,
+     1,
+     "m"
+    ],
+    [
+     "VPN Teams",
+     7.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "web_builder": {
+   "family": "web",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.5,
+    "annual": 0.4,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Basic",
+     14.0,
+     0,
+     "m"
+    ],
+    [
+     "Business",
+     23.0,
+     0,
+     "m"
+    ],
+    [
+     "Plus",
+     29.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "ecommerce_saas": {
+   "family": "web",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Basic",
+     32.0,
+     0,
+     "m"
+    ],
+    [
+     "Grow",
+     79.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "marketing_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Essentials",
+     13.0,
+     0,
+     "m"
+    ],
+    [
+     "Standard",
+     45.0,
+     0,
+     "m"
+    ],
+    [
+     "Premium",
+     99.0,
+     0,
+     "m"
+    ],
+    [
+     "Enterprise",
+     199.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "crm_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Starter",
+     20.0,
+     1,
+     "m"
+    ],
+    [
+     "Professional",
+     49.0,
+     1,
+     "m"
+    ],
+    [
+     "Growth",
+     99.0,
+     1,
+     "m"
+    ],
+    [
+     "Enterprise",
+     199.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "forms_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Basic",
+     25.0,
+     0,
+     "m"
+    ],
+    [
+     "Plus",
+     50.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "scheduling_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Standard",
+     10.0,
+     1,
+     "m"
+    ],
+    [
+     "Teams",
+     16.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "automation_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Starter",
+     19.99,
+     0,
+     "m"
+    ],
+    [
+     "Professional",
+     49.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "analytics_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Growth",
+     9.0,
+     0,
+     "m"
+    ],
+    [
+     "Business",
+     19.0,
+     0,
+     "m"
+    ]
+   ]
+  },
+  "esign_saas": {
+   "family": "growth",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Personal",
+     10.0,
+     1,
+     "m"
+    ],
+    [
+     "Standard",
+     25.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "writing_saas": {
+   "family": "ai_api",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Premium",
+     12.0,
+     1,
+     "m"
+    ],
+    [
+     "Business",
+     15.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "ai_saas": {
+   "family": "ai_api",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Plus",
+     20.0,
+     0,
+     "m"
+    ],
+    [
+     "Team",
+     25.0,
+     1,
+     "m"
+    ]
+   ]
+  },
+  "api_saas": {
+   "family": "api",
+   "mode": "usage",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.85,
+    "irregular": 0.15
+   },
+   "amt_is": "net",
+   "usage": {
+    "mu": 3.0,
+    "sigma": 0.9
+   },
+   "seg_jitter": 0.3,
+   "billing": "arrears"
+  },
+  "generic_saas_bv": {
+   "family": "generic_saas",
+   "mode": "plan",
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "vat": 0.21,
+   "rc_foreign": true,
+   "cadence": {
+    "monthly": 0.72,
+    "annual": 0.18,
+    "irregular": 0.1
+   },
+   "amt_is": "net",
+   "plans": [
+    [
+     "Standard",
+     29.0,
+     0,
+     "m"
+    ],
+    [
+     "Business",
+     49.0,
+     0,
+     "m"
+    ],
+    [
+     "Premium",
+     99.0,
+     0,
+     "m"
+    ],
+    [
+     "Enterprise",
+     199.0,
+     0,
+     "m"
+    ]
+   ]
+  }
+ },
+ "pools": {
+  "suite": [
+   {
+    "text": "{product} {plan} - {users}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan}, {users}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} subscription - {users}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} licenties {plan}, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly subscription, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} - {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Verlenging {product} {plan}, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} renewal - {users}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}, {users}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual plan - {users}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "collab": [
+   {
+    "text": "{product} {plan} abonnement, {users}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} plan - {users}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} teamabonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} workspace subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} {product} {plan}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {plan}, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly billing, {users}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual subscription {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "design": [
+   {
+    "text": "{product} {plan} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} subscription, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} licentie, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} team plan - {users}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product} {plan}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} betaling per maand, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly charge {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} - {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual plan {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "storage": [
+   {
+    "text": "{product} {plan} opslag {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} storage plan, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} abonnement, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} subscription - {users}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} cloudopslag {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} cloud backup {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarplan {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual {plan} plan",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "devtools": [
+   {
+    "text": "{product} {plan} licentie, {users}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} plan - {users}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} seats: {users}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {plan} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarlicentie {plan}, {users}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual license - {users}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "accounting": [
+   {
+    "text": "{product} abonnement {plan} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} boekhoudpakket {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} accounting software {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {plan}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly fee {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - klantnummer {cust}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} customer {cust}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual subscription {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "cloud": [
+   {
+    "text": "{product} gebruik {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} usage charges {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} cloudkosten {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} cloud services, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product} usage",
+    "lang": "en"
+   },
+   {
+    "text": "{product} servers en opslag {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} compute and storage {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly bill {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} account {cust}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} account {cust} {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "hosting": [
+   {
+    "text": "{product} {plan} voor {domain}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} for {domain}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} hosting {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} hosting subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} {product}",
+    "lang": "en"
+   },
+   {
+    "text": "Domeinnaam {domain} - {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Domain {domain} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} - {plan}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarfactuur {plan} {domain}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual renewal {domain}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "security": [
+   {
+    "text": "{product} {plan} abonnement, {users}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} plan - {users}, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} wachtwoordbeheer {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} password manager {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {users} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual plan - {users}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "web": [
+   {
+    "text": "{product} {plan} website abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} website plan, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} webshop {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} online store subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {plan} - {domain}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarplan {plan} {domain}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual plan {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "growth": [
+   {
+    "text": "{product} {plan} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} plan, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} abonnement, account {cust}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} subscription, account {cust}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product} {plan}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {plan}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly billing {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarabonnement {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual subscription {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "ai_api": [
+   {
+    "text": "{product} {plan} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} subscription, {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} abonnement, {users}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} team plan - {users}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} gebruik {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly charge {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarplan {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "api": [
+   {
+    "text": "{product} API-gebruik {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} API usage {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} verbruik {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} usage charges {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} account {cust}, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} account {cust}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} monthly usage {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "generic_saas": [
+   {
+    "text": "{product} {plan} abonnement {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} subscription {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} softwarelicentie {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} software license {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {product}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} - klantnummer {cust}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} - customer {cust}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "{product} {plan} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "{product} jaarlicentie {plan}",
+    "lang": "nl",
+    "cad": "y"
+   },
+   {
+    "text": "{product} annual license {plan}",
+    "lang": "en",
+    "cad": "y"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "Microsoft 365",
@@ -8,45 +2060,48 @@
     "Microsoft Ireland Operations Ltd",
     "MICROSOFT*365",
     "MSFT 365",
-    "MICROSOFT 365",
-    "microsoft 365"
+    "MICROSOFT 365"
    ],
    "archetype": "saas_productivity",
-   "ambiguity_notes": "reverse charge (IE)"
+   "country": "IE",
+   "plans": [
+    [
+     "Business Standard",
+     10.93,
+     1,
+     "m"
+    ]
+   ]
   },
   {
    "name": "Google Workspace",
    "aliases": [
     "GOOGLE*WORKSPACE",
     "Google Workspace Ireland",
-    "GOOGLE WORKSPACE",
-    "google workspace"
+    "GOOGLE WORKSPACE"
    ],
    "archetype": "saas_productivity",
-   "ambiguity_notes": "reverse charge; plain \"Google\" is a hard case"
+   "country": "IE"
   },
   {
    "name": "Adobe",
    "aliases": [
     "Adobe Systems Software Ireland Ltd",
     "ADOBE *CREATIVE CLOUD",
-    "Adobe Inc",
-    "ADOBE",
-    "adobe"
+    "ADOBE"
    ],
    "archetype": "design_saas",
-   "ambiguity_notes": "reverse charge (IE)"
+   "country": "IE"
   },
   {
    "name": "Slack",
    "aliases": [
     "Slack Technologies Ltd",
     "SLACK.COM",
-    "SLACK",
-    "slack"
+    "SLACK"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Zoom",
@@ -54,1320 +2109,621 @@
     "Zoom Video Communications Inc",
     "ZOOM.US",
     "Zoom Communications",
-    "ZOOM",
-    "zoom"
+    "ZOOM"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Dropbox",
    "aliases": [
     "Dropbox International Unlimited Company",
     "DROPBOX*",
-    "DROPBOX",
-    "dropbox"
+    "DROPBOX"
    ],
    "archetype": "cloud_storage",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Notion",
    "aliases": [
     "Notion Labs Inc",
     "NOTION LABS",
-    "NOTION",
-    "notion"
+    "NOTION"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "GitHub",
    "aliases": [
     "GitHub Inc",
     "GITHUB.COM",
-    "GITHUB",
-    "github"
+    "GITHUB"
    ],
    "archetype": "dev_tools",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Moneybird",
    "aliases": [
     "Moneybird B.V.",
     "MONEYBIRD BV",
-    "MONEYBIRD",
-    "moneybird"
+    "MONEYBIRD"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Exact Online",
    "aliases": [
     "Exact Software Nederland B.V.",
     "EXACT SOFTWARE NL BV",
-    "EXACT ONLINE",
-    "exact online"
+    "EXACT ONLINE"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "AWS",
    "aliases": [
     "Amazon Web Services EMEA SARL",
     "AWS EMEA",
-    "Amazon Web Services",
-    "aws"
+    "Amazon Web Services"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": "distinct from Amazon.nl retail (hard case)"
+   "country": "LU"
   },
   {
    "name": "Microsoft Azure",
    "aliases": [
     "Microsoft Azure",
     "MICROSOFT*AZURE",
-    "MICROSOFT AZURE",
-    "microsoft azure"
+    "MICROSOFT AZURE"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Atlassian",
    "aliases": [
     "Atlassian Pty Ltd",
     "ATLASSIAN*JIRA",
-    "ATLASSIAN",
-    "atlassian"
+    "ATLASSIAN"
    ],
    "archetype": "dev_tools",
-   "ambiguity_notes": ""
+   "country": "AU"
   },
   {
    "name": "Canva",
    "aliases": [
     "Canva Pty Ltd",
     "CANVA*",
-    "CANVA",
-    "canva"
+    "CANVA"
    ],
    "archetype": "design_saas",
-   "ambiguity_notes": ""
+   "country": "AU"
   },
   {
    "name": "Figma",
    "aliases": [
     "Figma Inc",
     "FIGMA.COM",
-    "FIGMA",
-    "figma"
+    "FIGMA"
    ],
    "archetype": "design_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "1Password",
    "aliases": [
     "AgileBits Inc",
-    "1PASSWORD",
-    "1password"
+    "1PASSWORD"
    ],
    "archetype": "security_saas",
-   "ambiguity_notes": ""
+   "country": "CA"
   },
   {
    "name": "Mailchimp",
    "aliases": [
     "The Rocket Science Group LLC",
-    "MAILCHIMP",
-    "mailchimp"
+    "MAILCHIMP"
    ],
    "archetype": "marketing_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Shopify",
    "aliases": [
     "Shopify International Ltd",
     "SHOPIFY*",
-    "SHOPIFY",
-    "shopify"
+    "SHOPIFY"
    ],
    "archetype": "ecommerce_saas",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Squarespace",
    "aliases": [
     "Squarespace Ireland Ltd",
     "SQSP*",
-    "SQUARESPACE",
-    "squarespace"
+    "SQUARESPACE"
    ],
    "archetype": "web_builder",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Wix",
    "aliases": [
     "Wix.com Ltd",
     "WIX.COM",
-    "WIX",
-    "wix"
+    "WIX"
    ],
    "archetype": "web_builder",
-   "ambiguity_notes": ""
+   "country": "IL"
   },
   {
    "name": "TransIP",
    "aliases": [
     "TransIP B.V.",
     "TRANSIP BV",
-    "TRANSIP",
-    "transip"
+    "TRANSIP"
    ],
    "archetype": "hosting_domain",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Hostnet",
    "aliases": [
     "Hostnet B.V.",
     "HOSTNET BV",
-    "HOSTNET",
-    "hostnet"
+    "HOSTNET"
    ],
    "archetype": "hosting_domain",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Antagonist",
    "aliases": [
     "Antagonist B.V.",
     "ANTAGONIST.NL",
-    "ANTAGONIST",
-    "antagonist"
+    "ANTAGONIST"
    ],
    "archetype": "hosting_domain",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Mijndomein",
    "aliases": [
     "Mijndomein Hosting B.V.",
     "MIJNDOMEIN.NL",
-    "MIJNDOMEIN",
-    "mijndomein"
+    "MIJNDOMEIN"
    ],
    "archetype": "hosting_domain",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Cloudflare",
    "aliases": [
     "Cloudflare Inc",
-    "CLOUDFLARE",
-    "cloudflare"
+    "CLOUDFLARE"
    ],
    "archetype": "hosting_domain",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "DigitalOcean",
    "aliases": [
     "DigitalOcean LLC",
     "DIGITALOCEAN.COM",
-    "DIGITALOCEAN",
-    "digitalocean"
+    "DIGITALOCEAN"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Hetzner",
    "aliases": [
     "Hetzner Online GmbH",
-    "HETZNER",
-    "hetzner"
+    "HETZNER"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "Vercel",
    "aliases": [
     "Vercel Inc",
     "VERCEL.COM",
-    "VERCEL",
-    "vercel"
+    "VERCEL"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Netlify",
    "aliases": [
     "Netlify Inc",
-    "NETLIFY",
-    "netlify"
+    "NETLIFY"
    ],
    "archetype": "cloud_infra",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "JetBrains",
    "aliases": [
     "JetBrains s.r.o.",
-    "JETBRAINS",
-    "jetbrains"
+    "JETBRAINS"
    ],
    "archetype": "dev_tools",
-   "ambiguity_notes": ""
+   "country": "CZ"
   },
   {
    "name": "Zapier",
    "aliases": [
     "Zapier Inc",
     "ZAPIER.COM",
-    "ZAPIER",
-    "zapier"
+    "ZAPIER"
    ],
    "archetype": "automation_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "HubSpot",
    "aliases": [
     "HubSpot Ireland Ltd",
-    "HUBSPOT",
-    "hubspot"
+    "HUBSPOT"
    ],
    "archetype": "crm_saas",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Typeform",
    "aliases": [
     "TYPEFORM SL",
     "Typeform",
-    "TYPEFORM",
-    "typeform"
+    "TYPEFORM"
    ],
    "archetype": "forms_saas",
-   "ambiguity_notes": ""
+   "country": "ES"
   },
   {
    "name": "Calendly",
    "aliases": [
     "Calendly LLC",
     "CALENDLY.COM",
-    "CALENDLY",
-    "calendly"
+    "CALENDLY"
    ],
    "archetype": "scheduling_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Loom",
    "aliases": [
     "Loom Inc",
     "LOOM.COM",
-    "LOOM",
-    "loom"
+    "LOOM"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Miro",
    "aliases": [
     "RealtimeBoard Inc",
     "MIRO.COM",
-    "MIRO",
-    "miro"
+    "MIRO"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Asana",
    "aliases": [
     "Asana Inc",
     "ASANA.COM",
-    "ASANA",
-    "asana"
+    "ASANA"
    ],
    "archetype": "saas_collab",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Twilio",
    "aliases": [
     "Twilio Ireland Ltd",
-    "TWILIO",
-    "twilio"
+    "TWILIO"
    ],
    "archetype": "api_saas",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "SendGrid",
    "aliases": [
     "Twilio SendGrid",
-    "SENDGRID",
-    "sendgrid"
+    "SENDGRID"
    ],
    "archetype": "api_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "e-Boekhouden.nl",
    "aliases": [
     "e-Boekhouden.nl B.V.",
     "EBOEKHOUDEN",
-    "E-BOEKHOUDEN.NL",
-    "e-boekhouden.nl"
+    "E-BOEKHOUDEN.NL"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Informer",
    "aliases": [
     "Informer Online B.V.",
     "INFORMER ONLINE",
-    "INFORMER",
-    "informer"
+    "INFORMER"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Yuki",
    "aliases": [
     "Visma Yuki B.V.",
-    "YUKI",
-    "yuki"
+    "YUKI"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Twinfield",
    "aliases": [
     "Wolters Kluwer Twinfield",
-    "TWINFIELD",
-    "twinfield"
+    "TWINFIELD"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "SnelStart",
    "aliases": [
     "SnelStart Software B.V.",
-    "SNELSTART",
-    "snelstart"
+    "SNELSTART"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Jortt",
    "aliases": [
     "Jortt B.V.",
     "JORTT.NL",
-    "JORTT",
-    "jortt"
+    "JORTT"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "QuickBooks",
    "aliases": [
     "Intuit Ireland Ltd",
-    "QUICKBOOKS",
-    "quickbooks"
+    "QUICKBOOKS"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Xero",
    "aliases": [
     "Xero (UK) Ltd",
     "XERO.COM",
-    "XERO",
-    "xero"
+    "XERO"
    ],
    "archetype": "accounting_software",
-   "ambiguity_notes": ""
+   "country": "GB"
   },
   {
    "name": "Bitwarden",
    "aliases": [
     "Bitwarden Inc",
-    "BITWARDEN",
-    "bitwarden"
+    "BITWARDEN"
    ],
    "archetype": "security_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "NordVPN",
    "aliases": [
     "Nord Security",
-    "NORDVPN",
-    "nordvpn"
+    "NORDVPN"
    ],
    "archetype": "security_saas",
-   "ambiguity_notes": ""
+   "country": "PA"
   },
   {
    "name": "Grammarly",
    "aliases": [
     "Grammarly Inc",
-    "GRAMMARLY",
-    "grammarly"
+    "GRAMMARLY"
    ],
    "archetype": "writing_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "OpenAI",
    "aliases": [
     "OpenAI Ireland Ltd",
     "OPENAI *CHATGPT",
-    "OPENAI",
-    "openai"
+    "OPENAI"
    ],
    "archetype": "ai_saas",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Anthropic",
    "aliases": [
     "Anthropic Ireland Ltd",
-    "ANTHROPIC",
-    "anthropic"
+    "ANTHROPIC"
    ],
    "archetype": "ai_saas",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Backblaze",
    "aliases": [
     "Backblaze Inc",
-    "BACKBLAZE",
-    "backblaze"
+    "BACKBLAZE"
    ],
    "archetype": "cloud_storage",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "DocuSign",
    "aliases": [
     "DocuSign Inc",
-    "DOCUSIGN",
-    "docusign"
+    "DOCUSIGN"
    ],
    "archetype": "esign_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Pipedrive",
    "aliases": [
     "Pipedrive OU",
-    "PIPEDRIVE",
-    "pipedrive"
+    "PIPEDRIVE"
    ],
    "archetype": "crm_saas",
-   "ambiguity_notes": ""
+   "country": "EE"
   },
   {
    "name": "Teamleader",
    "aliases": [
     "Teamleader NV",
-    "TEAMLEADER",
-    "teamleader"
+    "TEAMLEADER"
    ],
    "archetype": "crm_saas",
-   "ambiguity_notes": ""
+   "country": "BE"
   },
   {
    "name": "Postmark",
    "aliases": [
     "ActiveCampaign LLC (Postmark)",
     "POSTMARKAPP",
-    "POSTMARK",
-    "postmark"
+    "POSTMARK"
    ],
    "archetype": "api_saas",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Linear",
    "aliases": [
     "Linear Orbit Inc",
     "LINEAR.APP",
-    "LINEAR",
-    "linear"
+    "LINEAR"
    ],
    "archetype": "dev_tools",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Sentry",
    "aliases": [
     "Functional Software Inc",
     "SENTRY.IO",
-    "SENTRY",
-    "sentry"
+    "SENTRY"
    ],
    "archetype": "dev_tools",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
-   "name": "Plausible",
+   "name": "Plausible Analytics",
    "aliases": [
-    "Plausible Insights OU",
-    "PLAUSIBLE.IO",
-    "PLAUSIBLE",
-    "plausible"
+    "Plausible Insights OU"
    ],
    "archetype": "analytics_saas",
-   "ambiguity_notes": ""
+   "country": "EE"
   },
   {
    "name": "Webflow",
    "aliases": [
     "Webflow Inc",
     "WEBFLOW.COM",
-    "WEBFLOW",
-    "webflow"
+    "WEBFLOW"
    ],
    "archetype": "web_builder",
-   "ambiguity_notes": ""
+   "country": "US"
   },
   {
    "name": "Bolddesk Software B.V.",
    "aliases": [
     "Bolddesk BV",
-    "BOLDDESK SOFTWARE B.V.",
-    "bolddesk software b.v."
+    "BOLDDESK SOFTWARE B.V."
    ],
    "archetype": "generic_saas_bv",
-   "ambiguity_notes": "generic_saas_bv archetype",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Bolddesk Software",
    "unverified": true
   },
   {
    "name": "Cloudnine Apps B.V.",
    "aliases": [
     "CLOUDNINE APPS BV",
-    "CLOUDNINE APPS B.V.",
-    "cloudnine apps b.v."
+    "CLOUDNINE APPS B.V."
    ],
    "archetype": "generic_saas_bv",
-   "ambiguity_notes": "generic_saas_bv archetype",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Cloudnine Apps",
    "unverified": true
-  }
- ],
- "descriptions": [
-  {
-   "text": "Microsoft 365 Business Standard - 1 user, monthly subscription",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Google Workspace Business Starter, 2 users, Aug 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Adobe Creative Cloud abonnement, betaling per maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Jaarlijkse licentie JetBrains All Products Pack, 1 gebruiker",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "GitHub Team plan - 3 seats (Sep 2026)",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Domeinnaam verlenging .nl, 1 jaar",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Domain renewal .com - 12 months - reverse charge, VAT 0%",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Hostingpakket Basis, periode 01-08-2026 t/m 31-08-2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Cloud hosting (VPS 2 vCPU / 4GB) Aug 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "SaaS abonnement boekhoudsoftware, BTW 21%",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Software licence - annual renewal, 1 seat, EUR 199.00 excl. VAT",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Softwarelicentie 3 gebruikers, jaarlijks vooruit betaald",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Zoom Pro subscription - monthly billing",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Slack Pro abonnement, 4 actieve gebruikers",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Notion Plus plan, 1 member, billed monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Abonnement Moneybird Compleet, factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "AWS usage charges for August 2026 - EC2, S3, data transfer",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Cloudkosten Azure augustus 2026, verbruiksfactuur",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Dropbox Professional annual plan, 3 TB storage",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Opslagabonnement 2 TB, maandelijks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "API usage - overage 1,240,000 calls, Jul 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verlenging SSL-certificaat en domein, 2 jaar",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "1Password Business, 5 users, VAT reverse charged",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Wachtwoordmanager licentie team, jaarplan",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Figma Professional - Full seat, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Canva Pro abonnement, 1 maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Email marketing plan (up to 5,000 contacts) - Mailchimp Standard",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Nieuwsbriefsoftware pakket, 5.000 contacten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Renewal of subscription: Team plan, 10 seats, annual, 15% discount applied",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verlenging jaarabonnement, kortingscode 15% toegepast",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Software subscription - VAT (21%) EUR 4.20, Total due 24.19",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaling SaaS-tool: Pro-plan augustus, BTW 21% inbegrepen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Antivirus / endpoint protection licence, 5 devices, 12 months",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Virusscanner licentie 5 apparaten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Video hosting - Business plan, 1 user",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Projectmanagementtool, 5 gebruikers, kwartaalfactuur Q3 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Cloud storage upgrade 200 GB",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Serverhosting dedicated, maandbedrag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "iOS app developer programme membership, annual",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Developer-account jaarlijkse bijdrage",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "CRM software - Starter, 2 users, Aug 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Facturatiesoftware Pro, maandabonnement",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Team chat workspace plan, 6 active users",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Online agenda software abonnement, jaarlijks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "CI/CD build minutes - additional 3,000 min",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "E-signature abonnement 10 enveloppen per maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "VPN service, 2-year plan",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "VPN abonnement 12 maanden",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Developer tools licence renewal: IDE + database client",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Licentie ontwikkelomgeving, hernieuwing per 01-09-2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "SaaS platform fee - subscription period Q3 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Analytics tool Pro, 100k pageviews per maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Transcription software plan, annual",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Webshop platform abonnement Basic, 30 dagen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Software as a Service - invoice no. INV-2026-00123, reverse charge Art. 44 VAT Directive",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Diensten in de cloud, BTW verlegd, factuur F2026/0087",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:4821 ADOBE *CREATIVE CLOUD abonnement",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Moneybird abonnement augustus",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "CARD PURCHASE GITHUB.COM subscription",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "iDEAL betaling TransIP - hosting en domeinen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Stripe *NOTION LABS monthly charge",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaalautomaat ZOOM.US SAN JOSE abon. 2026-08",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Renewal notice: your annual licence expires 31-10-2026 - amount due",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kwartaalfactuur software-as-a-service Q3 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "AI assistant Pro plan - monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Licentiekosten boekhoudpakket per jaar, incl. BTW-aangifte module",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Team plan - additional seat added mid-cycle (prorated 12 days)",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Extra gebruiker toegevoegd, pro rata berekend",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Web builder Business plan incl. domain, 12 months",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Abonnementskosten kalenderjaar 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Prepaid credits top-up for API access",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Extra opslagruimte in de cloud, 100 GB",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Annual licence - design software, 2 seats",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verlenging antivirus en firewall licentie",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "SaaS invoicing tool - Growth plan, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Abonnement videovergaderen, 5 gebruikers",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Hosting and domain bundle, first year discount",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Licentie PDF-editor, eenmalig, 1 gebruiker",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monthly software subscription - customer 30055812",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Domein en mailbox pakket, 12 maanden",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Periode 01-08-2026 t/m 31-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Billing period 01/08/2026 - 31/08/2026, Invoice 88231045",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Incassant ID NL97ZZZ302156450000 Machtiging 0044518 Omschrijving: Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt from Slack Technologies - order 4479-2201",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087 BTW verlegd",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Your receipt #2216-8843-1123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling factuur 2026-0311 augustus",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment Aug 2026 - monthly charge",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Reeds voldaan via SEPA Incasso, factuurnummer 2026-0455",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Total due 24.19 EUR, paid by card ending 4417",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kenmerk 7700231 - Q3 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Charge for 09/2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BEA NR:9013 STRIPE* TE BETALEN 12,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order confirmation 2026-08-14, 1 x Plan",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Maandfactuur augustus 2026, klantnummer 30055812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-00456 - VAT reverse charged - customer ID 5514",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Automatische incasso juli 2026 klantnr 118204",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Statement 6/2026 - ref 0041-77",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Rekening nr. 2026/0087 - totaal incl. BTW 21%",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Recurring payment - 15th of month",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "iDEAL betaling - factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Auto-renewal - order #A-22381",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaald per creditcard, factuurdatum 03-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Amount: 13.80 per user - Sep 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Termijn 8 van 12 - kenmerk 2026-0733",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment reference 1207 4453 2210",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur 2026-0142 abon.",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Jaarfactuur 2026 - vervaldatum 30 dagen",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Ref no. 771-202608 - 3 x 9.99",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Omschrijving: Klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "INV/2026/08/0193",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BTW 21% EUR 2,90 - Totaal EUR 16,71",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Paid 2026-08-02 - 1 x 19.99",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling via automatische incasso, 25-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Membership 2026-Q3 - reverse charge applies",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Doorlopende machtiging - afschrijving 28-08",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Thank you for your payment - Aug 2026 invoice",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur: 2026-0777 Betaaltermijn 14 dagen",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "EUR 49.00 monthly - next billing 02-10-2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Afschrijving augustus 2026 nr 20260812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice number 2026-0142 - Thank you",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Rekening 08/2026 kostenplaats 100",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Team of 5 - Sep 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Order 8876123 betaald met iDEAL",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment on account 220826-4411",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft: uw factuur van 10 augustus 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Charges Jul 1 - Jul 31, 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pro rata factuur 2026-0908",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order #EU-4482-3311-0021",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Overboeking Kenmerk 2026-0142 Bedrag 99,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Service fee period Q2 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuurperiode 2026-01 t/m 2026-12",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "2 x 29.00 EUR, VAT 0%",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Vernieuwing per 15-09-2026, ordernr 55120-3",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Monthly plan Aug26",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Nota 0000481 aug26",
-   "lang": "nl",
-   "keyword_free": true
   }
  ]
 }

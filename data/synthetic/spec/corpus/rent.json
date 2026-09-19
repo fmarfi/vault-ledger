@@ -1,57 +1,722 @@
 {
  "account": "Rent Expense",
  "slug": "rent",
+ "archetypes": {
+  "coworking_generic": {
+   "family": "cowork",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  },
+  "flexwerkplek_generic": {
+   "family": "cowork",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  },
+  "kantoorverhuur_generic": {
+   "family": "office",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  },
+  "vastgoed_bv_generic": {
+   "family": "office",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  },
+  "property_manager": {
+   "family": "office",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  },
+  "landlord_institutional": {
+   "family": "institutional",
+   "mode": "template",
+   "amt": [
+    150,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "rnd": 5,
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.45
+   },
+   "cadence": {
+    "monthly": 0.97,
+    "irregular": 0.03
+   },
+   "day": 1,
+   "index_p": 0.3
+  }
+ },
+ "pools": {
+  "cowork": [
+   {
+    "text": "Flexplek abonnement {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Hot desk membership {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Factuur {inv} flexplek {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Vaste werkplek {period}",
+    "lang": "nl",
+    "amt": [
+     250,
+     650
+    ],
+    "fixed": true,
+    "grp": "desk"
+   },
+   {
+    "text": "Dedicated desk {period}",
+    "lang": "en",
+    "amt": [
+     250,
+     650
+    ],
+    "fixed": true,
+    "grp": "desk"
+   },
+   {
+    "text": "Huur werkplek {pperiod}",
+    "lang": "nl",
+    "amt": [
+     250,
+     650
+    ],
+    "fixed": true,
+    "grp": "desk"
+   },
+   {
+    "text": "Vergaderruimte {date}",
+    "lang": "nl",
+    "amt": [
+     25,
+     180
+    ],
+    "rec": false
+   },
+   {
+    "text": "Meeting room booking {date}",
+    "lang": "en",
+    "amt": [
+     25,
+     180
+    ],
+    "rec": false
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     150,
+     450
+    ],
+    "fixed": true,
+    "grp": "flex"
+   }
+  ],
+  "office": [
+   {
+    "text": "Huur kantoor {period}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Office rent {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Huurtermijn {pperiod}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Factuur {inv} huur {period}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Monthly rent - {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Servicekosten {period}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ],
+    "fixed": true,
+    "grp": "svc"
+   },
+   {
+    "text": "Service charge {period}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ],
+    "fixed": true,
+    "grp": "svc"
+   },
+   {
+    "text": "Voorschot stookkosten {period}",
+    "lang": "nl",
+    "amt": [
+     30,
+     140
+    ],
+    "fixed": true,
+    "grp": "heat"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     500,
+     1900
+    ],
+    "fixed": true,
+    "grp": "rent"
+   }
+  ],
+  "institutional": [
+   {
+    "text": "Huur kantoorruimte {period}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Office space rent {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Huurtermijn {pperiod}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Factuur {inv} huur en servicekosten {period}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Rent and service charges {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Servicekosten {period}",
+    "lang": "nl",
+    "amt": [
+     120,
+     480
+    ],
+    "fixed": true,
+    "grp": "svc"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     900,
+     3200
+    ],
+    "fixed": true,
+    "grp": "rent"
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "Spaces",
    "aliases": [
     "Spaces Nederland B.V.",
     "SPACES",
-    "IWG Spaces",
-    "spaces"
+    "IWG Spaces"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Regus",
    "aliases": [
     "Regus Management Nederland B.V.",
-    "REGUS",
-    "regus"
+    "REGUS"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "WeWork",
    "aliases": [
     "WeWork Netherlands B.V.",
-    "WEWORK",
-    "wework"
+    "WEWORK"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Seats2meet",
    "aliases": [
     "Seats2meet.com B.V.",
-    "SEATS2MEET",
-    "seats2meet"
+    "SEATS2MEET"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Tribes",
    "aliases": [
     "Tribes Coworking",
-    "TRIBES",
-    "tribes"
+    "TRIBES"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -59,21 +724,27 @@
    "aliases": [
     "Impact Hub Amsterdam B.V.",
     "IMPACT HUB",
-    "IMPACT HUB AMSTERDAM",
-    "impact hub amsterdam"
+    "IMPACT HUB AMSTERDAM"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "YOND",
    "aliases": [
     "YOND B.V.",
-    "YOND WERKPLEKKEN",
-    "yond"
+    "YOND WERKPLEKKEN"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
@@ -81,275 +752,316 @@
    "aliases": [
     "B.Amsterdam",
     "B AMSTERDAM",
-    "B.AMSTERDAM",
-    "b.amsterdam"
+    "B.AMSTERDAM"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Zoku",
    "aliases": [
     "Zoku Amsterdam",
-    "ZOKU",
-    "zoku"
+    "ZOKU"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "TQ Delft",
    "aliases": [
     "Technology Quarter",
-    "TQ DELFT",
-    "tq delft"
+    "TQ DELFT"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Werkspot Flexplekken",
    "aliases": [
-    "WERKSPOT FLEXPLEKKEN",
-    "werkspot flexplekken"
+    "WERKSPOT FLEXPLEKKEN"
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Flexwerkplek Centrum B.V.",
    "aliases": [
     "FLEXWERKPLEK CENTRUM",
-    "FLEXWERKPLEK CENTRUM B.V.",
-    "flexwerkplek centrum b.v."
+    "FLEXWERKPLEK CENTRUM B.V."
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Flexwerkplek Centrum",
    "unverified": true
   },
   {
    "name": "Flexwerken Utrecht",
    "aliases": [
-    "FLEXWERKEN UTRECHT",
-    "flexwerken utrecht"
+    "FLEXWERKEN UTRECHT"
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Bureau Huren Rotterdam",
    "aliases": [
-    "BUREAU HUREN ROTTERDAM",
-    "bureau huren rotterdam"
+    "BUREAU HUREN ROTTERDAM"
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Werkplek Eindhoven B.V.",
    "aliases": [
     "WERKPLEK EINDHOVEN",
-    "WERKPLEK EINDHOVEN B.V.",
-    "werkplek eindhoven b.v."
+    "WERKPLEK EINDHOVEN B.V."
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Werkplek Eindhoven",
    "unverified": true
   },
   {
    "name": "Kantoorverhuur Utrecht B.V.",
    "aliases": [
     "KANTOORVERHUUR UTRECHT",
-    "KANTOORVERHUUR UTRECHT B.V.",
-    "kantoorverhuur utrecht b.v."
+    "KANTOORVERHUUR UTRECHT B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Kantoorverhuur Utrecht",
    "unverified": true
   },
   {
    "name": "Kantoorverhuur Rotterdam B.V.",
    "aliases": [
     "KANTOORVERHUUR ROTTERDAM",
-    "KANTOORVERHUUR ROTTERDAM B.V.",
-    "kantoorverhuur rotterdam b.v."
+    "KANTOORVERHUUR ROTTERDAM B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Kantoorverhuur Rotterdam",
    "unverified": true
   },
   {
    "name": "Kantoorverhuur Amsterdam-Zuid B.V.",
    "aliases": [
     "KANTOORVERHUUR AMSTERDAM ZUID",
-    "KANTOORVERHUUR AMSTERDAM-ZUID B.V.",
-    "kantoorverhuur amsterdam-zuid b.v."
+    "KANTOORVERHUUR AMSTERDAM-ZUID B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Kantoorverhuur Amsterdam-Zuid",
    "unverified": true
   },
   {
    "name": "Kantoorverhuur Den Haag B.V.",
    "aliases": [
     "KANTOORVERHUUR DEN HAAG",
-    "KANTOORVERHUUR DEN HAAG B.V.",
-    "kantoorverhuur den haag b.v."
+    "KANTOORVERHUUR DEN HAAG B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Kantoorverhuur Den Haag",
    "unverified": true
   },
   {
    "name": "Kantoorruimte Groningen",
    "aliases": [
-    "KANTOORRUIMTE GRONINGEN",
-    "kantoorruimte groningen"
+    "KANTOORRUIMTE GRONINGEN"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Bedrijfsruimte Zwolle B.V.",
    "aliases": [
     "BEDRIJFSRUIMTE ZWOLLE",
-    "BEDRIJFSRUIMTE ZWOLLE B.V.",
-    "bedrijfsruimte zwolle b.v."
+    "BEDRIJFSRUIMTE ZWOLLE B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Bedrijfsruimte Zwolle",
    "unverified": true
   },
   {
    "name": "Bedrijfsverzamelgebouw De Hoek",
    "aliases": [
-    "BEDRIJFSVERZAMELGEBOUW DE HOEK",
-    "bedrijfsverzamelgebouw de hoek"
+    "BEDRIJFSVERZAMELGEBOUW DE HOEK"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Businesscenter Leiden",
    "aliases": [
-    "BUSINESSCENTER LEIDEN",
-    "businesscenter leiden"
+    "BUSINESSCENTER LEIDEN"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Vastgoed Beheer Zuid B.V.",
    "aliases": [
     "VASTGOED BEHEER ZUID BV",
-    "VASTGOED BEHEER ZUID B.V.",
-    "vastgoed beheer zuid b.v."
+    "VASTGOED BEHEER ZUID B.V."
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Vastgoed Beheer Zuid",
    "unverified": true
   },
   {
    "name": "Vastgoed Noord Exploitatie B.V.",
    "aliases": [
     "VASTGOED NOORD EXPLOITATIE",
-    "VASTGOED NOORD EXPLOITATIE B.V.",
-    "vastgoed noord exploitatie b.v."
+    "VASTGOED NOORD EXPLOITATIE B.V."
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Vastgoed Noord Exploitatie",
    "unverified": true
   },
   {
    "name": "Holding Pandbeheer Midden B.V.",
    "aliases": [
     "PANDBEHEER MIDDEN",
-    "HOLDING PANDBEHEER MIDDEN B.V.",
-    "holding pandbeheer midden b.v."
+    "HOLDING PANDBEHEER MIDDEN B.V."
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Holding Pandbeheer Midden",
    "unverified": true
   },
   {
    "name": "Onroerend Goed Delta B.V.",
    "aliases": [
     "ONROEREND GOED DELTA",
-    "ONROEREND GOED DELTA B.V.",
-    "onroerend goed delta b.v."
+    "ONROEREND GOED DELTA B.V."
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Onroerend Goed Delta",
    "unverified": true
   },
   {
    "name": "Stichting Bedrijfspanden Regio",
    "aliases": [
-    "STICHTING BEDRIJFSPANDEN REGIO",
-    "stichting bedrijfspanden regio"
+    "STICHTING BEDRIJFSPANDEN REGIO"
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Bouwinvest",
    "aliases": [
     "Bouwinvest Real Estate Investment Management",
-    "BOUWINVEST",
-    "bouwinvest"
+    "BOUWINVEST"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": "invoicing to small tenant unverified",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "NSI",
    "aliases": [
     "NSI N.V.",
-    "NSI KANTOREN",
-    "nsi"
+    "NSI KANTOREN"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ],
    "unverified": true
   },
   {
    "name": "Merin",
    "aliases": [
     "Merin B.V.",
-    "MERIN",
-    "merin"
+    "MERIN"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Wereldhave",
    "aliases": [
     "Wereldhave Nederland B.V.",
-    "WERELDHAVE",
-    "wereldhave"
+    "WERELDHAVE"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Provast",
    "aliases": [
     "Provast Holding B.V.",
-    "PROVAST",
-    "provast"
+    "PROVAST"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -357,11 +1069,10 @@
    "aliases": [
     "Colliers International Property Management",
     "COLLIERS",
-    "COLLIERS PROPERTY MANAGEMENT",
-    "colliers property management"
+    "COLLIERS PROPERTY MANAGEMENT"
    ],
    "archetype": "property_manager",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -369,11 +1080,10 @@
    "aliases": [
     "CBRE Global Investors",
     "CBRE",
-    "CBRE PROPERTY MANAGEMENT",
-    "cbre property management"
+    "CBRE PROPERTY MANAGEMENT"
    ],
    "archetype": "property_manager",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -381,11 +1091,10 @@
    "aliases": [
     "Jones Lang LaSalle",
     "JLL",
-    "JLL ASSET MANAGEMENT",
-    "jll asset management"
+    "JLL ASSET MANAGEMENT"
    ],
    "archetype": "property_manager",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -393,665 +1102,126 @@
    "aliases": [
     "Hines Netherlands",
     "HINES",
-    "HINES NEDERLAND",
-    "hines nederland"
+    "HINES NEDERLAND"
    ],
    "archetype": "landlord_institutional",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Pandbeheer Van Alle Markten",
    "aliases": [
     "PANDBEHEER ALLE MARKTEN",
-    "PANDBEHEER VAN ALLE MARKTEN",
-    "pandbeheer van alle markten"
+    "PANDBEHEER VAN ALLE MARKTEN"
    ],
    "archetype": "vastgoed_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Werkgebouw Binnenstad",
    "aliases": [
-    "WERKGEBOUW BINNENSTAD",
-    "werkgebouw binnenstad"
+    "WERKGEBOUW BINNENSTAD"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Atelierruimte Kunstenaars Collectief",
    "aliases": [
     "ATELIER KUNSTENAARS COLLECTIEF",
-    "ATELIERRUIMTE KUNSTENAARS COLLECTIEF",
-    "atelierruimte kunstenaars collectief"
+    "ATELIERRUIMTE KUNSTENAARS COLLECTIEF"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Loods en Opslag Verhuur Oost",
    "aliases": [
-    "LOODS EN OPSLAG VERHUUR OOST",
-    "loods en opslag verhuur oost"
+    "LOODS EN OPSLAG VERHUUR OOST"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Praktijkruimte Verhuur B.V.",
    "aliases": [
     "PRAKTIJKRUIMTE VERHUUR",
-    "PRAKTIJKRUIMTE VERHUUR B.V.",
-    "praktijkruimte verhuur b.v."
+    "PRAKTIJKRUIMTE VERHUUR B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Praktijkruimte Verhuur",
    "unverified": true
   },
   {
    "name": "Coworking Space Haarlem",
    "aliases": [
     "COWORKING HAARLEM",
-    "COWORKING SPACE HAARLEM",
-    "coworking space haarlem"
+    "COWORKING SPACE HAARLEM"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Werkloft Breda",
    "aliases": [
-    "WERKLOFT BREDA",
-    "werkloft breda"
+    "WERKLOFT BREDA"
    ],
    "archetype": "coworking_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Hub Nijmegen Werkplekken",
    "aliases": [
     "HUB NIJMEGEN",
-    "HUB NIJMEGEN WERKPLEKKEN",
-    "hub nijmegen werkplekken"
+    "HUB NIJMEGEN WERKPLEKKEN"
    ],
    "archetype": "flexwerkplek_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kantoorhotel Arnhem",
    "aliases": [
-    "KANTOORHOTEL ARNHEM",
-    "kantoorhotel arnhem"
+    "KANTOORHOTEL ARNHEM"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Studio Verhuur Tilburg",
    "aliases": [
-    "STUDIO VERHUUR TILBURG",
-    "studio verhuur tilburg"
+    "STUDIO VERHUUR TILBURG"
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Commerciele Ruimte Maastricht B.V.",
    "aliases": [
     "COMMERCIELE RUIMTE MAASTRICHT",
-    "COMMERCIELE RUIMTE MAASTRICHT B.V.",
-    "commerciele ruimte maastricht b.v."
+    "COMMERCIELE RUIMTE MAASTRICHT B.V."
    ],
    "archetype": "kantoorverhuur_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Commerciele Ruimte Maastricht",
    "unverified": true
-  }
- ],
- "descriptions": [
-  {
-   "text": "Huur kantoor augustus 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Office rent - August 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurtermijn 01-08-2026 t/m 31-08-2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monthly rent for unit 2.14, Sep 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur flexwerkplek, maandbedrag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Flex desk rental - monthly membership",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur bedrijfsruimte incl. servicekosten en voorschot stookkosten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent and service charges advance payment",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Servicekosten kantoorruimte, voorschot maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Service charge - common areas, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Coworking lidmaatschap Vast bureau",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Coworking dedicated desk, Aug 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Borg huurovereenkomst kantoor",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rental deposit - 2 months",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurpenningen 3e kwartaal 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Quarterly rent Q3 2026 - office space",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur atelier 40 m2, augustus",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Studio rental, 40 sqm, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurverhoging indexering 2,8% per 1 juli 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent indexation 2.8% effective 1 July 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Vergaderruimte huur, dagdeel",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Meeting room hire, half day",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur parkeerplaats bij kantoor, per maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent of parking space at office, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur opslagbox 10 m2",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Storage unit rental, 10 sqm",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kantoorhuur inclusief BTW 21%",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Lease of office space, incl. VAT 21%",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Maandhuur praktijkruimte",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent treatment room, monthly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurnota september 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent invoice September 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verhuur werkplek, contract 2026-118",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Desk rental agreement 2026-118",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur per maand, pand Kerkstraat, 1e verdieping",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monthly lease - 1st floor unit",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur bedrijfsunit, kwartaal vooruit",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Business unit lease - quarter in advance",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur en servicekosten, factuurnummer 2026-0142",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent and service costs, invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Huur oktober 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Standing order rent - flex office",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Eindafrekening servicekosten 2025",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Service charge annual reconciliation 2025",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Overdracht huur en huurbetaling pro rata",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent pro rata for partial month",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurpenning vaste werkplek, doorlopend",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Fixed desk rent, ongoing",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bijdrage huur pand, aandeel kantoorruimte",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent contribution - shared office space",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurachterstand betaling",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Late rent payment (arrears)",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur werkplek Spaces, vast bureau, oktober",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Rent for shared workspace, October 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huurbetaling verdieping 2 bedrijfspand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Office lease payment - suite 4B",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Servicekosten en huur, voorschot maand september",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Desk membership fee incl. meeting room credits",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Huur kantoorunit, maandtermijn incl. BTW",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Renting a private office, monthly instalment",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Periode 01-09-2026 t/m 30-09-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Period 1 Sep - 30 Sep 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Termijn 9 van 12",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Installment 9/12 - contract 2026-118",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Contractnummer 2026-118 - september",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Unit 2.14 - September",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Incassant NL97ZZZ302156450000 Kenmerk 0044518",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Standing order to landlord - monthly on 1st",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling factuur 2026-0311",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment ref 4400123 - Sep 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Volgens overeenkomst d.d. 01-03-2025",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Per agreement dated 1 March 2025",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Maandtermijn 1e van de maand",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Monthly payment due on the 1st",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kenmerk 7700231 - oktober 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Ref 7700231",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling voor Kerkstraat 14-2",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment for Unit B, floor 1",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Objectnummer 0281-014",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Object no. 0281-014",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087 excl. BTW EUR 850,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Excl. VAT 850.00 - VAT 178.50 - incl 1,028.50",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Reeds voldaan via SEPA Incasso",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Paid by direct debit on 01-09-2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Overboeking Maandbedrag 650,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Fixed monthly amount 650.00",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Vaste last 01-09",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Recurring 01-09-2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Tenant ref 118204",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Nota 0000481 sep26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Statement 09/2026 - account 5514",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Te betalen voor 01-10-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Amount due before 1 Oct 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Doorbelasting 3e kwartaal 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Cost recharge Q3 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft uw betaling van 1 september",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Afschrijving 01-09-2026 nr 20260812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Debit 2026-09-01 mandate 0044518",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "iDEAL betaling factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Transfer - 1st of month - fixed",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling incl. indexatie 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Adjusted amount from 1 Jul 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Omschrijving: Object 4B / Sep",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Suite 4B - Sep",
-   "lang": "en",
-   "keyword_free": true
   }
  ]
 }

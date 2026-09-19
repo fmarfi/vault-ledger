@@ -1,17 +1,1461 @@
 {
  "account": "Office Supplies Expense",
  "slug": "office",
+ "archetypes": {
+  "office_retail": {
+   "family": "supplies",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.6,
+    "receipt_pos": 0.2,
+    "receipt_ideal": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "stationery_shop": {
+   "family": "supplies",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.4,
+    "receipt_pos": 0.35,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "papierwaren_local": {
+   "family": "supplies",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "receipt_pos": 0.7,
+    "invoice": 0.3
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "wholesale": {
+   "family": "supplies",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.7,
+    "receipt_pos": 0.3
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "packaging": {
+   "family": "supplies",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.9,
+    "receipt_ideal": 0.1
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "print_shop": {
+   "family": "printing",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "receipt_ideal": 0.5
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "printer_inkt_shop": {
+   "family": "printer_retail",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "receipt_ideal": 0.5
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "copier_supplies": {
+   "family": "printer_maker",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.85,
+    "bank": 0.15
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "hardware_retail": {
+   "family": "it_retail",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.4,
+    "receipt_pos": 0.35,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "hardware_brand": {
+   "family": "it_brand",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "receipt_ideal": 0.5
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "cables_hardware": {
+   "family": "cables",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.4,
+    "receipt_pos": 0.35,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "peripherals": {
+   "family": "peripherals",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "receipt_ideal": 0.5
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "furniture": {
+   "family": "furniture",
+   "mode": "template",
+   "amt": [
+    10,
+    200
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "receipt_pos": 0.3,
+    "receipt_ideal": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  }
+ },
+ "pools": {
+  "supplies": [
+   {
+    "text": "Printerpapier A4, 5 pakken",
+    "lang": "nl",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Paper A4 80g, 10 reams",
+    "lang": "en",
+    "amt": [
+     30,
+     80
+    ]
+   },
+   {
+    "text": "Balpennen en markers",
+    "lang": "nl",
+    "amt": [
+     5,
+     30
+    ]
+   },
+   {
+    "text": "Ordners en tabbladen",
+    "lang": "nl",
+    "amt": [
+     8,
+     45
+    ]
+   },
+   {
+    "text": "Nietmachine en nietjes",
+    "lang": "nl",
+    "amt": [
+     6,
+     25
+    ]
+   },
+   {
+    "text": "Notebooks and sticky notes",
+    "lang": "en",
+    "amt": [
+     6,
+     35
+    ]
+   },
+   {
+    "text": "Enveloppen C5, 250 stuks",
+    "lang": "nl",
+    "amt": [
+     10,
+     35
+    ]
+   },
+   {
+    "text": "Kantoorartikelen",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Office supplies order {ref}",
+    "lang": "en",
+    "amt": [
+     15,
+     150
+    ]
+   },
+   {
+    "text": "Whiteboard en stiften",
+    "lang": "nl",
+    "amt": [
+     15,
+     70
+    ]
+   },
+   {
+    "text": "Etiketten en verzenddozen",
+    "lang": "nl",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     12,
+     200
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     12,
+     180
+    ]
+   },
+   {
+    "text": "Archiefdozen",
+    "lang": "nl",
+    "amt": [
+     12,
+     60
+    ]
+   },
+   {
+    "text": "Desk organiser and folders",
+    "lang": "en",
+    "amt": [
+     8,
+     40
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     10,
+     150
+    ]
+   }
+  ],
+  "printing": [
+   {
+    "text": "Visitekaartjes 500 stuks",
+    "lang": "nl",
+    "amt": [
+     18,
+     60
+    ]
+   },
+   {
+    "text": "Flyers A5, 1000 pcs",
+    "lang": "en",
+    "amt": [
+     35,
+     140
+    ]
+   },
+   {
+    "text": "Folders A4 gevouwen",
+    "lang": "nl",
+    "amt": [
+     40,
+     190
+    ]
+   },
+   {
+    "text": "Drukwerk order {ref}",
+    "lang": "nl",
+    "amt": [
+     25,
+     300
+    ]
+   },
+   {
+    "text": "Printing order {ref}",
+    "lang": "en",
+    "amt": [
+     25,
+     300
+    ]
+   },
+   {
+    "text": "Briefpapier en enveloppen",
+    "lang": "nl",
+    "amt": [
+     45,
+     180
+    ]
+   },
+   {
+    "text": "Stickers en etiketten",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Posters A2",
+    "lang": "en",
+    "amt": [
+     20,
+     110
+    ]
+   },
+   {
+    "text": "Banner {ref}",
+    "lang": "nl",
+    "amt": [
+     30,
+     150
+    ]
+   },
+   {
+    "text": "Invoice {inv} print job",
+    "lang": "en",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     25,
+     250
+    ]
+   }
+  ],
+  "printer_retail": [
+   {
+    "text": "Toner zwart, 2 stuks",
+    "lang": "nl",
+    "amt": [
+     45,
+     150
+    ]
+   },
+   {
+    "text": "Ink cartridges multipack",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Inktcartridges kleur",
+    "lang": "nl",
+    "amt": [
+     18,
+     85
+    ]
+   },
+   {
+    "text": "Printerinkt bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Toner cartridge black",
+    "lang": "en",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Drum unit",
+    "lang": "nl",
+    "amt": [
+     50,
+     140
+    ]
+   },
+   {
+    "text": "Order {ref} ink and toner",
+    "lang": "en",
+    "amt": [
+     20,
+     150
+    ]
+   },
+   {
+    "text": "Pakbon {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     120
+    ]
+   },
+   {
+    "text": "Factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Refill cartridges",
+    "lang": "en",
+    "amt": [
+     12,
+     80
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   }
+  ],
+  "printer_maker": [
+   {
+    "text": "Toner origineel zwart",
+    "lang": "nl",
+    "amt": [
+     55,
+     160
+    ]
+   },
+   {
+    "text": "Original toner cartridge",
+    "lang": "en",
+    "amt": [
+     55,
+     160
+    ]
+   },
+   {
+    "text": "Onderhoudskit printer",
+    "lang": "nl",
+    "amt": [
+     60,
+     180
+    ]
+   },
+   {
+    "text": "Servicecontract printer {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     140
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "svc"
+   },
+   {
+    "text": "Printer service contract {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     140
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "svc"
+   },
+   {
+    "text": "Drum unit",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Maintenance kit",
+    "lang": "en",
+    "amt": [
+     60,
+     180
+    ]
+   },
+   {
+    "text": "Kopieerpapier A4",
+    "lang": "nl",
+    "amt": [
+     20,
+     60
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     30,
+     150
+    ]
+   },
+   {
+    "text": "Factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     30,
+     200
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     50,
+     150
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     50,
+     150
+    ]
+   }
+  ],
+  "it_retail": [
+   {
+    "text": "Monitor 27 inch",
+    "lang": "nl",
+    "amt": [
+     140,
+     420
+    ]
+   },
+   {
+    "text": "Laptop 14 inch business",
+    "lang": "en",
+    "amt": [
+     650,
+     1600
+    ]
+   },
+   {
+    "text": "Docking station USB-C",
+    "lang": "nl",
+    "amt": [
+     80,
+     260
+    ]
+   },
+   {
+    "text": "Draadloze muis en toetsenbord",
+    "lang": "nl",
+    "amt": [
+     25,
+     110
+    ]
+   },
+   {
+    "text": "Webcam full HD",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "SSD 1TB extern",
+    "lang": "nl",
+    "amt": [
+     70,
+     150
+    ]
+   },
+   {
+    "text": "USB-C kabel en adapters",
+    "lang": "nl",
+    "amt": [
+     8,
+     45
+    ]
+   },
+   {
+    "text": "HDMI cable 3m",
+    "lang": "en",
+    "amt": [
+     8,
+     30
+    ]
+   },
+   {
+    "text": "Headset met microfoon",
+    "lang": "nl",
+    "amt": [
+     35,
+     190
+    ]
+   },
+   {
+    "text": "Monitor arm",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     30,
+     400
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     30,
+     400
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   }
+  ],
+  "it_brand": [
+   {
+    "text": "Laptop 14 inch zakelijk",
+    "lang": "nl",
+    "amt": [
+     650,
+     1800
+    ]
+   },
+   {
+    "text": "Business laptop 16GB",
+    "lang": "en",
+    "amt": [
+     700,
+     1900
+    ]
+   },
+   {
+    "text": "Monitor 27 inch",
+    "lang": "nl",
+    "amt": [
+     150,
+     480
+    ]
+   },
+   {
+    "text": "Docking station",
+    "lang": "nl",
+    "amt": [
+     90,
+     280
+    ]
+   },
+   {
+    "text": "Wireless keyboard and mouse",
+    "lang": "en",
+    "amt": [
+     30,
+     130
+    ]
+   },
+   {
+    "text": "Garantie-uitbreiding 3 jaar",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ]
+   },
+   {
+    "text": "Extended warranty 3 years",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "nl",
+    "amt": [
+     100,
+     1200
+    ]
+   },
+   {
+    "text": "Factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Invoice {inv}",
+    "lang": "en",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     100,
+     1500
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     100,
+     1500
+    ]
+   }
+  ],
+  "cables": [
+   {
+    "text": "USB-C kabel en adapters",
+    "lang": "nl",
+    "amt": [
+     8,
+     45
+    ]
+   },
+   {
+    "text": "HDMI cable 3m",
+    "lang": "en",
+    "amt": [
+     8,
+     30
+    ]
+   },
+   {
+    "text": "Netwerkkabel Cat6 25m",
+    "lang": "nl",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Power strip with surge protection",
+    "lang": "en",
+    "amt": [
+     12,
+     45
+    ]
+   },
+   {
+    "text": "Stekkerdoos 6-voudig",
+    "lang": "nl",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Cable organiser",
+    "lang": "en",
+    "amt": [
+     5,
+     25
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     8,
+     120
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     8,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     8,
+     35
+    ]
+   }
+  ],
+  "peripherals": [
+   {
+    "text": "Draadloze muis",
+    "lang": "nl",
+    "amt": [
+     25,
+     110
+    ]
+   },
+   {
+    "text": "Wireless keyboard",
+    "lang": "en",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Webcam full HD",
+    "lang": "nl",
+    "amt": [
+     45,
+     150
+    ]
+   },
+   {
+    "text": "Headset with microphone",
+    "lang": "en",
+    "amt": [
+     45,
+     220
+    ]
+   },
+   {
+    "text": "Presenter en laserpointer",
+    "lang": "nl",
+    "amt": [
+     25,
+     70
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     25,
+     250
+    ]
+   },
+   {
+    "text": "Toetsenbord en muis set",
+    "lang": "nl",
+    "amt": [
+     40,
+     160
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     40,
+     130
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     40,
+     130
+    ]
+   }
+  ],
+  "furniture": [
+   {
+    "text": "Bureau in hoogte verstelbaar",
+    "lang": "nl",
+    "amt": [
+     180,
+     650
+    ]
+   },
+   {
+    "text": "Office chair ergonomic",
+    "lang": "en",
+    "amt": [
+     90,
+     520
+    ]
+   },
+   {
+    "text": "Bureaustoel",
+    "lang": "nl",
+    "amt": [
+     90,
+     480
+    ]
+   },
+   {
+    "text": "Archiefkast",
+    "lang": "nl",
+    "amt": [
+     80,
+     320
+    ]
+   },
+   {
+    "text": "Bookcase",
+    "lang": "en",
+    "amt": [
+     40,
+     220
+    ]
+   },
+   {
+    "text": "Vergadertafel",
+    "lang": "nl",
+    "amt": [
+     200,
+     900
+    ]
+   },
+   {
+    "text": "Desk lamp",
+    "lang": "en",
+    "amt": [
+     15,
+     90
+    ]
+   },
+   {
+    "text": "Voetensteun en monitorstandaard",
+    "lang": "nl",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Prikbord",
+    "lang": "nl",
+    "amt": [
+     12,
+     45
+    ]
+   },
+   {
+    "text": "Opbergkast met slot",
+    "lang": "nl",
+    "amt": [
+     70,
+     260
+    ]
+   },
+   {
+    "text": "Standing desk order {ref}",
+    "lang": "en",
+    "amt": [
+     180,
+     650
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     30,
+     500
+    ]
+   },
+   {
+    "text": "Storage boxes and shelves",
+    "lang": "en",
+    "amt": [
+     20,
+     150
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     70,
+     260
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     260
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     260
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     70,
+     260
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     70,
+     260
+    ]
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "Staples",
    "aliases": [
     "Staples Nederland B.V.",
     "STAPLES NL",
-    "STAPLES",
-    "staples"
+    "STAPLES"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "possibly defunct NL brand; kept as archetype",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
@@ -19,531 +1463,581 @@
    "aliases": [
     "Viking Direct Nederland",
     "VIKING DIRECT BV",
-    "VIKING",
-    "viking"
+    "VIKING"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "now Office Depot Viking"
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Office Centre",
    "aliases": [
     "Office Centre B.V.",
-    "OFFICE CENTRE",
-    "office centre"
+    "OFFICE CENTRE"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Lyreco",
    "aliases": [
     "Lyreco Nederland B.V.",
-    "LYRECO",
-    "lyreco"
+    "LYRECO"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Office Depot",
    "aliases": [
     "Office Depot Nederland B.V.",
-    "OFFICE DEPOT",
-    "office depot"
+    "OFFICE DEPOT"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Paperman",
    "aliases": [
     "Paperman B.V.",
-    "PAPERMAN",
-    "paperman"
+    "PAPERMAN"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Bruna",
    "aliases": [
     "Bruna B.V.",
-    "BRUNA",
-    "bruna"
+    "BRUNA"
    ],
    "archetype": "stationery_shop",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Boekhandel Broese",
    "aliases": [
     "BROESE BOEKHANDEL",
-    "BOEKHANDEL BROESE",
-    "boekhandel broese"
+    "BOEKHANDEL BROESE"
    ],
    "archetype": "stationery_shop",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "123inkt",
    "aliases": [
-    "123inkt.nl",
     "123INKT BV",
     "123INKT"
    ],
    "archetype": "printer_inkt_shop",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Inktweb",
    "aliases": [
     "Inktweb.nl",
-    "INKTWEB",
-    "inktweb"
+    "INKTWEB"
    ],
    "archetype": "printer_inkt_shop",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Cartridge World",
    "aliases": [
     "Cartridge World Nederland",
-    "CARTRIDGE WORLD",
-    "cartridge world"
+    "CARTRIDGE WORLD"
    ],
    "archetype": "printer_inkt_shop",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Tonershop24",
    "aliases": [
-    "TONERSHOP24",
-    "tonershop24"
+    "TONERSHOP24"
    ],
    "archetype": "printer_inkt_shop",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Printerinkt Direct B.V.",
    "aliases": [
     "PRINTERINKT DIRECT",
-    "PRINTERINKT DIRECT B.V.",
-    "printerinkt direct b.v."
+    "PRINTERINKT DIRECT B.V."
    ],
    "archetype": "printer_inkt_shop",
-   "ambiguity_notes": "generic archetype",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Printerinkt Direct",
    "unverified": true
   },
   {
    "name": "MediaMarkt",
    "aliases": [
     "MediaMarkt Nederland B.V.",
-    "MEDIAMARKT",
-    "mediamarkt"
+    "MEDIAMARKT"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Alternate",
    "aliases": [
     "Alternate Nederland B.V.",
     "ALTERNATE.NL",
-    "ALTERNATE",
-    "alternate"
+    "ALTERNATE"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Megekko",
    "aliases": [
     "Megekko B.V.",
-    "MEGEKKO",
-    "megekko"
+    "MEGEKKO"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Azerty",
    "aliases": [
     "Azerty B.V.",
-    "AZERTY",
-    "azerty"
+    "AZERTY"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Informatique",
    "aliases": [
     "Informatique Computer B.V.",
-    "INFORMATIQUE",
-    "informatique"
+    "INFORMATIQUE"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Dell",
    "aliases": [
     "Dell B.V.",
     "DELL TECHNOLOGIES",
-    "DELL",
-    "dell"
+    "DELL"
    ],
    "archetype": "hardware_brand",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Lenovo",
    "aliases": [
     "Lenovo Netherlands B.V.",
-    "LENOVO",
-    "lenovo"
+    "LENOVO"
    ],
    "archetype": "hardware_brand",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "HP Store",
    "aliases": [
     "HP Nederland B.V.",
     "HP.COM",
-    "HP STORE",
-    "hp store"
+    "HP STORE"
    ],
    "archetype": "hardware_brand",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Logitech",
    "aliases": [
     "Logitech Europe S.A.",
-    "LOGITECH",
-    "logitech"
+    "LOGITECH"
    ],
    "archetype": "peripherals",
-   "ambiguity_notes": ""
+   "country": "BE"
   },
   {
    "name": "Apple Store",
    "aliases": [
     "Apple Distribution International",
     "APPLE.COM/NL",
-    "APPLE STORE",
-    "apple store"
+    "APPLE STORE"
    ],
    "archetype": "hardware_brand",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Brother Nederland",
    "aliases": [
     "Brother International Benelux",
     "BROTHER",
-    "BROTHER NEDERLAND",
-    "brother nederland"
+    "BROTHER NEDERLAND"
    ],
-   "archetype": "printer_inkt_shop",
-   "ambiguity_notes": ""
+   "archetype": "copier_supplies",
+   "country": "NL"
   },
   {
    "name": "Canon Business Services",
    "aliases": [
     "Canon Nederland N.V.",
     "CANON",
-    "CANON BUSINESS SERVICES",
-    "canon business services"
+    "CANON BUSINESS SERVICES"
    ],
-   "archetype": "printer_inkt_shop",
-   "ambiguity_notes": ""
+   "archetype": "copier_supplies",
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Ricoh Nederland",
    "aliases": [
     "Ricoh Nederland B.V.",
     "RICOH",
-    "RICOH NEDERLAND",
-    "ricoh nederland"
+    "RICOH NEDERLAND"
    ],
    "archetype": "copier_supplies",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "IKEA",
    "aliases": [
     "IKEA Nederland B.V.",
-    "IKEA",
-    "ikea"
+    "IKEA"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Leen Bakker",
    "aliases": [
     "Leen Bakker B.V.",
-    "LEEN BAKKER",
-    "leen bakker"
+    "LEEN BAKKER"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Kwantum",
    "aliases": [
     "Kwantum Nederland B.V.",
-    "KWANTUM",
-    "kwantum"
+    "KWANTUM"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Vepa Bureau",
    "aliases": [
     "Vepa",
     "VEPA BUREAUMEUBILAIR",
-    "VEPA BUREAU",
-    "vepa bureau"
+    "VEPA BUREAU"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Ahrend",
    "aliases": [
     "Ahrend B.V.",
-    "AHREND",
-    "ahrend"
+    "AHREND"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Bureaustoelen.nl",
    "aliases": [
     "Bureaustoelen NL",
-    "BUREAUSTOELEN.NL",
-    "bureaustoelen.nl"
+    "BUREAUSTOELEN.NL"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Deskr",
    "aliases": [
     "Deskr Nederland",
-    "DESKR",
-    "deskr"
+    "DESKR"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Flexa Kantoor",
    "aliases": [
-    "FLEXA KANTOOR",
-    "flexa kantoor"
+    "FLEXA KANTOOR"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Officeland",
    "aliases": [
     "Officeland Nederland",
-    "OFFICELAND",
-    "officeland"
+    "OFFICELAND"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kantoorartikelen.nl",
    "aliases": [
-    "KANTOORARTIKELEN.NL",
-    "kantoorartikelen.nl"
+    "KANTOORARTIKELEN.NL"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Papierwaren De Schrijfhoek",
    "aliases": [
-    "PAPIERWAREN DE SCHRIJFHOEK",
-    "papierwaren de schrijfhoek"
+    "PAPIERWAREN DE SCHRIJFHOEK"
    ],
    "archetype": "papierwaren_local",
-   "ambiguity_notes": "papierwaren_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Boek & Kantoor Centrum",
    "aliases": [
     "BOEK EN KANTOOR CENTRUM",
-    "BOEK & KANTOOR CENTRUM",
-    "boek & kantoor centrum"
+    "BOEK & KANTOOR CENTRUM"
    ],
    "archetype": "papierwaren_local",
-   "ambiguity_notes": "papierwaren_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Schoolspullen Groothandel",
    "aliases": [
-    "SCHOOLSPULLEN GROOTHANDEL",
-    "schoolspullen groothandel"
+    "SCHOOLSPULLEN GROOTHANDEL"
    ],
    "archetype": "papierwaren_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Drukkerij Snelprint",
    "aliases": [
-    "DRUKKERIJ SNELPRINT",
-    "drukkerij snelprint"
+    "DRUKKERIJ SNELPRINT"
    ],
    "archetype": "print_shop",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Vistaprint",
    "aliases": [
     "Vistaprint Netherlands B.V.",
-    "VISTAPRINT",
-    "vistaprint"
+    "VISTAPRINT"
    ],
    "archetype": "print_shop",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Drukwerkdeal",
    "aliases": [
     "Drukwerkdeal B.V.",
-    "DRUKWERKDEAL",
-    "drukwerkdeal"
+    "DRUKWERKDEAL"
    ],
    "archetype": "print_shop",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Flyeralarm",
    "aliases": [
     "Flyeralarm GmbH",
-    "FLYERALARM",
-    "flyeralarm"
+    "FLYERALARM"
    ],
    "archetype": "print_shop",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "Hobbyhandel Gouda",
    "aliases": [
-    "HOBBYHANDEL GOUDA",
-    "hobbyhandel gouda"
+    "HOBBYHANDEL GOUDA"
    ],
    "archetype": "papierwaren_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kartonnage Verpakkingen NL",
    "aliases": [
     "KARTONNAGE VERPAKKINGEN",
-    "KARTONNAGE VERPAKKINGEN NL",
-    "kartonnage verpakkingen nl"
+    "KARTONNAGE VERPAKKINGEN NL"
    ],
    "archetype": "packaging",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Verpakkingsgroothandel Noord",
    "aliases": [
     "VERPAKKINGSGROOTHANDEL NOORD B.V.",
-    "VERPAKKINGSGROOTHANDEL NOORD",
-    "verpakkingsgroothandel noord"
+    "VERPAKKINGSGROOTHANDEL NOORD"
    ],
    "archetype": "packaging",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Toonbank Kantoorservice",
    "aliases": [
-    "TOONBANK KANTOORSERVICE",
-    "toonbank kantoorservice"
+    "TOONBANK KANTOORSERVICE"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kabelshop",
    "aliases": [
     "Kabelshop.nl",
-    "KABELSHOP",
-    "kabelshop"
+    "KABELSHOP"
    ],
    "archetype": "cables_hardware",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kabelwinkel.nl",
    "aliases": [
     "KABELWINKEL",
-    "KABELWINKEL.NL",
-    "kabelwinkel.nl"
+    "KABELWINKEL.NL"
    ],
    "archetype": "cables_hardware",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Zoolplan Elektro",
    "aliases": [
-    "ZOOLPLAN ELEKTRO",
-    "zoolplan elektro"
+    "ZOOLPLAN ELEKTRO"
    ],
    "archetype": "cables_hardware",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Conrad",
    "aliases": [
     "Conrad Electronic Benelux",
-    "CONRAD",
-    "conrad"
+    "CONRAD"
    ],
    "archetype": "cables_hardware",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Tweakers Pricewatch Shop",
    "aliases": [
     "TWEAKERS SHOP",
-    "TWEAKERS PRICEWATCH SHOP",
-    "tweakers pricewatch shop"
+    "TWEAKERS PRICEWATCH SHOP"
    ],
    "archetype": "hardware_retail",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -551,42 +2045,42 @@
    "aliases": [
     "Wehkamp B.V.",
     "WEHKAMP",
-    "WEHKAMP ZAKELIJK",
-    "wehkamp zakelijk"
+    "WEHKAMP ZAKELIJK"
    ],
    "archetype": "office_retail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Makro",
    "aliases": [
     "Makro Nederland",
-    "MAKRO",
-    "makro"
+    "MAKRO"
    ],
    "archetype": "wholesale",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Hanos Kantoor",
    "aliases": [
     "HANOS",
-    "HANOS KANTOOR",
-    "hanos kantoor"
+    "HANOS KANTOOR"
    ],
    "archetype": "wholesale",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Brabantia Office",
    "aliases": [
     "BRABANTIA",
-    "BRABANTIA OFFICE",
-    "brabantia office"
+    "BRABANTIA OFFICE"
    ],
    "archetype": "furniture",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -594,628 +2088,10 @@
    "aliases": [
     "Samsung Electronics Benelux",
     "SAMSUNG",
-    "SAMSUNG BUSINESS",
-    "samsung business"
+    "SAMSUNG BUSINESS"
    ],
    "archetype": "hardware_brand",
-   "ambiguity_notes": ""
-  }
- ],
- "descriptions": [
-  {
-   "text": "Toner zwart HP 305A, 2 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Printer paper A4 80g, 5 reams",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Printerpapier A4, 10 pakken",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Ink cartridges CMY + black, multipack",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Inktpatronen Canon PG-545/CL-546",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Ballpoint pens, box of 50",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Balpennen blauw, 2 dozen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Stationery order - notebooks, sticky notes, staples",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kantoorartikelen: nietjes, perforator, ordners",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Office chair, ergonomic, mesh back",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bureaustoel ergonomisch, model Comfort",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Standing desk 140x70 cm, electric",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Zit-sta bureau 160 cm, elektrisch",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Wireless keyboard and mouse set",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Muis en toetsenbord draadloos",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "USB-C cable 2 m, 3-pack",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "HDMI kabel 3 meter en verloopstuk",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "External monitor 27 inch, 4K",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Monitor 24 inch, standaard en kabel",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Laptop stand and webcam",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Laptopstandaard, webcam HD",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Whiteboard 120x90 with markers and eraser",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Whiteboard en stiften",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Business cards, 250 pcs, matt finish",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Visitekaartjes 500 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Flyers A5, 1,000 pcs",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Folders A4 dubbelzijdig, oplage 500",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Labels for label printer, 12 rolls",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Etiketten thermisch 10 rollen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Shredder, cross cut, 10 sheets",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Papierversnipperaar P-4",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Desk lamp LED, dimmable",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bureaulamp LED, dimbaar",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Envelopes C5, window, 500 pcs",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Enveloppen C4 met venster, 250 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Storage boxes and archive files",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Archiefdozen en ordners",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Stationery - highlighters, tape, scissors",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Schrijfwaren: markeerstiften, plakband, schaar",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Toner cartridge compatible, black, high yield",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Toner huismerk zwart, hoge capaciteit",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Docking station USB-C",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Dockingstation en muismat",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Headset with microphone (video calls)",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Koptelefoon met microfoon",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Power strip 6-way with surge protection",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Stekkerdoos 6-voudig met overspanningsbeveiliging",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Laminating pouches A4, 100 pcs",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Lamineerhoezen A4",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "External SSD 1TB",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "USB stick 64GB, 5 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Printer maintenance kit",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Onderhoudskit printer",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Bulk order stationery, invoice 2026-0142",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:2201 BRUNA kantoor pennen en schriften",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Card purchase OFFICE CENTRE - paper and folders",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "iDEAL betaling 123inkt - toner en inkt",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaalautomaat MEDIAMARKT muis en toetsenbord",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monitor arm, single, clamp mount",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Monitorarm enkel, klem",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Desk organiser and paper tray",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bureau-organizer en brievenbak",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Coffee table for reception - IKEA",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bureau en kast, IKEA, kantoorinrichting",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Batteries AA (24 pack) for mice",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Batterijen AAA 20 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Ergonomic footrest and wrist rest",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Voetensteun en polssteun",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Packing tape and shipping boxes",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verzenddozen en tape, 25 stuks",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Notice board, cork, 90x60",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Prikbord kurk",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order #NL-4471-8821",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Ordernr 88231045 betaald met iDEAL",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaalautomaat 5588 pas 012",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Your order has shipped - 3 items",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BEA NR:2201 BRUNA AMSTERDAM",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt 000481 - 4 items",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087, klantnummer 30055812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Web order 2026-08-14 - delivery 2 days",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Zending 3 dozen, pakbon 55120",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Purchase order PO-2026-031 - delivered",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pinbetaling 14:42 terminal 88211",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Delivered to reception - order 7742",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kenmerk 7700231 - augustus 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Card payment - Total EUR 61.20",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bestelling 12 artikelen, verzendkosten gratis",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Order confirmation 2026-08-22, 6 lines",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Factuur 2026-0455",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Total EUR 128.45 incl. VAT 21% - paid",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kassabon 0231 - 21-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Ref 2026-0733 - back-order fulfilled",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft uw bestelling van 10 augustus 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice no. 2026-0311, customer 118204",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling factuur 2026-0311",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order #A-22381 - free delivery",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Overboeking klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Parcel 3 of 3 - tracking 3S1234567890",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Retour en herbestelling, creditnota verrekend",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Purchase 22 Aug 2026 - EUR 34.95",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Winkelbon 8877 - 2 artikelen",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Web order 402-1188221-3345521 confirmed",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bestelnummer NL-2026-0088",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment for order 110-2026-77",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Rekening 08/2026, kostenplaats 300",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Delivery note 20260812-4",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Afhalen in winkel, betaald aan de kassa",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Charge 2026-08-21 - approved",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pakbon 44810 - betaald per pin",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Bulk order Q3 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur 2026-0777 Betaaltermijn 14 dagen",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Sale 14/08 till 2 - approved",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bedrag 34,95 - transactie 8812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "2 x 12.99, 1 x 8.50 - VAT 21%",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Aanbetaling ordernr 2026-0912",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Backorder ref BO-2026-1120",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Nota 0000481 aug26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Retail purchase - store 0311",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Reeds voldaan, factuur 2026-0455",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order total EUR 214.30 (incl. shipping)",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Levering 2026-09-03, colli 4",
-   "lang": "nl",
-   "keyword_free": true
+   "country": "NL"
   }
  ]
 }

@@ -41,6 +41,15 @@ class_prior:
     "Rent Expense": 0.06
 
 # Amounts in EUR ex-VAT unless noted. Sample, round to cents.
+# REVISION 1 NOTE: per-vendor price points now live in the corpus archetypes (spec/corpus/*.json:
+# `archetypes.<a>.plans|amt|rates|usage`), so a description, its amount and its vendor come from
+# one archetype. The class-level families below remain the documented target shapes (and the
+# Software seats/annual parameters are read by the generator). Amounts in a row are the document
+# TOTAL (net + BTW, or net when reverse-charged/0%).
+# credit_notes decision (revision 1): utility credit notes are NOT generated. The downstream
+# entry rules reject amount <= 0 (rules R3, entry_rules.construct_entry), so a negative amount
+# cannot enter the pipeline. The ~5% negative share implied by the old settlement component is
+# removed from the spec rather than emitted as unusable rows. Tag: assumption.
 amounts:
   "Software & Subscriptions Expense":
     family: mixture_point_masses_times_seats
@@ -49,6 +58,12 @@ amounts:
       seats: {1: 0.65, 2: 0.15, 3: 0.10, 5: 0.06, 10: 0.04}
       annual_multiplier: {p: 0.15, factor: 12, discount: 0.85}
     reason: SaaS is priced in tiers times seats; annual plans are rarer.
+    # revision 1: realised prices come from per-vendor plan menus in the corpus archetypes (net price x seats,
+    # x12 x0.85 on annual plans, usage-billed cloud/API vendors log-normal per vendor). The old spec's implied
+    # q95 (~612, from 199-tier x 10 seats x annual) is not what real vendor menus produce: most vendors have
+    # 1-2 plans below 100/month and only some per-seat plans. Spec target now: median 10-30, q95 100-300
+    # (reason: per-vendor price points; the audited 199 -> ~140 is inside this range).
+    expected_q95_range: [100, 300]
     tag: "sourced (Google 6.90/13.80, M365 ~10.93 unverified ex-VAT); other tiers assumption"
     url: [https://medhacloud.com, https://m365.de]
   "Travel & Transport Expense":
@@ -72,7 +87,7 @@ amounts:
       - {name: energy, weight: 0.40, family: lognormal, mu: 4.60, sigma: 0.40, clip: [40, 320], seasonal_uplift: {oct_mar: 1.30, apr_sep: 0.85}}
       - {name: telecom, weight: 0.40, family: fixed_tiers, values: [12.50, 20.00, 29.00, 39.00, 55.00, 79.00], jitter_sd: 0.0}
       - {name: water, weight: 0.10, family: lognormal, mu: 3.40, sigma: 0.30, clip: [15, 80]}
-      - {name: energy_annual_settlement, weight: 0.10, family: normal, mu: 0.0, sd: 180, note: negative = credit note}
+      - {name: energy_annual_settlement, weight: 0.10, family: abs_normal, mu: 0.0, sd: 180, note: "revision 1: additional-payment settlements only; credit notes (negative amounts) dropped, see credit_notes decision below"}
     reason: Energy 60-250/mo with winter uplift; telecom near-fixed; annual settlement may be a credit.
     tag: assumption
   "Professional Services Expense":
@@ -97,11 +112,24 @@ amounts:
     tag: assumption
 
 vendor_frequency:
-  family: zipf
-  exponent_s: 1.1              # within each class; head vendors dominate, long tail of one-offs
-  one_off_tail_fraction: 0.30  # of a class's distinct vendors appear once
+  # REVISION 1 SPEC DECISION (orchestrator): s=1.1 pure Zipf over ~50 vendors puts ~65% of mass in
+  # the top 10, which contradicts the old 'top-10 < 40%' gate. The gate is now a HEURISTIC:
+  # top-10 vendor share <= 55% of ANY class, measured over ALL rows of the class (hard/escalate
+  # rows included; the clear-rows-only figure is reported but is not the gate).
+  # Model: Zipf-Mandelbrot p(rank r) ~ (r + q)^-s with s = 1.0 exactly and offset q = 3.0 (a pure
+  # Zipf s=1.0 over 48-63 vendors would still give 59-62% in the top 10). The manifest reports
+  # the realised exponent by MLE (not OLS) for the generating family (q fixed) and for pure Zipf.
+  family: zipf_mandelbrot
+  exponent_s: 1.0
+  offset_q: 3.0
+  subtype_weights:      # rank order inside a subtype = corpus order; subtype weights are assumptions
+    "Travel & Transport Expense": {ov: 0.40, fuel: 0.20, parking: 0.20, taxi: 0.10, ovsub: 0.10}
+    "Utilities Expense": {energy: 0.50, telecom: 0.40, water: 0.10}
+    "Professional Services Expense": {accountant: 0.35, consultant: 0.45, notaris: 0.12, kvk: 0.08}
+  one_off_tail_fraction: 0.30   # informational: NOT forced any more; the realised singleton share is a by-product of the multinomial draw
   min_vendor_strings_per_class: 30
-  top10_vendor_share_max: 0.40 # gate: top-10 vendors < 40% of any class
+  top10_vendor_share_max: 0.55  # heuristic gate, all rows of a class
+  general_other_max_single_vendor_share: 0.12   # heuristic cap on one hard-case brand inside General/Other
   tag: assumption
 
 vendor_archetypes:   # public business names as archetypes only; corpus-builder expands
@@ -132,18 +160,46 @@ recurrence:
 
 paid_unpaid:
   tag: assumption   # feeds paid heuristic; verify against real documents
-  paid_at_document_date_fraction:
-    "Software & Subscriptions Expense": 0.97
-    "Travel & Transport Expense": 0.98
-    "Office Supplies Expense": 0.92
-    "Utilities Expense": 0.93
-    "General/Other Expense": 0.95
+  # revision 1: bank lines and card/iDEAL receipts are paid by definition; only INVOICES can be unpaid.
+  invoice_paid_fraction:
+    "Software & Subscriptions Expense": 0.92
+    "Travel & Transport Expense": 0.93
+    "Office Supplies Expense": 0.88
+    "Utilities Expense": 0.88
+    "General/Other Expense": 0.90
     "Professional Services Expense": 0.50   # B2B invoices 40-60% unpaid at receipt
-    "Rent Expense": 0.95
+    "Rent Expense": 0.90
   payment_terms_days: {14: 0.30, 30: 0.70}
-  overdue_tail_fraction_of_unpaid: 0.08
-  paid_markers: {nl: ["Reeds voldaan", "Betaald via SEPA Incasso", "iDEAL betaling"], en: ["Paid", "Already paid", "Paid by card"]}
-  unpaid_markers: {nl: ["Te betalen voor {date}", "Betaaltermijn 14 dagen"], en: ["Total due", "Payable within 30 days"]}
+  overdue_tail_fraction_of_unpaid: 0.08   # not modelled in revision 1 (no dunning text)
+
+payment_text:
+  tag: "sourced (bank channels: belastingdienst.nl); shares assumption"
+  # ONE payment field per row, chosen by document type. No stacking of channel + 'already paid'.
+  # invoice: terms text only (unpaid -> due date / payable within; paid -> optional neutral terms)
+  # bank line: SEPA channel; receipt_pos: card-terminal text; receipt_ideal: iDEAL.
+  # Card-terminal text can only occur on archetypes whose doc mix contains receipt_pos (retail, fuel,
+  # parking, taxi, restaurants...), never on professional services or rent.
+  terms_days: {"14": 0.30, "30": 0.70}
+  invoice_paid_terms_p: 0.10
+  invoice_unpaid_terms_p: 0.55
+  bank_recurring: ["SEPA Incasso algemeen doorlopend", "SEPA Incasso", "Incasso"]
+  bank_oneoff: ["SEPA Overboeking", "Overboeking"]
+  pos: ["BEA NR:%04d", "Betaalautomaat", "Pinbetaling"]
+  ideal: ["iDEAL betaling", "iDEAL"]
+  terminal_codes: ["Term %d", "POS %d", "Kassa %d", "Pas %03d", "Terminal %d"]
+  btw_fragment_p: {invoice: 0.45, receipt_pos: 0.05, receipt_ideal: 0.08, bank: 0.0}
+  reference_fragment_p: {invoice: 0.30, bank: 0.30}   # 'Kenmerk 4821907' style; shared business vocabulary, not class words
+  btw_note: "excl + rate% = total exactly; reverse charge (foreign SaaS) and 0% (KvK, intl flights) stated as such; every quoted amount is derived from the amount column"
+
+date_model:
+  tag: assumption
+  business_days: "invoices and bank lines fall on business days (weekends only for receipts; NL public holidays ignored); recurring dates roll forward to the next business day"
+  receipt_weekend_weights: {saturday: 0.55, sunday: 0.30}   # relative to a weekday = 1
+  month_end_cluster:      # share of irregular INVOICES dated in the last 3 business days of a month (on top of the uniform baseline)
+    "Professional Services Expense": 0.30
+    "Utilities Expense": 0.0
+    "Software & Subscriptions Expense": 0.0
+  quarter_end: "accountant quarterly series are dated on the last business day of Mar/Jun/Sep/Dec"
 
 description_formats:
   tag: "sourced (invoice fields, bank channels: belastingdienst.nl); templates and number formats assumption"
@@ -157,96 +213,101 @@ description_formats:
 # "abonnement", "parking"). Too high = trivial keyword classifier; too low = unrealistic.
 keyword_shortcut_band:
   tag: assumption
-  keyword_bearing_fraction: {min: 0.45, target: 0.55, max: 0.65}
-  keyword_free_fraction: {min: 0.30, target: 0.35, max: 0.45}   # rest: generic/ambiguous handled by hard cases
+  # revision 1 (documented trade-off): the description-token exclusivity gate (<= 30% of top-20 tokens
+  # exclusive to one class) needs shared business vocabulary (factuur/invoice/betaling/order/periode/BTW/
+  # SEPA) in every class. Measured on TEMPLATES with the checker's lexicon this moves the keyword-free
+  # share from ~0.35 to ~0.60-0.75; the class signal moves to the vendor field and to the class nouns
+  # that remain in ~1/3 of templates. Vendor tokens are excluded from the description-exclusivity gate.
+  keyword_bearing_fraction: {min: 0.20, target: 0.35, max: 0.65}
+  keyword_free_fraction: {min: 0.25, target: 0.60, max: 0.80}
   no_class_exclusive_vocabulary: true
-  max_exclusive_tokens_in_top20_per_class: 0.30
+  max_exclusive_tokens_in_top20_per_class: 0.30   # gate on DESCRIPTION tokens (vendor-name tokens removed); vendor tokens reported separately
   max_description_pattern_share_per_class: 0.03
 
 noise_model:
   tag: assumption   # rates are tunable, not measured
   applied_per_row_independently: true
+  # Realised-rate rule (revision 1): each op's per-row probability is rate x N / (#eligible rows) so
+  # the REALISED share of all rows equals `rate` (an op that needs a substitutable word/a
+  # terminal receipt is only drawn on eligible rows). The manifest reports realised vs spec.
   operations:
-    - {name: typo_char_swap_drop_dup, rate: 0.06}
+    - {name: typo_char_swap_drop_dup, rate: 0.06, note: "keyboard-adjacent substitution, dropped/doubled letter, adjacent swap"}
     - {name: abbreviation_nl_en, rate: 0.10, examples: ["fact.", "mnd", "abon.", "subscr."]}
     - {name: casing_variation, rate: 0.20, modes: {UPPER: 0.5, lower: 0.2, Title: 0.3}}
     - {name: nl_en_mix_in_one_row, rate: 0.12}
-    - {name: ocr_confusion, rate: 0.05, pairs: ["0<->O", "1<->l", "5<->S", "rn<->m"]}
-    - {name: truncated_description, rate: 0.08, keep_chars: [20, 40]}
-    - {name: bank_prefix_suffix, rate: 0.30, examples: ["BEA NR:1234", "SEPA Incasso", "Betaalautomaat"]}
-    - {name: store_terminal_code, rate: 0.10}
-    - {name: vendor_legal_suffix_variation, rate: 0.25, examples: ["B.V.", "BV", "Holding", "Inc"]}
+    - {name: ocr_confusion, rate: 0.05, pairs: ["O->0", "l->1", "I->1", "S->5", "B->8", "m->rn", "0->O (refs)", "1->l (refs)"]}
+    - {name: truncated_description, rate: 0.08, keep_chars: [20, 40], widths: [27, 32, 35, 40]}
+    - {name: store_terminal_code, rate: 0.05, note: "card-terminal receipts only; rate is over ALL rows"}
+    - {name: vendor_legal_suffix_variation, rate: 0.15, note: "only the vendor's own Dutch form (B.V./BV, N.V./NV); never on consumer brands or foreign entities"}
     - {name: missing_or_generic_description, rate: 0.04}
+  removed: "bank_prefix_suffix (0.30): replaced by the doc-type payment field (payment_text), whose realised shares are reported"
   max_ops_per_row: 3
 
 difficulty_mix:
   tag: assumption
-  clear: 0.86
-  hard_ambiguous: 0.14      # target band 10-15%; hard_cases weights below partition this
+  clear: 0.88
+  hard_ambiguous: 0.12      # per-row Bernoulli; band 0.10-0.15
   hard_ambiguous_band: [0.10, 0.15]
   hard_row_class_impact: >
-    Hard rows are counted inside class_prior by their true_account; escalate rows are
-    labelled General/Other with escalate=true in metadata.
+    Hard rows are counted inside class_prior by their final label; easy-row class probabilities are
+    the residual (prior x N - realised hard labels), sampled MULTINOMIALLY (no exact quotas).
 
 hard_cases:
   tag: assumption   # except marketplace fact (sourced, bol.com)
   url: https://www.bol.com
   weights_sum_to_1: true
+  # Escalate rules (revision 1):
+  #  - vendor_description_disagree rows are ALWAYS escalate=true (label General/Other, true_account = the
+  #    account the description implies).
+  #  - generic_description rows escalate only when the vendor does NOT resolve the account
+  #    (ambiguous brand vendors, share `ambiguous_vendor_share`); otherwise they keep the vendor's
+  #    account with difficulty=hard.
+  #  - brand cases: escalate is a per-kind flag below.
   cases:
     - id: bol_marketplace
-      weight: 0.15
-      vendor: [Bol.com, bol]
-      rule: >
-        Stationery/ink/small hardware -> Office Supplies; software licence -> Software;
-        otherwise generic description -> escalate.
-      true_account_by_description: {stationery_ink_hardware: "Office Supplies Expense", licence: "Software & Subscriptions Expense", generic: "General/Other Expense"}
-      escalate_when: generic description (about 40% of this case)
-      reason: marketplace invoice comes from the seller; item decides account (sourced).
+      weight: 0.11
+      kinds:
+        office: {p: 0.50, account: "Office Supplies Expense", escalate: false}
+        software: {p: 0.10, account: "Software & Subscriptions Expense", escalate: false}
+        generic: {p: 0.40, account: "General/Other Expense", escalate: true}
     - id: amazon_nl
-      weight: 0.13
-      vendor: [Amazon.nl, Amazon EU SARL]
-      rule: same as bol_marketplace, plus AWS confusion (Amazon Web Services -> Software)
-      escalate_when: generic description (~40%)
-      reason: retail + cloud under one brand.
+      weight: 0.10
+      kinds:
+        office: {p: 0.45, account: "Office Supplies Expense", escalate: false}
+        software: {p: 0.15, account: "Software & Subscriptions Expense", escalate: false}
+        generic: {p: 0.40, account: "General/Other Expense", escalate: true}
     - id: coolblue_action
-      weight: 0.10
-      vendor: [Coolblue, Action]
-      true_account_by_description: {stationery_small_hardware: "Office Supplies Expense", other: "General/Other Expense"}
-      escalate_when: generic description (~50%)
-      reason: general retailers.
-    - id: albert_heijn_hema
-      weight: 0.15
-      vendor: [Albert Heijn, HEMA]
-      true_account: "General/Other Expense"
-      exception: HEMA with office-item description -> Office Supplies Expense (~25% of HEMA rows)
-      escalate_when: groceries description (private-spend risk), ~60%
-      reason: mostly groceries/private; HEMA can be office.
-    - id: google_ads_vs_workspace
-      weight: 0.10
-      vendor: [Google, Google Ireland Ltd]
-      true_account_by_description: {workspace: "Software & Subscriptions Expense", ads: "General/Other Expense", cloud: "Software & Subscriptions Expense"}
-      escalate_when: ads (no marketing account in default set), ~100% of ads rows
-      reason: same vendor, different service; Google Ads has no account.
-    - id: fuel_station_shop
-      weight: 0.10
-      vendor: [Shell, Tango, BP]
-      true_account_by_description: {fuel_brandstof: "Travel & Transport Expense", shop_items: "General/Other Expense"}
-      escalate_when: shop items ~50%
-      reason: fuel is travel; shop purchases are not.
-    - id: generic_description
       weight: 0.12
-      vendor: [any tail vendor]
-      description: ["Factuur 2026-0142", "Betaling", "Invoice", "Diversen", "Overboeking"]
-      true_account: drawn from class_prior of clear rows
-      escalate_when: always (nothing to classify on)
-      reason: description carries no signal; vendor alone decides.
+      kinds:
+        office: {p: 0.50, account: "Office Supplies Expense", escalate: false}
+        household_misc: {p: 0.20, account: "General/Other Expense", escalate: false}
+        generic: {p: 0.30, account: "General/Other Expense", escalate: true}
+    - id: albert_heijn_hema
+      weight: 0.12
+      kinds:
+        groceries_private: {p: 0.40, account: "General/Other Expense", escalate: true}
+        business_goods: {p: 0.35, account: "General/Other Expense", escalate: false}
+        office_item: {p: 0.25, account: "Office Supplies Expense", escalate: false}
+    - id: google_ads_vs_workspace
+      weight: 0.07
+      kinds:
+        workspace: {p: 0.35, account: "Software & Subscriptions Expense", escalate: false}
+        cloud: {p: 0.10, account: "Software & Subscriptions Expense", escalate: false}
+        ads: {p: 0.55, account: "General/Other Expense", escalate: true}
+    - id: fuel_station_shop
+      weight: 0.08
+      kinds:
+        fuel: {p: 0.55, account: "Travel & Transport Expense", escalate: false}
+        shop: {p: 0.45, account: "General/Other Expense", escalate: true}
+    - id: generic_description
+      weight: 0.16
+      ambiguous_vendor_share: 0.30
     - id: vendor_description_disagree
-      weight: 0.15
-      vendor: [software vendor with travel-like description, utility vendor with office-like description, etc.]
-      true_account: account implied by the description (vendor-only rule would be wrong)
-      escalate_when: never; label is deterministic from description
-      reason: tests two-field fusion; vendor and description point to different accounts.
-  overall_escalate_fraction_of_hard: 0.38   # derived from case weights x escalate shares above (approx, assumption)
+      weight: 0.24
+  # Headline = sum(weight x escalate share) / sum(weight); the generator recomputes it from the
+  # table above (manifest: escalate_fraction_of_hard_from_case_weights) and a test asserts agreement.
+  # 0.11*0.40 + 0.10*0.40 + 0.12*0.30 + 0.12*0.40 + 0.07*0.55 + 0.08*0.45 + 0.16*0.30 + 0.24*1.0
+  overall_escalate_fraction_of_hard: 0.5305
 
 splits:
   tag: assumption

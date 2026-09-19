@@ -1,101 +1,2460 @@
 {
  "account": "Travel & Transport Expense",
  "slug": "travel",
+ "archetypes": {
+  "rail": {
+   "family": "rail",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    8,
+    60
+   ],
+   "doc": {
+    "invoice": 0.35,
+    "bank": 0.45,
+    "receipt_ideal": 0.2
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "city_transit": {
+   "family": "transit",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    4,
+    60
+   ],
+   "doc": {
+    "bank": 0.6,
+    "receipt_pos": 0.4
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "regional_transit": {
+   "family": "transit",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    4,
+    60
+   ],
+   "doc": {
+    "bank": 0.6,
+    "receipt_pos": 0.4
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "ov_tap": {
+   "family": "transit",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    10,
+    60
+   ],
+   "doc": {
+    "bank": 0.7,
+    "receipt_ideal": 0.3
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "rail_intl": {
+   "family": "rail_intl",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    45,
+    260
+   ],
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.2,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.0,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "coach": {
+   "family": "coach",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    9,
+    70
+   ],
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.2,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "ferry": {
+   "family": "ferry",
+   "mode": "template",
+   "sub": "ov",
+   "amt": [
+    12,
+    90
+   ],
+   "doc": {
+    "receipt_pos": 0.4,
+    "receipt_ideal": 0.3,
+    "invoice": 0.3
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "parking": {
+   "family": "parking",
+   "mode": "template",
+   "sub": "parking",
+   "amt": [
+    2,
+    45
+   ],
+   "doc": {
+    "receipt_pos": 0.5,
+    "bank": 0.35,
+    "invoice": 0.15
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "taxi": {
+   "family": "taxi",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    12,
+    90
+   ],
+   "doc": {
+    "receipt_pos": 0.5,
+    "bank": 0.3,
+    "invoice": 0.2
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "taxi_local": {
+   "family": "taxi",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    12,
+    90
+   ],
+   "doc": {
+    "receipt_pos": 0.6,
+    "invoice": 0.4
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "ride_share": {
+   "family": "taxi",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    8,
+    70
+   ],
+   "doc": {
+    "bank": 0.7,
+    "invoice": 0.3
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "scooter_share": {
+   "family": "micro",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    2,
+    16
+   ],
+   "doc": {
+    "bank": 0.8,
+    "invoice": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "bike_share": {
+   "family": "micro",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    3,
+    28
+   ],
+   "doc": {
+    "bank": 0.8,
+    "invoice": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "car_share": {
+   "family": "carshare",
+   "mode": "template",
+   "sub": "taxi",
+   "amt": [
+    12,
+    95
+   ],
+   "doc": {
+    "bank": 0.6,
+    "invoice": 0.4
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "roadside": {
+   "family": "roadside",
+   "mode": "template",
+   "sub": "ovsub",
+   "amt": [
+    95,
+    190
+   ],
+   "doc": {
+    "invoice": 0.6,
+    "bank": 0.4
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "bike_subscription": {
+   "family": "bike_sub",
+   "mode": "template",
+   "sub": "ovsub",
+   "amt": [
+    19,
+    34
+   ],
+   "doc": {
+    "invoice": 0.4,
+    "bank": 0.6
+   },
+   "vat": 0.21,
+   "cadence": {
+    "monthly": 0.9,
+    "irregular": 0.1
+   }
+  },
+  "airline": {
+   "family": "airline",
+   "mode": "template",
+   "sub": "ovsub",
+   "amt": [
+    70,
+    650
+   ],
+   "doc": {
+    "invoice": 0.55,
+    "bank": 0.2,
+    "receipt_ideal": 0.25
+   },
+   "vat": 0.0,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "car_rental": {
+   "family": "car_rental",
+   "mode": "template",
+   "sub": "ovsub",
+   "amt": [
+    60,
+    420
+   ],
+   "doc": {
+    "invoice": 0.6,
+    "bank": 0.2,
+    "receipt_pos": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "fuel": {
+   "family": "fuel",
+   "mode": "template",
+   "sub": "fuel",
+   "amt": [
+    35,
+    110
+   ],
+   "doc": {
+    "receipt_pos": 0.75,
+    "bank": 0.15,
+    "invoice": 0.1
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "fuel_local": {
+   "family": "fuel",
+   "mode": "template",
+   "sub": "fuel",
+   "amt": [
+    35,
+    110
+   ],
+   "doc": {
+    "receipt_pos": 0.9,
+    "invoice": 0.1
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "ev_charging": {
+   "family": "ev",
+   "mode": "template",
+   "sub": "fuel",
+   "amt": [
+    6,
+    45
+   ],
+   "doc": {
+    "bank": 0.6,
+    "invoice": 0.4
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  }
+ },
+ "pools": {
+  "rail": [
+   {
+    "text": "Treinreis {route}, 2e klas",
+    "lang": "nl",
+    "amt": [
+     8,
+     48
+    ]
+   },
+   {
+    "text": "Train ticket {route}, single",
+    "lang": "en",
+    "amt": [
+     8,
+     48
+    ]
+   },
+   {
+    "text": "Zakelijk reisproduct retour {route}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Rail journey {route}",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Treinkaartje {date}",
+    "lang": "nl",
+    "amt": [
+     6,
+     45
+    ]
+   },
+   {
+    "text": "Reiskosten trein {period}",
+    "lang": "nl",
+    "amt": [
+     30,
+     220
+    ]
+   },
+   {
+    "text": "Train travel {period}",
+    "lang": "en",
+    "amt": [
+     30,
+     220
+    ]
+   },
+   {
+    "text": "{product} abonnement {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     130
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "sub"
+   },
+   {
+    "text": "Factuur {inv} reiskosten",
+    "lang": "nl",
+    "amt": [
+     20,
+     200
+    ]
+   },
+   {
+    "text": "Invoice {inv} travel",
+    "lang": "en",
+    "amt": [
+     20,
+     200
+    ]
+   },
+   {
+    "text": "OV-fiets huur {date}",
+    "lang": "nl",
+    "amt": [
+     4,
+     20
+    ]
+   },
+   {
+    "text": "Ticket {ref}",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     80
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     80
+    ]
+   }
+  ],
+  "transit": [
+   {
+    "text": "OV-chipkaart saldo opwaarderen EUR {total}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Travel card top-up EUR {total}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Reizen op saldo {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     90
+    ]
+   },
+   {
+    "text": "Public transport fares {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     90
+    ]
+   },
+   {
+    "text": "Dagkaart {city}",
+    "lang": "nl",
+    "amt": [
+     8,
+     28
+    ]
+   },
+   {
+    "text": "Day pass {city}",
+    "lang": "en",
+    "amt": [
+     8,
+     28
+    ]
+   },
+   {
+    "text": "Bus- en tramritten {period}",
+    "lang": "nl",
+    "amt": [
+     12,
+     80
+    ]
+   },
+   {
+    "text": "Bus and tram rides {period}",
+    "lang": "en",
+    "amt": [
+     12,
+     80
+    ]
+   },
+   {
+    "text": "Reisdeclaratie {date}",
+    "lang": "nl",
+    "amt": [
+     4,
+     45
+    ]
+   },
+   {
+    "text": "Fare {date}",
+    "lang": "en",
+    "amt": [
+     3,
+     30
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ],
+    "rnd": 5
+   }
+  ],
+  "rail_intl": [
+   {
+    "text": "Internationale treinreis {flight}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "International train ticket {flight}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Rail booking {ref} - {flight}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Boeking {ref} {flight}, 2e klas",
+    "lang": "nl",
+    "amt": [
+     45,
+     240
+    ]
+   },
+   {
+    "text": "Seat reservation {ref}",
+    "lang": "nl",
+    "amt": [
+     5,
+     30
+    ]
+   },
+   {
+    "text": "Return ticket {flight}",
+    "lang": "en",
+    "amt": [
+     80,
+     320
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     45,
+     260
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     45,
+     260
+    ]
+   }
+  ],
+  "coach": [
+   {
+    "text": "Busreis {flight}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Coach ticket {flight}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Ticket {ref}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Bus booking {ref}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     9,
+     70
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     9,
+     70
+    ]
+   }
+  ],
+  "ferry": [
+   {
+    "text": "Veerboot retour {date}",
+    "lang": "nl",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Ferry ticket return {date}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Overtocht auto en passagier",
+    "lang": "nl",
+    "amt": [
+     30,
+     90
+    ]
+   },
+   {
+    "text": "Ferry booking {ref}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   }
+  ],
+  "parking": [
+   {
+    "text": "Parkeerkosten {city}",
+    "lang": "nl",
+    "amt": [
+     2,
+     28
+    ]
+   },
+   {
+    "text": "Parking {city}, {date}",
+    "lang": "en",
+    "amt": [
+     2,
+     28
+    ]
+   },
+   {
+    "text": "Parkeren garage {city} {date}",
+    "lang": "nl",
+    "amt": [
+     4,
+     45
+    ]
+   },
+   {
+    "text": "Parking fee",
+    "lang": "en",
+    "amt": [
+     2,
+     30
+    ]
+   },
+   {
+    "text": "Parkeersessie {date}",
+    "lang": "nl",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Parking session {ref}",
+    "lang": "en",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Parkeerabonnement {period}",
+    "lang": "nl",
+    "amt": [
+     80,
+     220
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "ps"
+   },
+   {
+    "text": "Parking permit {period}",
+    "lang": "en",
+    "amt": [
+     80,
+     220
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "ps"
+   },
+   {
+    "text": "Kenteken registratie {date}",
+    "lang": "nl",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Factuur {inv} parkeren",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     2,
+     25
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     2,
+     25
+    ]
+   }
+  ],
+  "taxi": [
+   {
+    "text": "Taxirit {city}",
+    "lang": "nl",
+    "amt": [
+     12,
+     85
+    ]
+   },
+   {
+    "text": "Ride {city}, {date}",
+    "lang": "en",
+    "amt": [
+     8,
+     70
+    ]
+   },
+   {
+    "text": "Rit {date}",
+    "lang": "nl",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Trip fare {date}",
+    "lang": "en",
+    "amt": [
+     8,
+     70
+    ]
+   },
+   {
+    "text": "Taxi Schiphol - {city}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Taxi {city} - airport",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Ritnummer {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Ride receipt {ref}",
+    "lang": "en",
+    "amt": [
+     8,
+     70
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     10,
+     90
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     10,
+     90
+    ]
+   }
+  ],
+  "micro": [
+   {
+    "text": "Deelscooter rit {date}",
+    "lang": "nl",
+    "amt": [
+     2,
+     14
+    ]
+   },
+   {
+    "text": "Rental {city}, {date}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Deelfiets {city}",
+    "lang": "nl",
+    "amt": [
+     3,
+     20
+    ]
+   },
+   {
+    "text": "Bike rental {city}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Rit {ref}",
+    "lang": "nl",
+    "amt": [
+     2,
+     16
+    ]
+   },
+   {
+    "text": "Ride {ref}",
+    "lang": "en",
+    "amt": [
+     2,
+     16
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   }
+  ],
+  "carshare": [
+   {
+    "text": "Deelauto {date} - {city}",
+    "lang": "nl",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Car sharing booking {date}",
+    "lang": "en",
+    "amt": [
+     12,
+     90
+    ]
+   },
+   {
+    "text": "Boeking {ref}, kilometers en uren",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Booking {ref} - hourly and km charges",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   }
+  ],
+  "roadside": [
+   {
+    "text": "Wegenwacht lidmaatschap {fy}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Roadside assistance membership {fy}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Pechhulp {date}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     95,
+     190
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     95,
+     190
+    ]
+   }
+  ],
+  "bike_sub": [
+   {
+    "text": "{product} abonnement {period}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "{product} monthly subscription {period}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "{product} fiets, {period}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "Factuur {inv} {product}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     19,
+     34
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   }
+  ],
+  "airline": [
+   {
+    "text": "Flight {flight}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Vliegticket {flight}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Boeking {ref} {flight}, retour",
+    "lang": "nl",
+    "amt": [
+     90,
+     650
+    ]
+   },
+   {
+    "text": "Booking {ref} - {flight} return",
+    "lang": "en",
+    "amt": [
+     90,
+     650
+    ]
+   },
+   {
+    "text": "Bagage toeslag {flight}",
+    "lang": "nl",
+    "amt": [
+     25,
+     75
+    ]
+   },
+   {
+    "text": "Omboeking {ref}",
+    "lang": "nl",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Seat selection - booking {ref}",
+    "lang": "en",
+    "amt": [
+     10,
+     45
+    ]
+   },
+   {
+    "text": "Flight change fee {ref}",
+    "lang": "en",
+    "amt": [
+     40,
+     140
+    ]
+   },
+   {
+    "text": "Vlucht {flight} {date}",
+    "lang": "nl",
+    "amt": [
+     70,
+     500
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     70,
+     650
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     70,
+     650
+    ]
+   }
+  ],
+  "car_rental": [
+   {
+    "text": "Autohuur {city}, {date}",
+    "lang": "nl",
+    "amt": [
+     60,
+     420
+    ]
+   },
+   {
+    "text": "Car rental {city}, 3 days",
+    "lang": "en",
+    "amt": [
+     80,
+     420
+    ]
+   },
+   {
+    "text": "Rental agreement {ref}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Huurovereenkomst {ref}, 2 dagen",
+    "lang": "nl",
+    "amt": [
+     60,
+     320
+    ]
+   },
+   {
+    "text": "Extra brandstof en schade-eigen-risico {ref}",
+    "lang": "nl",
+    "amt": [
+     30,
+     200
+    ]
+   },
+   {
+    "text": "Fuel service charge {ref}",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     60,
+     400
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     60,
+     400
+    ]
+   }
+  ],
+  "fuel": [
+   {
+    "text": "Brandstof Euro 95",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Fuel - unleaded",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Tanken diesel",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Petrol",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Tankbeurt {date}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Brandstof {date}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Fuel purchase {date}",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Tankstation transactie {ref}",
+    "lang": "nl",
+    "amt": [
+     30,
+     110
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     35,
+     110
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     35,
+     110
+    ]
+   }
+  ],
+  "ev": [
+   {
+    "text": "Laadsessie {date}",
+    "lang": "nl",
+    "amt": [
+     6,
+     42
+    ]
+   },
+   {
+    "text": "EV charging session {date}",
+    "lang": "en",
+    "amt": [
+     6,
+     42
+    ]
+   },
+   {
+    "text": "Snelladen {city}",
+    "lang": "nl",
+    "amt": [
+     8,
+     45
+    ]
+   },
+   {
+    "text": "Fast charging {city}",
+    "lang": "en",
+    "amt": [
+     8,
+     45
+    ]
+   },
+   {
+    "text": "Laadpas transactie {ref}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Charging transaction {ref}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "NS",
    "aliases": [
     "NS Groep N.V.",
     "N.S. REIZIGERS",
-    "NS INTERNATIONAL",
-    "ns"
+    "NS INTERNATIONAL"
    ],
    "archetype": "rail",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "NS Flex",
    "aliases": [
     "NS Reizigers B.V. (Flex)",
     "NS FLEX ABONNEMENT",
-    "NS FLEX",
-    "ns flex"
+    "NS FLEX"
    ],
    "archetype": "rail",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "GVB",
    "aliases": [
     "GVB Amsterdam",
     "Gemeentelijk Vervoerbedrijf",
-    "GVB AMSTERDAM",
-    "gvb"
+    "GVB AMSTERDAM"
    ],
    "archetype": "city_transit",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "RET",
    "aliases": [
     "RET N.V.",
-    "RET ROTTERDAM",
-    "ret"
+    "RET ROTTERDAM"
    ],
    "archetype": "city_transit",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "HTM",
    "aliases": [
     "HTM Personenvervoer N.V.",
-    "HTM DEN HAAG",
-    "htm"
+    "HTM DEN HAAG"
    ],
    "archetype": "city_transit",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Arriva",
    "aliases": [
     "Arriva Personenvervoer Nederland B.V.",
     "ARRIVA NL",
-    "ARRIVA",
-    "arriva"
+    "ARRIVA"
    ],
    "archetype": "regional_transit",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Keolis Nederland",
    "aliases": [
     "Keolis Nederland B.V.",
     "KEOLIS NL",
-    "KEOLIS NEDERLAND",
-    "keolis nederland"
+    "KEOLIS NEDERLAND"
    ],
    "archetype": "regional_transit",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "EBS",
    "aliases": [
     "EBS (Egged Bus Systems)",
-    "EBS OV",
-    "ebs"
+    "EBS OV"
    ],
    "archetype": "regional_transit",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Qbuzz",
    "aliases": [
     "Qbuzz B.V.",
-    "QBUZZ",
-    "qbuzz"
+    "QBUZZ"
    ],
    "archetype": "regional_transit",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "OV-chipkaart",
@@ -103,20 +2462,20 @@
     "Translink Systems B.V.",
     "OV-CHIPKAART SALDO",
     "OVCHIPKAART.NL",
-    "OV-CHIPKAART",
-    "ov-chipkaart"
+    "OV-CHIPKAART"
    ],
    "archetype": "ov_tap",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "9292",
-   "aliases": [
-    "9292 B.V.",
-    "9292 TICKET"
-   ],
+   "aliases": [],
    "archetype": "ov_tap",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -124,114 +2483,119 @@
    "aliases": [
     "DB Fernverkehr AG",
     "DB BAHN",
-    "DEUTSCHE BAHN",
-    "deutsche bahn"
+    "DEUTSCHE BAHN"
    ],
    "archetype": "rail_intl",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "Eurostar",
    "aliases": [
     "Eurostar International Ltd",
-    "EUROSTAR",
-    "eurostar"
+    "EUROSTAR"
    ],
    "archetype": "rail_intl",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Thalys",
    "aliases": [
     "Thalys International",
-    "THALYS",
-    "thalys"
+    "THALYS"
    ],
    "archetype": "rail_intl",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "FlixBus",
    "aliases": [
     "FlixBus DACH GmbH",
-    "FLIXBUS",
-    "flixbus"
+    "FLIXBUS"
    ],
    "archetype": "coach",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "Q-Park",
    "aliases": [
     "Q-Park Nederland B.V.",
     "Q-PARK",
-    "QPARK",
-    "q-park"
+    "QPARK"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Parkmobile",
    "aliases": [
     "Parkmobile International B.V.",
     "PARKMOBILE",
-    "Parkmobile Nederland",
-    "parkmobile"
+    "Parkmobile Nederland"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "EasyPark",
    "aliases": [
     "EasyPark B.V.",
-    "EASYPARK",
-    "easypark"
+    "EASYPARK"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Interparking",
    "aliases": [
     "Interparking Nederland",
-    "INTERPARKING",
-    "interparking"
+    "INTERPARKING"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Apcoa",
    "aliases": [
     "Apcoa Parking Nederland B.V.",
-    "APCOA",
-    "apcoa"
+    "APCOA"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Yellowbrick",
    "aliases": [
     "Yellowbrick Parkeren",
-    "YELLOWBRICK",
-    "yellowbrick"
+    "YELLOWBRICK"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Schiphol Parking",
    "aliases": [
     "Schiphol Group Parking",
     "SCHIPHOL P1",
-    "SCHIPHOL PARKING",
-    "schiphol parking"
+    "SCHIPHOL PARKING"
    ],
    "archetype": "parking",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Uber",
@@ -239,52 +2603,51 @@
     "Uber B.V.",
     "UBER *TRIP",
     "Uber Technologies",
-    "UBER",
-    "uber"
+    "UBER"
    ],
    "archetype": "ride_share",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Bolt",
    "aliases": [
     "Bolt Operations OU",
     "BOLT.EU",
-    "BOLT",
-    "bolt"
+    "BOLT"
    ],
    "archetype": "ride_share",
-   "ambiguity_notes": ""
+   "country": "EE"
   },
   {
    "name": "TCA Taxi",
    "aliases": [
     "Taxi Centrale Amsterdam",
-    "TCA TAXI",
-    "tca taxi"
+    "TCA TAXI"
    ],
    "archetype": "taxi",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Taxi Utrecht Centrale",
    "aliases": [
-    "TAXI UTRECHT CENTRALE",
-    "taxi utrecht centrale"
+    "TAXI UTRECHT CENTRALE"
    ],
    "archetype": "taxi_local",
-   "ambiguity_notes": "taxi_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Rotterdamse Taxi Coop",
    "aliases": [
     "ROTTERDAM TAXI COOP",
-    "ROTTERDAMSE TAXI COOP",
-    "rotterdamse taxi coop"
+    "ROTTERDAMSE TAXI COOP"
    ],
    "archetype": "taxi_local",
-   "ambiguity_notes": "taxi_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -292,164 +2655,184 @@
    "aliases": [
     "Swapfiets B.V.",
     "SWAPFIETS",
-    "Swapfiets Nederland",
-    "swapfiets"
+    "Swapfiets Nederland"
    ],
    "archetype": "bike_subscription",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Donkey Republic",
    "aliases": [
     "Donkey Republic ApS",
-    "DONKEY REPUBLIC",
-    "donkey republic"
+    "DONKEY REPUBLIC"
    ],
    "archetype": "bike_share",
-   "ambiguity_notes": ""
+   "country": "DK"
   },
   {
    "name": "Felyx",
    "aliases": [
     "Felyx B.V.",
-    "FELYX",
-    "felyx"
+    "FELYX"
    ],
    "archetype": "scooter_share",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Check",
    "aliases": [
     "Check Technologies B.V.",
     "CHECK APP",
-    "CHECK",
-    "check"
+    "CHECK"
    ],
    "archetype": "scooter_share",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Greenwheels",
    "aliases": [
     "Greenwheels B.V.",
-    "GREENWHEELS",
-    "greenwheels"
+    "GREENWHEELS"
    ],
    "archetype": "car_share",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "MyWheels",
    "aliases": [
     "MyWheels B.V.",
-    "MYWHEELS",
-    "mywheels"
+    "MYWHEELS"
    ],
    "archetype": "car_share",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Sixt",
    "aliases": [
     "Sixt Autoverhuur B.V.",
     "SIXT RENT A CAR",
-    "SIXT",
-    "sixt"
+    "SIXT"
    ],
    "archetype": "car_rental",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Hertz",
    "aliases": [
     "Hertz Nederland B.V.",
-    "HERTZ",
-    "hertz"
+    "HERTZ"
    ],
    "archetype": "car_rental",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Europcar",
    "aliases": [
     "Europcar Nederland B.V.",
-    "EUROPCAR",
-    "europcar"
+    "EUROPCAR"
    ],
    "archetype": "car_rental",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "KLM",
    "aliases": [
     "KLM Royal Dutch Airlines",
     "KLM N.V.",
-    "KLM.COM",
-    "klm"
+    "KLM.COM"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Transavia",
    "aliases": [
     "Transavia Airlines C.V.",
-    "TRANSAVIA",
-    "transavia"
+    "TRANSAVIA"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Ryanair",
    "aliases": [
     "Ryanair DAC",
-    "RYANAIR",
-    "ryanair"
+    "RYANAIR"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "easyJet",
    "aliases": [
     "easyJet Airline Company Ltd",
-    "EASYJET",
-    "easyjet"
+    "EASYJET"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "IE"
   },
   {
    "name": "Lufthansa",
    "aliases": [
     "Deutsche Lufthansa AG",
-    "LUFTHANSA",
-    "lufthansa"
+    "LUFTHANSA"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "Vueling",
    "aliases": [
     "Vueling Airlines S.A.",
-    "VUELING",
-    "vueling"
+    "VUELING"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "BE"
   },
   {
    "name": "Brussels Airlines",
    "aliases": [
     "Brussels Airlines SA/NV",
-    "BRUSSELS AIRLINES",
-    "brussels airlines"
+    "BRUSSELS AIRLINES"
    ],
    "archetype": "airline",
-   "ambiguity_notes": ""
+   "country": "BE"
   },
   {
    "name": "TotalEnergies",
@@ -457,135 +2840,142 @@
     "TotalEnergies Marketing Nederland",
     "TOTAL NL",
     "TOTALENERGIES TANKEN",
-    "TOTALENERGIES",
-    "totalenergies"
+    "TOTALENERGIES"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Esso",
    "aliases": [
     "Esso Nederland B.V.",
-    "ESSO",
-    "esso"
+    "ESSO"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Q8",
    "aliases": [
     "Kuwait Petroleum Nederland",
-    "Q8 TANKSTATION",
-    "q8"
+    "Q8 TANKSTATION"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Texaco",
    "aliases": [
     "Texaco Nederland",
-    "TEXACO",
-    "texaco"
+    "TEXACO"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Argos",
    "aliases": [
     "Argos Energies Nederland",
-    "ARGOS",
-    "argos"
+    "ARGOS"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Avia",
    "aliases": [
     "AVIA Nederland",
     "AVIA TANKSTATION",
-    "AVIA",
-    "avia"
+    "AVIA"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Tinq",
    "aliases": [
     "TinQ Nederland B.V.",
-    "TINQ",
-    "tinq"
+    "TINQ"
    ],
    "archetype": "fuel",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Fastned",
    "aliases": [
     "Fastned B.V.",
     "FASTNED LADEN",
-    "FASTNED",
-    "fastned"
+    "FASTNED"
    ],
    "archetype": "ev_charging",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Allego",
    "aliases": [
     "Allego B.V.",
-    "ALLEGO",
-    "allego"
+    "ALLEGO"
    ],
    "archetype": "ev_charging",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Ionity",
    "aliases": [
     "IONITY GmbH",
-    "IONITY",
-    "ionity"
+    "IONITY"
    ],
    "archetype": "ev_charging",
-   "ambiguity_notes": ""
+   "country": "DE"
   },
   {
    "name": "ANWB Wegenwacht",
    "aliases": [
     "ANWB B.V.",
     "ANWB",
-    "ANWB WEGENWACHT",
-    "anwb wegenwacht"
+    "ANWB WEGENWACHT"
    ],
    "archetype": "roadside",
-   "ambiguity_notes": "ambiguous with ANWB shop/membership",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Tankstation De Kruiseweg",
    "aliases": [
-    "TANKSTATION DE KRUISEWEG",
-    "tankstation de kruiseweg"
+    "TANKSTATION DE KRUISEWEG"
    ],
    "archetype": "fuel_local",
-   "ambiguity_notes": "fuel_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Autowasstraat en Tank Zuid",
    "aliases": [
     "AUTOWASSTRAAT TANK ZUID",
-    "AUTOWASSTRAAT EN TANK ZUID",
-    "autowasstraat en tank zuid"
+    "AUTOWASSTRAAT EN TANK ZUID"
    ],
    "archetype": "fuel_local",
-   "ambiguity_notes": "fuel_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -593,658 +2983,19 @@
    "aliases": [
     "TESO",
     "Rederij Doeksen",
-    "VEERDIENST TEXEL (TESO)",
-    "veerdienst texel (teso)"
+    "VEERDIENST TEXEL (TESO)"
    ],
    "archetype": "ferry",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Wheels4All Taxi",
    "aliases": [
-    "WHEELS4ALL TAXI",
-    "wheels4all taxi"
+    "WHEELS4ALL TAXI"
    ],
    "archetype": "taxi_local",
-   "ambiguity_notes": "taxi_local archetype",
+   "country": "NL",
    "unverified": true
-  }
- ],
- "descriptions": [
-  {
-   "text": "NS Zakelijk reisproduct, retour Utrecht Centraal - Amsterdam Zuid, 2e klas",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Train ticket Amsterdam - Rotterdam, single, 2nd class",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "OV-chipkaart saldo opwaarderen EUR 20,00",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Public transport top-up - auto reload 20.00",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Parkeren Q-Park Zuidas, 3 uur 20 min",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Parking fee - garage P+R, 4 hours",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Parkeerkosten straatparkeren, zone 4, 2 uur",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Fuel purchase - Diesel 42.13 L",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Brandstof E10 48,3 liter",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Petrol at pump 6 - unleaded 95, 38.90 L",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Tanken diesel, pomp 4, 55,07 liter",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Taxi ride - Schiphol Airport to Amsterdam Centrum",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Taxirit Utrecht station - kantoor klant",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Uber trip - Amsterdam, 12.4 km",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Uber rit 21 aug, van Zuidas naar Schiphol",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Flight AMS-LHR, one-way, economy, incl. taxes",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Vliegticket Amsterdam - Barcelona retour, 12-14 sep 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "KLM booking ref K7X9PL - Amsterdam to Berlin return",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Vlucht Eindhoven - Madrid, bagage inbegrepen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Airline seat selection + checked baggage 23 kg",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Treinabonnement Dal Voordeel, maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monthly OV season pass, Zone 1-3",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "NS Flex abonnement augustus 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Bike subscription Aug 2026 (city bike)",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Fietsabonnement maandbedrag, Swapfiets Original",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "EV charging session 31.2 kWh - 0.62/kWh",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Laadsessie snellader 27 kWh, laadpas",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Car rental - 2 days, compact, insurance included",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Autohuur 3 dagen, incl. verzekering en 300 km",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Car sharing - 4 hour trip, 22 km",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Deelauto rit 2u, Greenwheels",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Bus ticket Amsterdam - Brussels, FlixBus",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Busreis retour Breda - Den Haag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Ferry crossing with car, day return",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Veerboot overtocht retour, 1 auto, 2 personen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Toll road Belgium - vignette 10 days",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Tol en vignet Duitsland",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Airport parking P3 - 5 nights",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Schipholparkeren 7 dagen valet",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Business trip Rotterdam - travel expenses 14 Aug",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Reiskosten zakelijk woon-werk, augustus",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Lost-property return fee & bike lock",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Trein retour Eindhoven, 1e klas toeslag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "International rail Amsterdam - Paris, business premier",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Internationale treinreis Brussel, retourticket",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Roadside assistance callout, tyre change",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Pechhulp wegenwacht ritkosten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Scooter share ride 18 min",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Deelscooter rit Utrecht centrum",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Public transport day pass, Zone 2",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "OV dagkaart Amsterdam",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Return fare, Utrecht Centraal to Schiphol Airport, 1st class",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:2201 Q-PARK AMSTERDAM ZUIDAS parkeren",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:5588 TANKSTATION tanken 47,20",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaalautomaat NS REIZIGERS UTRECHT ticket",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "iDEAL betaling KLM - vlucht",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Parkmobile - parking session zone A2 - 06/09",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "EasyPark parkeersessie 1u 45m",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Travel reimbursement - mileage 112 km at EUR 0.23",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kilometervergoeding 112 km, tarief 0,23",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Airline ticket change fee",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Ticket omboeking kosten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Hotel-to-airport shuttle, invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Taxifactuur juli 2026 ritten 12, 14, 19",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Subscription: bike lease, 24 months",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Fietsleaseplan, maandtermijn 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Charging card monthly fee plus 3 sessions",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Laadpas roaming sessies augustus",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Retourtje Rotterdam Centraal - Den Haag HS",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Train ticket Utrecht - Eindhoven, 2nd class, e-ticket",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Parkeergarage Centrum, dagtarief",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Fuel: Euro 95, receipt station",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Taxi van hotel naar station",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Flight change fee KLM",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Vliegveld parkeren Eindhoven Airport 3 dagen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Uber ride to client site",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Laden elektrische auto, 22 kWh",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Tram and metro day ticket, Rotterdam",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt 4471-8821",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BEA NR:2201 AMSTERDAM 21-08-26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Card purchase 14 Aug 2026 22:14",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaalautomaat 5588 pas 012",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Trip receipt - 3 Sep 2026 - EUR 18.40",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kenmerk 7700231 - augustus 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Booking ref K7X9PL",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pintransactie 14:42 terminal 88211",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order 4411-2208-9910 - thank you for booking",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "iDEAL betaling ordernr 88231045",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment ID 30055812",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling 22-08-2026, kassa 3",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Your ride on Tuesday evening",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0311, 3 ritten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Invoice INV-2026-00123 - Amsterdam",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Overzicht augustus 2026, klantnummer 118204",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Booking confirmation, passengers: 1 adult",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Factuur 2026-0455",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Ref 2026-08-19/AMS-UTR",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Rekening 08/2026 kostenplaats 200",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Statement Aug 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pinbetaling Utrecht CS 08:12",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "EUR 41.75 - contactless",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft uw betaling van 12 september",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt no. 000481 - 3 items",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Overboeking ref 2026-0733 Amsterdam",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Paid with card ending 4417 - Total EUR 61.20",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087 - Amsterdam Zuid",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Confirmation #EU-4482-3311",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "PIN 1 x 12,60 EUR",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Total due 12.60, paid",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Nota 0000481 aug26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaald via SEPA Incasso 04-09-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Charge 2026-09-04 19:03",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "AMSTERDAM CS 21AUG 14:02",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Rotterdam Aug 14 - 2 charges",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Verzamelfactuur Q3 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Monthly statement 09/2026, account 5514",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bedrag 6,40 - transactie 8812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order EU-2026-0088 processed",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling Schiphol 09:41",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Dienstverlening Amsterdam 2026-0777",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Amount 20.00 - reload",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Session 8877 - 07:22 to 09:05",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Omschrijving: rit 2026-08-12",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Sale 14/08 till 2 - approved",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Debit kaart 3 sep 15:20",
-   "lang": "nl",
-   "keyword_free": true
   }
  ]
 }

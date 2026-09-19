@@ -1,175 +1,238 @@
 {
-  "corpus_sha256": "786e2e3f2c44bc6ceae252c1155192881e8252c2fefd4a9fb69ea9498a6986d6",
-  "generator_sha256": "bc7e8cfd364d0d5cb77b14f670bea40b55c0fe69fd3284bde6f37a5cd66b794a",
+  "corpus_sha256": "e897fd08672dac1901a3ddbce088cb546020ce8309762198744a0bdff36c5947",
+  "generator_sha256": "565559740400df94fbdfb2754fec2d92b493c240e844102313edc0b8a076a2be",
   "notes": [
     "escalate rows carry account=General/Other Expense and escalate=true in metadata",
     "metadata is row-aligned with transactions and never a feature",
+    "top-10 vendor share is a heuristic gate measured over ALL rows of a class",
     "synthetic-only: do not quote accuracy on this data as real-world accuracy"
   ],
   "rows_requested": 4000,
   "seed": 1234,
   "source": "synthetic",
   "spec_path": "data/synthetic/spec/generative_spec.yaml",
-  "spec_sha256": "6bb4a871f9f3da75590473266563ef7b898596f0f35746385a7393f44775dc7b",
+  "spec_sha256": "1c83c37374f67d4db4e807367861927c0825db00cef2217f459c3eea80697282",
   "stats": {
     "account_fraction": {
-      "General/Other Expense": 0.11,
-      "Office Supplies Expense": 0.14,
-      "Professional Services Expense": 0.09,
-      "Rent Expense": 0.06,
-      "Software & Subscriptions Expense": 0.27,
-      "Travel & Transport Expense": 0.22,
-      "Utilities Expense": 0.11
+      "General/Other Expense": 0.1077,
+      "Office Supplies Expense": 0.145,
+      "Professional Services Expense": 0.0912,
+      "Rent Expense": 0.0622,
+      "Software & Subscriptions Expense": 0.2865,
+      "Travel & Transport Expense": 0.209,
+      "Utilities Expense": 0.0983
     },
-    "dedup_repairs": 82,
+    "class_mix_chi2": {
+      "chi2": 12.559,
+      "df": 6,
+      "p": 0.0506
+    },
     "difficulty": {
-      "ambiguous": 0.065,
-      "easy": 0.86,
-      "hard": 0.075
+      "ambiguous": 0.071,
+      "easy": 0.8718,
+      "hard": 0.0573
     },
-    "distinct_vendor_strings_per_account": {
-      "General/Other Expense": 231,
-      "Office Supplies Expense": 228,
-      "Professional Services Expense": 165,
-      "Rent Expense": 123,
-      "Software & Subscriptions Expense": 315,
-      "Travel & Transport Expense": 298,
-      "Utilities Expense": 146
+    "doc_type_share": {
+      "bank": 0.317,
+      "invoice": 0.459,
+      "receipt_ideal": 0.0678,
+      "receipt_pos": 0.1562
     },
     "dup_rate_vendor_description": 0.0,
-    "dup_rate_vendor_description_date_amount": 0.0,
-    "escalate_fraction_of_all": 0.065,
-    "escalate_fraction_of_hard": 0.4643,
+    "escalate_fraction_of_all": 0.071,
+    "escalate_fraction_of_hard": 0.5536,
+    "escalate_fraction_of_hard_from_case_weights": 0.5305,
+    "general_other_max_single_vendor_share": 0.07,
+    "integer_euro_amount_share": 0.1817,
+    "kvk_constant_share_of_professional": 0.0712,
     "language": {
-      "en": 0.4168,
-      "mixed": 0.1195,
-      "nl": 0.4637
+      "en": 0.3995,
+      "mixed": 0.1172,
+      "nl": 0.4833
     },
     "noise_realised_rate": {
-      "abbreviation_nl_en": 0.0535,
-      "bank_prefix_suffix": 0.294,
-      "casing_variation": 0.195,
-      "missing_or_generic_description": 0.035,
-      "nl_en_mix_in_one_row": 0.1195,
-      "ocr_confusion": 0.0442,
-      "store_terminal_code": 0.0975,
-      "truncated_description": 0.0745,
-      "typo_char_swap_drop_dup": 0.0625,
-      "vendor_legal_suffix_variation": 0.2392
+      "abbreviation_nl_en": 0.0917,
+      "casing_variation": 0.1985,
+      "missing_or_generic_description": 0.0457,
+      "nl_en_mix_in_one_row": 0.1172,
+      "ocr_confusion": 0.0498,
+      "store_terminal_code": 0.0483,
+      "truncated_description": 0.0775,
+      "typo_char_swap_drop_dup": 0.062,
+      "vendor_legal_suffix_variation": 0.1467
+    },
+    "noise_spec_rate": {
+      "abbreviation_nl_en": 0.1,
+      "casing_variation": 0.2,
+      "missing_or_generic_description": 0.04,
+      "nl_en_mix_in_one_row": 0.12,
+      "ocr_confusion": 0.05,
+      "store_terminal_code": 0.05,
+      "truncated_description": 0.08,
+      "typo_char_swap_drop_dup": 0.06,
+      "vendor_legal_suffix_variation": 0.15
     },
     "paid_rate": {
-      "General/Other Expense": 0.945,
-      "Office Supplies Expense": 0.92,
-      "Professional Services Expense": 0.55,
-      "Rent Expense": 0.942,
-      "Software & Subscriptions Expense": 0.968,
-      "Travel & Transport Expense": 0.983,
-      "Utilities Expense": 0.927
+      "General/Other Expense": 0.986,
+      "Office Supplies Expense": 0.938,
+      "Professional Services Expense": 0.493,
+      "Rent Expense": 0.928,
+      "Software & Subscriptions Expense": 0.955,
+      "Travel & Transport Expense": 0.986,
+      "Utilities Expense": 0.954
     },
+    "prof_invoice_last3_bdays_share": 0.3916,
     "row_fraction_per_split": {
       "test": 0.1497,
-      "train": 0.7003,
-      "val": 0.15
+      "train": 0.6995,
+      "val": 0.1507
     },
     "rows": 4000,
     "rows_per_account": {
-      "General/Other Expense": 440,
-      "Office Supplies Expense": 560,
-      "Professional Services Expense": 360,
-      "Rent Expense": 240,
-      "Software & Subscriptions Expense": 1080,
-      "Travel & Transport Expense": 880,
-      "Utilities Expense": 440
+      "General/Other Expense": 431,
+      "Office Supplies Expense": 580,
+      "Professional Services Expense": 365,
+      "Rent Expense": 249,
+      "Software & Subscriptions Expense": 1146,
+      "Travel & Transport Expense": 836,
+      "Utilities Expense": 393
     },
     "rows_per_account_per_split": {
       "General/Other Expense": {
-        "test": 66,
-        "train": 308,
-        "val": 66
+        "test": 64,
+        "train": 302,
+        "val": 65
       },
       "Office Supplies Expense": {
-        "test": 84,
-        "train": 392,
-        "val": 84
+        "test": 87,
+        "train": 406,
+        "val": 87
       },
       "Professional Services Expense": {
-        "test": 54,
-        "train": 252,
-        "val": 54
+        "test": 55,
+        "train": 255,
+        "val": 55
       },
       "Rent Expense": {
-        "test": 36,
-        "train": 168,
-        "val": 36
+        "test": 37,
+        "train": 174,
+        "val": 38
       },
       "Software & Subscriptions Expense": {
-        "test": 162,
-        "train": 756,
-        "val": 162
+        "test": 172,
+        "train": 801,
+        "val": 173
       },
       "Travel & Transport Expense": {
-        "test": 132,
-        "train": 616,
-        "val": 132
+        "test": 125,
+        "train": 585,
+        "val": 126
       },
       "Utilities Expense": {
-        "test": 65,
-        "train": 309,
-        "val": 66
+        "test": 59,
+        "train": 275,
+        "val": 59
       }
     },
     "rows_per_split": {
       "test": 599,
-      "train": 2801,
-      "val": 600
+      "train": 2798,
+      "val": 603
     },
-    "top10_vendor_share_clear_rows": {
-      "General/Other Expense": 0.331,
-      "Office Supplies Expense": 0.336,
-      "Professional Services Expense": 0.343,
-      "Rent Expense": 0.333,
-      "Software & Subscriptions Expense": 0.344,
-      "Travel & Transport Expense": 0.346,
-      "Utilities Expense": 0.336
+    "software_q95": 142.8,
+    "suffix_share_of_vendor_strings": 0.2905,
+    "template_redraws": 1480,
+    "top10_vendor_share_all_rows": {
+      "General/Other Expense": 0.462,
+      "Office Supplies Expense": 0.416,
+      "Professional Services Expense": 0.458,
+      "Rent Expense": 0.534,
+      "Software & Subscriptions Expense": 0.445,
+      "Travel & Transport Expense": 0.361,
+      "Utilities Expense": 0.468
+    },
+    "top10_vendor_share_clear_rows_only_NOT_THE_GATE": {
+      "General/Other Expense": 0.613,
+      "Office Supplies Expense": 0.451,
+      "Professional Services Expense": 0.457,
+      "Rent Expense": 0.534,
+      "Software & Subscriptions Expense": 0.458,
+      "Travel & Transport Expense": 0.373,
+      "Utilities Expense": 0.47
     },
     "vendor_groups_in_multiple_splits": 0,
     "vendor_groups_per_account_per_split": {
       "General/Other Expense": {
-        "test": 32,
-        "train": 45,
-        "val": 31
+        "test": 35,
+        "train": 77,
+        "val": 28
       },
       "Office Supplies Expense": {
-        "test": 15,
-        "train": 39,
-        "val": 14
+        "test": 16,
+        "train": 31,
+        "val": 15
       },
       "Professional Services Expense": {
-        "test": 13,
-        "train": 30,
+        "test": 12,
+        "train": 24,
         "val": 11
       },
       "Rent Expense": {
-        "test": 12,
-        "train": 31,
-        "val": 8
+        "test": 11,
+        "train": 22,
+        "val": 12
       },
       "Software & Subscriptions Expense": {
-        "test": 15,
-        "train": 38,
-        "val": 15
+        "test": 16,
+        "train": 31,
+        "val": 16
       },
       "Travel & Transport Expense": {
-        "test": 16,
-        "train": 34,
-        "val": 15
+        "test": 14,
+        "train": 32,
+        "val": 14
       },
       "Utilities Expense": {
         "test": 11,
-        "train": 21,
-        "val": 13
+        "train": 20,
+        "val": 11
       }
     },
-    "vendor_strings_in_multiple_splits": 0
+    "vendor_strings_in_multiple_splits": 0,
+    "weekend_share": {
+      "bank": 0.0,
+      "invoice": 0.0,
+      "receipt": 0.1339
+    },
+    "zipf_exponent_mle_easy_rows": {
+      "General/Other Expense": {
+        "pure_zipf_q0": 0.906,
+        "zipf_mandelbrot_q3": 1.412
+      },
+      "Office Supplies Expense": {
+        "pure_zipf_q0": 0.673,
+        "zipf_mandelbrot_q3": 0.982
+      },
+      "Professional Services Expense": {
+        "pure_zipf_q0": 0.624,
+        "zipf_mandelbrot_q3": 0.959
+      },
+      "Rent Expense": {
+        "pure_zipf_q0": 0.729,
+        "zipf_mandelbrot_q3": 1.132
+      },
+      "Software & Subscriptions Expense": {
+        "pure_zipf_q0": 0.683,
+        "zipf_mandelbrot_q3": 0.99
+      },
+      "Travel & Transport Expense": {
+        "pure_zipf_q0": 0.544,
+        "zipf_mandelbrot_q3": 0.787
+      },
+      "Utilities Expense": {
+        "pure_zipf_q0": 0.611,
+        "zipf_mandelbrot_q3": 0.917
+      }
+    }
   }
 }

@@ -1,364 +1,2845 @@
 {
  "account": "General/Other Expense",
  "slug": "general",
+ "archetypes": {
+  "supermarket": {
+   "family": "supermarket",
+   "mode": "template",
+   "amt": [
+    5,
+    90
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "bank": 0.2
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "drugstore": {
+   "family": "drugstore",
+   "mode": "template",
+   "amt": [
+    5,
+    45
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "bank": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "diy_store": {
+   "family": "diy",
+   "mode": "template",
+   "amt": [
+    8,
+    150
+   ],
+   "doc": {
+    "receipt_pos": 0.6,
+    "receipt_ideal": 0.2,
+    "invoice": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "household": {
+   "family": "household",
+   "mode": "template",
+   "amt": [
+    8,
+    90
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "bank": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "garden": {
+   "family": "garden",
+   "mode": "template",
+   "amt": [
+    8,
+    120
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "bank": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "bloemist_local": {
+   "family": "flowers",
+   "mode": "template",
+   "amt": [
+    15,
+    120
+   ],
+   "doc": {
+    "receipt_pos": 0.7,
+    "receipt_ideal": 0.3
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "catering_cafe": {
+   "family": "cafe",
+   "mode": "template",
+   "amt": [
+    5,
+    180
+   ],
+   "doc": {
+    "receipt_pos": 0.9,
+    "bank": 0.1
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "representatie_local": {
+   "family": "cafe",
+   "mode": "template",
+   "amt": [
+    20,
+    450
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "invoice": 0.2
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "catering_delivery": {
+   "family": "delivery",
+   "mode": "template",
+   "amt": [
+    15,
+    130
+   ],
+   "doc": {
+    "receipt_ideal": 0.85,
+    "bank": 0.15
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "kantine_local": {
+   "family": "catering",
+   "mode": "template",
+   "amt": [
+    20,
+    260
+   ],
+   "doc": {
+    "invoice": 0.6,
+    "receipt_pos": 0.4
+   },
+   "vat": 0.09,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "liquor": {
+   "family": "liquor",
+   "mode": "template",
+   "amt": [
+    15,
+    140
+   ],
+   "doc": {
+    "receipt_pos": 0.8,
+    "bank": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "gift": {
+   "family": "gift",
+   "mode": "template",
+   "amt": [
+    3,
+    120
+   ],
+   "doc": {
+    "receipt_pos": 0.6,
+    "receipt_ideal": 0.4
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "postage": {
+   "family": "postage",
+   "mode": "template",
+   "amt": [
+    5,
+    120
+   ],
+   "doc": {
+    "receipt_pos": 0.5,
+    "invoice": 0.3,
+    "bank": 0.2
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "insurance": {
+   "family": "insurance",
+   "mode": "template",
+   "amt": [
+    15,
+    95
+   ],
+   "doc": {
+    "invoice": 0.5,
+    "bank": 0.5
+   },
+   "vat": 0.0,
+   "cadence": {
+    "monthly": 0.8,
+    "irregular": 0.2
+   },
+   "day": null,
+   "days": [
+    1,
+    5,
+    10,
+    25
+   ]
+  },
+  "cleaning": {
+   "family": "cleaning",
+   "mode": "template",
+   "amt": [
+    90,
+    420
+   ],
+   "doc": {
+    "invoice": 0.7,
+    "bank": 0.3
+   },
+   "vat": 0.21,
+   "cadence": {
+    "monthly": 0.7,
+    "irregular": 0.3
+   },
+   "days": [
+    1,
+    5,
+    15,
+    28
+   ]
+  },
+  "kringloop": {
+   "family": "kringloop",
+   "mode": "template",
+   "amt": [
+    5,
+    150
+   ],
+   "doc": {
+    "receipt_pos": 0.9,
+    "invoice": 0.1
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "sleutel": {
+   "family": "sleutel",
+   "mode": "template",
+   "amt": [
+    4,
+    60
+   ],
+   "doc": {
+    "receipt_pos": 1.0
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "wasserette": {
+   "family": "wasserette",
+   "mode": "template",
+   "amt": [
+    5,
+    40
+   ],
+   "doc": {
+    "receipt_pos": 1.0
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "vve": {
+   "family": "vve",
+   "mode": "template",
+   "amt": [
+    60,
+    250
+   ],
+   "doc": {
+    "bank": 0.6,
+    "invoice": 0.4
+   },
+   "vat": 0.0,
+   "cadence": {
+    "monthly": 0.8,
+    "irregular": 0.2
+   },
+   "days": [
+    1
+   ]
+  },
+  "sportschool": {
+   "family": "sport",
+   "mode": "template",
+   "amt": [
+    25,
+    60
+   ],
+   "doc": {
+    "bank": 0.7,
+    "invoice": 0.3
+   },
+   "vat": 0.21,
+   "cadence": {
+    "monthly": 0.8,
+    "irregular": 0.2
+   },
+   "days": [
+    1,
+    15
+   ]
+  },
+  "kapper": {
+   "family": "kapper",
+   "mode": "template",
+   "amt": [
+    15,
+    60
+   ],
+   "doc": {
+    "receipt_pos": 1.0
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "misc_local": {
+   "family": "kringloop",
+   "mode": "template",
+   "amt": [
+    5,
+    150
+   ],
+   "doc": {
+    "receipt_pos": 1.0
+   },
+   "vat": 0.21,
+   "cadence": {
+    "irregular": 1.0
+   }
+  }
+ },
+ "pools": {
+  "supermarket": [
+   {
+    "text": "Boodschappen kantoor",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Groceries for the office kitchen",
+    "lang": "en",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Koffie, thee en melk",
+    "lang": "nl",
+    "amt": [
+     6,
+     45
+    ]
+   },
+   {
+    "text": "Lunch teamoverleg",
+    "lang": "nl",
+    "amt": [
+     15,
+     120
+    ]
+   },
+   {
+    "text": "Snacks and drinks for meeting",
+    "lang": "en",
+    "amt": [
+     10,
+     60
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     3,
+     70
+    ]
+   },
+   {
+    "text": "Receipt {date}",
+    "lang": "en",
+    "amt": [
+     3,
+     70
+    ]
+   },
+   {
+    "text": "Boodschappen {date}",
+    "lang": "nl",
+    "amt": [
+     5,
+     80
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     8,
+     90
+    ]
+   }
+  ],
+  "drugstore": [
+   {
+    "text": "Schoonmaakmiddelen en papieren zakdoekjes",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "EHBO-set aanvullen",
+    "lang": "nl",
+    "amt": [
+     8,
+     35
+    ]
+   },
+   {
+    "text": "Cleaning supplies",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     3,
+     45
+    ]
+   },
+   {
+    "text": "Toiletries for office",
+    "lang": "en",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     6,
+     40
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     6,
+     40
+    ]
+   }
+  ],
+  "diy": [
+   {
+    "text": "Gereedschap en schroeven",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Paint and brushes",
+    "lang": "en",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Verf en kwasten",
+    "lang": "nl",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Kleine reparatie kantoor",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Tools for office repair",
+    "lang": "en",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Receipt {date}",
+    "lang": "en",
+    "amt": [
+     5,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     10,
+     80
+    ]
+   }
+  ],
+  "household": [
+   {
+    "text": "Keukenspullen kantine",
+    "lang": "nl",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Bekers en borden",
+    "lang": "nl",
+    "amt": [
+     6,
+     45
+    ]
+   },
+   {
+    "text": "Kitchen supplies",
+    "lang": "en",
+    "amt": [
+     10,
+     80
+    ]
+   },
+   {
+    "text": "Opbergboxen",
+    "lang": "nl",
+    "amt": [
+     8,
+     50
+    ]
+   },
+   {
+    "text": "Decorations for reception",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     4,
+     90
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     8,
+     60
+    ]
+   }
+  ],
+  "garden": [
+   {
+    "text": "Kantoorplanten",
+    "lang": "nl",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Plants for reception",
+    "lang": "en",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Potgrond en potten",
+    "lang": "nl",
+    "amt": [
+     8,
+     50
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     5,
+     120
+    ]
+   },
+   {
+    "text": "Garden maintenance materials",
+    "lang": "en",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     10,
+     120
+    ]
+   }
+  ],
+  "flowers": [
+   {
+    "text": "Bloemen relatie",
+    "lang": "nl",
+    "amt": [
+     20,
+     85
+    ]
+   },
+   {
+    "text": "Flowers for client",
+    "lang": "en",
+    "amt": [
+     20,
+     85
+    ]
+   },
+   {
+    "text": "Boeket felicitatie",
+    "lang": "nl",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Condoleance bloemstuk",
+    "lang": "nl",
+    "amt": [
+     35,
+     120
+    ]
+   },
+   {
+    "text": "Anniversary bouquet",
+    "lang": "en",
+    "amt": [
+     20,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     20,
+     80
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     20,
+     80
+    ]
+   }
+  ],
+  "cafe": [
+   {
+    "text": "Zakelijke lunch met klant",
+    "lang": "nl",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Business lunch with client",
+    "lang": "en",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Koffie onderweg",
+    "lang": "nl",
+    "amt": [
+     3,
+     20
+    ]
+   },
+   {
+    "text": "Coffee meeting",
+    "lang": "en",
+    "amt": [
+     4,
+     30
+    ]
+   },
+   {
+    "text": "Diner klantbespreking",
+    "lang": "nl",
+    "amt": [
+     45,
+     300
+    ]
+   },
+   {
+    "text": "Team dinner",
+    "lang": "en",
+    "amt": [
+     80,
+     450
+    ]
+   },
+   {
+    "text": "Lunch {date}",
+    "lang": "nl",
+    "amt": [
+     8,
+     90
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     4,
+     150
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     20,
+     180
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     20,
+     180
+    ]
+   }
+  ],
+  "delivery": [
+   {
+    "text": "Lunchbestelling team",
+    "lang": "nl",
+    "amt": [
+     25,
+     120
+    ]
+   },
+   {
+    "text": "Team lunch delivery order {ref}",
+    "lang": "en",
+    "amt": [
+     25,
+     120
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Order {ref}",
+    "lang": "en",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Maaltijd {date}",
+    "lang": "nl",
+    "amt": [
+     12,
+     60
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     110
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     110
+    ]
+   }
+  ],
+  "catering": [
+   {
+    "text": "Catering vergadering",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Catering for meeting",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Broodjes lunch",
+    "lang": "nl",
+    "amt": [
+     20,
+     150
+    ]
+   },
+   {
+    "text": "Factuur {inv} catering",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Invoice {inv} catering",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Kantinebijdrage {period}",
+    "lang": "nl",
+    "amt": [
+     20,
+     120
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     40,
+     260
+    ]
+   }
+  ],
+  "liquor": [
+   {
+    "text": "Wijn en drank borrel",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Drinks for office party",
+    "lang": "en",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Relatiegeschenk wijnpakket",
+    "lang": "nl",
+    "amt": [
+     25,
+     90
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     8,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     140
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     140
+    ]
+   }
+  ],
+  "gift": [
+   {
+    "text": "Relatiegeschenk",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Client gift",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Cadeaubon",
+    "lang": "nl",
+    "amt": [
+     20,
+     75
+    ]
+   },
+   {
+    "text": "Kerstpakketten",
+    "lang": "nl",
+    "amt": [
+     20,
+     120
+    ]
+   },
+   {
+    "text": "Greeting cards",
+    "lang": "en",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Felicitatiekaarten",
+    "lang": "nl",
+    "amt": [
+     3,
+     25
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ]
+   }
+  ],
+  "postage": [
+   {
+    "text": "Verzendkosten pakket",
+    "lang": "nl",
+    "amt": [
+     5,
+     45
+    ]
+   },
+   {
+    "text": "Parcel shipping",
+    "lang": "en",
+    "amt": [
+     5,
+     45
+    ]
+   },
+   {
+    "text": "Postzegels en verzendmateriaal",
+    "lang": "nl",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Zending {ref}",
+    "lang": "nl",
+    "amt": [
+     5,
+     60
+    ]
+   },
+   {
+    "text": "Express shipment {ref}",
+    "lang": "en",
+    "amt": [
+     20,
+     120
+    ]
+   },
+   {
+    "text": "Factuur {inv} verzendingen",
+    "lang": "nl",
+    "amt": [
+     10,
+     120
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     6,
+     60
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     6,
+     60
+    ]
+   }
+  ],
+  "insurance": [
+   {
+    "text": "Verzekeringspremie {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "i"
+   },
+   {
+    "text": "Insurance premium {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "i"
+   },
+   {
+    "text": "Premie zakelijke rechtsbijstand {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "i"
+   },
+   {
+    "text": "Business liability insurance {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "i"
+   },
+   {
+    "text": "Polis {ref}, {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "i"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     95
+    ],
+    "fixed": true,
+    "grp": "i",
+    "rec": true
+   }
+  ],
+  "cleaning": [
+   {
+    "text": "Schoonmaakwerkzaamheden {period}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "c"
+   },
+   {
+    "text": "Office cleaning {period}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "c"
+   },
+   {
+    "text": "Factuur {inv} schoonmaak {period}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "c"
+   },
+   {
+    "text": "Glasbewassing",
+    "lang": "nl",
+    "amt": [
+     30,
+     110
+    ],
+    "rec": false
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     90,
+     420
+    ],
+    "fixed": true,
+    "grp": "c",
+    "rec": true
+   }
+  ],
+  "kringloop": [
+   {
+    "text": "Tweedehands meubilair",
+    "lang": "nl",
+    "amt": [
+     10,
+     150
+    ]
+   },
+   {
+    "text": "Second-hand items",
+    "lang": "en",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     3,
+     100
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     5,
+     90
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     5,
+     90
+    ]
+   }
+  ],
+  "sleutel": [
+   {
+    "text": "Sleutels bijmaken",
+    "lang": "nl",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Key cutting",
+    "lang": "en",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Reparatie {date}",
+    "lang": "nl",
+    "amt": [
+     8,
+     60
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     4,
+     25
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     4,
+     25
+    ]
+   }
+  ],
+  "wasserette": [
+   {
+    "text": "Wasserette {date}",
+    "lang": "nl",
+    "amt": [
+     5,
+     30
+    ]
+   },
+   {
+    "text": "Laundry service",
+    "lang": "en",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Bedrijfskleding wassen",
+    "lang": "nl",
+    "amt": [
+     10,
+     40
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     5,
+     40
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     5,
+     40
+    ]
+   }
+  ],
+  "vve": [
+   {
+    "text": "Bijdrage VvE {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "v"
+   },
+   {
+    "text": "Servicekosten pand {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "v"
+   },
+   {
+    "text": "Owners association contribution {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "v"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "fixed": true,
+    "grp": "v",
+    "rec": true
+   }
+  ],
+  "sport": [
+   {
+    "text": "Lidmaatschap {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "Membership fee {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "Abonnement {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "rec": true,
+    "grp": "s"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     25,
+     60
+    ],
+    "fixed": true,
+    "grp": "s",
+    "rec": true
+   }
+  ],
+  "kapper": [
+   {
+    "text": "Knippen {date}",
+    "lang": "nl",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Haircut",
+    "lang": "en",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Kassabon {date}",
+    "lang": "nl",
+    "amt": [
+     15,
+     60
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     15,
+     45
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     15,
+     45
+    ]
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "Jumbo",
    "aliases": [
     "Jumbo Supermarkten B.V.",
-    "JUMBO",
-    "jumbo"
+    "JUMBO"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": "private-spend risk"
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Lidl",
    "aliases": [
     "Lidl Nederland GmbH",
-    "LIDL",
-    "lidl"
+    "LIDL"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": "private-spend risk"
+   "country": "DE"
   },
   {
    "name": "Aldi",
    "aliases": [
     "Aldi Nederland B.V.",
-    "ALDI",
-    "aldi"
+    "ALDI"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Plus",
    "aliases": [
     "Plus Retail B.V.",
     "PLUS SUPERMARKT",
-    "PLUS",
-    "plus"
+    "PLUS"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Dirk",
    "aliases": [
     "Dirk van den Broek",
-    "DIRK",
-    "dirk"
+    "DIRK"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Vomar",
    "aliases": [
     "Vomar Voordeelmarkt B.V.",
-    "VOMAR",
-    "vomar"
+    "VOMAR"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Coop",
    "aliases": [
     "Coop Nederland",
-    "COOP",
-    "coop"
+    "COOP"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Spar",
    "aliases": [
-    "Spar Holding",
-    "SPAR",
-    "spar"
+    "SPAR"
    ],
    "archetype": "supermarket",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Kruidvat",
    "aliases": [
     "Kruidvat B.V.",
-    "KRUIDVAT",
-    "kruidvat"
+    "KRUIDVAT"
    ],
    "archetype": "drugstore",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Etos",
    "aliases": [
     "Etos B.V.",
-    "ETOS",
-    "etos"
+    "ETOS"
    ],
    "archetype": "drugstore",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Gamma",
    "aliases": [
     "Gamma Bouwmarkten",
-    "GAMMA",
-    "gamma"
+    "GAMMA"
    ],
    "archetype": "diy_store",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Praxis",
    "aliases": [
     "Praxis Doe-het-zelf Centra B.V.",
-    "PRAXIS",
-    "praxis"
+    "PRAXIS"
    ],
    "archetype": "diy_store",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Karwei",
    "aliases": [
     "Karwei",
-    "KARWEI",
-    "karwei"
+    "KARWEI"
    ],
    "archetype": "diy_store",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Hornbach",
    "aliases": [
     "Hornbach Bouwmarkt Nederland",
-    "HORNBACH",
-    "hornbach"
+    "HORNBACH"
    ],
    "archetype": "diy_store",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Blokker",
    "aliases": [
-    "Blokker Holding",
-    "BLOKKER",
-    "blokker"
+    "BLOKKER"
    ],
    "archetype": "household",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Xenos",
    "aliases": [
     "Xenos B.V.",
-    "XENOS",
-    "xenos"
+    "XENOS"
    ],
    "archetype": "household",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Intratuin",
    "aliases": [
     "Intratuin Nederland",
-    "INTRATUIN",
-    "intratuin"
+    "INTRATUIN"
    ],
    "archetype": "garden",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Bloemenwinkel Centrum",
    "aliases": [
-    "BLOEMENWINKEL CENTRUM",
-    "bloemenwinkel centrum"
+    "BLOEMENWINKEL CENTRUM"
    ],
    "archetype": "bloemist_local",
-   "ambiguity_notes": "bloemist_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Bloemisterij De Tulp",
    "aliases": [
-    "BLOEMISTERIJ DE TULP",
-    "bloemisterij de tulp"
+    "BLOEMISTERIJ DE TULP"
    ],
    "archetype": "bloemist_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Fleurop",
    "aliases": [
     "Fleurop-Interflora Nederland",
-    "FLEUROP",
-    "fleurop"
+    "FLEUROP"
    ],
    "archetype": "bloemist_local",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Bloemenbank",
    "aliases": [
     "Bloemenbank",
     "BLOEMENBANK.NL",
-    "BLOEMENBANK",
-    "bloemenbank"
+    "BLOEMENBANK"
    ],
    "archetype": "bloemist_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Starbucks",
    "aliases": [
     "Starbucks Coffee Company Netherlands",
-    "STARBUCKS",
-    "starbucks"
+    "STARBUCKS"
    ],
    "archetype": "catering_cafe",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Coffee Company",
    "aliases": [
     "Coffee Company B.V.",
-    "COFFEE COMPANY",
-    "coffee company"
+    "COFFEE COMPANY"
    ],
    "archetype": "catering_cafe",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Bagels & Beans",
    "aliases": [
     "Bagels & Beans B.V.",
     "BAGELS AND BEANS",
-    "BAGELS & BEANS",
-    "bagels & beans"
+    "BAGELS & BEANS"
    ],
    "archetype": "catering_cafe",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Thuisbezorgd",
    "aliases": [
     "Just Eat Takeaway.com",
     "THUISBEZORGD.NL",
-    "THUISBEZORGD",
-    "thuisbezorgd"
+    "THUISBEZORGD"
    ],
    "archetype": "catering_delivery",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Uber Eats",
    "aliases": [
     "Uber Eats",
     "UBER *EATS",
-    "UBER EATS",
-    "uber eats"
+    "UBER EATS"
    ],
    "archetype": "catering_delivery",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Domino's",
    "aliases": [
     "Domino's Pizza Nederland",
     "DOMINOS",
-    "DOMINO'S",
-    "domino's"
+    "DOMINO'S"
    ],
    "archetype": "catering_delivery",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Subway",
    "aliases": [
     "Subway Nederland",
-    "SUBWAY",
-    "subway"
+    "SUBWAY"
    ],
    "archetype": "catering_cafe",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "McDonald's",
    "aliases": [
     "McDonald's Nederland B.V.",
     "MCDONALDS",
-    "MCDONALD'S",
-    "mcdonald's"
+    "MCDONALD'S"
    ],
    "archetype": "catering_cafe",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Restaurant De Gouden Lepel",
    "aliases": [
-    "RESTAURANT DE GOUDEN LEPEL",
-    "restaurant de gouden lepel"
+    "RESTAURANT DE GOUDEN LEPEL"
    ],
    "archetype": "representatie_local",
-   "ambiguity_notes": "representatie_local archetype",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Brasserie Het Plein",
    "aliases": [
-    "BRASSERIE HET PLEIN",
-    "brasserie het plein"
+    "BRASSERIE HET PLEIN"
    ],
    "archetype": "representatie_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Eetcafe De Hoek",
    "aliases": [
-    "EETCAFE DE HOEK",
-    "eetcafe de hoek"
+    "EETCAFE DE HOEK"
    ],
    "archetype": "representatie_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Cateringservice Vers B.V.",
    "aliases": [
     "CATERINGSERVICE VERS",
-    "CATERINGSERVICE VERS B.V.",
-    "cateringservice vers b.v."
+    "CATERINGSERVICE VERS B.V."
    ],
    "archetype": "kantine_local",
-   "ambiguity_notes": "kantine_local archetype",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Cateringservice Vers",
    "unverified": true
   },
   {
    "name": "Broodjeszaak Centraal",
    "aliases": [
-    "BROODJESZAAK CENTRAAL",
-    "broodjeszaak centraal"
+    "BROODJESZAAK CENTRAAL"
    ],
    "archetype": "kantine_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kantine Bedrijfsrestaurant Noord",
    "aliases": [
-    "KANTINE BEDRIJFSRESTAURANT NOORD",
-    "kantine bedrijfsrestaurant noord"
+    "KANTINE BEDRIJFSRESTAURANT NOORD"
    ],
    "archetype": "kantine_local",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
@@ -366,781 +2847,201 @@
    "aliases": [
     "Gall & Gall",
     "GALL EN GALL",
-    "GALL & GALL",
-    "gall & gall"
+    "GALL & GALL"
    ],
    "archetype": "liquor",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Slijterij Van Dam",
    "aliases": [
-    "SLIJTERIJ VAN DAM",
-    "slijterij van dam"
+    "SLIJTERIJ VAN DAM"
    ],
    "archetype": "liquor",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Rituals",
    "aliases": [
     "Rituals Cosmetics",
-    "RITUALS",
-    "rituals"
+    "RITUALS"
    ],
    "archetype": "gift",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "VVV Cadeaubon",
    "aliases": [
     "VVV Cadeaubonnen",
-    "VVV CADEAUBON",
-    "vvv cadeaubon"
+    "VVV CADEAUBON"
    ],
    "archetype": "gift",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Kaartje2go",
    "aliases": [
     "Kaartje2go B.V.",
-    "KAARTJE2GO",
-    "kaartje2go"
+    "KAARTJE2GO"
    ],
    "archetype": "gift",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Bijenkorf",
    "aliases": [
     "De Bijenkorf B.V.",
-    "BIJENKORF",
-    "bijenkorf"
+    "BIJENKORF"
    ],
    "archetype": "gift",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Intertoys",
    "aliases": [
     "Intertoys B.V.",
-    "INTERTOYS",
-    "intertoys"
+    "INTERTOYS"
    ],
    "archetype": "gift",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "PostNL",
    "aliases": [
     "PostNL N.V.",
     "POSTNL",
-    "PostNL Pakketten",
-    "postnl"
+    "PostNL Pakketten"
    ],
    "archetype": "postage",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "DHL Express",
    "aliases": [
     "DHL Express Netherlands",
     "DHL",
-    "DHL EXPRESS",
-    "dhl express"
+    "DHL EXPRESS"
    ],
    "archetype": "postage",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Nationale-Nederlanden",
    "aliases": [
     "Nationale-Nederlanden Schadeverzekering",
     "NN",
-    "NATIONALE-NEDERLANDEN",
-    "nationale-nederlanden"
+    "NATIONALE-NEDERLANDEN"
    ],
    "archetype": "insurance",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Centraal Beheer",
    "aliases": [
     "Centraal Beheer Achmea",
-    "CENTRAAL BEHEER",
-    "centraal beheer"
+    "CENTRAAL BEHEER"
    ],
    "archetype": "insurance",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Kringloopwinkel De Tweede Kans",
    "aliases": [
     "KRINGLOOP DE TWEEDE KANS",
-    "KRINGLOOPWINKEL DE TWEEDE KANS",
-    "kringloopwinkel de tweede kans"
+    "KRINGLOOPWINKEL DE TWEEDE KANS"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "",
+   "archetype": "kringloop",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Sleutelservice en Schoenmaker",
    "aliases": [
     "SLEUTELSERVICE SCHOENMAKER",
-    "SLEUTELSERVICE EN SCHOENMAKER",
-    "sleutelservice en schoenmaker"
+    "SLEUTELSERVICE EN SCHOENMAKER"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "",
+   "archetype": "sleutel",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Wasserette Express",
    "aliases": [
-    "WASSERETTE EXPRESS",
-    "wasserette express"
+    "WASSERETTE EXPRESS"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "",
+   "archetype": "wasserette",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Schoonmaakservice Helder B.V.",
    "aliases": [
     "SCHOONMAAKSERVICE HELDER",
-    "SCHOONMAAKSERVICE HELDER B.V.",
-    "schoonmaakservice helder b.v."
+    "SCHOONMAAKSERVICE HELDER B.V."
    ],
    "archetype": "cleaning",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Schoonmaakservice Helder",
    "unverified": true
   },
   {
    "name": "Vereniging van Eigenaren Binnenhof",
    "aliases": [
     "VVE BINNENHOF",
-    "VERENIGING VAN EIGENAREN BINNENHOF",
-    "vereniging van eigenaren binnenhof"
+    "VERENIGING VAN EIGENAREN BINNENHOF"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "",
+   "archetype": "vve",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Sportschool FitPoint",
    "aliases": [
-    "SPORTSCHOOL FITPOINT",
-    "sportschool fitpoint"
+    "SPORTSCHOOL FITPOINT"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "private-spend risk",
+   "archetype": "sportschool",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Kapper en Barbershop Centrum",
    "aliases": [
     "KAPPER BARBERSHOP CENTRUM",
-    "KAPPER EN BARBERSHOP CENTRUM",
-    "kapper en barbershop centrum"
+    "KAPPER EN BARBERSHOP CENTRUM"
    ],
-   "archetype": "misc_local",
-   "ambiguity_notes": "private-spend risk",
+   "archetype": "kapper",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Tuincentrum Groenland",
    "aliases": [
-    "TUINCENTRUM GROENLAND",
-    "tuincentrum groenland"
+    "TUINCENTRUM GROENLAND"
    ],
    "archetype": "garden",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
-  }
- ],
- "descriptions": [
-  {
-   "text": "Lunch met klant, 3 personen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Business lunch with client, 2 people",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Representatiekosten relatiegeschenk, wijnpakket",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Client gift - hamper, delivered",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bloemen ter gelegenheid van opening",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Flowers for office opening",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Koffie en gebak team, vrijdagmiddag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Coffee and cakes for team meeting",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Catering borrel nieuwjaar, 20 personen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Catering for networking drinks, 25 guests",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Boodschappen kantine: melk, koffiebonen, thee",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Groceries for the office kitchen",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Cadeaubon jubileum medewerker",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Gift card - work anniversary",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verjaardagskaart en cadeau",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Greeting cards and postage",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verzendkosten pakket naar klant",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Courier - parcel to client, Rotterdam",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Schoonmaakmiddelen en vuilniszakken",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Cleaning supplies and bin bags",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verf en kwasten voor kantoor, klusjes",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Paint, brushes and DIY tools",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Gereedschap: boormachine, schroeven",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Tools - drill and screws",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Verzekering bedrijfsaansprakelijkheid, premie kwartaal",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Liability insurance premium - Q3 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Lidmaatschap ondernemersvereniging",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Membership fee - business association",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bijdrage lunch, vrijdag",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Team lunch, Friday",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Cateringservice lunch vergadering 12 personen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Sandwich platters for workshop, 12 pax",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Diner met zakenrelatie",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Dinner with business contact",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kerstpakketten medewerkers",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Season's greetings gifts for staff",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Planten voor kantoor",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Office plants",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kleine reparatie: sleutels laten bijmaken",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Key cutting and lock repair",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Wasserette bedrijfskleding",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Laundry of work clothes",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Postzegels en verpakkingsmateriaal",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Stamps and mailing supplies",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Representatie: drankjes klantbezoek",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Entertainment - drinks after client visit",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Bedrijfsuitje bijdrage",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Company outing contribution",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Overig: diversen, bonnetje ontbreekt",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Sundries - receipt attached",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Afvalcontainer ophaal, eenmalig",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Waste collection one-off",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Fooi en kleine uitgaven",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Tips and petty cash items",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:7715 BLOEMEN ROTTERDAM boeket",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Card purchase - flowers",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "BEA NR:3301 JUMBO boodschappen 23,45",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Card purchase JUMBO groceries",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "iDEAL betaling Fleurop - bloemen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Thuisbezorgd order - team lunch",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Betaalautomaat GAMMA schroeven en verf",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Gift wrap and cards",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Drankjes en hapjes voor klantpresentatie",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Beverages and snacks for client presentation",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Cadeau dank u aan vrijwilliger",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Thank-you gift for volunteer",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Schoenmaker reparatie werkschoenen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Safety shoes repair",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt 4471-8821",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kassabon 0231 - 21-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt no. 000481 - 5 items",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BEA NR:3301 ROTTERDAM 21-08-26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Card purchase 14 Aug 2026 12:42",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaalautomaat 5588 pas 012",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Purchase - store 0311",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pinbetaling 12:31 terminal 88211",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Paid with card ending 4417 - EUR 23.45",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Diversen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Miscellaneous",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Overboeking Bedrag 45,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Total 23.45",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling 22-08-2026 kassa 3",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Sale 14/08 till 2 - approved",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bonnetje zoek, 3 posten",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Cash receipt lost - reimbursed",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "iDEAL betaling ordernr 88231045",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order #NL-2026-0088 delivered",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kenmerk 7700231",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Ref 7700231 - Aug 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087 EUR 68,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-2026-00123 - EUR 68.00",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Bedrag 12,50 - transactie 8812",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "EUR 19.95 - contactless",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft uw betaling van 12 september",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment on 12 September - thank you",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Nota 0000481 aug26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Web order 2026-08-14",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling factuur 2026-0311",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Receipt from store 118 - 22 Aug",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Reeds voldaan aan de kassa",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Thank you for shopping - 3 items",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Order ref 4400123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Overboeking Kenmerk 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Transfer reference 2026-0733",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Aankoop 14-08-2026 14:12",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Card 4417 - 2 x 6.50",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Onkosten augustus",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Expense - August",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Zie bijlage",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "See attached",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Pinnen bij kassa 1, 3 artikelen",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Amount 41.20 incl. VAT 9%",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "BTW 9% EUR 3,40 - totaal EUR 41,20",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Various - 3 items",
-   "lang": "en",
-   "keyword_free": true
   }
  ]
 }

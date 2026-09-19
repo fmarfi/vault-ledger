@@ -1,280 +1,1683 @@
 {
  "account": "Professional Services Expense",
  "slug": "professional",
+ "archetypes": {
+  "kvk": {
+   "family": "kvk",
+   "mode": "template",
+   "sub": "kvk",
+   "amt": [
+    85.15,
+    85.15
+   ],
+   "amt_is": "net",
+   "vat": 0.0,
+   "doc": {
+    "invoice": 0.6,
+    "bank": 0.4
+   },
+   "cadence": {
+    "annual": 0.6,
+    "irregular": 0.4
+   }
+  },
+  "big_four": {
+   "family": "big_four",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    195,
+    225,
+    260,
+    295,
+    320
+   ]
+  },
+  "accountant": {
+   "family": "accountant",
+   "mode": "template",
+   "sub": "accountant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "monthly": 0.3,
+    "quarterly": 0.3,
+    "irregular": 0.4
+   },
+   "quarter_end": true,
+   "seg_jitter": 0.3
+  },
+  "accountantskantoor_generic": {
+   "family": "accountant",
+   "mode": "template",
+   "sub": "accountant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "monthly": 0.3,
+    "quarterly": 0.3,
+    "irregular": 0.4
+   },
+   "quarter_end": true,
+   "seg_jitter": 0.3
+  },
+  "boekhouder_zzp": {
+   "family": "accountant",
+   "mode": "template",
+   "sub": "accountant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "monthly": 0.3,
+    "quarterly": 0.3,
+    "irregular": 0.4
+   },
+   "quarter_end": true,
+   "seg_jitter": 0.3
+  },
+  "tax_advice": {
+   "family": "accountant",
+   "mode": "template",
+   "sub": "accountant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "monthly": 0.3,
+    "quarterly": 0.3,
+    "irregular": 0.4
+   },
+   "quarter_end": true,
+   "seg_jitter": 0.3
+  },
+  "payroll_service": {
+   "family": "accountant",
+   "mode": "template",
+   "sub": "accountant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "monthly": 0.3,
+    "quarterly": 0.3,
+    "irregular": 0.4
+   },
+   "quarter_end": true,
+   "seg_jitter": 0.3
+  },
+  "law_firm": {
+   "family": "law",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    195,
+    225,
+    275,
+    335,
+    395
+   ]
+  },
+  "advocaten_generic": {
+   "family": "law",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    145,
+    165,
+    185,
+    210
+   ]
+  },
+  "legal_online": {
+   "family": "law",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    95,
+    125,
+    145
+   ]
+  },
+  "notaris": {
+   "family": "notary",
+   "mode": "template",
+   "sub": "notaris",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "notariskantoor_generic": {
+   "family": "notary",
+   "mode": "template",
+   "sub": "notaris",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "consultancy": {
+   "family": "consulting",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    145,
+    165,
+    195,
+    240,
+    295
+   ]
+  },
+  "consultancy_bv_generic": {
+   "family": "consulting",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    85,
+    95,
+    110,
+    125,
+    145
+   ]
+  },
+  "hr_consultancy": {
+   "family": "consulting",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    85,
+    95,
+    110,
+    125
+   ]
+  },
+  "ip_registry": {
+   "family": "ip_registry",
+   "mode": "template",
+   "sub": "consultant",
+   "amt": [
+    75,
+    1100
+   ],
+   "amt_is": "net",
+   "vat": 0.0,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   }
+  },
+  "ip_firm": {
+   "family": "consulting",
+   "mode": "hourly",
+   "sub": "consultant",
+   "amt": [
+    150,
+    2500
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   },
+   "rates": [
+    165,
+    195,
+    225
+   ]
+  },
+  "translation": {
+   "family": "translation",
+   "mode": "template",
+   "sub": "consultant",
+   "amt": [
+    60,
+    650
+   ],
+   "amt_is": "net",
+   "vat": 0.21,
+   "doc": {
+    "invoice": 0.9,
+    "bank": 0.1
+   },
+   "cadence": {
+    "irregular": 1.0
+   }
+  }
+ },
+ "pools": {
+  "kvk": [
+   {
+    "text": "Jaarlijkse bijdrage handelsregister {year}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Trade register annual fee {year}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Inschrijving handelsregister",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Factuur {inv} handelsregister",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Chamber of Commerce registration fee",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     85.15,
+     85.15
+    ]
+   }
+  ],
+  "big_four": [
+   {
+    "text": "Advieswerkzaamheden {hrs} uur {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Professional services {hrs} hours - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Controlewerkzaamheden boekjaar {fy}, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Tax advisory, {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Fiscale advisering {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} advisory services",
+    "lang": "en"
+   },
+   {
+    "text": "Audit support FY{fy}, {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Dossier {ref}, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "accountant": [
+   {
+    "text": "Honorarium jaarrekening {fy}",
+    "lang": "nl",
+    "amt": [
+     600,
+     2400
+    ],
+    "rnd": 5,
+    "rec": false
+   },
+   {
+    "text": "Accountancy fees - annual accounts FY{fy}",
+    "lang": "en",
+    "amt": [
+     600,
+     2400
+    ],
+    "rnd": 5,
+    "rec": false
+   },
+   {
+    "text": "Maandelijkse administratiekosten {period}",
+    "lang": "nl",
+    "amt": [
+     120,
+     480
+    ],
+    "rnd": 5,
+    "fixed": true,
+    "grp": "m"
+   },
+   {
+    "text": "Monthly bookkeeping fee {period}",
+    "lang": "en",
+    "amt": [
+     120,
+     480
+    ],
+    "rnd": 5,
+    "fixed": true,
+    "grp": "m"
+   },
+   {
+    "text": "Kwartaalfactuur administratie {q}",
+    "lang": "nl",
+    "amt": [
+     300,
+     1200
+    ],
+    "rnd": 5,
+    "fixed": true,
+    "grp": "q"
+   },
+   {
+    "text": "Quarterly accounting fee {q}",
+    "lang": "en",
+    "amt": [
+     300,
+     1200
+    ],
+    "rnd": 5,
+    "fixed": true,
+    "grp": "q"
+   },
+   {
+    "text": "BTW-aangifte {q}",
+    "lang": "nl",
+    "amt": [
+     60,
+     250
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "VAT return {q}",
+    "lang": "en",
+    "amt": [
+     60,
+     250
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Fiscale aangifte inkomstenbelasting {fy}",
+    "lang": "nl",
+    "amt": [
+     180,
+     650
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Loonadministratie {period}",
+    "lang": "nl",
+    "amt": [
+     40,
+     260
+    ],
+    "rnd": 5,
+    "fixed": true,
+    "grp": "l"
+   },
+   {
+    "text": "Factuur {inv} {q}",
+    "lang": "nl",
+    "amt": [
+     100,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Advisory fee - tax planning",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     150,
+     900
+    ],
+    "rnd": 5
+   }
+  ],
+  "law": [
+   {
+    "text": "Juridisch advies {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Legal advice, {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Opstellen overeenkomst, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Contract drafting - {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Declaratie {inv}, dossier {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Fee note {inv} matter {ref}",
+    "lang": "en"
+   },
+   {
+    "text": "Bijstand geschil, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Algemene voorwaarden, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Legal support {period}, {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "notary": [
+   {
+    "text": "Akte oprichting BV",
+    "lang": "nl",
+    "amt": [
+     900,
+     1800
+    ]
+   },
+   {
+    "text": "Volmacht en verklaring",
+    "lang": "nl",
+    "amt": [
+     100,
+     400
+    ]
+   },
+   {
+    "text": "Notarial deed, articles of association",
+    "lang": "en",
+    "amt": [
+     700,
+     1600
+    ]
+   },
+   {
+    "text": "Wijziging statuten",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Overdracht aandelen, akte",
+    "lang": "nl",
+    "amt": [
+     700,
+     1900
+    ]
+   },
+   {
+    "text": "Power of attorney",
+    "lang": "en",
+    "amt": [
+     80,
+     300
+    ]
+   },
+   {
+    "text": "Factuur {inv} dossier {ref}",
+    "lang": "nl",
+    "amt": [
+     150,
+     1200
+    ]
+   },
+   {
+    "text": "Notary fees, file {ref}",
+    "lang": "en",
+    "amt": [
+     150,
+     1200
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     400,
+     1100
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     400,
+     1100
+    ]
+   }
+  ],
+  "consulting": [
+   {
+    "text": "Adviesuren {hrs} uur {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Consulting services {hrs} hours {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Strategie-advies {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Advisory engagement - {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Factuur {inv} adviesdiensten",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} consultancy services",
+    "lang": "en"
+   },
+   {
+    "text": "Projectadvies {hrs} uur, {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Project consulting, {hrs} hours",
+    "lang": "en"
+   },
+   {
+    "text": "Dossier {ref}, {hrs} uur",
+    "lang": "nl"
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl"
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl"
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en"
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl"
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en"
+   }
+  ],
+  "ip_registry": [
+   {
+    "text": "Merkregistratie {ref}",
+    "lang": "nl",
+    "amt": [
+     200,
+     1100
+    ]
+   },
+   {
+    "text": "Trademark registration {ref}",
+    "lang": "en",
+    "amt": [
+     200,
+     1100
+    ]
+   },
+   {
+    "text": "Verlenging merk {ref}",
+    "lang": "nl",
+    "amt": [
+     75,
+     600
+    ]
+   },
+   {
+    "text": "Trademark renewal {ref}",
+    "lang": "en",
+    "amt": [
+     75,
+     600
+    ]
+   },
+   {
+    "text": "Factuur {inv} intellectuele eigendom",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     75,
+     800
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     75,
+     800
+    ]
+   }
+  ],
+  "translation": [
+   {
+    "text": "Vertaling document, opdracht {ref}",
+    "lang": "nl",
+    "amt": [
+     60,
+     650
+    ]
+   },
+   {
+    "text": "Translation services, order {ref}",
+    "lang": "en",
+    "amt": [
+     60,
+     650
+    ]
+   },
+   {
+    "text": "Beëdigde vertaling {ref}",
+    "lang": "nl",
+    "amt": [
+     90,
+     450
+    ]
+   },
+   {
+    "text": "Certified translation {ref}",
+    "lang": "en",
+    "amt": [
+     90,
+     450
+    ]
+   },
+   {
+    "text": "Factuur {inv} vertaalwerk",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Factuur {inv} {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Invoice {inv} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Betaling {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Payment {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Bestelling {ref}",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Order {ref} - {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Factuurnummer {inv}, periode {period}",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Invoice number {inv}, period {period}",
+    "lang": "en",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Betaling factuur {inv}",
+    "lang": "nl",
+    "amt": [
+     60,
+     500
+    ]
+   },
+   {
+    "text": "Payment of invoice {inv}",
+    "lang": "en",
+    "amt": [
+     60,
+     500
+    ]
+   }
+  ]
+ },
  "vendors": [
   {
    "name": "Kamer van Koophandel",
    "aliases": [
     "KvK",
     "KAMER VAN KOOPHANDEL",
-    "KVK INSCHRIJVING",
-    "kamer van koophandel"
+    "KVK INSCHRIJVING"
    ],
    "archetype": "kvk",
-   "ambiguity_notes": "sourced fee 85.15"
+   "country": "NL"
   },
   {
    "name": "Deloitte",
    "aliases": [
     "Deloitte Accountants B.V.",
-    "DELOITTE",
-    "deloitte"
+    "DELOITTE"
    ],
    "archetype": "big_four",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "PwC",
    "aliases": [
     "PricewaterhouseCoopers Accountants N.V.",
     "PWC NL",
-    "PWC",
-    "pwc"
+    "PWC"
    ],
    "archetype": "big_four",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "KPMG",
    "aliases": [
     "KPMG Accountants N.V.",
-    "KPMG",
-    "kpmg"
+    "KPMG"
    ],
    "archetype": "big_four",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "EY",
    "aliases": [
     "Ernst & Young Accountants LLP",
-    "EY NEDERLAND",
-    "ey"
+    "EY NEDERLAND"
    ],
    "archetype": "big_four",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "BDO",
    "aliases": [
     "BDO Accountants & Adviseurs",
-    "BDO NEDERLAND",
-    "bdo"
+    "BDO NEDERLAND"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Baker Tilly",
    "aliases": [
     "Baker Tilly (Netherlands) N.V.",
-    "BAKER TILLY",
-    "baker tilly"
+    "BAKER TILLY"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Grant Thornton",
    "aliases": [
     "Grant Thornton Accountants",
     "GRANT THORNTON NL",
-    "GRANT THORNTON",
-    "grant thornton"
+    "GRANT THORNTON"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Forvis Mazars",
    "aliases": [
     "Mazars N.V.",
     "MAZARS",
-    "FORVIS MAZARS",
-    "forvis mazars"
+    "FORVIS MAZARS"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "RSM Netherlands",
    "aliases": [
     "RSM Netherlands Accountants N.V.",
     "RSM",
-    "RSM NETHERLANDS",
-    "rsm netherlands"
+    "RSM NETHERLANDS"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Moore Alliance",
    "aliases": [
     "Moore Alliance B.V.",
     "MOORE",
-    "MOORE ALLIANCE",
-    "moore alliance"
+    "MOORE ALLIANCE"
    ],
    "archetype": "accountant",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Loyens & Loeff",
    "aliases": [
     "Loyens & Loeff N.V.",
     "LOYENS LOEFF",
-    "LOYENS & LOEFF",
-    "loyens & loeff"
+    "LOYENS & LOEFF"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "De Brauw Blackstone Westbroek",
    "aliases": [
     "De Brauw",
     "DE BRAUW",
-    "DE BRAUW BLACKSTONE WESTBROEK",
-    "de brauw blackstone westbroek"
+    "DE BRAUW BLACKSTONE WESTBROEK"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Houthoff",
    "aliases": [
     "Houthoff Coöperatief U.A.",
-    "HOUTHOFF",
-    "houthoff"
+    "HOUTHOFF"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Stibbe",
    "aliases": [
     "Stibbe N.V.",
-    "STIBBE",
-    "stibbe"
+    "STIBBE"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "NautaDutilh",
    "aliases": [
     "NautaDutilh N.V.",
-    "NAUTADUTILH",
-    "nautadutilh"
+    "NAUTADUTILH"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Van Doorne",
    "aliases": [
     "Van Doorne N.V.",
-    "VAN DOORNE",
-    "van doorne"
+    "VAN DOORNE"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Kennedy Van der Laan",
    "aliases": [
     "Kennedy Van der Laan N.V.",
     "KVDL",
-    "KENNEDY VAN DER LAAN",
-    "kennedy van der laan"
+    "KENNEDY VAN DER LAAN"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Dentons Boekel",
    "aliases": [
     "Dentons Boekel N.V.",
     "DENTONS",
-    "DENTONS BOEKEL",
-    "dentons boekel"
+    "DENTONS BOEKEL"
    ],
    "archetype": "law_firm",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Van Benthem & Keulen",
    "aliases": [
     "Van Benthem en Keulen N.V.",
     "VBK NOTARIS",
-    "VAN BENTHEM & KEULEN",
-    "van benthem & keulen"
+    "VAN BENTHEM & KEULEN"
    ],
    "archetype": "notaris",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ]
   },
   {
    "name": "Berenschot",
    "aliases": [
     "Berenschot Groep B.V.",
-    "BERENSCHOT",
-    "berenschot"
+    "BERENSCHOT"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Capgemini Invent",
    "aliases": [
     "Capgemini Nederland B.V.",
     "CAPGEMINI",
-    "CAPGEMINI INVENT",
-    "capgemini invent"
+    "CAPGEMINI INVENT"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "McKinsey & Company",
    "aliases": [
     "McKinsey & Company Inc. Netherlands",
     "MCKINSEY",
-    "MCKINSEY & COMPANY",
-    "mckinsey & company"
+    "MCKINSEY & COMPANY"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Boston Consulting Group",
    "aliases": [
     "BCG Netherlands B.V.",
     "BCG",
-    "BOSTON CONSULTING GROUP",
-    "boston consulting group"
+    "BOSTON CONSULTING GROUP"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Twynstra Gudde",
    "aliases": [
     "Twynstra Gudde B.V.",
-    "TWYNSTRA GUDDE",
-    "twynstra gudde"
+    "TWYNSTRA GUDDE"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": ""
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ]
   },
   {
    "name": "Significant",
    "aliases": [
     "Significant B.V.",
-    "SIGNIFICANT",
-    "significant"
+    "SIGNIFICANT"
    ],
    "archetype": "consultancy",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
@@ -282,795 +1685,251 @@
    "aliases": [
     "BOIP",
     "BENELUX MERKENBUREAU",
-    "BENELUX BUREAU VOOR DE INTELLECTUELE EIGENDOM",
-    "benelux bureau voor de intellectuele eigendom"
+    "BENELUX BUREAU VOOR DE INTELLECTUELE EIGENDOM"
    ],
    "archetype": "ip_registry",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Octrooicentrum Nederland",
    "aliases": [
     "RVO Octrooicentrum",
     "OCTROOICENTRUM",
-    "OCTROOICENTRUM NEDERLAND",
-    "octrooicentrum nederland"
+    "OCTROOICENTRUM NEDERLAND"
    ],
    "archetype": "ip_registry",
-   "ambiguity_notes": ""
-  },
-  {
-   "name": "Juridisch Loket",
-   "aliases": [
-    "Het Juridisch Loket",
-    "JURIDISCH LOKET",
-    "juridisch loket"
-   ],
-   "archetype": "legal_service",
-   "ambiguity_notes": ""
+   "country": "NL"
   },
   {
    "name": "Legalstart",
    "aliases": [
     "Legalstart B.V.",
-    "LEGALSTART",
-    "legalstart"
+    "LEGALSTART"
    ],
    "archetype": "legal_online",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Bureau voor Vertalingen Centraal",
    "aliases": [
     "BUREAU VERTALINGEN CENTRAAL",
-    "BUREAU VOOR VERTALINGEN CENTRAAL",
-    "bureau voor vertalingen centraal"
+    "BUREAU VOOR VERTALINGEN CENTRAAL"
    ],
    "archetype": "translation",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Administratiekantoor De Balans",
    "aliases": [
     "ADMINISTRATIEKANTOOR DE BALANS",
-    "ADM KANTOOR DE BALANS",
-    "administratiekantoor de balans"
+    "ADM KANTOOR DE BALANS"
    ],
    "archetype": "accountantskantoor_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Accountantskantoor Noord B.V.",
    "aliases": [
     "ACCOUNTANTSKANTOOR NOORD BV",
-    "ACCOUNTANTSKANTOOR NOORD B.V.",
-    "accountantskantoor noord b.v."
+    "ACCOUNTANTSKANTOOR NOORD B.V."
    ],
    "archetype": "accountantskantoor_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Accountantskantoor Noord",
    "unverified": true
   },
   {
    "name": "Boekhoudservice Zuid",
    "aliases": [
-    "BOEKHOUDSERVICE ZUID",
-    "boekhoudservice zuid"
+    "BOEKHOUDSERVICE ZUID"
    ],
    "archetype": "boekhouder_zzp",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Boekhouder aan Huis",
    "aliases": [
-    "BOEKHOUDER AAN HUIS",
-    "boekhouder aan huis"
+    "BOEKHOUDER AAN HUIS"
    ],
    "archetype": "boekhouder_zzp",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Fiscaal Adviesbureau Centrum",
    "aliases": [
-    "FISCAAL ADVIESBUREAU CENTRUM",
-    "fiscaal adviesbureau centrum"
+    "FISCAAL ADVIESBUREAU CENTRUM"
    ],
    "archetype": "tax_advice",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Belastingadviseurs Randstad",
    "aliases": [
     "BELASTINGADVISEURS RANDSTAD B.V.",
-    "BELASTINGADVISEURS RANDSTAD",
-    "belastingadviseurs randstad"
+    "BELASTINGADVISEURS RANDSTAD"
    ],
    "archetype": "tax_advice",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
   },
   {
    "name": "Notariskantoor Centrum",
    "aliases": [
-    "NOTARISKANTOOR CENTRUM",
-    "notariskantoor centrum"
+    "NOTARISKANTOOR CENTRUM"
    ],
    "archetype": "notariskantoor_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Notariaat Oost",
    "aliases": [
-    "NOTARIAAT OOST",
-    "notariaat oost"
+    "NOTARIAAT OOST"
    ],
    "archetype": "notariskantoor_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Advocatenkantoor Rijnmond",
    "aliases": [
-    "ADVOCATENKANTOOR RIJNMOND",
-    "advocatenkantoor rijnmond"
+    "ADVOCATENKANTOOR RIJNMOND"
    ],
    "archetype": "advocaten_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Advocaten Utrecht Zuid",
    "aliases": [
     "ADVOCATEN UTRECHT ZUID N.V.",
-    "ADVOCATEN UTRECHT ZUID",
-    "advocaten utrecht zuid"
+    "ADVOCATEN UTRECHT ZUID"
    ],
    "archetype": "advocaten_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "N.V.",
+    "NV"
+   ],
    "unverified": true
   },
   {
    "name": "Adviesgroep Noord B.V.",
    "aliases": [
     "ADVIESGROEP NOORD BV",
-    "ADVIESGROEP NOORD B.V.",
-    "adviesgroep noord b.v."
+    "ADVIESGROEP NOORD B.V."
    ],
    "archetype": "consultancy_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "Adviesgroep Noord",
    "unverified": true
   },
   {
    "name": "Bureau Strategie & Groei",
    "aliases": [
     "BUREAU STRATEGIE EN GROEI",
-    "BUREAU STRATEGIE & GROEI",
-    "bureau strategie & groei"
+    "BUREAU STRATEGIE & GROEI"
    ],
    "archetype": "consultancy_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "HR Partners Nederland",
    "aliases": [
     "HR PARTNERS NL",
-    "HR PARTNERS NEDERLAND",
-    "hr partners nederland"
+    "HR PARTNERS NEDERLAND"
    ],
    "archetype": "hr_consultancy",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Marketingadvies Delta",
    "aliases": [
-    "MARKETINGADVIES DELTA",
-    "marketingadvies delta"
+    "MARKETINGADVIES DELTA"
    ],
    "archetype": "consultancy_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "IT Consultancy Rhijn B.V.",
    "aliases": [
     "IT CONSULTANCY RHIJN",
-    "IT CONSULTANCY RHIJN B.V.",
-    "it consultancy rhijn b.v."
+    "IT CONSULTANCY RHIJN B.V."
    ],
    "archetype": "consultancy_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
+   "product": "IT Consultancy Rhijn",
    "unverified": true
   },
   {
    "name": "Loonadministratie Direct",
    "aliases": [
-    "LOONADMINISTRATIE DIRECT",
-    "loonadministratie direct"
+    "LOONADMINISTRATIE DIRECT"
    ],
    "archetype": "payroll_service",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Arbodienst Midden",
    "aliases": [
-    "ARBODIENST MIDDEN",
-    "arbodienst midden"
+    "ARBODIENST MIDDEN"
    ],
    "archetype": "hr_consultancy",
-   "ambiguity_notes": "",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Octrooibureau Delta",
    "aliases": [
-    "OCTROOIBUREAU DELTA",
-    "octrooibureau delta"
+    "OCTROOIBUREAU DELTA"
    ],
-   "archetype": "ip_registry",
-   "ambiguity_notes": "",
+   "archetype": "ip_firm",
+   "country": "NL",
    "unverified": true
   },
   {
    "name": "Compliance Advies Holland",
    "aliases": [
     "COMPLIANCE ADVIES HOLLAND B.V.",
-    "COMPLIANCE ADVIES HOLLAND",
-    "compliance advies holland"
+    "COMPLIANCE ADVIES HOLLAND"
    ],
    "archetype": "consultancy_bv_generic",
-   "ambiguity_notes": "",
+   "country": "NL",
+   "suffixes": [
+    "B.V.",
+    "BV"
+   ],
    "unverified": true
-  }
- ],
- "descriptions": [
-  {
-   "text": "Honorarium jaarrekening 2025, accountant",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Accountancy fees - annual accounts and tax return FY2025",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Advieskosten belastingadvies, 4 uur",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Consulting services - 12 hours at EUR 95/hour",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Juridisch advies contractwijziging, uren juli 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Legal fees - review of client agreement",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kosten notaris, akte oprichting B.V.",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Notary fee - deed of incorporation",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Inschrijving Handelsregister KvK, eenmalig",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Chamber of Commerce registration fee",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Retainer accountant, maandelijks termijn",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Monthly bookkeeping service, Aug 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Boekhoudkosten en btw-aangifte Q2 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "VAT return filing service, Q3 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Aangifte inkomstenbelasting 2025, ZZP",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Corporate tax return preparation",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Consultancy uren project migratie, week 31-34",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Advisory services - strategy workshop, 2 days",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Advocaat: opstellen algemene voorwaarden",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Attorney fee - trademark dispute, first opinion",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Merkregistratie BOIP, klasse 9 en 42",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Trademark registration - Benelux, 1 class",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Notariële akte volmacht",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Notarial deed - power of attorney",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Loonadministratie, verwerking per maand",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Payroll processing fee - 2 employees",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Vertaling beëdigd, contract 4 pagina's",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Certified translation - 6 pages",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Adviesgesprek ondernemingsplan, 90 minuten",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Business plan review - 90 min consultation",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Uurtarief EUR 110, 8 uur, projectadvies",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Hourly rate 120.00, 6.5 hours",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Fiscaal advies BV oprichting",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Tax structuring advice",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Jaarwerk accountant conceptrekening",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Audit preparation - working papers",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Kwartaalfactuur accountant Q3 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Quarterly retainer - accountant, Q3 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Wijziging statuten via notaris",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Amendment of articles of association - notary",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Juridische bijstand arbeidscontract",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Legal support employment contract",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Coaching en advies (HR), 3 sessies",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "HR consulting - policy update",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Uittreksel handelsregister en bijschrijving",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Trade register extract, 3 copies",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "SEPA Incasso KvK jaarlijkse bijdrage",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Payment KvK annual registration",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Rapportage en advies duurzaamheid, 16 uur",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Compliance advisory - GDPR review",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Freelance juridisch adviseur, dagdelen",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Bookkeeper - catch-up backlog 2025",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Boekhouder werkzaamheden augustus 2026",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Accountant year-end closing invoice 2026",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Adviesfactuur volgens offerte 2026-014",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Consultancy invoice per quotation Q-2026-014",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Accountant: jaarwerk en aangifte vennootschapsbelasting",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Solicitor fees - lease agreement review",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Notaris: overdracht aandelen, akte en kadaster",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Tax advisor consultation - VAT position",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Adviesuren strategie, 6 uur",
-   "lang": "nl",
-   "keyword_free": false
-  },
-  {
-   "text": "Bookkeeping and payroll services, quarterly",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice INV-2026-00123",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betreft uw offerte 2026-014",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "As per quotation Q-2026-014",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Volgens afspraak d.d. 04-08-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Per engagement letter dated 12 June 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Termijn 2 van 4 - dossiernummer 2026-0733",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Installment 2 of 4 - file 2026-0733",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Werkzaamheden augustus 2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Services rendered - Aug 2026",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Dossier 88231045 - factuur 8801",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Matter no. 30055812 - Invoice 4471",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaaltermijn 14 dagen na factuurdatum",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payable within 30 days",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Te betalen voor 18-09-2026 EUR 1.210,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Total due EUR 1,210.00 incl. VAT 21%",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur F2026/0087 excl. BTW EUR 850,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Fees ex VAT 850.00 - VAT 178.50",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Tweede voorschotnota - kenmerk 2201",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "On account payment - ref 2201",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Omschrijving: uw kenmerk 7700231",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Your ref: 7700231",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "SEPA Overboeking Factuur 2026-0311",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Wire transfer invoice 2026-0311",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Betaling factuur 2026-0455 klantnr 118204",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Statement of work SOW-2026-3",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Nota 0000481 aug26",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Reeds voldaan, factuur 2026-0777",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Payment received - thank you, INV-2026-00456",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Kwartaal 3 2026 - factuurnummer 2026-0908",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Q3 2026 - as agreed",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Dienstverlening zoals besproken",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Professional fees per agreement",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Voorschot 500,00 - zaak 2026/118",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Advance 500.00 - case 2026/118",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "iDEAL betaling factuur 2026-0142",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Final invoice for engagement 2026-08",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Factuur 2026-0142, zie bijlage specificatie",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "See attached specification",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Declaratie 08/2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Declaration 08/2026 - hours attached",
-   "lang": "en",
-   "keyword_free": false
-  },
-  {
-   "text": "Eindfactuur project 2026-014",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Balance due on completion",
-   "lang": "en",
-   "keyword_free": true
-  },
-  {
-   "text": "Overboeking kenmerk 2026-0733 Bedrag 1.815,00",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Klantnr 2231908 factuur 1029-2026",
-   "lang": "nl",
-   "keyword_free": true
-  },
-  {
-   "text": "Invoice number 2026-0142 - Thank you",
-   "lang": "en",
-   "keyword_free": true
   }
  ]
 }
