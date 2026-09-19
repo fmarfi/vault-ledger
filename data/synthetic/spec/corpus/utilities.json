@@ -1,0 +1,1058 @@
+{
+ "account": "Utilities Expense",
+ "slug": "utilities",
+ "vendors": [
+  {
+   "name": "Eneco",
+   "aliases": [
+    "Eneco Consumenten B.V.",
+    "ENECO",
+    "Eneco Zakelijk",
+    "eneco"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vattenfall",
+   "aliases": [
+    "Vattenfall N.V.",
+    "VATTENFALL",
+    "Vattenfall Klantenservice B.V.",
+    "vattenfall"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Essent",
+   "aliases": [
+    "Essent Retail Energie B.V.",
+    "ESSENT",
+    "essent"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Greenchoice",
+   "aliases": [
+    "Greenchoice B.V.",
+    "GREENCHOICE",
+    "greenchoice"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Budget Energie",
+   "aliases": [
+    "Budget Energie B.V.",
+    "BUDGET ENERGIE",
+    "budget energie"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Engie",
+   "aliases": [
+    "Engie Energie Nederland",
+    "ENGIE",
+    "engie"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Oxxio",
+   "aliases": [
+    "Oxxio B.V.",
+    "OXXIO",
+    "oxxio"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Frank Energie",
+   "aliases": [
+    "Frank Energie B.V.",
+    "FRANK ENERGIE",
+    "frank energie"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Energiedirect",
+   "aliases": [
+    "Energiedirect.nl B.V.",
+    "ENERGIEDIRECT",
+    "energiedirect"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Nuon",
+   "aliases": [
+    "Nuon Energy Sales",
+    "NUON",
+    "nuon"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vandebron",
+   "aliases": [
+    "Vandebron Energie B.V.",
+    "VANDEBRON",
+    "vandebron"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Pure Energie",
+   "aliases": [
+    "Pure Energie B.V.",
+    "PURE ENERGIE",
+    "pure energie"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Delta Energie",
+   "aliases": [
+    "DELTA ENERGIE",
+    "delta energie"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Powerpeers",
+   "aliases": [
+    "Powerpeers B.V.",
+    "POWERPEERS",
+    "powerpeers"
+   ],
+   "archetype": "energy",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vitens",
+   "aliases": [
+    "Vitens N.V.",
+    "VITENS",
+    "vitens"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Dunea",
+   "aliases": [
+    "Dunea N.V.",
+    "DUNEA",
+    "dunea"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Evides",
+   "aliases": [
+    "Evides Waterbedrijf",
+    "EVIDES",
+    "evides"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "WML",
+   "aliases": [
+    "Waterleiding Maatschappij Limburg",
+    "WML",
+    "wml"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Waternet",
+   "aliases": [
+    "Waternet",
+    "WATERNET",
+    "waternet"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "PWN",
+   "aliases": [
+    "PWN Waterleidingbedrijf",
+    "PWN",
+    "pwn"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Brabant Water",
+   "aliases": [
+    "Brabant Water N.V.",
+    "BRABANT WATER",
+    "brabant water"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Oasen",
+   "aliases": [
+    "Oasen N.V.",
+    "OASEN",
+    "oasen"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Stedin",
+   "aliases": [
+    "Stedin Netbeheer B.V.",
+    "STEDIN",
+    "stedin"
+   ],
+   "archetype": "grid",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Liander",
+   "aliases": [
+    "Liander N.V.",
+    "LIANDER",
+    "liander"
+   ],
+   "archetype": "grid",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Enexis",
+   "aliases": [
+    "Enexis Netbeheer B.V.",
+    "ENEXIS",
+    "enexis"
+   ],
+   "archetype": "grid",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "KPN",
+   "aliases": [
+    "Koninklijke KPN N.V.",
+    "KPN B.V.",
+    "KPN ZAKELIJK",
+    "kpn"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Odido",
+   "aliases": [
+    "Odido Netherlands B.V.",
+    "ODIDO",
+    "odido"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "T-Mobile Thuis",
+   "aliases": [
+    "T-Mobile Netherlands",
+    "TMOBILE THUIS",
+    "T-MOBILE THUIS",
+    "t-mobile thuis"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": "legacy brand, now Odido"
+  },
+  {
+   "name": "Vodafone",
+   "aliases": [
+    "Vodafone Libertel B.V.",
+    "VODAFONE",
+    "vodafone"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "VodafoneZiggo",
+   "aliases": [
+    "VodafoneZiggo Group B.V.",
+    "VODAFONEZIGGO",
+    "vodafoneziggo"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Ziggo",
+   "aliases": [
+    "Ziggo B.V.",
+    "ZIGGO Zakelijk",
+    "ZIGGO",
+    "ziggo"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Tele2",
+   "aliases": [
+    "Tele2 Nederland B.V.",
+    "TELE2",
+    "tele2"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Simyo",
+   "aliases": [
+    "Simyo B.V.",
+    "SIMYO",
+    "simyo"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Youfone",
+   "aliases": [
+    "Youfone Nederland B.V.",
+    "YOUFONE",
+    "youfone"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Ben",
+   "aliases": [
+    "BEN Nederland B.V.",
+    "BEN",
+    "ben"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Hollandsnieuwe",
+   "aliases": [
+    "Hollandsnieuwe B.V.",
+    "HOLLANDSNIEUWE",
+    "hollandsnieuwe"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Lebara",
+   "aliases": [
+    "Lebara Mobile Netherlands",
+    "LEBARA",
+    "lebara"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Delta Fiber",
+   "aliases": [
+    "Delta Fiber Nederland B.V.",
+    "DELTA FIBER",
+    "delta fiber"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Caiway",
+   "aliases": [
+    "Caiway B.V.",
+    "CAIWAY",
+    "caiway"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Budget Thuis",
+   "aliases": [
+    "Budget Thuis B.V.",
+    "BUDGET THUIS",
+    "budget thuis"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Online.nl",
+   "aliases": [
+    "Online.nl B.V.",
+    "ONLINE NL",
+    "ONLINE.NL",
+    "online.nl"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Freedom Internet",
+   "aliases": [
+    "Freedom Internet B.V.",
+    "FREEDOM INTERNET",
+    "freedom internet"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Tweak",
+   "aliases": [
+    "Tweak Networks B.V.",
+    "TWEAK",
+    "tweak"
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Glasvezel Buitenaf B.V.",
+   "aliases": [
+    "GLASVEZEL BUITENAF",
+    "GLASVEZEL BUITENAF B.V.",
+    "glasvezel buitenaf b.v."
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": "regional fibre archetype",
+   "unverified": true
+  },
+  {
+   "name": "Regionale Netbeheerder Oost",
+   "aliases": [
+    "NETBEHEERDER OOST",
+    "REGIONALE NETBEHEERDER OOST",
+    "regionale netbeheerder oost"
+   ],
+   "archetype": "grid",
+   "ambiguity_notes": "generic archetype",
+   "unverified": true
+  },
+  {
+   "name": "Waterschapsbelasting Zuid",
+   "aliases": [
+    "WATERSCHAP ZUID",
+    "WATERSCHAPSBELASTING ZUID",
+    "waterschapsbelasting zuid"
+   ],
+   "archetype": "water",
+   "ambiguity_notes": "generic archetype; water board levy",
+   "unverified": true
+  },
+  {
+   "name": "Zakelijk Mobiel Nederland B.V.",
+   "aliases": [
+    "ZAKELIJK MOBIEL NL BV",
+    "ZAKELIJK MOBIEL NEDERLAND B.V.",
+    "zakelijk mobiel nederland b.v."
+   ],
+   "archetype": "telecom",
+   "ambiguity_notes": "generic archetype",
+   "unverified": true
+  }
+ ],
+ "descriptions": [
+  {
+   "text": "Energienota augustus 2026, verbruik stroom en gas",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Electricity and gas - monthly advance payment",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Termijnbedrag energie, periode 01-08-2026 t/m 31-08-2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Electricity usage 312 kWh at 0.28/kWh",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Gasverbruik 45 m3, tarief 1,32 per m3",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Annual settlement statement - energy, credit balance 86.12",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Jaarnota energie 2025/2026, terug te ontvangen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Water bill Q3 2026 - 18 m3",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Waterrekening, vastrecht en verbruik",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobile subscription 10 GB, Aug 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobiel abonnement 20 GB sim-only",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Business internet 500 Mbps fibre - monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Glasvezel internet 1 Gbit, maandbedrag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Landline and broadband bundle",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Vast internet en televisie pakket",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Grid operator charges - connection fee monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Netbeheerkosten aansluiting, vastrecht",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Energy contract renewal - fixed rate 12 months",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Voorschotbedrag stroom, augustus",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Phone plan with unlimited data",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Telefoonabonnement onbeperkt bellen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Sim card plus data bundle (5 GB add-on)",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Data-bundel 5 GB extra",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Utility invoice - electricity 187.40, VAT 21% 32.52",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Elektriciteit vastrecht en variabel tarief",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Final energy bill after move - meter reading 22-08-2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Eindafrekening energie na verhuizing, meterstand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Green electricity, certified wind, monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Groene stroom, maandtarief",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Heating - district heat charge",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Stadsverwarming vaste kosten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobile roaming charges - EU, July 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Roaming kosten buitenland, juli 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Broadband Internet Business Plus",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Zakelijk internet abonnement",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Meter rental fee (electricity)",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Meterhuur elektriciteit",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Energy tax refund (ODE) credit note",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Creditnota energiebelasting",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobile invoice: subscription and out-of-bundle usage",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobiele telefonie factuur, bundel en buiten bundel",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Water usage and sewer charge",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Waterverbruik en rioolheffing",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Standing charge and usage electricity Sep 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Stroom en gas jaarnota voorschot, termijn 9 van 12",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "SIP trunk / business telephone line",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Zakelijke vaste telefoonlijn",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Voorschot energie september",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Direct debit ENECO - electricity/gas advance",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:6612 KPN mobiel factuur",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "iDEAL VITENS water invoice",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaling waterbedrijf, factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Broadband installation one-off fee",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Installatiekosten internet aansluiting",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Power consumption by kWh, tier 2, Sep 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verbruiksnota elektriciteit, dal en normaal",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Data-only sim for tablet",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Data-sim voor tablet, maandbedrag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Gas connection annual fee",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Gasaansluiting vaste kosten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Mobile plan (business) - 2 lines, Aug 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Zakelijk mobiel, 2 nummers, augustus 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Energie tussentijdse afrekening",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Broadband internet - 12 month contract",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice INV-2026-00123",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Klantnummer 4471882 - factuur 08/2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Customer no. 30055812 - Aug 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "SEPA Incasso algemeen doorlopend Incassant NL97ZZZ302156450000 Kenmerk 0044518",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Direct debit 28-08-2026 - ref 118204",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Periode 01-08-2026 t/m 31-08-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Billing period Aug 1 - Aug 31 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Termijn 8 van 12 - kenmerk 2026-0733",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment plan installment 8/12",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling factuur 2026-0311",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Statement 6/2026 account 7712004",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Jaarnota 2025/2026 - afrekening",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Final statement 2025/2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Automatische incasso augustus 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Monthly direct debit",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Rekeningnummer 3300471 - Betreft: augustus",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Amount due 79.00 by 10-09-2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Te betalen voor 10-09-2026 EUR 79,00",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Bill date 03-08-2026 - due 17-08-2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur F2026/0087 BTW 21% EUR 13,71",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Reference 2026/08/00193",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Reeds voldaan via incasso, factuurnr 2026-0455",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Total EUR 85.40 - paid by automatic collection",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Kenmerk 7700231 - augustus 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment 15th of month - ref 4400123",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "iDEAL betaling factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice for September 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Voorschotnota 9 - 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Advance note 9/2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuurdatum 25-08-2026 vervaldatum 08-09-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Contract no. 2201-8877-3345",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Klantnr 2231908 factuur 1029-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Charges as per attached specification",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Specificatie bij factuur 08/2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Amount EUR 39.00 - monthly",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Maandbedrag 29,00 - factuur 2026-0777",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Ref no. 771-202608",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Afschrijving 03-09-2026 nr 20260812",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Credit note CN-2026-0044",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Creditnota 2026-0044 verrekend",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Nota 0000481 aug26",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Account statement 09/2026 - direct debit on 03-09",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur 2026-0142 t.a.v. administratie",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Debit - customer ref 5514 - Q3",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Incasso 25-08 mandaat 0044518",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Total 12.50 - VAT included",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Tweede kwartaal 2026 - factuur 8231",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice 2026-0142 - thank you for paying on time",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betalingskenmerk 3300 4711 8820",
+   "lang": "nl",
+   "keyword_free": true
+  }
+ ]
+}

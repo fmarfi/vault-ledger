@@ -1,0 +1,1199 @@
+{
+ "account": "hard_cases",
+ "slug": "hard_cases",
+ "vendors": [
+  {
+   "name": "Bol.com",
+   "aliases": [
+    "bol",
+    "BOL COM BV",
+    "bol.com b.v.",
+    "Bol.com B.V.",
+    "BOL.COM/NL",
+    "BOL.COM",
+    "bol.com"
+   ],
+   "archetype": "marketplace",
+   "ambiguity_notes": "invoice may come from a third-party seller; item decides account"
+  },
+  {
+   "name": "Amazon.nl",
+   "aliases": [
+    "Amazon EU SARL",
+    "AMAZON.NL",
+    "AMZN Mktp NL",
+    "Amazon Payments Europe",
+    "amazon.nl"
+   ],
+   "archetype": "marketplace_cloud_confusion",
+   "ambiguity_notes": "retail vs AWS confusion"
+  },
+  {
+   "name": "Coolblue",
+   "aliases": [
+    "Coolblue B.V.",
+    "COOLBLUE BV",
+    "COOLBLUE.NL",
+    "COOLBLUE",
+    "coolblue"
+   ],
+   "archetype": "retailer_electronics",
+   "ambiguity_notes": "hardware -> Office, else escalate"
+  },
+  {
+   "name": "Action",
+   "aliases": [
+    "Action Nederland B.V.",
+    "ACTION 1234 AMSTERDAM",
+    "ACTION",
+    "action"
+   ],
+   "archetype": "discount_retailer",
+   "ambiguity_notes": "small hardware/stationery -> Office, else escalate"
+  },
+  {
+   "name": "Albert Heijn",
+   "aliases": [
+    "Albert Heijn B.V.",
+    "AH",
+    "AH AMSTERDAM 1425",
+    "ALBERT HEIJN",
+    "albert heijn"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": "mostly General/Other; private-spend risk"
+  },
+  {
+   "name": "HEMA",
+   "aliases": [
+    "HEMA B.V.",
+    "HEMA AMSTERDAM",
+    "HEMA",
+    "hema"
+   ],
+   "archetype": "department_store",
+   "ambiguity_notes": "office items -> Office"
+  },
+  {
+   "name": "Google",
+   "aliases": [
+    "Google Ireland Ltd",
+    "Google Cloud EMEA Ltd",
+    "GOOGLE*ADS",
+    "GOOGLE *SERVICES",
+    "GOOGLE",
+    "google"
+   ],
+   "archetype": "search_cloud_ads",
+   "ambiguity_notes": "workspace/cloud -> Software; ads -> General/Other escalate"
+  },
+  {
+   "name": "Shell",
+   "aliases": [
+    "Shell Nederland Verkoopmaatschappij",
+    "SHELL EXPRESS",
+    "SHELL RETAIL",
+    "SHELL",
+    "shell"
+   ],
+   "archetype": "fuel_shop",
+   "ambiguity_notes": "fuel -> Travel; shop items ambiguous"
+  },
+  {
+   "name": "Tango",
+   "aliases": [
+    "Tango Nederland B.V.",
+    "TANGO TANKSTATION",
+    "TANGO",
+    "tango"
+   ],
+   "archetype": "fuel_shop",
+   "ambiguity_notes": "fuel -> Travel; shop items ambiguous"
+  },
+  {
+   "name": "BP",
+   "aliases": [
+    "BP Europa SE",
+    "BP NEDERLAND",
+    "BP STATION",
+    "bp"
+   ],
+   "archetype": "fuel_shop",
+   "ambiguity_notes": "fuel -> Travel; shop items ambiguous"
+  }
+ ],
+ "descriptions": [
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Toner HP 305X zwart, order bestelnummer 1000456789"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Printerpapier A4 5 pakken en nietmachine"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Ink cartridges Epson 603XL, multipack"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Muismat, USB-hub en HDMI kabel, verkocht door externe verkoper"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Wireless mouse, 2 pcs - sold by third-party seller"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Ordners A4 brede rug, 10 stuks"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Bureaulamp LED en kabelgoot"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Whiteboard markers and magnets"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Microsoft Office 2021 Home & Business licentie, digitale code"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Antivirus software licence 3 devices, 1 year (digital key)"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Jaarlicentie Adobe Acrobat, activatiecode"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Factuur 2026-0142"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Order 1000456789 - 3 items"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "iDEAL betaling bol.com bestelling"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Bestelling geleverd door partner, 2 artikelen"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Marketplace order - shipped by seller"
+  },
+  {
+   "case": "bol_marketplace",
+   "vendor": "Bol.com",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "BEA NR:5511 bol.com"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Printer paper A4 x 3, staples and sticky notes"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Toetsenbord en muis draadloos, order 302-1188221-3345521"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "USB-C hub, HDMI cable, cable ties"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Ordnerset, plastic hoesjes en markers"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Laptophouder aluminium en muismat"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Amazon Web Services - EC2 and S3 charges Aug 2026"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "AWS verbruik augustus, Amazon Web Services EMEA"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Software licence key, 1 year (digital download)"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Your Amazon.nl order 302-5544123-8812345"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Amazon bestelling, factuur 2026-0311"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "AMZN Mktp NL*2K4XU7 purchase"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "iDEAL Amazon Payments Europe"
+  },
+  {
+   "case": "amazon_nl",
+   "vendor": "Amazon.nl",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Marketplace purchase - Order 302-1188221"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Toetsenbord, webcam en USB-stick"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Monitor 24 inch and HDMI cable"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Printer HP LaserJet en toner"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Wireless headset and mouse"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Bestelling 12345678 bezorgd"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Order 87654321 - delivered next day"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Coolblue factuur 2026-0142"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Coolblue",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Koffiemachine en waterkoker voor personeel"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Nietjes, plakband, ordners, markeerstiften"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Notebooks, pens and paper clips"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Batterijen AA en stekkerdoos"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "ACTION 1234 AMSTERDAM pinbetaling"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Receipt - store 1234 - 9 items"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Kassabon 0231 21-08-2026"
+  },
+  {
+   "case": "coolblue_action",
+   "vendor": "Action",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Schoonmaakspullen en snoep voor kantoor"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "AH AMSTERDAM 1425 boodschappen 34,20"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Groceries 41.85 - AH store 1425"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Betaalautomaat ALBERT HEIJN 5588"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Pin AH to go Utrecht CS"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Card purchase ALBERT HEIJN 1102"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Koffie, thee en melk voor kantoor"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "Albert Heijn",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Snacks and drinks for team meeting"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Ordner, schriften en pennen"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Notebooks and stationery set"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Kantoorspullen: perforator en plakband"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "HEMA AMSTERDAM 0117 pinbetaling"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "HEMA receipt 3 items"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Taart en gebak verjaardag collega"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Kaarsen en servetten"
+  },
+  {
+   "case": "albert_heijn_hema",
+   "vendor": "HEMA",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Kassabon 0231"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Google Workspace Business Standard, 2 gebruikers, augustus 2026"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Google Workspace subscription - reverse charge"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Google Cloud Platform usage - Compute Engine Aug 2026"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Google Cloud verbruik BigQuery en opslag"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Google One 2 TB storage plan"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Google Ads advertentiekosten augustus 2026"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Google Ads - campaign spend 01-08 to 31-08"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "GOOGLE*ADS 4471882 betaling"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Advertising credit top-up - Ads account 123-456-7890"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Facturering Google Ads, campagne zoekwoorden"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Ad spend Q3 2026 - invoice 5123456789"
+  },
+  {
+   "case": "google_ads_vs_workspace",
+   "vendor": "Google",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Advertenties Google, kenmerk 4400123"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Brandstof Euro95, pomp 6, 41,2 liter"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Diesel 52.10 L at pump 3"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Shell Recharge laadsessie 29 kWh"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Fuel - unleaded 95, 38.4 L"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Shell Shop broodje en koffie"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Shop items - snacks, drinks"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Autowasstraat en ruitensproeiervloeistof"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Shell",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Shell shop: snoep en frisdrank"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Tango",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Tanken diesel 47,3 L"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Tango",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Petrol E10 - 35.6 L - pump 2"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Tango",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Tango shop koffie en tosti"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Tango",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Shop purchase - coffee and sandwich"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "Tango",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "BEA NR:3311 TANGO 08-09"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "BP",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Brandstof benzine, 44,8 liter"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "BP",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Diesel 55 L, fleet card"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "BP",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "BP shop - snacks"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "BP",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "BP Wild Bean Cafe koffie"
+  },
+  {
+   "case": "fuel_station_shop",
+   "vendor": "BP",
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Betaalautomaat BP 5588 pinbetaling"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Factuur 2026-0142"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Betaling"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Invoice"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Diversen"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Overboeking"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Payment"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Invoice INV-2026-00123"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Factuur F2026/0087"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Transfer"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Betaling factuur"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Services"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Dienstverlening"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "Ref 7700231"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Kenmerk 2026-0733"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "en",
+   "text": "-"
+  },
+  {
+   "case": "generic_description",
+   "vendor": null,
+   "true_account": "General/Other Expense",
+   "escalate": true,
+   "lang": "nl",
+   "text": "Nota"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Adobe",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Parkeren Q-Park Zuidas, 3 uur"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Microsoft 365",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Printer paper A4, 5 reams and toner"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Slack",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Treinkaartje Utrecht - Amsterdam retour"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Zoom",
+   "true_account": "Rent Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Rent office space August 2026"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Dropbox",
+   "true_account": "Professional Services Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Honorarium accountant jaarrekening"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Eneco",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Toner en printerpapier"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "KPN",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Software licence renewal, annual"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Vattenfall",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Parkeerkosten en tanken"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Ziggo",
+   "true_account": "Professional Services Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Consulting hours July 2026"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Q-Park",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Abonnement software 1 gebruiker maand"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "NS",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Stationery order - pens and notebooks"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "KLM",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Lunch met klant en bloemen"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Staples",
+   "true_account": "Utilities Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Internet subscription monthly"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Kamer van Koophandel",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Domeinnaam verlenging en hosting"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Spaces",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Cloud hosting VPS monthly"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Regus",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Bureaustoel ergonomisch"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Uber",
+   "true_account": "General/Other Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Client dinner - restaurant bill"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Deloitte",
+   "true_account": "Rent Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Huur kantoor augustus"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "PostNL",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Train ticket Amsterdam - Rotterdam"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Moneybird",
+   "true_account": "Professional Services Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Advieskosten belastingadvies"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Jumbo",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Toner en ordners"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Essent",
+   "true_account": "Software & Subscriptions Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Softwarelicentie jaarlijks"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Fastned",
+   "true_account": "Utilities Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Mobile plan monthly, 20 GB"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Swapfiets",
+   "true_account": "Office Supplies Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Bureaulamp en kabels"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Loyens & Loeff",
+   "true_account": "Rent Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Huurtermijn 01-09-2026 t/m 30-09-2026"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Odido",
+   "true_account": "Travel & Transport Expense",
+   "escalate": false,
+   "lang": "en",
+   "text": "Parking fee garage, 4 hours"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "Stedin",
+   "true_account": "Professional Services Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Notariskosten akte"
+  },
+  {
+   "case": "vendor_description_disagree",
+   "vendor": "GitHub",
+   "true_account": "Utilities Expense",
+   "escalate": false,
+   "lang": "nl",
+   "text": "Elektriciteit en gas voorschot"
+  }
+ ]
+}

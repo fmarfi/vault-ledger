@@ -1,0 +1,1146 @@
+{
+ "account": "General/Other Expense",
+ "slug": "general",
+ "vendors": [
+  {
+   "name": "Jumbo",
+   "aliases": [
+    "Jumbo Supermarkten B.V.",
+    "JUMBO",
+    "jumbo"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": "private-spend risk"
+  },
+  {
+   "name": "Lidl",
+   "aliases": [
+    "Lidl Nederland GmbH",
+    "LIDL",
+    "lidl"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": "private-spend risk"
+  },
+  {
+   "name": "Aldi",
+   "aliases": [
+    "Aldi Nederland B.V.",
+    "ALDI",
+    "aldi"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Plus",
+   "aliases": [
+    "Plus Retail B.V.",
+    "PLUS SUPERMARKT",
+    "PLUS",
+    "plus"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Dirk",
+   "aliases": [
+    "Dirk van den Broek",
+    "DIRK",
+    "dirk"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vomar",
+   "aliases": [
+    "Vomar Voordeelmarkt B.V.",
+    "VOMAR",
+    "vomar"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Coop",
+   "aliases": [
+    "Coop Nederland",
+    "COOP",
+    "coop"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Spar",
+   "aliases": [
+    "Spar Holding",
+    "SPAR",
+    "spar"
+   ],
+   "archetype": "supermarket",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Kruidvat",
+   "aliases": [
+    "Kruidvat B.V.",
+    "KRUIDVAT",
+    "kruidvat"
+   ],
+   "archetype": "drugstore",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Etos",
+   "aliases": [
+    "Etos B.V.",
+    "ETOS",
+    "etos"
+   ],
+   "archetype": "drugstore",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Gamma",
+   "aliases": [
+    "Gamma Bouwmarkten",
+    "GAMMA",
+    "gamma"
+   ],
+   "archetype": "diy_store",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Praxis",
+   "aliases": [
+    "Praxis Doe-het-zelf Centra B.V.",
+    "PRAXIS",
+    "praxis"
+   ],
+   "archetype": "diy_store",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Karwei",
+   "aliases": [
+    "Karwei",
+    "KARWEI",
+    "karwei"
+   ],
+   "archetype": "diy_store",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Hornbach",
+   "aliases": [
+    "Hornbach Bouwmarkt Nederland",
+    "HORNBACH",
+    "hornbach"
+   ],
+   "archetype": "diy_store",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Blokker",
+   "aliases": [
+    "Blokker Holding",
+    "BLOKKER",
+    "blokker"
+   ],
+   "archetype": "household",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Xenos",
+   "aliases": [
+    "Xenos B.V.",
+    "XENOS",
+    "xenos"
+   ],
+   "archetype": "household",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Intratuin",
+   "aliases": [
+    "Intratuin Nederland",
+    "INTRATUIN",
+    "intratuin"
+   ],
+   "archetype": "garden",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bloemenwinkel Centrum",
+   "aliases": [
+    "BLOEMENWINKEL CENTRUM",
+    "bloemenwinkel centrum"
+   ],
+   "archetype": "bloemist_local",
+   "ambiguity_notes": "bloemist_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Bloemisterij De Tulp",
+   "aliases": [
+    "BLOEMISTERIJ DE TULP",
+    "bloemisterij de tulp"
+   ],
+   "archetype": "bloemist_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Fleurop",
+   "aliases": [
+    "Fleurop-Interflora Nederland",
+    "FLEUROP",
+    "fleurop"
+   ],
+   "archetype": "bloemist_local",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bloemenbank",
+   "aliases": [
+    "Bloemenbank",
+    "BLOEMENBANK.NL",
+    "BLOEMENBANK",
+    "bloemenbank"
+   ],
+   "archetype": "bloemist_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Starbucks",
+   "aliases": [
+    "Starbucks Coffee Company Netherlands",
+    "STARBUCKS",
+    "starbucks"
+   ],
+   "archetype": "catering_cafe",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Coffee Company",
+   "aliases": [
+    "Coffee Company B.V.",
+    "COFFEE COMPANY",
+    "coffee company"
+   ],
+   "archetype": "catering_cafe",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bagels & Beans",
+   "aliases": [
+    "Bagels & Beans B.V.",
+    "BAGELS AND BEANS",
+    "BAGELS & BEANS",
+    "bagels & beans"
+   ],
+   "archetype": "catering_cafe",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Thuisbezorgd",
+   "aliases": [
+    "Just Eat Takeaway.com",
+    "THUISBEZORGD.NL",
+    "THUISBEZORGD",
+    "thuisbezorgd"
+   ],
+   "archetype": "catering_delivery",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Uber Eats",
+   "aliases": [
+    "Uber Eats",
+    "UBER *EATS",
+    "UBER EATS",
+    "uber eats"
+   ],
+   "archetype": "catering_delivery",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Domino's",
+   "aliases": [
+    "Domino's Pizza Nederland",
+    "DOMINOS",
+    "DOMINO'S",
+    "domino's"
+   ],
+   "archetype": "catering_delivery",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Subway",
+   "aliases": [
+    "Subway Nederland",
+    "SUBWAY",
+    "subway"
+   ],
+   "archetype": "catering_cafe",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "McDonald's",
+   "aliases": [
+    "McDonald's Nederland B.V.",
+    "MCDONALDS",
+    "MCDONALD'S",
+    "mcdonald's"
+   ],
+   "archetype": "catering_cafe",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Restaurant De Gouden Lepel",
+   "aliases": [
+    "RESTAURANT DE GOUDEN LEPEL",
+    "restaurant de gouden lepel"
+   ],
+   "archetype": "representatie_local",
+   "ambiguity_notes": "representatie_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Brasserie Het Plein",
+   "aliases": [
+    "BRASSERIE HET PLEIN",
+    "brasserie het plein"
+   ],
+   "archetype": "representatie_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Eetcafe De Hoek",
+   "aliases": [
+    "EETCAFE DE HOEK",
+    "eetcafe de hoek"
+   ],
+   "archetype": "representatie_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Cateringservice Vers B.V.",
+   "aliases": [
+    "CATERINGSERVICE VERS",
+    "CATERINGSERVICE VERS B.V.",
+    "cateringservice vers b.v."
+   ],
+   "archetype": "kantine_local",
+   "ambiguity_notes": "kantine_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Broodjeszaak Centraal",
+   "aliases": [
+    "BROODJESZAAK CENTRAAL",
+    "broodjeszaak centraal"
+   ],
+   "archetype": "kantine_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Kantine Bedrijfsrestaurant Noord",
+   "aliases": [
+    "KANTINE BEDRIJFSRESTAURANT NOORD",
+    "kantine bedrijfsrestaurant noord"
+   ],
+   "archetype": "kantine_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Gall & Gall",
+   "aliases": [
+    "Gall & Gall",
+    "GALL EN GALL",
+    "GALL & GALL",
+    "gall & gall"
+   ],
+   "archetype": "liquor",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Slijterij Van Dam",
+   "aliases": [
+    "SLIJTERIJ VAN DAM",
+    "slijterij van dam"
+   ],
+   "archetype": "liquor",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Rituals",
+   "aliases": [
+    "Rituals Cosmetics",
+    "RITUALS",
+    "rituals"
+   ],
+   "archetype": "gift",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "VVV Cadeaubon",
+   "aliases": [
+    "VVV Cadeaubonnen",
+    "VVV CADEAUBON",
+    "vvv cadeaubon"
+   ],
+   "archetype": "gift",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Kaartje2go",
+   "aliases": [
+    "Kaartje2go B.V.",
+    "KAARTJE2GO",
+    "kaartje2go"
+   ],
+   "archetype": "gift",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bijenkorf",
+   "aliases": [
+    "De Bijenkorf B.V.",
+    "BIJENKORF",
+    "bijenkorf"
+   ],
+   "archetype": "gift",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Intertoys",
+   "aliases": [
+    "Intertoys B.V.",
+    "INTERTOYS",
+    "intertoys"
+   ],
+   "archetype": "gift",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "PostNL",
+   "aliases": [
+    "PostNL N.V.",
+    "POSTNL",
+    "PostNL Pakketten",
+    "postnl"
+   ],
+   "archetype": "postage",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "DHL Express",
+   "aliases": [
+    "DHL Express Netherlands",
+    "DHL",
+    "DHL EXPRESS",
+    "dhl express"
+   ],
+   "archetype": "postage",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Nationale-Nederlanden",
+   "aliases": [
+    "Nationale-Nederlanden Schadeverzekering",
+    "NN",
+    "NATIONALE-NEDERLANDEN",
+    "nationale-nederlanden"
+   ],
+   "archetype": "insurance",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Centraal Beheer",
+   "aliases": [
+    "Centraal Beheer Achmea",
+    "CENTRAAL BEHEER",
+    "centraal beheer"
+   ],
+   "archetype": "insurance",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Kringloopwinkel De Tweede Kans",
+   "aliases": [
+    "KRINGLOOP DE TWEEDE KANS",
+    "KRINGLOOPWINKEL DE TWEEDE KANS",
+    "kringloopwinkel de tweede kans"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Sleutelservice en Schoenmaker",
+   "aliases": [
+    "SLEUTELSERVICE SCHOENMAKER",
+    "SLEUTELSERVICE EN SCHOENMAKER",
+    "sleutelservice en schoenmaker"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Wasserette Express",
+   "aliases": [
+    "WASSERETTE EXPRESS",
+    "wasserette express"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Schoonmaakservice Helder B.V.",
+   "aliases": [
+    "SCHOONMAAKSERVICE HELDER",
+    "SCHOONMAAKSERVICE HELDER B.V.",
+    "schoonmaakservice helder b.v."
+   ],
+   "archetype": "cleaning",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Vereniging van Eigenaren Binnenhof",
+   "aliases": [
+    "VVE BINNENHOF",
+    "VERENIGING VAN EIGENAREN BINNENHOF",
+    "vereniging van eigenaren binnenhof"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Sportschool FitPoint",
+   "aliases": [
+    "SPORTSCHOOL FITPOINT",
+    "sportschool fitpoint"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "private-spend risk",
+   "unverified": true
+  },
+  {
+   "name": "Kapper en Barbershop Centrum",
+   "aliases": [
+    "KAPPER BARBERSHOP CENTRUM",
+    "KAPPER EN BARBERSHOP CENTRUM",
+    "kapper en barbershop centrum"
+   ],
+   "archetype": "misc_local",
+   "ambiguity_notes": "private-spend risk",
+   "unverified": true
+  },
+  {
+   "name": "Tuincentrum Groenland",
+   "aliases": [
+    "TUINCENTRUM GROENLAND",
+    "tuincentrum groenland"
+   ],
+   "archetype": "garden",
+   "ambiguity_notes": "",
+   "unverified": true
+  }
+ ],
+ "descriptions": [
+  {
+   "text": "Lunch met klant, 3 personen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Business lunch with client, 2 people",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Representatiekosten relatiegeschenk, wijnpakket",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Client gift - hamper, delivered",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Bloemen ter gelegenheid van opening",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Flowers for office opening",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Koffie en gebak team, vrijdagmiddag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Coffee and cakes for team meeting",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Catering borrel nieuwjaar, 20 personen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Catering for networking drinks, 25 guests",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Boodschappen kantine: melk, koffiebonen, thee",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Groceries for the office kitchen",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Cadeaubon jubileum medewerker",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Gift card - work anniversary",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verjaardagskaart en cadeau",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Greeting cards and postage",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verzendkosten pakket naar klant",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Courier - parcel to client, Rotterdam",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Schoonmaakmiddelen en vuilniszakken",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Cleaning supplies and bin bags",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verf en kwasten voor kantoor, klusjes",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Paint, brushes and DIY tools",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Gereedschap: boormachine, schroeven",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Tools - drill and screws",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verzekering bedrijfsaansprakelijkheid, premie kwartaal",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Liability insurance premium - Q3 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Lidmaatschap ondernemersvereniging",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Membership fee - business association",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Bijdrage lunch, vrijdag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Team lunch, Friday",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Cateringservice lunch vergadering 12 personen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Sandwich platters for workshop, 12 pax",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Diner met zakenrelatie",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Dinner with business contact",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Kerstpakketten medewerkers",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Season's greetings gifts for staff",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Planten voor kantoor",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Office plants",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Kleine reparatie: sleutels laten bijmaken",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Key cutting and lock repair",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Wasserette bedrijfskleding",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Laundry of work clothes",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Postzegels en verpakkingsmateriaal",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Stamps and mailing supplies",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Representatie: drankjes klantbezoek",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Entertainment - drinks after client visit",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Bedrijfsuitje bijdrage",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Company outing contribution",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Overig: diversen, bonnetje ontbreekt",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Sundries - receipt attached",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Afvalcontainer ophaal, eenmalig",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Waste collection one-off",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Fooi en kleine uitgaven",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Tips and petty cash items",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:7715 BLOEMEN ROTTERDAM boeket",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Card purchase - flowers",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:3301 JUMBO boodschappen 23,45",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Card purchase JUMBO groceries",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "iDEAL betaling Fleurop - bloemen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Thuisbezorgd order - team lunch",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaalautomaat GAMMA schroeven en verf",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Gift wrap and cards",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Drankjes en hapjes voor klantpresentatie",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Beverages and snacks for client presentation",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Cadeau dank u aan vrijwilliger",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Thank-you gift for volunteer",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Schoenmaker reparatie werkschoenen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Safety shoes repair",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt 4471-8821",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Kassabon 0231 - 21-08-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt no. 000481 - 5 items",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "BEA NR:3301 ROTTERDAM 21-08-26",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Card purchase 14 Aug 2026 12:42",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaalautomaat 5588 pas 012",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Purchase - store 0311",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Pinbetaling 12:31 terminal 88211",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Paid with card ending 4417 - EUR 23.45",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Diversen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Miscellaneous",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Overboeking Bedrag 45,00",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Total 23.45",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling 22-08-2026 kassa 3",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Sale 14/08 till 2 - approved",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Bonnetje zoek, 3 posten",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Cash receipt lost - reimbursed",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "iDEAL betaling ordernr 88231045",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order #NL-2026-0088 delivered",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Kenmerk 7700231",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Ref 7700231 - Aug 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur F2026/0087 EUR 68,00",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice INV-2026-00123 - EUR 68.00",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Bedrag 12,50 - transactie 8812",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "EUR 19.95 - contactless",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betreft uw betaling van 12 september",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment on 12 September - thank you",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Nota 0000481 aug26",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Web order 2026-08-14",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling factuur 2026-0311",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt from store 118 - 22 Aug",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Reeds voldaan aan de kassa",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Thank you for shopping - 3 items",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Klantnr 2231908 factuur 1029-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order ref 4400123",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "SEPA Overboeking Kenmerk 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Transfer reference 2026-0733",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Aankoop 14-08-2026 14:12",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Card 4417 - 2 x 6.50",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Onkosten augustus",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Expense - August",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Zie bijlage",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "See attached",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Pinnen bij kassa 1, 3 artikelen",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Amount 41.20 incl. VAT 9%",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "BTW 9% EUR 3,40 - totaal EUR 41,20",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Various - 3 items",
+   "lang": "en",
+   "keyword_free": true
+  }
+ ]
+}

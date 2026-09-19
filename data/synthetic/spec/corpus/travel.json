@@ -1,0 +1,1250 @@
+{
+ "account": "Travel & Transport Expense",
+ "slug": "travel",
+ "vendors": [
+  {
+   "name": "NS",
+   "aliases": [
+    "NS Groep N.V.",
+    "N.S. REIZIGERS",
+    "NS INTERNATIONAL",
+    "ns"
+   ],
+   "archetype": "rail",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "NS Flex",
+   "aliases": [
+    "NS Reizigers B.V. (Flex)",
+    "NS FLEX ABONNEMENT",
+    "NS FLEX",
+    "ns flex"
+   ],
+   "archetype": "rail",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "GVB",
+   "aliases": [
+    "GVB Amsterdam",
+    "Gemeentelijk Vervoerbedrijf",
+    "GVB AMSTERDAM",
+    "gvb"
+   ],
+   "archetype": "city_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "RET",
+   "aliases": [
+    "RET N.V.",
+    "RET ROTTERDAM",
+    "ret"
+   ],
+   "archetype": "city_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "HTM",
+   "aliases": [
+    "HTM Personenvervoer N.V.",
+    "HTM DEN HAAG",
+    "htm"
+   ],
+   "archetype": "city_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Arriva",
+   "aliases": [
+    "Arriva Personenvervoer Nederland B.V.",
+    "ARRIVA NL",
+    "ARRIVA",
+    "arriva"
+   ],
+   "archetype": "regional_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Keolis Nederland",
+   "aliases": [
+    "Keolis Nederland B.V.",
+    "KEOLIS NL",
+    "KEOLIS NEDERLAND",
+    "keolis nederland"
+   ],
+   "archetype": "regional_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "EBS",
+   "aliases": [
+    "EBS (Egged Bus Systems)",
+    "EBS OV",
+    "ebs"
+   ],
+   "archetype": "regional_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Qbuzz",
+   "aliases": [
+    "Qbuzz B.V.",
+    "QBUZZ",
+    "qbuzz"
+   ],
+   "archetype": "regional_transit",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "OV-chipkaart",
+   "aliases": [
+    "Translink Systems B.V.",
+    "OV-CHIPKAART SALDO",
+    "OVCHIPKAART.NL",
+    "OV-CHIPKAART",
+    "ov-chipkaart"
+   ],
+   "archetype": "ov_tap",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "9292",
+   "aliases": [
+    "9292 B.V.",
+    "9292 TICKET"
+   ],
+   "archetype": "ov_tap",
+   "ambiguity_notes": "",
+   "unverified": true
+  },
+  {
+   "name": "Deutsche Bahn",
+   "aliases": [
+    "DB Fernverkehr AG",
+    "DB BAHN",
+    "DEUTSCHE BAHN",
+    "deutsche bahn"
+   ],
+   "archetype": "rail_intl",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Eurostar",
+   "aliases": [
+    "Eurostar International Ltd",
+    "EUROSTAR",
+    "eurostar"
+   ],
+   "archetype": "rail_intl",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Thalys",
+   "aliases": [
+    "Thalys International",
+    "THALYS",
+    "thalys"
+   ],
+   "archetype": "rail_intl",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "FlixBus",
+   "aliases": [
+    "FlixBus DACH GmbH",
+    "FLIXBUS",
+    "flixbus"
+   ],
+   "archetype": "coach",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Q-Park",
+   "aliases": [
+    "Q-Park Nederland B.V.",
+    "Q-PARK",
+    "QPARK",
+    "q-park"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Parkmobile",
+   "aliases": [
+    "Parkmobile International B.V.",
+    "PARKMOBILE",
+    "Parkmobile Nederland",
+    "parkmobile"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "EasyPark",
+   "aliases": [
+    "EasyPark B.V.",
+    "EASYPARK",
+    "easypark"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Interparking",
+   "aliases": [
+    "Interparking Nederland",
+    "INTERPARKING",
+    "interparking"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Apcoa",
+   "aliases": [
+    "Apcoa Parking Nederland B.V.",
+    "APCOA",
+    "apcoa"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Yellowbrick",
+   "aliases": [
+    "Yellowbrick Parkeren",
+    "YELLOWBRICK",
+    "yellowbrick"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Schiphol Parking",
+   "aliases": [
+    "Schiphol Group Parking",
+    "SCHIPHOL P1",
+    "SCHIPHOL PARKING",
+    "schiphol parking"
+   ],
+   "archetype": "parking",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Uber",
+   "aliases": [
+    "Uber B.V.",
+    "UBER *TRIP",
+    "Uber Technologies",
+    "UBER",
+    "uber"
+   ],
+   "archetype": "ride_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bolt",
+   "aliases": [
+    "Bolt Operations OU",
+    "BOLT.EU",
+    "BOLT",
+    "bolt"
+   ],
+   "archetype": "ride_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "TCA Taxi",
+   "aliases": [
+    "Taxi Centrale Amsterdam",
+    "TCA TAXI",
+    "tca taxi"
+   ],
+   "archetype": "taxi",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Taxi Utrecht Centrale",
+   "aliases": [
+    "TAXI UTRECHT CENTRALE",
+    "taxi utrecht centrale"
+   ],
+   "archetype": "taxi_local",
+   "ambiguity_notes": "taxi_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Rotterdamse Taxi Coop",
+   "aliases": [
+    "ROTTERDAM TAXI COOP",
+    "ROTTERDAMSE TAXI COOP",
+    "rotterdamse taxi coop"
+   ],
+   "archetype": "taxi_local",
+   "ambiguity_notes": "taxi_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Swapfiets",
+   "aliases": [
+    "Swapfiets B.V.",
+    "SWAPFIETS",
+    "Swapfiets Nederland",
+    "swapfiets"
+   ],
+   "archetype": "bike_subscription",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Donkey Republic",
+   "aliases": [
+    "Donkey Republic ApS",
+    "DONKEY REPUBLIC",
+    "donkey republic"
+   ],
+   "archetype": "bike_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Felyx",
+   "aliases": [
+    "Felyx B.V.",
+    "FELYX",
+    "felyx"
+   ],
+   "archetype": "scooter_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Check",
+   "aliases": [
+    "Check Technologies B.V.",
+    "CHECK APP",
+    "CHECK",
+    "check"
+   ],
+   "archetype": "scooter_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Greenwheels",
+   "aliases": [
+    "Greenwheels B.V.",
+    "GREENWHEELS",
+    "greenwheels"
+   ],
+   "archetype": "car_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "MyWheels",
+   "aliases": [
+    "MyWheels B.V.",
+    "MYWHEELS",
+    "mywheels"
+   ],
+   "archetype": "car_share",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Sixt",
+   "aliases": [
+    "Sixt Autoverhuur B.V.",
+    "SIXT RENT A CAR",
+    "SIXT",
+    "sixt"
+   ],
+   "archetype": "car_rental",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Hertz",
+   "aliases": [
+    "Hertz Nederland B.V.",
+    "HERTZ",
+    "hertz"
+   ],
+   "archetype": "car_rental",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Europcar",
+   "aliases": [
+    "Europcar Nederland B.V.",
+    "EUROPCAR",
+    "europcar"
+   ],
+   "archetype": "car_rental",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "KLM",
+   "aliases": [
+    "KLM Royal Dutch Airlines",
+    "KLM N.V.",
+    "KLM.COM",
+    "klm"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Transavia",
+   "aliases": [
+    "Transavia Airlines C.V.",
+    "TRANSAVIA",
+    "transavia"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Ryanair",
+   "aliases": [
+    "Ryanair DAC",
+    "RYANAIR",
+    "ryanair"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "easyJet",
+   "aliases": [
+    "easyJet Airline Company Ltd",
+    "EASYJET",
+    "easyjet"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Lufthansa",
+   "aliases": [
+    "Deutsche Lufthansa AG",
+    "LUFTHANSA",
+    "lufthansa"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vueling",
+   "aliases": [
+    "Vueling Airlines S.A.",
+    "VUELING",
+    "vueling"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Brussels Airlines",
+   "aliases": [
+    "Brussels Airlines SA/NV",
+    "BRUSSELS AIRLINES",
+    "brussels airlines"
+   ],
+   "archetype": "airline",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "TotalEnergies",
+   "aliases": [
+    "TotalEnergies Marketing Nederland",
+    "TOTAL NL",
+    "TOTALENERGIES TANKEN",
+    "TOTALENERGIES",
+    "totalenergies"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Esso",
+   "aliases": [
+    "Esso Nederland B.V.",
+    "ESSO",
+    "esso"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Q8",
+   "aliases": [
+    "Kuwait Petroleum Nederland",
+    "Q8 TANKSTATION",
+    "q8"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Texaco",
+   "aliases": [
+    "Texaco Nederland",
+    "TEXACO",
+    "texaco"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Argos",
+   "aliases": [
+    "Argos Energies Nederland",
+    "ARGOS",
+    "argos"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Avia",
+   "aliases": [
+    "AVIA Nederland",
+    "AVIA TANKSTATION",
+    "AVIA",
+    "avia"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Tinq",
+   "aliases": [
+    "TinQ Nederland B.V.",
+    "TINQ",
+    "tinq"
+   ],
+   "archetype": "fuel",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Fastned",
+   "aliases": [
+    "Fastned B.V.",
+    "FASTNED LADEN",
+    "FASTNED",
+    "fastned"
+   ],
+   "archetype": "ev_charging",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Allego",
+   "aliases": [
+    "Allego B.V.",
+    "ALLEGO",
+    "allego"
+   ],
+   "archetype": "ev_charging",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Ionity",
+   "aliases": [
+    "IONITY GmbH",
+    "IONITY",
+    "ionity"
+   ],
+   "archetype": "ev_charging",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "ANWB Wegenwacht",
+   "aliases": [
+    "ANWB B.V.",
+    "ANWB",
+    "ANWB WEGENWACHT",
+    "anwb wegenwacht"
+   ],
+   "archetype": "roadside",
+   "ambiguity_notes": "ambiguous with ANWB shop/membership",
+   "unverified": true
+  },
+  {
+   "name": "Tankstation De Kruiseweg",
+   "aliases": [
+    "TANKSTATION DE KRUISEWEG",
+    "tankstation de kruiseweg"
+   ],
+   "archetype": "fuel_local",
+   "ambiguity_notes": "fuel_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Autowasstraat en Tank Zuid",
+   "aliases": [
+    "AUTOWASSTRAAT TANK ZUID",
+    "AUTOWASSTRAAT EN TANK ZUID",
+    "autowasstraat en tank zuid"
+   ],
+   "archetype": "fuel_local",
+   "ambiguity_notes": "fuel_local archetype",
+   "unverified": true
+  },
+  {
+   "name": "Veerdienst Texel (TESO)",
+   "aliases": [
+    "TESO",
+    "Rederij Doeksen",
+    "VEERDIENST TEXEL (TESO)",
+    "veerdienst texel (teso)"
+   ],
+   "archetype": "ferry",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Wheels4All Taxi",
+   "aliases": [
+    "WHEELS4ALL TAXI",
+    "wheels4all taxi"
+   ],
+   "archetype": "taxi_local",
+   "ambiguity_notes": "taxi_local archetype",
+   "unverified": true
+  }
+ ],
+ "descriptions": [
+  {
+   "text": "NS Zakelijk reisproduct, retour Utrecht Centraal - Amsterdam Zuid, 2e klas",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Train ticket Amsterdam - Rotterdam, single, 2nd class",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "OV-chipkaart saldo opwaarderen EUR 20,00",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Public transport top-up - auto reload 20.00",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Parkeren Q-Park Zuidas, 3 uur 20 min",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Parking fee - garage P+R, 4 hours",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Parkeerkosten straatparkeren, zone 4, 2 uur",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Fuel purchase - Diesel 42.13 L",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Brandstof E10 48,3 liter",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Petrol at pump 6 - unleaded 95, 38.90 L",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Tanken diesel, pomp 4, 55,07 liter",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Taxi ride - Schiphol Airport to Amsterdam Centrum",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Taxirit Utrecht station - kantoor klant",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Uber trip - Amsterdam, 12.4 km",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Uber rit 21 aug, van Zuidas naar Schiphol",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Flight AMS-LHR, one-way, economy, incl. taxes",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Vliegticket Amsterdam - Barcelona retour, 12-14 sep 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "KLM booking ref K7X9PL - Amsterdam to Berlin return",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Vlucht Eindhoven - Madrid, bagage inbegrepen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Airline seat selection + checked baggage 23 kg",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Treinabonnement Dal Voordeel, maand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Monthly OV season pass, Zone 1-3",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "NS Flex abonnement augustus 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Bike subscription Aug 2026 (city bike)",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Fietsabonnement maandbedrag, Swapfiets Original",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "EV charging session 31.2 kWh - 0.62/kWh",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Laadsessie snellader 27 kWh, laadpas",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Car rental - 2 days, compact, insurance included",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Autohuur 3 dagen, incl. verzekering en 300 km",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Car sharing - 4 hour trip, 22 km",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Deelauto rit 2u, Greenwheels",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Bus ticket Amsterdam - Brussels, FlixBus",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Busreis retour Breda - Den Haag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Ferry crossing with car, day return",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Veerboot overtocht retour, 1 auto, 2 personen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Toll road Belgium - vignette 10 days",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Tol en vignet Duitsland",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Airport parking P3 - 5 nights",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Schipholparkeren 7 dagen valet",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Business trip Rotterdam - travel expenses 14 Aug",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Reiskosten zakelijk woon-werk, augustus",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Lost-property return fee & bike lock",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Trein retour Eindhoven, 1e klas toeslag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "International rail Amsterdam - Paris, business premier",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Internationale treinreis Brussel, retourticket",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Roadside assistance callout, tyre change",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Pechhulp wegenwacht ritkosten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Scooter share ride 18 min",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Deelscooter rit Utrecht centrum",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Public transport day pass, Zone 2",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "OV dagkaart Amsterdam",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Return fare, Utrecht Centraal to Schiphol Airport, 1st class",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:2201 Q-PARK AMSTERDAM ZUIDAS parkeren",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:5588 TANKSTATION tanken 47,20",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaalautomaat NS REIZIGERS UTRECHT ticket",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "iDEAL betaling KLM - vlucht",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Parkmobile - parking session zone A2 - 06/09",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "EasyPark parkeersessie 1u 45m",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Travel reimbursement - mileage 112 km at EUR 0.23",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Kilometervergoeding 112 km, tarief 0,23",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Airline ticket change fee",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Ticket omboeking kosten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Hotel-to-airport shuttle, invoice INV-2026-00123",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Taxifactuur juli 2026 ritten 12, 14, 19",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Subscription: bike lease, 24 months",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Fietsleaseplan, maandtermijn 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Charging card monthly fee plus 3 sessions",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Laadpas roaming sessies augustus",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Retourtje Rotterdam Centraal - Den Haag HS",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Train ticket Utrecht - Eindhoven, 2nd class, e-ticket",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Parkeergarage Centrum, dagtarief",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Fuel: Euro 95, receipt station",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Taxi van hotel naar station",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Flight change fee KLM",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Vliegveld parkeren Eindhoven Airport 3 dagen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Uber ride to client site",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Laden elektrische auto, 22 kWh",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Tram and metro day ticket, Rotterdam",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt 4471-8821",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "BEA NR:2201 AMSTERDAM 21-08-26",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Card purchase 14 Aug 2026 22:14",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaalautomaat 5588 pas 012",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Trip receipt - 3 Sep 2026 - EUR 18.40",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Kenmerk 7700231 - augustus 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Booking ref K7X9PL",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Pintransactie 14:42 terminal 88211",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order 4411-2208-9910 - thank you for booking",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "iDEAL betaling ordernr 88231045",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment ID 30055812",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling 22-08-2026, kassa 3",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Your ride on Tuesday evening",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Factuur 2026-0311, 3 ritten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Invoice INV-2026-00123 - Amsterdam",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Overzicht augustus 2026, klantnummer 118204",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Booking confirmation, passengers: 1 adult",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Factuur 2026-0455",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Ref 2026-08-19/AMS-UTR",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Rekening 08/2026 kostenplaats 200",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Statement Aug 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Pinbetaling Utrecht CS 08:12",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "EUR 41.75 - contactless",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betreft uw betaling van 12 september",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt no. 000481 - 3 items",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Overboeking ref 2026-0733 Amsterdam",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Paid with card ending 4417 - Total EUR 61.20",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur F2026/0087 - Amsterdam Zuid",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Confirmation #EU-4482-3311",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "PIN 1 x 12,60 EUR",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Total due 12.60, paid",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Nota 0000481 aug26",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaald via SEPA Incasso 04-09-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Charge 2026-09-04 19:03",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "AMSTERDAM CS 21AUG 14:02",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Rotterdam Aug 14 - 2 charges",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Verzamelfactuur Q3 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Monthly statement 09/2026, account 5514",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Bedrag 6,40 - transactie 8812",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order EU-2026-0088 processed",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling Schiphol 09:41",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Dienstverlening Amsterdam 2026-0777",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Amount 20.00 - reload",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Klantnr 2231908 factuur 1029-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Session 8877 - 07:22 to 09:05",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Omschrijving: rit 2026-08-12",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Sale 14/08 till 2 - approved",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Debit kaart 3 sep 15:20",
+   "lang": "nl",
+   "keyword_free": true
+  }
+ ]
+}

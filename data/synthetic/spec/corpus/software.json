@@ -1,0 +1,1373 @@
+{
+ "account": "Software & Subscriptions Expense",
+ "slug": "software",
+ "vendors": [
+  {
+   "name": "Microsoft 365",
+   "aliases": [
+    "Microsoft Ireland Operations Ltd",
+    "MICROSOFT*365",
+    "MSFT 365",
+    "MICROSOFT 365",
+    "microsoft 365"
+   ],
+   "archetype": "saas_productivity",
+   "ambiguity_notes": "reverse charge (IE)"
+  },
+  {
+   "name": "Google Workspace",
+   "aliases": [
+    "GOOGLE*WORKSPACE",
+    "Google Workspace Ireland",
+    "GOOGLE WORKSPACE",
+    "google workspace"
+   ],
+   "archetype": "saas_productivity",
+   "ambiguity_notes": "reverse charge; plain \"Google\" is a hard case"
+  },
+  {
+   "name": "Adobe",
+   "aliases": [
+    "Adobe Systems Software Ireland Ltd",
+    "ADOBE *CREATIVE CLOUD",
+    "Adobe Inc",
+    "ADOBE",
+    "adobe"
+   ],
+   "archetype": "design_saas",
+   "ambiguity_notes": "reverse charge (IE)"
+  },
+  {
+   "name": "Slack",
+   "aliases": [
+    "Slack Technologies Ltd",
+    "SLACK.COM",
+    "SLACK",
+    "slack"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Zoom",
+   "aliases": [
+    "Zoom Video Communications Inc",
+    "ZOOM.US",
+    "Zoom Communications",
+    "ZOOM",
+    "zoom"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Dropbox",
+   "aliases": [
+    "Dropbox International Unlimited Company",
+    "DROPBOX*",
+    "DROPBOX",
+    "dropbox"
+   ],
+   "archetype": "cloud_storage",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Notion",
+   "aliases": [
+    "Notion Labs Inc",
+    "NOTION LABS",
+    "NOTION",
+    "notion"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "GitHub",
+   "aliases": [
+    "GitHub Inc",
+    "GITHUB.COM",
+    "GITHUB",
+    "github"
+   ],
+   "archetype": "dev_tools",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Moneybird",
+   "aliases": [
+    "Moneybird B.V.",
+    "MONEYBIRD BV",
+    "MONEYBIRD",
+    "moneybird"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Exact Online",
+   "aliases": [
+    "Exact Software Nederland B.V.",
+    "EXACT SOFTWARE NL BV",
+    "EXACT ONLINE",
+    "exact online"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "AWS",
+   "aliases": [
+    "Amazon Web Services EMEA SARL",
+    "AWS EMEA",
+    "Amazon Web Services",
+    "aws"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": "distinct from Amazon.nl retail (hard case)"
+  },
+  {
+   "name": "Microsoft Azure",
+   "aliases": [
+    "Microsoft Azure",
+    "MICROSOFT*AZURE",
+    "MICROSOFT AZURE",
+    "microsoft azure"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Atlassian",
+   "aliases": [
+    "Atlassian Pty Ltd",
+    "ATLASSIAN*JIRA",
+    "ATLASSIAN",
+    "atlassian"
+   ],
+   "archetype": "dev_tools",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Canva",
+   "aliases": [
+    "Canva Pty Ltd",
+    "CANVA*",
+    "CANVA",
+    "canva"
+   ],
+   "archetype": "design_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Figma",
+   "aliases": [
+    "Figma Inc",
+    "FIGMA.COM",
+    "FIGMA",
+    "figma"
+   ],
+   "archetype": "design_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "1Password",
+   "aliases": [
+    "AgileBits Inc",
+    "1PASSWORD",
+    "1password"
+   ],
+   "archetype": "security_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Mailchimp",
+   "aliases": [
+    "The Rocket Science Group LLC",
+    "MAILCHIMP",
+    "mailchimp"
+   ],
+   "archetype": "marketing_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Shopify",
+   "aliases": [
+    "Shopify International Ltd",
+    "SHOPIFY*",
+    "SHOPIFY",
+    "shopify"
+   ],
+   "archetype": "ecommerce_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Squarespace",
+   "aliases": [
+    "Squarespace Ireland Ltd",
+    "SQSP*",
+    "SQUARESPACE",
+    "squarespace"
+   ],
+   "archetype": "web_builder",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Wix",
+   "aliases": [
+    "Wix.com Ltd",
+    "WIX.COM",
+    "WIX",
+    "wix"
+   ],
+   "archetype": "web_builder",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "TransIP",
+   "aliases": [
+    "TransIP B.V.",
+    "TRANSIP BV",
+    "TRANSIP",
+    "transip"
+   ],
+   "archetype": "hosting_domain",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Hostnet",
+   "aliases": [
+    "Hostnet B.V.",
+    "HOSTNET BV",
+    "HOSTNET",
+    "hostnet"
+   ],
+   "archetype": "hosting_domain",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Antagonist",
+   "aliases": [
+    "Antagonist B.V.",
+    "ANTAGONIST.NL",
+    "ANTAGONIST",
+    "antagonist"
+   ],
+   "archetype": "hosting_domain",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Mijndomein",
+   "aliases": [
+    "Mijndomein Hosting B.V.",
+    "MIJNDOMEIN.NL",
+    "MIJNDOMEIN",
+    "mijndomein"
+   ],
+   "archetype": "hosting_domain",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Cloudflare",
+   "aliases": [
+    "Cloudflare Inc",
+    "CLOUDFLARE",
+    "cloudflare"
+   ],
+   "archetype": "hosting_domain",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "DigitalOcean",
+   "aliases": [
+    "DigitalOcean LLC",
+    "DIGITALOCEAN.COM",
+    "DIGITALOCEAN",
+    "digitalocean"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Hetzner",
+   "aliases": [
+    "Hetzner Online GmbH",
+    "HETZNER",
+    "hetzner"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Vercel",
+   "aliases": [
+    "Vercel Inc",
+    "VERCEL.COM",
+    "VERCEL",
+    "vercel"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Netlify",
+   "aliases": [
+    "Netlify Inc",
+    "NETLIFY",
+    "netlify"
+   ],
+   "archetype": "cloud_infra",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "JetBrains",
+   "aliases": [
+    "JetBrains s.r.o.",
+    "JETBRAINS",
+    "jetbrains"
+   ],
+   "archetype": "dev_tools",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Zapier",
+   "aliases": [
+    "Zapier Inc",
+    "ZAPIER.COM",
+    "ZAPIER",
+    "zapier"
+   ],
+   "archetype": "automation_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "HubSpot",
+   "aliases": [
+    "HubSpot Ireland Ltd",
+    "HUBSPOT",
+    "hubspot"
+   ],
+   "archetype": "crm_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Typeform",
+   "aliases": [
+    "TYPEFORM SL",
+    "Typeform",
+    "TYPEFORM",
+    "typeform"
+   ],
+   "archetype": "forms_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Calendly",
+   "aliases": [
+    "Calendly LLC",
+    "CALENDLY.COM",
+    "CALENDLY",
+    "calendly"
+   ],
+   "archetype": "scheduling_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Loom",
+   "aliases": [
+    "Loom Inc",
+    "LOOM.COM",
+    "LOOM",
+    "loom"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Miro",
+   "aliases": [
+    "RealtimeBoard Inc",
+    "MIRO.COM",
+    "MIRO",
+    "miro"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Asana",
+   "aliases": [
+    "Asana Inc",
+    "ASANA.COM",
+    "ASANA",
+    "asana"
+   ],
+   "archetype": "saas_collab",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Twilio",
+   "aliases": [
+    "Twilio Ireland Ltd",
+    "TWILIO",
+    "twilio"
+   ],
+   "archetype": "api_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "SendGrid",
+   "aliases": [
+    "Twilio SendGrid",
+    "SENDGRID",
+    "sendgrid"
+   ],
+   "archetype": "api_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "e-Boekhouden.nl",
+   "aliases": [
+    "e-Boekhouden.nl B.V.",
+    "EBOEKHOUDEN",
+    "E-BOEKHOUDEN.NL",
+    "e-boekhouden.nl"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Informer",
+   "aliases": [
+    "Informer Online B.V.",
+    "INFORMER ONLINE",
+    "INFORMER",
+    "informer"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Yuki",
+   "aliases": [
+    "Visma Yuki B.V.",
+    "YUKI",
+    "yuki"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Twinfield",
+   "aliases": [
+    "Wolters Kluwer Twinfield",
+    "TWINFIELD",
+    "twinfield"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "SnelStart",
+   "aliases": [
+    "SnelStart Software B.V.",
+    "SNELSTART",
+    "snelstart"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Jortt",
+   "aliases": [
+    "Jortt B.V.",
+    "JORTT.NL",
+    "JORTT",
+    "jortt"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "QuickBooks",
+   "aliases": [
+    "Intuit Ireland Ltd",
+    "QUICKBOOKS",
+    "quickbooks"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Xero",
+   "aliases": [
+    "Xero (UK) Ltd",
+    "XERO.COM",
+    "XERO",
+    "xero"
+   ],
+   "archetype": "accounting_software",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bitwarden",
+   "aliases": [
+    "Bitwarden Inc",
+    "BITWARDEN",
+    "bitwarden"
+   ],
+   "archetype": "security_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "NordVPN",
+   "aliases": [
+    "Nord Security",
+    "NORDVPN",
+    "nordvpn"
+   ],
+   "archetype": "security_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Grammarly",
+   "aliases": [
+    "Grammarly Inc",
+    "GRAMMARLY",
+    "grammarly"
+   ],
+   "archetype": "writing_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "OpenAI",
+   "aliases": [
+    "OpenAI Ireland Ltd",
+    "OPENAI *CHATGPT",
+    "OPENAI",
+    "openai"
+   ],
+   "archetype": "ai_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Anthropic",
+   "aliases": [
+    "Anthropic Ireland Ltd",
+    "ANTHROPIC",
+    "anthropic"
+   ],
+   "archetype": "ai_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Backblaze",
+   "aliases": [
+    "Backblaze Inc",
+    "BACKBLAZE",
+    "backblaze"
+   ],
+   "archetype": "cloud_storage",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "DocuSign",
+   "aliases": [
+    "DocuSign Inc",
+    "DOCUSIGN",
+    "docusign"
+   ],
+   "archetype": "esign_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Pipedrive",
+   "aliases": [
+    "Pipedrive OU",
+    "PIPEDRIVE",
+    "pipedrive"
+   ],
+   "archetype": "crm_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Teamleader",
+   "aliases": [
+    "Teamleader NV",
+    "TEAMLEADER",
+    "teamleader"
+   ],
+   "archetype": "crm_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Postmark",
+   "aliases": [
+    "ActiveCampaign LLC (Postmark)",
+    "POSTMARKAPP",
+    "POSTMARK",
+    "postmark"
+   ],
+   "archetype": "api_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Linear",
+   "aliases": [
+    "Linear Orbit Inc",
+    "LINEAR.APP",
+    "LINEAR",
+    "linear"
+   ],
+   "archetype": "dev_tools",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Sentry",
+   "aliases": [
+    "Functional Software Inc",
+    "SENTRY.IO",
+    "SENTRY",
+    "sentry"
+   ],
+   "archetype": "dev_tools",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Plausible",
+   "aliases": [
+    "Plausible Insights OU",
+    "PLAUSIBLE.IO",
+    "PLAUSIBLE",
+    "plausible"
+   ],
+   "archetype": "analytics_saas",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Webflow",
+   "aliases": [
+    "Webflow Inc",
+    "WEBFLOW.COM",
+    "WEBFLOW",
+    "webflow"
+   ],
+   "archetype": "web_builder",
+   "ambiguity_notes": ""
+  },
+  {
+   "name": "Bolddesk Software B.V.",
+   "aliases": [
+    "Bolddesk BV",
+    "BOLDDESK SOFTWARE B.V.",
+    "bolddesk software b.v."
+   ],
+   "archetype": "generic_saas_bv",
+   "ambiguity_notes": "generic_saas_bv archetype",
+   "unverified": true
+  },
+  {
+   "name": "Cloudnine Apps B.V.",
+   "aliases": [
+    "CLOUDNINE APPS BV",
+    "CLOUDNINE APPS B.V.",
+    "cloudnine apps b.v."
+   ],
+   "archetype": "generic_saas_bv",
+   "ambiguity_notes": "generic_saas_bv archetype",
+   "unverified": true
+  }
+ ],
+ "descriptions": [
+  {
+   "text": "Microsoft 365 Business Standard - 1 user, monthly subscription",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Google Workspace Business Starter, 2 users, Aug 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Adobe Creative Cloud abonnement, betaling per maand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Jaarlijkse licentie JetBrains All Products Pack, 1 gebruiker",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "GitHub Team plan - 3 seats (Sep 2026)",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Domeinnaam verlenging .nl, 1 jaar",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Domain renewal .com - 12 months - reverse charge, VAT 0%",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Hostingpakket Basis, periode 01-08-2026 t/m 31-08-2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Cloud hosting (VPS 2 vCPU / 4GB) Aug 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "SaaS abonnement boekhoudsoftware, BTW 21%",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Software licence - annual renewal, 1 seat, EUR 199.00 excl. VAT",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Softwarelicentie 3 gebruikers, jaarlijks vooruit betaald",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Zoom Pro subscription - monthly billing",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Slack Pro abonnement, 4 actieve gebruikers",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Notion Plus plan, 1 member, billed monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Abonnement Moneybird Compleet, factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "AWS usage charges for August 2026 - EC2, S3, data transfer",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Cloudkosten Azure augustus 2026, verbruiksfactuur",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Dropbox Professional annual plan, 3 TB storage",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Opslagabonnement 2 TB, maandelijks",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "API usage - overage 1,240,000 calls, Jul 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verlenging SSL-certificaat en domein, 2 jaar",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "1Password Business, 5 users, VAT reverse charged",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Wachtwoordmanager licentie team, jaarplan",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Figma Professional - Full seat, monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Canva Pro abonnement, 1 maand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Email marketing plan (up to 5,000 contacts) - Mailchimp Standard",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Nieuwsbriefsoftware pakket, 5.000 contacten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Renewal of subscription: Team plan, 10 seats, annual, 15% discount applied",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verlenging jaarabonnement, kortingscode 15% toegepast",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Software subscription - VAT (21%) EUR 4.20, Total due 24.19",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaling SaaS-tool: Pro-plan augustus, BTW 21% inbegrepen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Antivirus / endpoint protection licence, 5 devices, 12 months",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Virusscanner licentie 5 apparaten",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Video hosting - Business plan, 1 user",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Projectmanagementtool, 5 gebruikers, kwartaalfactuur Q3 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Cloud storage upgrade 200 GB",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Serverhosting dedicated, maandbedrag",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "iOS app developer programme membership, annual",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Developer-account jaarlijkse bijdrage",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "CRM software - Starter, 2 users, Aug 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Facturatiesoftware Pro, maandabonnement",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Team chat workspace plan, 6 active users",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Online agenda software abonnement, jaarlijks",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "CI/CD build minutes - additional 3,000 min",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "E-signature abonnement 10 enveloppen per maand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "VPN service, 2-year plan",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "VPN abonnement 12 maanden",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Developer tools licence renewal: IDE + database client",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Licentie ontwikkelomgeving, hernieuwing per 01-09-2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "SaaS platform fee - subscription period Q3 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Analytics tool Pro, 100k pageviews per maand",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Transcription software plan, annual",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Webshop platform abonnement Basic, 30 dagen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Software as a Service - invoice no. INV-2026-00123, reverse charge Art. 44 VAT Directive",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Diensten in de cloud, BTW verlegd, factuur F2026/0087",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "BEA NR:4821 ADOBE *CREATIVE CLOUD abonnement",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "SEPA Incasso algemeen doorlopend Omschrijving: Moneybird abonnement augustus",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "CARD PURCHASE GITHUB.COM subscription",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "iDEAL betaling TransIP - hosting en domeinen",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Stripe *NOTION LABS monthly charge",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaalautomaat ZOOM.US SAN JOSE abon. 2026-08",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Renewal notice: your annual licence expires 31-10-2026 - amount due",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Kwartaalfactuur software-as-a-service Q3 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "AI assistant Pro plan - monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Licentiekosten boekhoudpakket per jaar, incl. BTW-aangifte module",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Team plan - additional seat added mid-cycle (prorated 12 days)",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Extra gebruiker toegevoegd, pro rata berekend",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Web builder Business plan incl. domain, 12 months",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Abonnementskosten kalenderjaar 2026",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Prepaid credits top-up for API access",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Extra opslagruimte in de cloud, 100 GB",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Annual licence - design software, 2 seats",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Verlenging antivirus en firewall licentie",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "SaaS invoicing tool - Growth plan, monthly",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Abonnement videovergaderen, 5 gebruikers",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Hosting and domain bundle, first year discount",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Licentie PDF-editor, eenmalig, 1 gebruiker",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Monthly software subscription - customer 30055812",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Domein en mailbox pakket, 12 maanden",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice INV-2026-00123",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Periode 01-08-2026 t/m 31-08-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Billing period 01/08/2026 - 31/08/2026, Invoice 88231045",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "SEPA Incasso algemeen doorlopend Incassant ID NL97ZZZ302156450000 Machtiging 0044518 Omschrijving: Factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Receipt from Slack Technologies - order 4479-2201",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur F2026/0087 BTW verlegd",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Your receipt #2216-8843-1123",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling factuur 2026-0311 augustus",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment Aug 2026 - monthly charge",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Reeds voldaan via SEPA Incasso, factuurnummer 2026-0455",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Total due 24.19 EUR, paid by card ending 4417",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Kenmerk 7700231 - Q3 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Charge for 09/2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "BEA NR:9013 STRIPE* TE BETALEN 12,00",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order confirmation 2026-08-14, 1 x Plan",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Maandfactuur augustus 2026, klantnummer 30055812",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice INV-00456 - VAT reverse charged - customer ID 5514",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Automatische incasso juli 2026 klantnr 118204",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Statement 6/2026 - ref 0041-77",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Rekening nr. 2026/0087 - totaal incl. BTW 21%",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Recurring payment - 15th of month",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "iDEAL betaling - factuur 2026-0142",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Auto-renewal - order #A-22381",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Betaald per creditcard, factuurdatum 03-08-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Amount: 13.80 per user - Sep 2026",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Termijn 8 van 12 - kenmerk 2026-0733",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment reference 1207 4453 2210",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur 2026-0142 abon.",
+   "lang": "nl",
+   "keyword_free": false
+  },
+  {
+   "text": "Jaarfactuur 2026 - vervaldatum 30 dagen",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Ref no. 771-202608 - 3 x 9.99",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Omschrijving: Klantnr 2231908 factuur 1029-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "INV/2026/08/0193",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "BTW 21% EUR 2,90 - Totaal EUR 16,71",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Paid 2026-08-02 - 1 x 19.99",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betaling via automatische incasso, 25-08-2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Membership 2026-Q3 - reverse charge applies",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Doorlopende machtiging - afschrijving 28-08",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Thank you for your payment - Aug 2026 invoice",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuur: 2026-0777 Betaaltermijn 14 dagen",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "EUR 49.00 monthly - next billing 02-10-2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Afschrijving augustus 2026 nr 20260812",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Invoice number 2026-0142 - Thank you",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Rekening 08/2026 kostenplaats 100",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Team of 5 - Sep 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Order 8876123 betaald met iDEAL",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Payment on account 220826-4411",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Betreft: uw factuur van 10 augustus 2026",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Charges Jul 1 - Jul 31, 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Pro rata factuur 2026-0908",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Order #EU-4482-3311-0021",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "SEPA Overboeking Kenmerk 2026-0142 Bedrag 99,00",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Service fee period Q2 2026",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Factuurperiode 2026-01 t/m 2026-12",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "2 x 29.00 EUR, VAT 0%",
+   "lang": "en",
+   "keyword_free": true
+  },
+  {
+   "text": "Vernieuwing per 15-09-2026, ordernr 55120-3",
+   "lang": "nl",
+   "keyword_free": true
+  },
+  {
+   "text": "Monthly plan Aug26",
+   "lang": "en",
+   "keyword_free": false
+  },
+  {
+   "text": "Nota 0000481 aug26",
+   "lang": "nl",
+   "keyword_free": true
+  }
+ ]
+}
