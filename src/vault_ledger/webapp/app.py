@@ -28,6 +28,8 @@ from __future__ import annotations
 
 import io
 import json
+import logging
+import math
 import tempfile
 from datetime import datetime
 from pathlib import Path
@@ -39,15 +41,25 @@ from vault_ledger.classifier.fusion_classifier import FusionClassifier
 from vault_ledger import backup, coa, hardware
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
-from vault_ledger.ledger import append_entry, entries_by_account, read_entries
+from vault_ledger.ledger import append_entry, read_entries
 from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, run_pipeline
-from vault_ledger.queue import enqueue, get_pending, read_pending, remove_pending
+from vault_ledger.queue import QUEUE_LOCK, enqueue, get_pending, read_pending, remove_pending
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
 from vault_ledger.synthetic_samples import SAMPLES
 
 DOCUMENTS_DIR = Path(__file__).resolve().parents[3] / "data" / "synthetic" / "documents"
 
 app = Flask(__name__)
+log = logging.getLogger(__name__)
+
+
+class PendingNotFound(ValueError):
+    """The queue has no item with that id (already confirmed, dismissed, or stale)."""
+
+
+class NeedsIndividualReview(ValueError):
+    """A flagged item was submitted through the bulk path. Ambiguity escalates
+    to a human -- only a per-item confirm/correct may post it."""
 _classifier: FusionClassifier | None = None
 
 
@@ -209,13 +221,14 @@ def api_restore():
 def api_process():
     classifier = _get_classifier()
 
+    temp_path: str | None = None
     if "document" in request.files and request.files["document"].filename:
         upload = request.files["document"]
         filename = upload.filename
         suffix = Path(filename).suffix or ".png"
         with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
             upload.save(tmp.name)
-            document_path = tmp.name
+            document_path = temp_path = tmp.name
     else:
         sample_name = (request.json or {}).get("sample")
         matching = [s for s in SAMPLES if s.name == sample_name]
@@ -228,6 +241,10 @@ def api_process():
         result = run_pipeline(document_path, classifier)
     except Exception as exc:  # noqa: BLE001 -- surfaced to the demo UI, not swallowed
         return jsonify({"error": str(exc)}), 422
+    finally:
+        # An uploaded document is sensitive; don't leave copies in the temp dir.
+        if temp_path:
+            Path(temp_path).unlink(missing_ok=True)
 
     item_id = enqueue(
         filename=filename,
@@ -264,45 +281,64 @@ def api_queue_dismiss(item_id: str):
     return jsonify({"dismissed": item_id})
 
 
-def _confirm_pending_item(item_id: str, corrected_account: str | None) -> dict:
+def _confirm_pending_item(
+    item_id: str, corrected_account: str | None, allow_flagged: bool = True
+) -> dict:
     """Shared by /api/confirm, /api/correct, and bulk confirm: look up a
     pending item, post it to the ledger under `corrected_account` (or its
     own predicted_account if None), and remove it from the queue. Raises
-    ValueError (bad id / bad account) or RuleViolation (unbalanced entry)
-    -- callers translate those into the right HTTP response."""
-    row = get_pending(item_id)
-    if row is None:
-        raise ValueError(f"no pending item with id '{item_id}'")
+    PendingNotFound / NeedsIndividualReview / ValueError (bad account or
+    amount) or RuleViolation (unbalanced entry) -- callers translate those
+    into the right HTTP response.
 
-    account = corrected_account or row["predicted_account"]
-    if account not in coa.active_expense_accounts():
-        raise ValueError(f"'{account}' is not an active account in the chart of accounts")
+    Runs under QUEUE_LOCK so a double-click or two tabs can't both post the
+    same item. Bulk confirm passes allow_flagged=False: an item the pipeline
+    flagged needs_review (vendor/amount ambiguity, low confidence gate) must
+    be resolved by a human individually, never posted on a guess."""
+    with QUEUE_LOCK:
+        row = get_pending(item_id)
+        if row is None:
+            raise PendingNotFound(f"no pending item with id '{item_id}'")
 
-    amount = float(row["amount"])
-    paid = _str_to_bool(row["paid"])
-    entry = construct_entry(account, amount, paid)  # raises RuleViolation
+        if not allow_flagged and (row["needs_review"] == "True" or row["rejection_reason"]):
+            raise NeedsIndividualReview("flagged for review -- confirm or correct it individually")
 
-    if corrected_account and corrected_account != row["predicted_account"]:
-        record_correction(
+        account = corrected_account or row["predicted_account"]
+        if account not in coa.active_expense_accounts():
+            raise ValueError(f"'{account}' is not an active account in the chart of accounts")
+
+        try:
+            amount = float(row["amount"])
+        except (TypeError, ValueError):
+            raise ValueError(f"queued item has an unreadable amount: {row['amount']!r}") from None
+        if not math.isfinite(amount) or amount <= 0:
+            raise ValueError(f"queued item has an invalid amount: {amount}")
+        paid = _str_to_bool(row["paid"])
+        entry = construct_entry(account, amount, paid)  # raises RuleViolation
+
+        was_corrected = bool(corrected_account and corrected_account != row["predicted_account"])
+        # Post first, then log the correction: if the ledger write fails the
+        # item stays pending and no training signal was recorded yet.
+        append_entry(
+            filename=row["filename"],
             vendor=row["vendor"],
             description=row["description"],
-            predicted_account=row["predicted_account"],
-            corrected_account=corrected_account,
-            amount=amount,
             date=row["date"],
+            amount=amount,
+            account=account,
+            confidence=float(row["confidence"]),
+            was_corrected=was_corrected,
         )
-
-    append_entry(
-        filename=row["filename"],
-        vendor=row["vendor"],
-        description=row["description"],
-        date=row["date"],
-        amount=amount,
-        account=account,
-        confidence=float(row["confidence"]),
-        was_corrected=bool(corrected_account and corrected_account != row["predicted_account"]),
-    )
-    remove_pending(item_id)
+        remove_pending(item_id)
+        if was_corrected:
+            record_correction(
+                vendor=row["vendor"],
+                description=row["description"],
+                predicted_account=row["predicted_account"],
+                corrected_account=corrected_account,
+                amount=amount,
+                date=row["date"],
+            )
     return {"entry": _serialize_entry(entry)}
 
 
@@ -319,8 +355,10 @@ def api_confirm():
 
     try:
         result = _confirm_pending_item(item_id, corrected_account=None)
+    except PendingNotFound as exc:
+        return jsonify({"error": str(exc)}), 404
     except ValueError as exc:
-        return jsonify({"error": str(exc)}), 404 if "no pending item" in str(exc) else 400
+        return jsonify({"error": str(exc)}), 400
     except RuleViolation as exc:
         return jsonify({"error": str(exc)}), 422
 
@@ -339,8 +377,10 @@ def api_correct():
 
     try:
         result = _confirm_pending_item(item_id, corrected_account=corrected_account)
+    except PendingNotFound as exc:
+        return jsonify({"error": str(exc)}), 404
     except ValueError as exc:
-        return jsonify({"error": str(exc)}), 404 if "no pending item" in str(exc) else 400
+        return jsonify({"error": str(exc)}), 400
     except RuleViolation as exc:
         return jsonify({"error": str(exc)}), 422
 
@@ -359,9 +399,9 @@ def api_bulk_confirm():
         return jsonify({"error": "'ids' must be a non-empty list"}), 400
 
     confirmed, failed = [], []
-    for item_id in ids:
+    for item_id in dict.fromkeys(ids):  # dedupe, keep order
         try:
-            _confirm_pending_item(item_id, corrected_account=None)
+            _confirm_pending_item(item_id, corrected_account=None, allow_flagged=False)
             confirmed.append(item_id)
         except ValueError as exc:
             failed.append({"id": item_id, "error": str(exc)})
@@ -390,12 +430,20 @@ def api_health():
 
 @app.route("/api/ledger")
 def api_ledger():
-    grouped = entries_by_account()
+    grouped: dict[str, list[dict]] = {}
+    for e in read_entries():
+        try:
+            float(e["amount"])
+            account = e["account"]
+        except (KeyError, TypeError, ValueError):
+            log.warning("skipping malformed ledger row: %r", e)
+            continue
+        grouped.setdefault(account, []).append(e)
     return jsonify(
         {
             account: {
                 "total": round(sum(float(e["amount"]) for e in entries), 2),
-                "entries": sorted(entries, key=lambda e: e.get("date", ""), reverse=True),
+                "entries": sorted(entries, key=lambda e: e.get("date") or "", reverse=True),
             }
             for account, entries in grouped.items()
         }
