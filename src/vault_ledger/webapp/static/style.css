@@ -379,7 +379,67 @@ select {
   background: var(--color-page);
 }
 
+/* Accept / Correct feedback: the card's action row is replaced by a solid
+   ink banner the moment the post succeeds, holds long enough to read,
+   then the card collapses out of the list. */
+.btn-done { background: var(--color-ink); color: var(--color-on-ink); opacity: 1; }
+.btn.is-busy:disabled { opacity: 1; cursor: progress; }
+
+.posted-banner {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: var(--color-ink); color: var(--color-on-ink);
+  padding: 14px 16px; font-size: 14px; font-weight: 500;
+  animation: banner-in 0.18s ease-out;
+}
+.posted-banner svg { flex-shrink: 0; }
+.posted-banner a { color: var(--color-on-ink-muted); margin-left: auto; font-size: 13px; font-weight: 400; }
+.posted-banner a:hover { color: var(--color-on-ink); }
+@keyframes banner-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.queue-item.is-posted .result-grid,
+.queue-item.is-posted .prediction-row,
+.queue-item.is-posted .entry-block { opacity: 0.55; }
+.queue-item { transition: opacity 0.35s ease, max-height 0.35s ease, margin 0.35s ease, padding 0.35s ease; }
+.queue-item.is-leaving { opacity: 0; max-height: 0 !important; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; overflow: hidden; }
+
+.status-banner { padding: 10px 12px; font-size: 13.5px; margin-top: 10px; background: var(--color-ink); color: var(--color-on-ink); }
+.status-banner.is-error { background: #f6e2df; color: var(--color-flag); }
+
+/* ============================================================
+   Overview page -- centered single-column period summary
+   ============================================================ */
+.overview-wrap { max-width: 520px; margin: 0 auto; padding: 48px 0 24px; text-align: center; }
+.overview-month { margin-bottom: 14px; }
+.overview-toggle { display: inline-flex; border: 1px solid var(--color-rule); margin-bottom: 40px; }
+.period-btn {
+  font-family: var(--font-display); font-size: 13px; border: none; cursor: pointer;
+  padding: 8px 18px; background: none; color: var(--color-ink);
+}
+.period-btn:hover:not(.active) { background: var(--color-rule-soft); }
+.period-btn.active { background: var(--color-ink); color: var(--color-on-ink); }
+.overview-figure {
+  font-family: var(--font-display); font-size: 56px; font-weight: 600;
+  line-height: 1; margin-bottom: 12px; font-variant-numeric: tabular-nums;
+}
+.overview-change { font-size: 15px; margin: 0 0 48px; min-height: 1.5em; }
+.overview-breakdown { text-align: left; border-top: 1px solid var(--color-rule); padding-top: 18px; }
+.overview-breakdown-title { margin-bottom: 12px; }
+.overview-line {
+  display: flex; justify-content: space-between; gap: 16px; padding: 9px 0;
+  border-bottom: 1px solid var(--color-rule-soft); font-size: 14px;
+}
+
+/* ============================================================
+   Export page -- two side-by-side cards
+   ============================================================ */
+.export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.export-card { display: flex; flex-direction: column; margin-bottom: 0; }
+.export-blurb { flex: 1; line-height: 1.55; margin: 0 0 20px; }
+.export-count { margin-bottom: 14px; }
+.export-card .btn { align-self: flex-start; }
+
 @media (max-width: 720px) {
+  .export-grid { grid-template-columns: 1fr; }
   .result-grid { grid-template-columns: 1fr; }
   .pipeline { display: none; }
   .ledger-layout { flex-direction: column; }

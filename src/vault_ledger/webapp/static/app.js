@@ -96,17 +96,27 @@ async function loadQueue() {
 
 function renderQueue() {
   const list = document.getElementById("queue-list");
-  const empty = document.getElementById("queue-empty");
-  const count = document.getElementById("queue-count");
-
+  // Keep any just-posted cards (their confirmation banner is still on
+  // screen) instead of wiping them with the rebuild.
+  const posted = Array.from(list.querySelectorAll(".queue-item.is-posted"));
   list.innerHTML = "";
-  empty.hidden = queueItems.length > 0;
-  count.textContent = queueItems.length
+  posted.forEach((card) => list.appendChild(card));
+  queueItems.forEach((item) => list.appendChild(renderQueueCard(item)));
+  updateQueueMeta();
+}
+
+function updateQueueMeta() {
+  document.getElementById("queue-empty").hidden = queueItems.length > 0;
+  document.getElementById("queue-count").textContent = queueItems.length
     ? `${queueItems.length} pending`
     : "";
-
-  queueItems.forEach((item) => list.appendChild(renderQueueCard(item)));
   updateBulkToolbar();
+}
+
+function showStatus(el, message, isError) {
+  el.textContent = message;
+  el.className = "status-banner" + (isError ? " is-error" : "");
+  el.hidden = false;
 }
 
 function renderQueueCard(item) {
@@ -152,7 +162,7 @@ function renderQueueCard(item) {
       <select class="account-select"></select>
       <button class="btn btn-secondary correct-btn" type="button">Correct &amp; post</button>
     </div>
-    <div class="item-status muted small"></div>
+    <div class="item-status" hidden></div>
   `;
 
   const select = card.querySelector(".account-select");
@@ -195,9 +205,52 @@ function renderEntryHtml(entry, rejectionReason) {
   `;
 }
 
+function setCardBusy(card, busyBtn, label) {
+  card.querySelectorAll("button, select, input").forEach((el) => { el.disabled = true; });
+  busyBtn.dataset.label = busyBtn.textContent;
+  busyBtn.textContent = label;
+  busyBtn.classList.add("is-busy");
+}
+
+function clearCardBusy(card, busyBtn) {
+  card.querySelectorAll("button, select, input").forEach((el) => { el.disabled = false; });
+  busyBtn.textContent = busyBtn.dataset.label;
+  busyBtn.classList.remove("is-busy");
+}
+
+function postedBannerEl(message) {
+  const banner = document.createElement("div");
+  banner.className = "posted-banner";
+  banner.setAttribute("role", "status");
+  banner.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--color-on-ink)"/><path d="M6 10.3L8.3 12.8L14 7" stroke="var(--color-ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const text = document.createElement("span");
+  text.textContent = message;
+  const link = document.createElement("a");
+  link.href = "/ledger";
+  link.textContent = "View in ledger";
+  banner.append(text, link);
+  return banner;
+}
+
+// Hold the confirmation on screen long enough to read, then collapse only
+// this card -- the other cards keep their state (e.g. a half-chosen
+// correction) instead of being rebuilt from a fresh fetch.
+function collapseCardAfterDelay(card, delayMs = 2200) {
+  setTimeout(() => {
+    card.style.maxHeight = card.offsetHeight + "px";
+    void card.offsetHeight;
+    card.classList.add("is-leaving");
+    setTimeout(() => card.remove(), 400);
+  }, delayMs);
+}
+
 async function confirmItem(id, correctedAccount, card) {
+  const item = queueItems.find((row) => row.id === id);
   const status = card.querySelector(".item-status");
-  status.textContent = correctedAccount ? "Saving correction…" : "Posting to ledger…";
+  const busyBtn = card.querySelector(correctedAccount ? ".correct-btn" : ".accept-btn");
+  status.hidden = true;
+  setCardBusy(card, busyBtn, correctedAccount ? "Saving…" : "Posting…");
+
   try {
     const endpoint = correctedAccount ? "/api/correct" : "/api/confirm";
     const body = correctedAccount ? { id, corrected_account: correctedAccount } : { id };
@@ -206,11 +259,25 @@ async function confirmItem(id, correctedAccount, card) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    selectedIds.delete(id);
-    await loadQueue();
   } catch (err) {
-    status.textContent = "Could not post: " + err.message;
+    clearCardBusy(card, busyBtn);
+    showStatus(status, "Could not post: " + err.message, true);
+    return;
   }
+
+  const account = correctedAccount || item.predicted_account;
+  const wasCorrection = Boolean(correctedAccount) && correctedAccount !== item.predicted_account;
+  const message = wasCorrection
+    ? `Posted to ${account} · correction logged for training`
+    : `Posted to ${account}`;
+
+  selectedIds.delete(id);
+  queueItems = queueItems.filter((row) => row.id !== id);
+  card.classList.add("is-posted");
+  card.querySelector(".correction-row").replaceWith(postedBannerEl(message));
+  status.remove();
+  updateQueueMeta();
+  collapseCardAfterDelay(card);
 }
 
 async function dismissItem(id) {
@@ -233,7 +300,10 @@ document.getElementById("select-high-confidence-btn").addEventListener("click", 
   selectedIds = new Set(
     queueItems.filter((item) => Number(item.confidence) >= CONFIDENCE_THRESHOLD).map((item) => item.id)
   );
-  renderQueue();
+  document.querySelectorAll(".queue-item:not(.is-posted)").forEach((card) => {
+    card.querySelector(".queue-checkbox").checked = selectedIds.has(card.dataset.id);
+  });
+  updateBulkToolbar();
 });
 
 document.getElementById("bulk-confirm-btn").addEventListener("click", async () => {
@@ -241,20 +311,43 @@ document.getElementById("bulk-confirm-btn").addEventListener("click", async () =
   const ids = Array.from(selectedIds);
   if (!ids.length) return;
 
-  status.textContent = `Confirming ${ids.length} document(s)…`;
+  const btn = document.getElementById("bulk-confirm-btn");
+  btn.disabled = true;
+  btn.textContent = `Confirming ${ids.length}…`;
+  showStatus(status, `Confirming ${ids.length} document(s)…`, false);
+  const setCardsLocked = (locked) =>
+    document.querySelectorAll(".queue-item:not(.is-posted) button, .queue-item:not(.is-posted) select, .queue-item:not(.is-posted) input")
+      .forEach((el) => { el.disabled = locked; });
+  setCardsLocked(true);
+  let result;
   try {
-    const result = await fetchJson("/api/queue/bulk_confirm", {
+    result = await fetchJson("/api/queue/bulk_confirm", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ids }),
     });
+  } catch (err) {
+    setCardsLocked(false);
+    showStatus(status, "Bulk confirm failed: " + err.message, true);
+    updateBulkToolbar();
+    return;
+  }
+
+  {
     selectedIds.clear();
-    status.textContent = result.failed.length
-      ? `Confirmed ${result.confirmed.length}, ${result.failed.length} failed: ${result.failed.map((f) => f.error).join("; ")}`
-      : `Confirmed ${result.confirmed.length} document(s).`;
+    const posted = `✓ Posted ${result.confirmed.length} document(s) to the ledger.`;
+    showStatus(
+      status,
+      result.failed.length
+        ? `${posted} ${result.failed.length} failed: ${result.failed.map((f) => f.error).join("; ")}`
+        : posted,
+      result.failed.length > 0
+    );
+  }
+  try {
     await loadQueue();
   } catch (err) {
-    status.textContent = "Bulk confirm failed: " + err.message;
+    showStatus(status, "Posted, but couldn't refresh the queue — reload the page.", true);
   }
 });
 
