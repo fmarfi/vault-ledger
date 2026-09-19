@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import re
+import threading
 import urllib.error
 import urllib.request
 from typing import TypedDict
@@ -35,6 +36,14 @@ from typing import TypedDict
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5:1.5b-instruct"
 TIMEOUT_SECONDS = 60  # CPU-only inference on modest hardware can be slow
+
+# Batch processing (batch.py) runs documents concurrently, but this machine
+# has one small model on 8GB RAM / 2 cores -- two inferences at once would
+# fight over the same limited memory and likely be slower than one at a
+# time, not faster. This serializes tier-3 calls specifically: tiers 1-2
+# still run fully in parallel across a batch, only the LLM call itself
+# queues, and only for documents that actually needed it.
+_INFERENCE_LOCK = threading.Lock()
 
 _AMOUNT_PATTERN = re.compile(r"\$?\s*([0-9][0-9,]*\.[0-9]{2})")
 
@@ -74,8 +83,9 @@ def extract_fields_via_llm(raw_text: str) -> LlmExtractedFields | None:
     )
 
     try:
-        with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
-            body = json.loads(response.read())
+        with _INFERENCE_LOCK:
+            with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+                body = json.loads(response.read())
     except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError):
         return None  # Ollama not running / not reachable -- not an error, just unavailable
 

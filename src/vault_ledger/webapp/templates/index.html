@@ -1,153 +1,96 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vault Ledger — MVP Demo</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Review queue{% endblock %}
+{% block page_name %}Review queue{% endblock %}
+{% block trust_text %}On-device — nothing in this queue has left the machine{% endblock %}
 
-<header class="site-header">
-  <div class="wrap header-row">
-    <div class="brand">
-      <span class="brand-mark">VL</span>
-      <span class="brand-name">Vault Ledger</span>
-    </div>
-    <span class="badge badge-muted">MVP demo · synthetic data</span>
+{% block content %}
+
+<section class="hero">
+  <h1>Invoice in. Journal entry out.</h1>
+  <p class="lede">
+    Vault Ledger reads a vendor invoice, utility bill, or receipt and
+    proposes a balanced, review-ready journal entry — automatically.
+    A bookkeeper confirms or corrects it in one click; corrections make
+    the model better over time.
+  </p>
+</section>
+
+<section class="pipeline">
+  <div class="pipeline-step">
+    <div class="step-num">1</div>
+    <div class="step-label">OCR</div>
+    <div class="step-sub">Read the document</div>
   </div>
-</header>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step">
+    <div class="step-num">2</div>
+    <div class="step-label">Field parsing</div>
+    <div class="step-sub">Vendor &amp; description, kept separate</div>
+  </div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step">
+    <div class="step-num">3</div>
+    <div class="step-label">Classifier</div>
+    <div class="step-sub">Two-field fusion model</div>
+  </div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step">
+    <div class="step-num">4</div>
+    <div class="step-label">Rules engine</div>
+    <div class="step-sub">Debits always = credits</div>
+  </div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step">
+    <div class="step-num">5</div>
+    <div class="step-label">Review</div>
+    <div class="step-sub">Confirm or correct</div>
+  </div>
+</section>
 
-<main class="wrap">
+<section class="card">
+  <h2>Try it</h2>
+  <p class="muted">Pick a sample document, or upload your own invoice / bill / receipt.</p>
 
-  <section class="hero">
-    <h1>Invoice in. Journal entry out.</h1>
-    <p class="lede">
-      Vault Ledger reads a vendor invoice, utility bill, or receipt and
-      proposes a balanced, review-ready journal entry — automatically.
-      A bookkeeper confirms or corrects it in one click; corrections make
-      the model better over time.
+  <div id="samples" class="samples"></div>
+
+  <div class="upload-row">
+    <label class="upload-btn">
+      Upload a document
+      <input id="file-input" type="file" accept="image/*,application/pdf,.pdf" hidden>
+    </label>
+    <span id="upload-filename" class="muted"></span>
+  </div>
+</section>
+
+<section id="loading" class="loading" hidden>Processing…</section>
+
+<section id="queue-section">
+  <div class="card">
+    <div class="queue-toolbar">
+      <h2 style="margin: 0;">Review queue</h2>
+      <span id="queue-count" class="muted small"></span>
+      <div class="queue-toolbar-actions">
+        <button id="select-high-confidence-btn" class="btn btn-secondary">Select high-confidence</button>
+        <button id="bulk-confirm-btn" class="btn btn-primary" disabled>Confirm selected</button>
+      </div>
+    </div>
+    <p class="muted small">
+      Every document processed above stays here, persisted on this
+      machine, until it's confirmed, corrected, or dismissed — refreshing
+      the page won't lose it. Select several and confirm them together, or
+      handle one at a time below.
     </p>
-  </section>
-
-  <section class="pipeline">
-    <div class="pipeline-step">
-      <div class="step-num">1</div>
-      <div class="step-label">OCR</div>
-      <div class="step-sub">Read the document</div>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">
-      <div class="step-num">2</div>
-      <div class="step-label">Field parsing</div>
-      <div class="step-sub">Vendor &amp; description, kept separate</div>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">
-      <div class="step-num">3</div>
-      <div class="step-label">Classifier</div>
-      <div class="step-sub">Two-field fusion model</div>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">
-      <div class="step-num">4</div>
-      <div class="step-label">Rules engine</div>
-      <div class="step-sub">Debits always = credits</div>
-    </div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-step">
-      <div class="step-num">5</div>
-      <div class="step-label">Review</div>
-      <div class="step-sub">Confirm or correct</div>
-    </div>
-  </section>
-
-  <section class="card demo-card">
-    <h2>Try it</h2>
-    <p class="muted">Pick a sample document, or upload your own invoice / bill / receipt image.</p>
-
-    <div id="samples" class="samples"></div>
-
-    <div class="upload-row">
-      <label class="upload-btn">
-        Upload a document
-        <input id="file-input" type="file" accept="image/*,application/pdf,.pdf" hidden>
-      </label>
-      <span id="upload-filename" class="muted"></span>
-    </div>
-  </section>
-
-  <section id="result-section" class="result-section" hidden>
-
-    <div class="card">
-      <h2>Extracted document</h2>
-      <div class="result-grid">
-        <div class="doc-preview">
-          <img id="doc-image" alt="document preview">
-        </div>
-        <dl class="field-list">
-          <dt>Vendor</dt><dd id="f-vendor"></dd>
-          <dt>Description</dt><dd id="f-description"></dd>
-          <dt>Date</dt><dd id="f-date"></dd>
-          <dt>Amount</dt><dd id="f-amount"></dd>
-          <dt>Status</dt><dd id="f-status"></dd>
-        </dl>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Predicted account</h2>
-      <div class="prediction-row">
-        <div>
-          <div id="predicted-account" class="predicted-account"></div>
-          <div class="confidence-bar-track">
-            <div id="confidence-bar" class="confidence-bar-fill"></div>
-          </div>
-          <div id="confidence-label" class="muted small"></div>
-        </div>
-        <div id="review-badge" class="badge"></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Proposed journal entry</h2>
-      <table class="entry-table">
-        <thead>
-          <tr><th>Account</th><th>Debit</th><th>Credit</th></tr>
-        </thead>
-        <tbody id="entry-body"></tbody>
-      </table>
-      <div id="balance-check" class="muted small"></div>
-      <div id="rejection-note" class="error-note" hidden></div>
-    </div>
-
-    <div class="card correction-card">
-      <h2>Confirm or correct</h2>
-      <p class="muted">
-        Accepting logs nothing extra. Correcting the account files it to
-        <code>corrections.csv</code> so it can be folded into the next
-        training pass — no live retraining, just a periodic manual step.
-      </p>
-      <div class="correction-row">
-        <button id="accept-btn" class="btn btn-primary">Accept as shown</button>
-        <select id="account-select"></select>
-        <button id="correct-btn" class="btn btn-secondary">Correct &amp; log</button>
-      </div>
-      <div id="correction-status" class="muted small"></div>
-    </div>
-
-  </section>
-
-  <section id="loading" class="loading" hidden>Processing…</section>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    Fixed 8-account chart of accounts · synthetic training data · not a
-    validated accuracy figure — see README for scope and limitations.
+    <div id="bulk-status" class="muted small"></div>
   </div>
-</footer>
 
+  <div id="queue-list"></div>
+  <div id="queue-empty" class="card muted" hidden>
+    Nothing in the review queue. Process a document above to get started.
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
 <script src="{{ url_for('static', filename='app.js') }}"></script>
-</body>
-</html>
+{% endblock %}
