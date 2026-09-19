@@ -26,15 +26,18 @@ the books until an accountant confirms it.
 
 from __future__ import annotations
 
+import io
 import json
 import tempfile
+from datetime import datetime
 from pathlib import Path
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_file, send_from_directory
 from flask import render_template
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger.coa import EXPENSE_ACCOUNTS
+from vault_ledger import backup, coa, hardware
+from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, entries_by_account, read_entries
 from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, run_pipeline
@@ -125,7 +128,81 @@ def sample_image(filename: str):
 
 @app.route("/api/accounts")
 def api_accounts():
-    return jsonify(sorted(EXPENSE_ACCOUNTS))
+    return jsonify(sorted(coa.active_expense_accounts()))
+
+
+@app.route("/settings")
+def settings_page():
+    return render_template("settings.html", active_page="settings")
+
+
+@app.route("/api/accounts/manage")
+def api_accounts_manage():
+    return jsonify(
+        {
+            "active": sorted(coa.active_expense_accounts()),
+            "retired": coa.retired_expense_accounts(),
+            "templates": {name: accounts for name, accounts in coa.TEMPLATES.items()},
+            "protected": coa.GENERAL_EXPENSE,
+        }
+    )
+
+
+def _account_action(action):
+    try:
+        action()
+    except coa.AccountError as exc:
+        return jsonify({"error": str(exc)}), 400
+    return api_accounts_manage()
+
+
+@app.route("/api/accounts/add", methods=["POST"])
+def api_accounts_add():
+    name = (request.json or {}).get("name", "")
+    return _account_action(lambda: coa.add_expense_account(name))
+
+
+@app.route("/api/accounts/retire", methods=["POST"])
+def api_accounts_retire():
+    name = (request.json or {}).get("name", "")
+    return _account_action(lambda: coa.retire_expense_account(name))
+
+
+@app.route("/api/accounts/template", methods=["POST"])
+def api_accounts_template():
+    template = (request.json or {}).get("template", "")
+    return _account_action(lambda: coa.apply_template(template))
+
+
+@app.route("/api/backup")
+def api_backup():
+    stamp = datetime.now().strftime("%Y-%m-%d")
+    return send_file(
+        io.BytesIO(backup.create_backup()),
+        mimetype="application/zip",
+        as_attachment=True,
+        download_name=f"vault-ledger-backup-{stamp}.zip",
+    )
+
+
+@app.route("/api/restore", methods=["POST"])
+def api_restore():
+    upload = request.files.get("backup")
+    if upload is None or not upload.filename:
+        return jsonify({"error": "choose a backup file first"}), 400
+
+    # Safety net: snapshot current data next to the live files before
+    # overwriting anything, so a wrong restore is itself recoverable.
+    safety_dir = coa.ACCOUNTS_PATH.parent / "backups"
+    safety_dir.mkdir(parents=True, exist_ok=True)
+    safety_name = f"pre-restore-{datetime.now().strftime('%Y%m%d-%H%M%S')}.zip"
+    (safety_dir / safety_name).write_bytes(backup.create_backup())
+
+    try:
+        restored = backup.restore_backup(upload.read())
+    except backup.BackupError as exc:
+        return jsonify({"error": str(exc)}), 400
+    return jsonify({"restored": restored, "safety_copy": safety_name})
 
 
 @app.route("/api/process", methods=["POST"])
@@ -198,8 +275,8 @@ def _confirm_pending_item(item_id: str, corrected_account: str | None) -> dict:
         raise ValueError(f"no pending item with id '{item_id}'")
 
     account = corrected_account or row["predicted_account"]
-    if account not in EXPENSE_ACCOUNTS:
-        raise ValueError(f"'{account}' is not in the fixed chart of accounts")
+    if account not in coa.active_expense_accounts():
+        raise ValueError(f"'{account}' is not an active account in the chart of accounts")
 
     amount = float(row["amount"])
     paid = _str_to_bool(row["paid"])
@@ -257,8 +334,8 @@ def api_correct():
     corrected_account = body.get("corrected_account")
     if not item_id:
         return jsonify({"error": "'id' is required"}), 400
-    if corrected_account not in EXPENSE_ACCOUNTS:
-        return jsonify({"error": f"'{corrected_account}' is not in the fixed chart of accounts"}), 400
+    if corrected_account not in coa.active_expense_accounts():
+        return jsonify({"error": f"'{corrected_account}' is not an active account in the chart of accounts"}), 400
 
     try:
         result = _confirm_pending_item(item_id, corrected_account=corrected_account)
@@ -301,6 +378,16 @@ def api_documents():
     return jsonify(entries)
 
 
+@app.route("/api/stats")
+def api_stats():
+    return jsonify(compute_stats(read_entries()))
+
+
+@app.route("/api/health")
+def api_health():
+    return jsonify({"hardware": hardware.check()})
+
+
 @app.route("/api/ledger")
 def api_ledger():
     grouped = entries_by_account()
@@ -316,6 +403,9 @@ def api_ledger():
 
 
 def main() -> None:
+    report = hardware.check()
+    if report["level"] in {"low", "critical"}:
+        print(f"[hardware] {report['level'].upper()}: {report['message']}")
     app.run(debug=True, port=5050)
 
 

@@ -47,3 +47,36 @@ async function loadDocuments() {
 }
 
 loadDocuments();
+
+
+async function loadStats() {
+  const stats = await fetchJson("/api/stats");
+  if (!stats.total) return;
+
+  const pct = (rate) => (rate === null ? "—" : Math.round(rate * 100) + "%");
+  const body = document.getElementById("stats-body");
+  const caveat = stats.meaningful
+    ? ""
+    : `<p class="muted small">Only ${stats.total} posted so far — too few to read much into (${stats.min_sample}+ is a fairer sample).</p>`;
+  const top = stats.corrected_into.slice(0, 3)
+    .map(([account, n]) => `${escapeText(account)} (${n})`).join(", ");
+
+  body.innerHTML = `
+    <div style="display:flex;gap:40px;flex-wrap:wrap;margin:8px 0 12px;">
+      <div><div class="ledger-total-figure">${pct(stats.first_pass_rate)}</div><div class="muted small">all ${stats.total} posted</div></div>
+      <div><div class="ledger-total-figure">${pct(stats.recent_first_pass_rate)}</div><div class="muted small">last ${stats.recent_days} days (${stats.recent_total})</div></div>
+    </div>
+    ${caveat}
+    ${top ? `<p class="muted small">Most often corrected into: ${top}.</p>` : ""}
+    <p class="muted small">This counts how often a reviewer accepted the proposal unchanged. It is not a measure of accuracy on new documents.</p>
+  `;
+  document.getElementById("stats-card").hidden = false;
+}
+
+function escapeText(value) {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
+}
+
+loadStats();

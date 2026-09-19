@@ -76,7 +76,7 @@ refused it).
 .venv/bin/python -m vault_ledger.webapp.app
 ```
 
-Opens a Flask dev server at http://127.0.0.1:5050 with three pages
+Opens a Flask dev server at http://127.0.0.1:5050 with four pages
 (`templates/base.html` + `static/style.css`'s token system are shared
 across all of them -- see that CSS file's `:root` to change the whole
 look in one place):
@@ -96,6 +96,17 @@ look in one place):
   running totals -- styled as a ledger book's thumb-index tabs, not a plain
   tab bar.
 
+- **/settings — Settings.** Customize the expense chart of accounts (add,
+  retire, or start from a US/EU template -- `coa.py`, stored in
+  `data/accounts.json`), and download/restore a single-file backup of all
+  local data (`backup.py`; the trained model is deliberately excluded and
+  retrains from the restored training data).
+
+The Review Queue is a persistent multi-item queue (`queue.py`) with bulk
+confirm; the Documents page shows an honest "accepted as-is" rate computed
+from the ledger (`stats.py`); every page shows a banner when this machine is
+under the recommended 16 GB RAM (`hardware.py`).
+
 It's a thin UI layer over `vault_ledger.pipeline` and `vault_ledger.ledger`
 -- no separate business logic. Not a production deployment (Flask dev
 server, single in-memory classifier instance).
@@ -110,9 +121,9 @@ The 3 end-to-end OCR tests in `test_pipeline.py` auto-skip if `tesseract`
 isn't on PATH; everything else (rules layer, field parsing, classifier)
 runs without it.
 
-## Chart of accounts (fixed, 9 accounts)
+## Chart of accounts (9 by default, customizable)
 
-Cash/Bank, Accounts Payable, Utilities Expense, Office Supplies Expense,
+Defaults: Cash/Bank, Accounts Payable, Utilities Expense, Office Supplies Expense,
 Professional Services Expense, Rent Expense, Travel & Transport Expense,
 Software & Subscriptions Expense, General/Other Expense. See
 `src/vault_ledger/coa.py`. (Grown from 8 to 9 after a real SaaS billing
@@ -135,7 +146,7 @@ receipt had no honest home in the original list -- see git history and the
   prove the pipeline runs end-to-end. Any accuracy number from
   `classifier/evaluate.py` is a pipeline sanity check, not a validated metric
   -- do not quote it as real performance.
-- No real pilot run (M8), no per-client custom COA, no fraud/anomaly
+- No real pilot run (M8), no multi-client/multi-company support, no fraud/anomaly
   detection, no live retraining, no polished correction UI -- all explicitly
   out of scope for this MVP pass per Report 1.
 - The web app is a demo UI, not a production accountant tool -- no auth,
