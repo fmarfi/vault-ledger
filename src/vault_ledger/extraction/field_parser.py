@@ -105,13 +105,38 @@ class ExtractedFields:
     paid: bool
 
 
-def _find_labeled_value(lines: list[str], labels: tuple[str, ...]) -> str | None:
+def _find_labeled_value(
+    lines: list[str], labels: tuple[str, ...], *, strict: bool = False
+) -> str | None:
+    """First `Label: value` match. With strict=True, several lines carrying
+    conflicting values for these labels raise instead of silently returning
+    the first -- same escalate-don't-guess rule as _find_vendor."""
+    values = []
+    by_label: dict[str, set[str]] = {}
     for line in lines:
         for label in labels:
             prefix = f"{label}:"
             if line.lower().startswith(prefix.lower()):
-                return line[len(prefix):].strip()
-    return None
+                value = line[len(prefix):].strip()
+                values.append(value)
+                by_label.setdefault(label, set()).add(_normalize_for_comparison(value))
+                break
+    if not values:
+        return None
+    # Conflict = the same label repeated with different values. Different
+    # labels ("Total Amount" vs "Amount Due") are different fields, not a conflict.
+    if strict:
+        for label, distinct in by_label.items():
+            if len(distinct) > 1:
+                raise FieldParseError(f"conflicting values found for '{label}'")
+    return values[0]
+
+
+def _normalize_for_comparison(value: str) -> str:
+    amount = _AMOUNT_PATTERN.search(value)
+    if amount:
+        return str(float(amount.group(1).replace(",", "")))
+    return " ".join(value.lower().split())
 
 
 def _find_vendor(lines: list[str]) -> str | None:
@@ -139,7 +164,7 @@ def _find_vendor(lines: list[str]) -> str | None:
 
 
 def _find_description_raw(lines: list[str]) -> str | None:
-    labeled = _find_labeled_value(lines, _DESCRIPTION_LABELS)
+    labeled = _find_labeled_value(lines, _DESCRIPTION_LABELS, strict=True)
     if labeled is not None:
         return labeled
 
@@ -150,7 +175,7 @@ def _find_description_raw(lines: list[str]) -> str | None:
 
 
 def _find_amount_raw(lines: list[str]) -> str | None:
-    labeled = _find_labeled_value(lines, _AMOUNT_LABELS)
+    labeled = _find_labeled_value(lines, _AMOUNT_LABELS, strict=True)
     if labeled is not None:
         return labeled
 
