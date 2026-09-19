@@ -67,7 +67,18 @@ def extract_fields_via_llm(raw_text: str) -> LlmExtractedFields | None:
     prompt = _PROMPT_TEMPLATE.format(text=raw_text[:4000])  # keep the prompt small; slow CPU
 
     payload = json.dumps(
-        {"model": MODEL_NAME, "prompt": prompt, "format": "json", "stream": False}
+        {
+            "model": MODEL_NAME,
+            "prompt": prompt,
+            "format": "json",
+            "stream": False,
+            # Keep the model resident so only the first call pays the load;
+            # cap output (the JSON reply is ~100 tokens); 4096 context because
+            # a 4000-char digit-heavy invoice can reach ~2k tokens and Ollama
+            # silently drops the oldest tokens (the instructions) on overflow.
+            "keep_alive": "10m",
+            "options": {"temperature": 0, "num_predict": 200, "num_ctx": 4096},
+        }
     ).encode("utf-8")
     request = urllib.request.Request(
         OLLAMA_URL, data=payload, headers={"Content-Type": "application/json"}

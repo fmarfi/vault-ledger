@@ -35,18 +35,18 @@ def apply_corrections(
     if not corrections_path.exists():
         return 0
 
-    with corrections_path.open(newline="") as f:
+    with corrections_path.open(newline="", encoding="utf-8") as f:
         corrections = list(csv.DictReader(f))
 
     if not corrections:
         return 0
 
-    with training_data_path.open("a", newline="") as f:
+    with training_data_path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         for row in corrections:
             writer.writerow([row["vendor"], row["description"], row["corrected_account"]])
 
-    with corrections_path.open("w", newline="") as f:
+    with corrections_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         writer.writeheader()
 

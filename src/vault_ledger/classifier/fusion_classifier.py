@@ -16,21 +16,24 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import joblib
-import pandas as pd
-from scipy.sparse import hstack
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
+# sklearn/scipy/pandas/joblib are imported lazily inside the methods that
+# need them: serving uses fast_inference.FastClassifier, and importing this
+# module (e.g. for a type hint) must not pull in the whole scientific stack.
 
 
 class FusionClassifier:
     def __init__(self) -> None:
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.linear_model import LogisticRegression
+
         self.vendor_vectorizer = TfidfVectorizer()
         self.description_vectorizer = TfidfVectorizer()
         self.model = LogisticRegression(max_iter=1000)
         self._fitted = False
 
     def _fuse(self, vendors: list[str], descriptions: list[str], fit: bool):
+        from scipy.sparse import hstack
+
         if fit:
             vendor_features = self.vendor_vectorizer.fit_transform(vendors)
             description_features = self.description_vectorizer.fit_transform(descriptions)
@@ -57,12 +60,18 @@ class FusionClassifier:
         return account, confidence
 
     def save(self, path: str | Path) -> None:
+        import joblib
+
         joblib.dump(self, path)
 
     @staticmethod
     def load(path: str | Path) -> "FusionClassifier":
+        import joblib
+
         return joblib.load(path)
 
 
-def load_training_data(csv_path: str | Path) -> pd.DataFrame:
+def load_training_data(csv_path: str | Path):
+    import pandas as pd
+
     return pd.read_csv(csv_path)

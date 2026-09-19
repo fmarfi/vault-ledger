@@ -8,14 +8,11 @@ which is the bar these 3 target formats should be able to hit.
 
 from __future__ import annotations
 
+import os
+import shutil
 from pathlib import Path
 
 from PIL import Image, ImageOps
-
-try:
-    import pytesseract
-except ImportError:  # pragma: no cover
-    pytesseract = None
 
 # Tesseract needs roughly 300-DPI-equivalent text height to read reliably.
 # A phone screenshot or a small web-saved image can come in well below that
@@ -23,6 +20,30 @@ except ImportError:  # pragma: no cover
 # real text from small-but-legible images; it can't invent detail that
 # genuinely isn't in the source pixels (e.g. a ~150px thumbnail).
 MIN_SHORT_SIDE = 900
+
+
+_WINDOWS_TESSERACT_DEFAULTS = (
+    r"C:\Program Files\Tesseract-OCR\tesseract.exe",
+    r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
+)
+
+
+def find_tesseract() -> str | None:
+    """Locate the tesseract binary on macOS/Linux/Windows.
+
+    Order: TESSERACT_CMD env var, PATH, then the default Windows installer
+    locations (the Windows installer does not add itself to PATH).
+    """
+    override = os.environ.get("TESSERACT_CMD")
+    if override and Path(override).exists():
+        return override
+    on_path = shutil.which("tesseract")
+    if on_path:
+        return on_path
+    for candidate in _WINDOWS_TESSERACT_DEFAULTS:
+        if Path(candidate).exists():
+            return candidate
+    return None
 
 
 def _prepare_for_ocr(image: Image.Image) -> Image.Image:
@@ -41,9 +62,20 @@ def ocr_image(image: Image.Image) -> str:
     scanned-page fallback (`extraction/pdf.py`) so both paths get the same
     upscale/contrast preprocessing.
     """
-    if pytesseract is None:
-        raise RuntimeError("pytesseract is not installed")
+    # Lazy: pytesseract eagerly imports pandas, which native-text PDFs
+    # (no OCR) shouldn't have to pay for.
+    try:
+        import pytesseract
+    except ImportError:  # pragma: no cover
+        raise RuntimeError("pytesseract is not installed") from None
 
+    binary = find_tesseract()
+    if binary is None:
+        raise RuntimeError(
+            "tesseract binary not found. Install it (macOS: `brew install tesseract`; "
+            "Windows: the UB Mannheim installer) or set TESSERACT_CMD to its path."
+        )
+    pytesseract.pytesseract.tesseract_cmd = binary
     return pytesseract.image_to_string(_prepare_for_ocr(image))
 
 
