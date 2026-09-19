@@ -34,6 +34,14 @@ function documentIconHtml() {
   return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><rect x="4" y="2" width="16" height="20" rx="1" stroke="var(--color-pencil)" stroke-width="1.3"/><path d="M8 8h8M8 12h8M8 16h5" stroke="var(--color-pencil)" stroke-width="1.3" stroke-linecap="round"/></svg>';
 }
 
+// Everything rendered via innerHTML that came from OCR'd documents or upload
+// filenames must go through this -- a crafted PDF is untrusted input.
+function escapeHtml(value) {
+  const div = document.createElement("div");
+  div.textContent = value ?? "";
+  return div.innerHTML;
+}
+
 async function fetchJson(url, options) {
   const res = await fetch(url, options);
   const body = await res.json().catch(() => ({}));
