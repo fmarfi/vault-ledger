@@ -1,8 +1,8 @@
-import shutil
 from pathlib import Path
 
 import pytest
 
+from vault_ledger.extraction.ocr import find_tesseract
 from vault_ledger.classifier.fusion_classifier import FusionClassifier, load_training_data
 from vault_ledger.extraction.field_parser import FieldParseError
 from vault_ledger.pipeline import run_pipeline
@@ -11,7 +11,7 @@ from vault_ledger.synthetic_samples import SAMPLES
 DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "synthetic" / "labeled_transactions.csv"
 DOCUMENTS_DIR = Path(__file__).resolve().parents[1] / "data" / "synthetic" / "documents"
 
-TESSERACT_AVAILABLE = shutil.which("tesseract") is not None
+TESSERACT_AVAILABLE = find_tesseract() is not None
 
 
 @pytest.fixture(scope="module")

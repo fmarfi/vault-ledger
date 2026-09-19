@@ -14,8 +14,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger.classifier.train import MODEL_PATH, main as train_and_save_model
+from vault_ledger.classifier.fast_inference import FAST_MODEL_PATH, FastClassifier
 from vault_ledger.coa import GENERAL_EXPENSE, active_expense_accounts
 from vault_ledger.confidence_gate import needs_manual_review
 from vault_ledger.extraction.field_parser import parse_fields
@@ -37,7 +36,7 @@ class PipelineResult:
     date: str | None
 
 
-def run_pipeline(document_path: str | Path, classifier: FusionClassifier) -> PipelineResult:
+def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
     raw_text = extract_raw_text(document_path)
     fields = parse_fields(raw_text)
 
@@ -73,10 +72,22 @@ def run_pipeline(document_path: str | Path, classifier: FusionClassifier) -> Pip
     )
 
 
-def _load_or_train_classifier() -> FusionClassifier:
-    if not Path(MODEL_PATH).exists():
+def _load_or_train_classifier() -> FastClassifier:
+    fast_path = Path(FAST_MODEL_PATH)
+    # Training/export is the only path that needs the sklearn stack.
+    from vault_ledger.classifier.train import MODEL_PATH, main as train_and_save_model
+
+    joblib_path = Path(MODEL_PATH)
+    if not fast_path.exists():
         train_and_save_model()
-    return FusionClassifier.load(MODEL_PATH)
+    elif joblib_path.exists() and joblib_path.stat().st_mtime > fast_path.stat().st_mtime:
+        # The sklearn model was saved by something other than train.main()
+        # (older checkout, evaluate script): re-export so serving isn't stale.
+        from vault_ledger.classifier.fast_inference import export_fast_model
+        from vault_ledger.classifier.fusion_classifier import FusionClassifier
+
+        export_fast_model(FusionClassifier.load(joblib_path), fast_path)
+    return FastClassifier.load(fast_path)
 
 
 def main() -> None:

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from vault_ledger.classifier.fast_inference import FAST_MODEL_PATH, export_fast_model
 from vault_ledger.classifier.fusion_classifier import FusionClassifier, load_training_data
 
 DATA_PATH = Path(__file__).resolve().parents[3] / "data" / "synthetic" / "labeled_transactions.csv"
@@ -22,6 +23,7 @@ def main() -> None:
         accounts=df["account"].tolist(),
     )
     classifier.save(MODEL_PATH)
+    export_fast_model(classifier, FAST_MODEL_PATH)
     print(f"trained on {len(df)} rows, saved to {MODEL_PATH}")
 
 

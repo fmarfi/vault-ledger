@@ -27,7 +27,7 @@ def record_correction(
 ) -> None:
     path = Path(path)
     is_new = not path.exists()
-    with path.open("a", newline="") as f:
+    with path.open("a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         if is_new:
             writer.writeheader()
