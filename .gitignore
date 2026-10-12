@@ -23,3 +23,6 @@ data/users/
 data/users.json
 data/.secret_key
 data/.migrated
+
+# private working files (real documents, screenshots); never commit
+private/
