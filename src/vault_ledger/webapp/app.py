@@ -37,11 +37,11 @@ import threading
 from datetime import date, datetime
 from pathlib import Path
 
-from flask import Flask, Response, jsonify, request, send_file, send_from_directory
-from flask import render_template
+from flask import Flask, Response, g, jsonify, redirect, request, send_file, send_from_directory
+from flask import render_template, url_for
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger import backup, coa, hardware
+from vault_ledger import backup, coa, demo, hardware
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
@@ -50,7 +50,7 @@ from vault_ledger.queue import queue_lock, enqueue, get_pending, read_pending, r
 from vault_ledger.reports import audit_csv, books_csv, period_summary
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
 from vault_ledger.synthetic_samples import SAMPLES
-from vault_ledger.userdata import current_user_dir
+from vault_ledger.userdata import current_user_dir, use_user_dir, user_dir_for
 from vault_ledger.webapp import security
 
 DOCUMENTS_DIR = Path(__file__).resolve().parents[3] / "data" / "synthetic" / "documents"
@@ -225,6 +225,10 @@ def api_backup():
 
 @app.route("/api/restore", methods=["POST"])
 def api_restore():
+    if g.user.get("demo") is True:
+        # A demo account is throwaway and seeded; nothing uploaded by a
+        # visitor is ever written into it. "Reset demo" is the way back.
+        return jsonify({"error": "restoring a backup is turned off in the demo"}), 403
     upload = request.files.get("backup")
     if upload is None or not upload.filename:
         return jsonify({"error": "choose a backup file first"}), 400
@@ -505,6 +509,37 @@ def api_ledger():
             for account, entries in grouped.items()
         }
     )
+
+
+# ---- demo mode (VAULT_DEMO=1) ------------------------------------------------
+# security._gate answers 404 for all three while the switch is off, and for
+# reset/exit unless the caller is a signed-in demo user. All data is seeded by
+# vault_ledger.demo through the same pipeline/rules/ledger/queue functions as
+# a real document.
+
+@app.route("/demo/start", methods=["POST"])
+def demo_start():
+    """A brand-new throwaway user per click, so two people trying the demo at
+    the same time never share data."""
+    user, error = security.start_demo_session()
+    if user is None:
+        status = 429 if error == security.DEMO_THROTTLED_ERROR else 503
+        return render_template("login.html", next_url="/", error=error, username=""), status
+    with use_user_dir(user_dir_for(user["id"], create=True)):
+        demo.seed(_get_classifier(), _serialize_entry)
+    return redirect(url_for("index"))
+
+
+@app.route("/demo/reset", methods=["POST"])
+def demo_reset():
+    demo.reset(g.user["id"], _get_classifier(), _serialize_entry)
+    return redirect(url_for("index"))
+
+
+@app.route("/demo/exit", methods=["POST"])
+def demo_exit():
+    security.end_demo_session(g.user)
+    return redirect(url_for("login"))
 
 
 def _is_loopback(host: str) -> bool:

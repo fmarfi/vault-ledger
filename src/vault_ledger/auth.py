@@ -9,6 +9,10 @@
 There is no open registration (see VAULT_ALLOW_SIGNUP in the README). A user
 record holds a random id (the only thing ever used to build a filesystem
 path), the lowercased unique username, and a salted scrypt password hash.
+
+Demo users (VAULT_DEMO, see the README) are ordinary records with
+`"demo": true`: a random id, a random password nobody ever sees, and no way
+to sign in with a password at all. They are deleted after DEMO_MAX_AGE.
 """
 
 from __future__ import annotations
@@ -20,12 +24,13 @@ import hashlib
 import json
 import os
 import re
+import secrets
 import shutil
 import sys
 import tempfile
 import threading
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -35,6 +40,8 @@ from vault_ledger import userdata
 USERNAME_RE = re.compile(r"[a-z0-9_.-]{3,32}")
 MIN_PASSWORD_LEN = 10
 MAX_PASSWORD_LEN = 256
+DEMO_PREFIX = "demo-"  # reserved: only create_demo_user makes these names
+DEMO_MAX_AGE = timedelta(hours=24)
 
 _store_lock = threading.RLock()
 _cache: dict[str, tuple[tuple[int, int], list[dict]]] = {}
@@ -123,6 +130,8 @@ def get_user(user_id: str) -> dict | None:
 
 def create_user(username: str, password: str, is_admin: bool = False) -> dict:
     name = normalize_username(username)
+    if name.startswith(DEMO_PREFIX):
+        raise AuthError(f"usernames starting with '{DEMO_PREFIX}' are reserved")
     validate_password(password, name)
     with _store_lock:
         users = list(_read_users())
@@ -153,6 +162,15 @@ def set_password(username: str, password: str) -> None:
     raise AuthError("no such user")
 
 
+def _remove(users: list[dict], victim: dict) -> None:
+    """Drop one record and only that user's data dir. Caller holds _store_lock.
+    The path comes from the random id alone (userdata.user_dir_for validates it)."""
+    _write_users([u for u in users if u["id"] != victim["id"]])
+    target = userdata.user_dir_for(victim["id"])
+    if target.is_dir() and not target.is_symlink():
+        shutil.rmtree(target)
+
+
 def delete_user(username: str) -> str:
     """Remove the user and only that user's data dir. Returns the user id."""
     name = normalize_username(username)
@@ -161,11 +179,72 @@ def delete_user(username: str) -> str:
         victim = next((u for u in users if u["username"] == name), None)
         if victim is None:
             raise AuthError("no such user")
-        _write_users([u for u in users if u["id"] != victim["id"]])
-        target = userdata.user_dir_for(victim["id"])
-        if target.is_dir() and not target.is_symlink():
-            shutil.rmtree(target)
+        _remove(users, victim)
     return victim["id"]
+
+
+# ---- demo users ------------------------------------------------------------
+
+def create_demo_user() -> dict:
+    """A throwaway user for demo mode. The password is random, never returned
+    or logged, and authenticate() refuses demo users regardless -- the only way
+    in is the session the caller starts right after this."""
+    with _store_lock:
+        users = list(_read_users())
+        taken = {u["username"] for u in users}
+        name = DEMO_PREFIX + secrets.token_hex(4)
+        while name in taken:
+            name = DEMO_PREFIX + secrets.token_hex(4)
+        user = {
+            "id": uuid.uuid4().hex,
+            "username": name,
+            "password_hash": generate_password_hash(secrets.token_urlsafe(32)),
+            "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "is_admin": False,
+            "demo": True,
+        }
+        userdata.user_dir_for(user["id"], create=True)
+        _write_users(users + [user])
+    return user
+
+
+def is_demo(user: dict | None) -> bool:
+    return bool(user) and user.get("demo") is True
+
+
+def demo_users() -> list[dict]:
+    return [dict(u) for u in _read_users() if is_demo(u)]
+
+
+def delete_demo_user(user_id: str) -> bool:
+    """Delete one demo user and its data dir by id. Refuses (returns False)
+    for an unknown id or a user that is not flagged demo, so this can never
+    remove a real account."""
+    with _store_lock:
+        users = list(_read_users())
+        victim = next((u for u in users if u["id"] == user_id), None)
+        if not is_demo(victim):
+            return False
+        _remove(users, victim)
+    return True
+
+
+def _demo_expired(user: dict, now: datetime, max_age: timedelta) -> bool:
+    try:
+        created = datetime.fromisoformat(user["created_at"])
+    except (KeyError, TypeError, ValueError):
+        return True  # a demo record we can't date is not worth keeping
+    if created.tzinfo is None:
+        created = created.replace(tzinfo=timezone.utc)
+    return now - created > max_age
+
+
+def purge_expired_demo_users(max_age: timedelta = DEMO_MAX_AGE, now: datetime | None = None) -> list[str]:
+    """Delete every demo user older than `max_age`. Returns the deleted ids."""
+    now = now or datetime.now(timezone.utc)
+    with _store_lock:
+        expired = [u["id"] for u in _read_users() if is_demo(u) and _demo_expired(u, now, max_age)]
+        return [uid for uid in expired if delete_demo_user(uid)]
 
 
 # Dummy hash so an unknown username costs about as much as a wrong password.
@@ -174,7 +253,8 @@ _DUMMY_HASH = generate_password_hash("dummy-password-for-timing")
 
 def authenticate(username: str, password: str) -> dict | None:
     user = find_by_username(username)
-    if user is None:
+    if user is None or is_demo(user):
+        # Demo users never sign in with a password; same cost as a miss.
         check_password_hash(_DUMMY_HASH, password or "")
         return None
     return user if check_password_hash(user["password_hash"], password or "") else None
@@ -286,7 +366,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"created user {user['username']} (id {user['id']})")
         elif args.cmd == "list-users":
             for u in list_users():
-                print(f"{u['username']:<32} {u['id']}  {u['created_at']}{'  admin' if u['is_admin'] else ''}")
+                print(f"{u['username']:<32} {u['id']}  {u['created_at']}{'  admin' if u['is_admin'] else ''}{'  demo' if is_demo(u) else ''}")
         elif args.cmd == "set-password":
             name = normalize_username(args.username)
             set_password(name, _ask_password(name))

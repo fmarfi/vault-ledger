@@ -155,6 +155,7 @@ once you have checked. It refuses to run twice.
 | `VAULT_SECRET_KEY` | Session signing key. If unset, a random one is generated once into `data/.secret_key` (0600). There is no built-in default. |
 | `VAULT_COOKIE_SECURE=1` | Mark the session cookie `Secure`. **Set this whenever the app is served over HTTPS**, and serve it over HTTPS (reverse proxy such as Caddy/nginx) if it is reachable by anyone else. |
 | `VAULT_ALLOW_SIGNUP=1` | Enable a self-service `/signup` page. Off by default. |
+| `VAULT_DEMO=1` | Enable demo mode: a "Try the demo" button on the sign-in page. Off by default. See [Demo mode](#demo-mode). |
 | `VAULT_HOST` / `VAULT_PORT` | Bind address (default `127.0.0.1`) and port (default `5050`). |
 | `VAULT_DEBUG=1` | Flask debug mode. Off by default; the app refuses to start with it on a non-loopback host. |
 | `VAULT_TRUST_PROXY=1` | Trust one `X-Forwarded-For/Proto/Host` hop from a reverse proxy (so the login throttle sees real client IPs). Only set behind a proxy that overwrites those headers. |
@@ -204,6 +205,70 @@ VAULT_COOKIE_SECURE=1 .venv/bin/waitress-serve --host 127.0.0.1 --port 5050 --th
 - Single process only. `is_admin` is recorded but currently grants nothing.
 - Uploaded documents' OCR temp files pass through the shared OS temp dir
   briefly and are deleted immediately.
+
+## Demo mode
+
+For walking someone through the whole flow without any real data. Off by
+default; turn it on with an environment variable (read on every request, like
+`VAULT_ALLOW_SIGNUP`):
+
+```
+VAULT_DEMO=1 .venv/bin/python -m vault_ledger.webapp.app
+```
+
+While it is off, `/demo/*` answers 404 and no demo button is rendered.
+
+**What happens.** The sign-in page gets a separate "Try the demo" button.
+Each click creates a brand-new throwaway user (`demo-<8 hex>`, random id,
+random password that is never shown and cannot be used: demo users are
+refused at password login), seeds that user's own directory under
+`data/users/<id>/`, and signs the browser in. Two people trying the demo at
+the same time get two separate users and never see each other's data. A red
+banner stays on every page with **Reset demo** (wipe and reseed this demo
+user) and **Exit demo** (sign out and delete the user and its directory).
+
+**What it seeds** (`src/vault_ledger/demo.py`, a fixed list with dates
+relative to today):
+
+- 34 posted ledger entries over the last three months, covering every default
+  expense account: office rent, energy, water, internet and mobile, SaaS
+  subscriptions, train travel, an accountant, office supplies and so on.
+- 7 documents waiting in the review queue: 5 ready for bulk confirm and 2
+  flagged for individual review.
+
+Everything goes through the normal code paths (classifier, confidence gate,
+`construct_entry`, `append_entry`, `enqueue`), so every entry balances.
+
+**The data is invented.** The vendor names are plausible suppliers for a small
+Dutch startup, but no such invoices exist. Two things to know before
+presenting it:
+
+- The confidence and "corrected" flag on the posted history are the real
+  classifier's output on this invented data. With the current small training
+  set that confidence is low (roughly 0.2 to 0.5), so the Documents page marks
+  those entries "Uncertain".
+- The five bulk-confirmable queue items carry a **hand-set, illustrative**
+  account and confidence (0.86 to 0.95). The shipped classifier does not clear
+  the 0.75 confidence gate on anything yet, so without this every item would
+  be flagged and bulk confirm could not be shown. They are not a measurement of
+  the model; the banner says so on screen. The two flagged items are untouched
+  real classifier output. A document uploaded live during a demo also gets the
+  real (low) confidence.
+
+Amounts are plain numbers at euro scale; the UI still prints a fixed `$`
+(there is no currency setting yet).
+
+**Limits for demo users.** They can do everything in their own directory
+(process documents, confirm, correct, edit their chart of accounts, export,
+download a backup) but cannot restore a backup from an upload (HTTP 403), and
+have no access to any other user's data, like every other user.
+
+**Cleanup.** A demo user is deleted, record and directory, on Exit demo, or
+when it is more than 24 hours old: expired demo users are purged whenever
+someone starts a new demo (there is no background job, so the last ones stay
+on disk until the next start). Turning `VAULT_DEMO` off ends all demo
+sessions at once. Starts are limited to 10 per IP per 15 minutes and 100 live
+demo users in total.
 
 ## Testing
 

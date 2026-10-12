@@ -13,7 +13,7 @@ from vault_ledger.webapp import app as app_mod, security
 
 from tests.helpers import PASSWORD, login, make_user_client, new_client
 
-PUBLIC = {"login", "logout", "signup", "healthz", "static"}
+PUBLIC = {"login", "logout", "signup", "healthz", "static", "demo_start"}  # demo_start: 404 unless VAULT_DEMO=1
 
 
 @pytest.fixture
