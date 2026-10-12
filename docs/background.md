@@ -75,13 +75,18 @@ checkout.
 | How each area works and its limits | `.claude/skills/` |
 | Real documents for testing | `private/` and the two PDFs in the repository root (never committed, never copied into reports) |
 
+## Decided by the user on 2026-10-12
+
+- Data revision 3 goes ahead with a stop rule: if the round-4 realism review
+  fails on new kinds of fault, synthetic work stops until real rows exist.
+- Real categorised rows (the gold set) are not being sought now; the user will
+  come back to it.
+
 ## Open questions waiting for the user
 
-- Data gate, after three failed realism reviews: one more revision that fixes
-  the cause in the spec with a stop rule, or stop and wait for real rows, or
-  change the gate. Decides when the classifier can be retrained.
-- Can we get real rows: an already-categorised export from the first customer
-  (or from the user's own books) to start the gold set.
+- Realism review sample: judge 120 rows across both draws instead of 60 from
+  one, same 0.85 bar. Not approved yet; until the user says so the gate stays
+  at 60 rows from one draw.
 - Confirm or reject the two statistical thresholds that were changed after the
   round-1 audit failure (top-10 vendor share 40% to 55%; keyword band).
 - Keep or remove the five hand-set confidence scores in the demo until the
