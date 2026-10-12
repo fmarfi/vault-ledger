@@ -39,8 +39,19 @@ class PipelineResult:
 def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
     raw_text = extract_raw_text(document_path)
     fields = parse_fields(raw_text)
+    return propose_entry(
+        fields.vendor, fields.description, fields.amount, fields.paid, fields.date, classifier
+    )
 
-    predicted_account, confidence = classifier.predict(fields.vendor, fields.description)
+
+def propose_entry(
+    vendor: str, description: str, amount: float, paid: bool, date: str | None, classifier
+) -> PipelineResult:
+    """Everything after extraction: classify, gate, construct the entry.
+    Split out of run_pipeline so a caller that already has the fields (the
+    demo seed, vault_ledger.demo) goes through the same classifier, the same
+    confidence gate and the same rules layer as a scanned document."""
+    predicted_account, confidence = classifier.predict(vendor, description)
     review_flag = needs_manual_review(confidence)
 
     # The model can still predict an account that has since been retired
@@ -51,7 +62,7 @@ def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
         review_flag = True
 
     try:
-        entry = construct_entry(predicted_account, fields.amount, fields.paid)
+        entry = construct_entry(predicted_account, amount, paid)
         rejection_reason = None
     except RuleViolation as exc:
         entry = None
@@ -59,16 +70,16 @@ def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
         review_flag = True
 
     return PipelineResult(
-        vendor=fields.vendor,
-        description=fields.description,
+        vendor=vendor,
+        description=description,
         predicted_account=predicted_account,
         confidence=confidence,
         needs_review=review_flag,
         entry=entry,
         rejection_reason=rejection_reason,
-        amount=fields.amount,
-        paid=fields.paid,
-        date=fields.date,
+        amount=amount,
+        paid=paid,
+        date=date,
     )
 
 

@@ -18,4 +18,17 @@
   </form>
   {% if signup_enabled %}<p class="auth-alt"><a href="{{ url_for('signup') }}">Create an account</a></p>{% endif %}
 </section>
+{% if demo_enabled %}
+<section class="card auth-card demo-card">
+  <h2>Just looking?</h2>
+  <p class="muted small">
+    Open a private demo account filled with invented sample data. No sign-up,
+    nothing real, and it is deleted when you exit or after 24 hours.
+  </p>
+  <form method="post" action="{{ url_for('demo_start') }}" class="auth-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn btn-primary">Try the demo</button>
+  </form>
+</section>
+{% endif %}
 {% endblock %}

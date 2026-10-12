@@ -30,13 +30,19 @@ from vault_ledger import auth, userdata
 
 # Endpoints reachable without a login. Everything else is protected by default,
 # so a route added later is protected unless someone opts it out here.
-PUBLIC_ENDPOINTS = frozenset({"login", "logout", "signup", "healthz", "static"})
+PUBLIC_ENDPOINTS = frozenset({"login", "logout", "signup", "healthz", "static", "demo_start"})
+# Demo mode (VAULT_DEMO=1). These do not exist while the switch is off.
+DEMO_ENDPOINTS = frozenset({"demo_start", "demo_reset", "demo_exit"})
 MUTATING = frozenset({"POST", "PUT", "PATCH", "DELETE"})
 SESSION_HOURS = 8
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 CSRF_HEADER = "X-CSRF-Token"
 GENERIC_LOGIN_ERROR = "Invalid username or password."
 THROTTLED_ERROR = "Too many failed attempts. Please wait a few minutes and try again."
+DEMO_THROTTLED_ERROR = "Too many demos started from here. Please wait a few minutes and try again."
+DEMO_FULL_ERROR = "The demo is busy right now. Please try again later."
+MAX_DEMO_STARTS = 10      # per IP per throttle window; every start counts
+MAX_DEMO_USERS = 100      # live demo users at once, bounds disk use
 
 
 # ---- secret key ------------------------------------------------------------
@@ -181,6 +187,8 @@ def _session_user() -> dict | None:
         user = auth.get_user(uid)
     except (OSError, ValueError, KeyError):
         user = None
+    if user is not None and auth.is_demo(user) and not demo_enabled():
+        user = None  # switching demo mode off ends every demo session
     if user is None or not hmac.compare_digest(session.get("ph", ""), auth.password_stamp(user)):
         session.pop("uid", None)
         session.pop("ph", None)
@@ -198,6 +206,35 @@ def _start_session(user: dict) -> None:
 
 def signup_enabled() -> bool:
     return os.environ.get("VAULT_ALLOW_SIGNUP") == "1"
+
+
+def demo_enabled() -> bool:
+    return os.environ.get("VAULT_DEMO") == "1"
+
+
+def start_demo_session() -> tuple[dict | None, str | None]:
+    """Create a throwaway demo user and sign this browser in as it. Returns
+    (user, None), or (None, error) when throttled or full. The caller seeds
+    the new user's directory. Expired demo users are purged first."""
+    key = (_client_ip(), "*demo")
+    if throttle.blocked(key, MAX_DEMO_STARTS):
+        return None, DEMO_THROTTLED_ERROR
+    throttle.fail(key)  # every start counts
+    auth.purge_expired_demo_users()
+    if len(auth.demo_users()) >= MAX_DEMO_USERS:
+        return None, DEMO_FULL_ERROR
+    if auth.is_demo(getattr(g, "user", None)):
+        auth.delete_demo_user(g.user["id"])  # starting over: don't orphan the old one
+    user = auth.create_demo_user()
+    _start_session(user)
+    return user, None
+
+
+def end_demo_session(user: dict) -> None:
+    """Delete a demo user and its directory and clear the session.
+    auth.delete_demo_user refuses anything not flagged demo."""
+    auth.delete_demo_user(user["id"])
+    session.clear()
 
 
 # ---- wiring ----------------------------------------------------------------
@@ -235,6 +272,12 @@ def init_app(app: Flask) -> None:
             if endpoint == "logout" and user is None:
                 return None  # stale page, nothing to protect: the view just clears
             return jsonify({"error": "missing or invalid CSRF token; reload the page and try again"}), 403
+        # Demo routes, checked after CSRF like everything else: none of them
+        # exist while the switch is off, and reset/exit only for a demo user.
+        if endpoint in DEMO_ENDPOINTS and not demo_enabled():
+            return jsonify({"error": "not found"}), 404
+        if endpoint in DEMO_ENDPOINTS - {"demo_start"} and not auth.is_demo(user):
+            return jsonify({"error": "not found"}), 404
         return None
 
     @app.teardown_request
@@ -263,7 +306,14 @@ def init_app(app: Flask) -> None:
 
     @app.context_processor
     def _inject():
-        return {"current_user": getattr(g, "user", None), "csrf_token": csrf_token, "signup_enabled": signup_enabled()}
+        user = getattr(g, "user", None)
+        return {
+            "current_user": user,
+            "csrf_token": csrf_token,
+            "signup_enabled": signup_enabled(),
+            "demo_enabled": demo_enabled(),
+            "is_demo": auth.is_demo(user),
+        }
 
     @app.route("/healthz")
     def healthz():
@@ -294,6 +344,8 @@ def init_app(app: Flask) -> None:
 
     @app.route("/logout", methods=["POST"])
     def logout():
+        if auth.is_demo(g.user):  # a demo user can't sign back in: don't leave it behind
+            auth.delete_demo_user(g.user["id"])
         session.clear()
         return redirect(url_for("login"))
 

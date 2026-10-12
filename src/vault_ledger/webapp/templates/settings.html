@@ -44,9 +44,10 @@
     <a class="btn btn-primary" href="/api/backup" download>Download backup</a>
   </div>
   <div class="settings-row">
-    <input id="restore-input" type="file" accept=".zip,application/zip">
-    <button id="restore-btn" class="btn btn-secondary" type="button">Restore from file</button>
+    <input id="restore-input" type="file" accept=".zip,application/zip"{{ ' disabled' if is_demo else '' }}>
+    <button id="restore-btn" class="btn btn-secondary" type="button"{{ ' disabled' if is_demo else '' }}>Restore from file</button>
   </div>
+  {% if is_demo %}<p class="muted small">Restoring a backup is turned off in the demo. Use "Reset demo" to start over.</p>{% endif %}
   <div id="backup-status" class="muted small"></div>
 </section>
 

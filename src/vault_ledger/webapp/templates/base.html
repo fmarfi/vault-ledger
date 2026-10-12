@@ -32,12 +32,34 @@
   <a href="{{ url_for('settings_page') }}" class="{{ 'active' if active_page == 'settings' else '' }}">Settings</a>
   <span class="nav-user">
     <span class="nav-username">{{ current_user.username }}</span>
+    {% if not is_demo %}
     <form method="post" action="{{ url_for('logout') }}" class="nav-logout">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <button type="submit" class="nav-signout">Sign out</button>
     </form>
+    {% endif %}
   </span>
 </nav>
+{% endif %}
+
+{% if is_demo %}
+<div class="demo-banner" role="status">
+  <span class="demo-banner-tag">Demo</span>
+  <span class="demo-banner-text">
+    <strong>Demo data — nothing here is real.</strong>
+    The vendors, amounts and documents are invented, and the high confidence
+    scores in the review queue are illustrative, not measured. This demo
+    account is private to you and is deleted when you exit or after 24 hours.
+  </span>
+  <form method="post" action="{{ url_for('demo_reset') }}" class="demo-banner-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="demo-banner-btn">Reset demo</button>
+  </form>
+  <form method="post" action="{{ url_for('demo_exit') }}" class="demo-banner-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="demo-banner-btn">Exit demo</button>
+  </form>
+</div>
 {% endif %}
 
 <div id="hardware-banner" class="hardware-banner" hidden></div>

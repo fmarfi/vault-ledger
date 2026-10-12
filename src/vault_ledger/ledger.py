@@ -47,7 +47,11 @@ def append_entry(
     confidence: float,
     was_corrected: bool,
     path: str | Path | None = None,
+    confirmed_at: str | None = None,
 ) -> None:
+    """`confirmed_at` (ISO timestamp) defaults to now. Only the demo seed
+    passes it, to backdate invented history so the Overview page has a
+    previous month to compare against."""
     path = resolve("ledger.csv", LEDGER_PATH, path)
     path.parent.mkdir(parents=True, exist_ok=True)
     is_new = not path.exists()
@@ -57,7 +61,7 @@ def append_entry(
             writer.writeheader()
         writer.writerow(
             {
-                "confirmed_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "confirmed_at": confirmed_at or datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "filename": filename,
                 "vendor": vendor,
                 "description": description,

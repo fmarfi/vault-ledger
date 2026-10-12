@@ -469,6 +469,28 @@ select {
 .hardware-low { background: #f0e3d6; color: #7a5628; }
 .hardware-critical { background: #f6e2df; color: var(--color-flag); }
 
+/* Demo mode: shown on every page while a demo user is signed in. Flag red so
+   it can't be mistaken for part of the product chrome. */
+.demo-banner {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 10px 32px; font-size: 13.5px;
+  background: var(--color-flag); color: var(--color-on-ink);
+  position: sticky; top: 0; z-index: 20;
+}
+.demo-banner-tag {
+  font-family: var(--font-figure); font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 2px 8px; border: 1px solid var(--color-on-ink); border-radius: var(--radius-sm);
+}
+.demo-banner-text { flex: 1; min-width: 240px; }
+.demo-banner-form { margin: 0; }
+.demo-banner-btn {
+  background: none; border: 1px solid var(--color-on-ink); color: var(--color-on-ink);
+  font: inherit; font-size: 13px; padding: 4px 12px; border-radius: var(--radius-sm); cursor: pointer;
+}
+.demo-banner-btn:hover { background: var(--color-on-ink); color: var(--color-flag); }
+.demo-card { margin-top: -28px; }
+
 /* ---- Sign-in, and the user control in the nav ---- */
 .nav-user { margin-left: auto; display: flex; align-items: center; gap: 12px; }
 .nav-username { font-family: var(--font-figure); font-size: 13px; color: var(--color-on-ink-muted); }
