@@ -404,3 +404,76 @@ def test_description_vocabulary_exclusivity_mean(big):
     sp.loader.exec_module(mv)
     rep = mv.report(mv.load(big / "transactions_1234.csv"))
     assert rep["description_GATE_vendor_name_tokens_removed"]["top20_only_mean"] <= 0.30
+
+
+# ----------------------------------------------------------------- revision 2 tests
+
+def test_quoted_seats_match_the_price_of_the_row(world):
+    """A contract's seat count changes over time (price_dynamics.seat_change_p_per_step) while the
+    description is rendered later from the shared contract object: the seats quoted in a row must be
+    the seats that row was priced at, so net / quoted seats only moves by a price change."""
+    import random
+    spec, corpus, hard, _, _ = world
+    vendors, _, _, _ = gen.build_vendors(corpus, hard)
+    sw = "Software & Subscriptions Expense"
+    hi = 1 + spec["price_dynamics"]["change_range"][1]
+    varied = 0
+    for v in vendors[sw]:
+        if v.cfg["mode"] != "plan" or gen.usd_billed(spec, v) or spec["price_dynamics"]["extras"].get(v.family):
+            continue
+        for k in range(6):
+            rows = gen.vendor_rows(random.Random("seat-test:%s:%d" % (v.name, k)), spec, v, 20,
+                                   corpus[sw]["pools"][v.cfg["family"]])
+            by_seg = {}
+            for r in rows:
+                if r["recurring"] and r["seg"].plan[2]:
+                    by_seg.setdefault(id(r["seg"]), []).append(r)
+            for rs in by_seg.values():
+                r0 = random.Random(0)
+                for r in rs:
+                    r["inv"] = "X"
+                unit = [r["net"] / gen.render_ctx(r, r0)["seats"] for r in rs]
+                varied += len(set(r["seats"] for r in rs)) > 1
+                for a, b in zip(unit, unit[1:]):
+                    assert 0.995 <= b / a <= hi + 0.005, (v.name, a, b)
+    assert varied >= 5
+
+
+@pytest.mark.parametrize("which,seed", [("big", 1234), ("big2", 4321)])
+def test_reference_text_matches_document_type(request, world, which, seed):
+    """Round-2 blocking artifacts: no invoice wording on receipts, order numbers only on webshop-style
+    invoices / iDEAL receipts, no invoice number on a bank line of an archetype that does not invoice,
+    and no invoice number repeated inside one description. Easy rows only (hard rows are curated)."""
+    d = request.getfixturevalue(which)
+    spec, corpus, hard, _, _ = world
+    _, _, allv, _ = gen.build_vendors(corpus, hard)
+    by = {v.name: v for v in allv}
+    tx, meta = _rows(d, seed)
+    for t, m in zip(tx, meta):
+        if m["difficulty"] != "easy":
+            continue
+        text, cfg = t["description"], by[m["vendor_canonical"]].cfg
+        if m["doc_type"].startswith("receipt"):
+            assert not re.search(r"factuur|invoice", text, re.I), (t, m)
+        if re.search(r"\b(order|bestelling)\b[^0-9]{0,12}\d{5,}", text, re.I):
+            assert gen.order_like(cfg) and m["doc_type"] in ("invoice", "receipt_ideal"), (t, m)
+        if m["doc_type"] == "bank" and not gen.invoicing(cfg):
+            assert not re.search(r"factuur|invoice|fact\.|inv\.", text, re.I), (t, m)
+        nums = [x.lower() for x in re.findall(
+            r"(?:factuur\w*|invoice|fact\.|inv\.)(?: number| nummer)?:? ([\w/-]*\d{3,}[\w/-]*)", text, re.I)]
+        assert len(nums) == len(set(nums)), (t, m)
+        assert not re.search(r"(\d\d-\d\d-\d{4}) \1", text), (t, m)
+
+
+@pytest.mark.parametrize("which,seed", [("big", 1234), ("big2", 4321)])
+def test_frozen_price_share_below_gate(request, which, seed):
+    """Realism gate (heuristic): rows of vendors with >= 10 easy rows and <= 3 distinct amounts stay
+    under 10% of all rows (round-2 critic's count; measure_realism.frozen_critic_definition)."""
+    import importlib.util as iu
+    d = request.getfixturevalue(which)
+    sp = iu.spec_from_file_location("measure_realism", ROOT / "data" / "synthetic" / "measure_realism.py")
+    mr = iu.module_from_spec(sp)
+    sp.loader.exec_module(mr)
+    tx, meta = mr.load(seed, d)
+    _, critic = mr.frozen(tx, meta, mr.fixed_price_vendors())
+    assert critic < 0.10, critic

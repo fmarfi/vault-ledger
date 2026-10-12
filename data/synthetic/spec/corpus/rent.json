@@ -21,7 +21,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   },
   "flexwerkplek_generic": {
    "family": "cowork",
@@ -42,7 +42,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   },
   "kantoorverhuur_generic": {
    "family": "office",
@@ -63,7 +63,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   },
   "vastgoed_bv_generic": {
    "family": "office",
@@ -84,7 +84,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   },
   "property_manager": {
    "family": "office",
@@ -105,7 +105,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   },
   "landlord_institutional": {
    "family": "institutional",
@@ -126,7 +126,7 @@
     "irregular": 0.03
    },
    "day": 1,
-   "index_p": 0.3
+   "index_p": 0.7
   }
  },
  "pools": {

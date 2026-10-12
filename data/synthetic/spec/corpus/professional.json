@@ -3,6 +3,7 @@
  "slug": "professional",
  "archetypes": {
   "kvk": {
+   "fixed_price": true,
    "family": "kvk",
    "mode": "template",
    "sub": "kvk",

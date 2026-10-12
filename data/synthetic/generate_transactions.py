@@ -1,4 +1,4 @@
-"""Seeded generator for synthetic Vault Ledger transactions (crew stage 3, revision 1).
+"""Seeded generator for synthetic Vault Ledger transactions (crew stage 3, revision 2).
 
 Run:  PYTHONPATH=src .venv/bin/python data/synthetic/generate_transactions.py \
           [--seed 1234] [--rows 4000] [--out-dir data/synthetic/generated]
@@ -77,12 +77,15 @@ DOMAIN_WORDS = ["studio", "atelier", "werk", "bureau", "denk", "bouw", "groen", 
                 "west", "noord", "zuid", "ambacht", "kompas", "vonk", "lijn", "hout", "steen"]
 GENERIC_FALLBACK = [{"text": "Betaling", "lang": "nl"}, {"text": "Diversen", "lang": "nl"},
                     {"text": "Invoice {inv}", "lang": "en"}, {"text": "Factuur {inv}", "lang": "nl"}]
-MIX_FRAG = {"nl": ["Invoice {inv}", "Payment ref {ref}", "Order {ref}"],
+MIX_FRAG = {"nl": ["Invoice {inv}", "Payment ref {ref}", "Ref. {ref}"],
             "en": ["Factuurnr {inv}", "Betaling {ref}", "Referentie {ref}"]}
 
 
 REF_FRAG = {"nl": ["Kenmerk {ref}", "Betreft factuur {inv}", "Referentie {ref}", "Uw kenmerk {ref}"],
             "en": ["Ref {ref}", "Payment reference {ref}", "Re: invoice {inv}", "Your reference {ref}"]}
+ORDER_RX = re.compile(r"\b(order|bestelling)\b", re.I)
+PERIOD_ONLY_RX = re.compile(r"^(Betaling|Payment) \{period\}$")
+INVOICE_WORD_RX = re.compile(r"factuur|invoice|services|dienstverlening", re.I)
 BANNED_DIGITS = ("1234", "4321", "5514")   # run seeds and the artifact literal seen in the old draw
 
 
@@ -246,6 +249,101 @@ def round_to(x, step):
     return max(step, round(x / step) * step) if step else x
 
 
+# revision 2: prices of a recurring contract move (yearly change, seat changes, USD billing, extras)
+
+def fx_rate(spec, d):
+    """Synthetic EUR/USD level for the month of d: ONE deterministic random walk shared by every
+    vendor and every seed. An assumption, not market data."""
+    fx = spec["price_dynamics"]["fx"]
+    if not fx_rate.cache:
+        r = vrng("eurusd", "fx")
+        x = fx["start"]
+        for _ in range(24):
+            fx_rate.cache.append(x)
+            x = min(fx["max"], max(fx["min"], x * math.exp(r.gauss(0, fx["monthly_sigma"]))))
+    return fx_rate.cache[(d.year - 2025) * 12 + d.month - 1]
+
+
+fx_rate.cache = []
+
+
+def usd_billed(spec, v):
+    return v.cfg["mode"] == "plan" and v.country in spec["price_dynamics"]["usd_billed_countries"]
+
+
+def vendor_unit(v, plan):
+    """Archetype menus are placeholder price points shared by every vendor of the archetype; a vendor
+    without its own menu gets a nearby price of its own, so two vendors never share one price list."""
+    if v.plans:
+        return plan[1]
+    r = vrng(v.name, "unit:" + plan[0])
+    x = plan[1] * math.exp(r.uniform(-0.2, 0.2))
+    return max(1.0, math.floor(x) + r.choice([0.0, 0.0, 0.5, 0.95, 0.99]))
+
+
+def evolve(rng, spec, v, seg, d, prev):
+    """Between two consecutive rows of one contract: a price change (most likely at the turn of the
+    year) and, on per-seat plans, a seat added or removed."""
+    pdyn = spec["price_dynamics"]
+    cfg = v.cfg
+    if not cfg.get("fixed_price") and not cfg.get("index_p"):
+        months = max(1, (d.year - prev.year) * 12 + d.month - prev.month)
+        p = pdyn["annual_change_p"] if d.year != prev.year else min(1.0, pdyn["midyear_change_p_per_month"] * months)
+        if rng.random() < p:
+            seg.mult *= 1 + rng.uniform(*pdyn["change_range"])
+    if seg.plan and seg.plan[2] and rng.random() < pdyn["seat_change_p_per_step"]:
+        seg.seats = max(1, seg.seats + rng.choice([1, 1, -1]))
+
+
+def invoicing(cfg):
+    """Does this archetype normally send invoices (so a bank line may quote an invoice number)?"""
+    return cfg["doc"].get("invoice", 0.0) >= 0.35
+
+
+def order_like(cfg):
+    """Webshop-style archetypes (iDEAL checkout) are the only ones with order numbers."""
+    return bool(cfg.get("orders", cfg["doc"].get("receipt_ideal", 0.0) >= 0.2))
+
+
+def allowed(t, cfg, doc):
+    """Can template t appear on document type doc for this archetype? No order numbers outside
+    webshop orders, no invoice numbers on receipts or on bank lines of vendors that do not invoice,
+    no bare 'payment <month>' on a till receipt."""
+    text = t["text"]
+    if ORDER_RX.search(text) and "{ref}" in text and not (order_like(cfg) and doc in ("invoice", "receipt_ideal")):
+        return False
+    if "{inv}" in text and (doc.startswith("receipt") or (doc == "bank" and not invoicing(cfg))):
+        return False
+    if doc.startswith("receipt") and PERIOD_ONLY_RX.match(text):
+        return False
+    return True
+
+
+def for_doc(pool, cfg, doc):
+    t = [x for x in pool if allowed(x, cfg, doc)]
+    return t or pool
+
+
+def generic_for(texts, cfg, doc):
+    t = [x for x in texts if allowed(x, cfg, doc)
+         and not (doc.startswith("receipt") and INVOICE_WORD_RX.search(x["text"]))]
+    return t or [{"text": "Betaling", "lang": "nl"}]
+
+
+def distinct(r, text, rng, taken):
+    """Make a repeated (vendor, description) pair distinct with context the document really has:
+    the invoice number where one exists, otherwise the date, and a time only if the date is not
+    enough (two purchases at one vendor on one day). taken(text) tells whether text is in use."""
+    if r["doc"] == "invoice" or (r["doc"] == "bank" and invoicing(r["cv"].cfg)):
+        return "Factuur %s - %s" % (r["inv"], text)
+    date = r["date"].strftime("%d-%m-%Y")
+    if date not in text:
+        text = "%s %s" % (text, date)
+        if not taken(text):
+            return text
+    return "%s %02d:%02d" % (text, rng.randint(7, 21), rng.randint(0, 59))
+
+
 class Seg(object):
     """One contract / customer: fixed plan, seats, base amounts."""
 
@@ -255,7 +353,7 @@ def plans_for(v):
     if not menu:
         return []
     r = vrng(v.name, "plans")
-    n = 1 if len(menu) == 1 else (1 if r.random() < 0.6 else 2)
+    n = 1 if len(menu) == 1 else min(len(menu), 2 if r.random() < 0.6 else 3)
     idx = list(range(len(menu)))
     r.shuffle(idx)
     return [menu[i] for i in sorted(idx[:n])]
@@ -268,11 +366,12 @@ def new_segment(rng, spec, v):
     seg.plan = None
     seg.seats = 1
     seg.bases = {}
+    seg.mult = 1.0
     sj = cfg.get("seg_jitter", 0)
     seg.jit = math.exp(max(-0.5, min(0.5, rng.gauss(0, sj)))) if sj else 1.0
     if cfg["mode"] == "plan":
         offered = plans_for(v)
-        seg.plan = offered[0] if len(offered) == 1 or rng.random() < 0.7 else offered[1]
+        seg.plan = offered[0] if len(offered) == 1 or rng.random() < 0.6 else rng.choice(offered[1:])
         if seg.plan[2]:
             se = spec["amounts"][SW]["params"]["seats"]
             seg.seats = wchoice(rng, list(se.keys()), list(se.values()))
@@ -298,11 +397,15 @@ def draw_price(rng, spec, v, seg, tmpl, d, annual):
     hrs = None
     is_total = cfg.get("amt_is", "total") == "total"
     if mode == "plan":
-        unit, per_seat, cad = seg.plan[1], seg.plan[2], seg.plan[3]
+        unit, per_seat, cad = vendor_unit(v, seg.plan) * seg.mult, seg.plan[2], seg.plan[3]
         amount = unit * (seg.seats if per_seat else 1)
         if annual and cad == "m":
             ann = spec["amounts"][SW]["params"]["annual_multiplier"]
             amount = amount * ann["factor"] * ann["discount"]
+        if usd_billed(spec, v):
+            # list price in USD, debited in EUR at the month's rate plus a small card-rate spread
+            j = spec["price_dynamics"]["fx"]["card_rate_jitter"]
+            amount = amount / fx_rate(spec, d) * (1 + rng.uniform(-j, j))
         is_total = False
     elif mode == "usage":
         amount = seg.scale * rng.lognormvariate(0, 0.25)
@@ -317,7 +420,7 @@ def draw_price(rng, spec, v, seg, tmpl, d, annual):
             key = tmpl.get("grp", tmpl["text"])
             if key not in seg.bases:
                 seg.bases[key] = fixed_base(v, tmpl, cfg) * seg.jit
-            amount = seg.bases[key]
+            amount = seg.bases[key] * seg.mult
         else:
             amount = log_uniform(rng, lo, hi)
         if cfg.get("seasonal") and not tmpl.get("fixed"):
@@ -326,6 +429,9 @@ def draw_price(rng, spec, v, seg, tmpl, d, annual):
         step = tmpl.get("rnd") or cfg.get("rnd")
         if step:
             amount = round_to(amount, step)
+    ex = spec["price_dynamics"]["extras"].get(v.family)
+    if ex and rng.random() < ex["p"]:
+        amount += log_uniform(rng, *ex["range"])   # out-of-bundle usage, meeting rooms, add-ons
     net, vat, total = apply_vat(amount, is_total, rate, rc)
     return net, vat, total, hrs, rate, rc
 
@@ -362,7 +468,10 @@ def make_row(rng, spec, v, seg, tmpl, doc, d, recurring, annual):
     pdate = prev_month(d) if v.cfg.get("billing") == "arrears" else d
     return {"date": d, "doc": doc, "net": net, "vat": vat, "total": total, "vrate": rate, "rc": rc,
             "tmpl": tmpl, "lang": tmpl["lang"], "seg": seg, "hrs": hrs, "pdate": pdate,
-            "recurring": recurring, "cv": v}
+            "recurring": recurring, "cv": v,
+            # snapshot: seg is shared by all rows of a contract and evolve() changes its seat count,
+            # while descriptions are rendered later -- the text must quote the seats this row was priced at
+            "seats": seg.seats}
 
 
 def vendor_rows(rng, spec, v, k, pool):
@@ -379,9 +488,9 @@ def vendor_rows(rng, spec, v, k, pool):
     if style == "irregular":
         for _ in range(k):
             annual = (cfg["mode"] == "plan" and rng.random() < spec["amounts"][SW]["params"]["annual_multiplier"]["p"])
-            tmpl = rng.choice(suitable(pool, "annual" if annual else style))
-            seg = new_segment(rng, spec, v)
             doc = pick_doc(rng, cfg["doc"], False)
+            tmpl = rng.choice(for_doc(suitable(pool, "annual" if annual else style), cfg, doc))
+            seg = new_segment(rng, spec, v)
             d = date_for(rng, doc, cluster_p)
             rows.append(make_row(rng, spec, v, seg, tmpl, doc, d, False, annual or tmpl.get("cad") == "y"))
         return rows
@@ -397,26 +506,33 @@ def vendor_rows(rng, spec, v, k, pool):
             while start + span > 19:
                 start -= 3
             start = max(2, start)
-        rec = [t for t in suitable(pool, style) if t.get("rec", True)] or pool
+        doc = pick_doc(rng, cfg["doc"], True)
+        rec = for_doc([t for t in suitable(pool, style) if t.get("rec", True)] or pool, cfg, doc)
         primary = rng.choice(rec)
         alts = [t for t in rec if cfg["mode"] != "template"
                 or t.get("grp", t["text"]) == primary.get("grp", primary["text"])]
         seg = new_segment(rng, spec, v)
-        doc = pick_doc(rng, cfg["doc"], True)
+        prev = None
         day = rng.randint(1, 28) if style == "annual" else cfg.get("day") or rng.choice(cfg.get("days", list(range(1, 29))))
         idx = bool(cfg.get("index_p")) and rng.random() < cfg["index_p"]
         idx_mult = 1 + rng.uniform(0.02, 0.04)
+        indexed = False
         for j in range(L):
             y, m = add_months(2025, 1, start + j * step)
             d0 = last_bdays(y, m, 1)[0] if qe else roll_bd(mk_date(y, m, day))
             tm = primary if rng.random() < 0.7 else rng.choice(alts)
             dc = doc if rng.random() < 0.85 else pick_doc(rng, cfg["doc"], True)
-            r = make_row(rng, spec, v, seg, tm, dc, d0, True,
-                         style == "annual" and cfg["mode"] == "plan")
-            if idx and y == 2026:
-                net, vat, total = apply_vat(round_to(r["net"] * idx_mult, 5), False, r["vrate"], r["rc"])
-                r.update(net=net, vat=vat, total=total)
-            rows.append(r)
+            if not allowed(tm, cfg, dc):
+                dc = doc
+            if prev is not None:
+                evolve(rng, spec, v, seg, d0, prev)
+            prev = d0
+            if idx and y == 2026 and not indexed:
+                # yearly indexation of the contract price; extras are billed on top of it
+                seg.mult *= idx_mult
+                indexed = True
+            rows.append(make_row(rng, spec, v, seg, tm, dc, d0, True,
+                                 style == "annual" and cfg["mode"] == "plan"))
     return rows
 
 
@@ -424,19 +540,20 @@ def vendor_rows(rng, spec, v, k, pool):
 
 def render_ctx(row, rng):
     v, seg, d, lang = row["cv"], row["seg"], row["date"], row["lang"]
+    seats = row["seats"]
     pd = row["pdate"]
     last = mk_date(pd.year, pd.month, 31).day
     if lang == "nl":
-        users = "%d gebruiker%s" % (seg.seats, "" if seg.seats == 1 else "s")
+        users = "%d gebruiker%s" % (seats, "" if seats == 1 else "s")
     else:
-        users = "%d user%s" % (seg.seats, "" if seg.seats == 1 else "s")
+        users = "%d user%s" % (seats, "" if seats == 1 else "s")
     hrs = row["hrs"]
     hs = ""
     if hrs is not None:
         hs = ("%g" % hrs).replace(".", ",") if lang == "nl" else "%g" % hrs
     return {
         "product": v.product, "plan": seg.plan[0] if seg.plan else "", "users": users,
-        "seats": seg.seats, "period": "%s %d" % (month_name(pd, lang), pd.year),
+        "seats": seats, "period": "%s %d" % (month_name(pd, lang), pd.year),
         "month": month_name(pd, lang), "year": pd.year,
         "fy": d.year - 1 if d.month <= 9 else d.year,
         "pperiod": "01-%02d-%d t/m %02d-%02d-%d" % (pd.month, pd.year, last, pd.month, pd.year),
@@ -511,8 +628,14 @@ def assemble(row, core, rng, spec, paid, term_code):
     if p and rng.random() < p:
         parts.append(btw_fragment(row, rng))
     rp = pm.get("reference_fragment_p", {}).get(doc, 0.0)
+    if doc == "bank" and not invoicing(row["cv"].cfg):
+        rp *= pm["reference_fragment_non_invoicing_factor"]
     if rp and rng.random() < rp:
-        parts.append(rng.choice(REF_FRAG[row["lang"]]).format_map({"ref": rng.randint(100000, 99999999), "inv": row["inv"]}))
+        frags = REF_FRAG[row["lang"]]
+        if (doc == "bank" and not invoicing(row["cv"].cfg)) or str(row["inv"]) in core:
+            # no invoice number where no invoice exists, and never the same number twice in one line
+            frags = [f for f in frags if "{inv}" not in f]
+        parts.append(rng.choice(frags).format_map({"ref": rng.randint(100000, 99999999), "inv": row["inv"]}))
     pay = payment_text(row, rng, paid, spec)
     body = " - ".join(parts)
     if not pay:
@@ -589,17 +712,14 @@ def hard_row(rng, spec, hard, item, corpus):
     cfg = cv.cfg
     if item["kind"] == "disagree":
         # content generated as vendor cv (target account), shown under another vendor
-        tmpl = rng.choice(corpus[cv.account]["pools"][cfg["family"]])
-        seg = new_segment(rng, spec, cv)
         doc = pick_doc(rng, cfg["doc"], False)
+        tmpl = rng.choice(for_doc(corpus[cv.account]["pools"][cfg["family"]], cfg, doc))
+        seg = new_segment(rng, spec, cv)
         d = date_for(rng, doc, 0.0)
         return make_row(rng, spec, cv, seg, tmpl, doc, d, False, tmpl.get("cad") == "y")
     if item["generic"]:
-        gl = hard["generic"]
         doc0 = pick_doc(rng, cfg["doc"], False)
-        if doc0.startswith("receipt"):
-            gl = [x for x in gl if not re.search(r"Factuur|Invoice|Services|Dienstverlening", x["text"])]
-        g = rng.choice(gl)
+        g = rng.choice(generic_for(hard["generic"], cfg, doc0))
         if cv.account == "hard":
             tmpl = {"text": g["text"], "lang": g["lang"], "amt": cfg["amt"]}
         else:
@@ -681,7 +801,7 @@ def compatible(t, base):
             (t.get("amt") is None and base.get("amt") is None and t.get("cad", "any") == base.get("cad", "any")))
 
 
-def noise_plan(spec, cores, shown, docs, n_rows):
+def noise_plan(spec, cores, shown, docs, n_rows, cvs):
     """Per-op selection probability and eligibility mask so the realised rate ~= spec rate."""
     plan = {}
     for o in spec["noise_model"]["operations"]:
@@ -698,7 +818,10 @@ def noise_plan(spec, cores, shown, docs, n_rows):
             e = [d == "receipt_pos" for d in docs]
         elif name == "truncated_description":
             e = [len(c) > 40 for c in cores]
-        elif name in ("nl_en_mix_in_one_row", "missing_or_generic_description"):
+        elif name == "nl_en_mix_in_one_row":
+            # the mixed-in fragment quotes an invoice / payment reference: only where one exists
+            e = [d == "invoice" or (d == "bank" and invoicing(c.cfg)) for d, c in zip(docs, cvs)]
+        elif name == "missing_or_generic_description":
             e = [not d.startswith("receipt") for d in docs]
         else:
             e = [True] * len(cores)
@@ -716,7 +839,8 @@ def apply_core_noise(rng, trig, core, lang, generic_texts, inv):
         core = g["text"].format_map({"inv": inv, "ref": ref})
         applied.append("missing_or_generic_description")
     if "nl_en_mix_in_one_row" in trig:
-        frag = rng.choice(MIX_FRAG[lang]).format_map({"inv": inv, "ref": ref})
+        frag = rng.choice([f for f in MIX_FRAG[lang] if "{inv}" not in f or str(inv) not in core]
+                          ).format_map({"inv": inv, "ref": ref})
         core = (frag + " - " + core) if rng.random() < 0.5 else (core + " - " + frag)
         language = "mixed"
         applied.append("nl_en_mix_in_one_row")
@@ -799,24 +923,22 @@ def generate(seed, N, spec=None, corpus=None, hard=None):
             redraws += 1
             pool = None if r["cv"].account == "hard" else corpus[r["cv"].account]["pools"].get(r["cv"].cfg.get("family"))
             if attempt >= 1 and pool and not r["generic"]:
-                cands = [t for t in pool if compatible(t, r["tmpl"])]
+                cands = [t for t in pool if compatible(t, r["tmpl"]) and allowed(t, r["cv"].cfg, r["doc"])]
                 if cands:
                     r["tmpl"] = dict(rng.choice(cands))
                     r["lang"] = r["tmpl"]["lang"]
         else:
-            # genuinely distinct context instead of a repair tag: the row's date (receipts) or
-            # its unique invoice number (everything else)
-            if r["doc"].startswith("receipt") and r["date"].strftime("%d-%m-%Y") not in core:
-                core = "%s %s" % (core, r["date"].strftime("%d-%m-%Y"))
+            # genuinely distinct context instead of a repair tag: the row's unique invoice number
+            # where the document has one, otherwise its date (see distinct)
             if (r["show"].name, norm(core)) in seen_core:
-                core = "Factuur %s - %s" % (r["inv"], core)
+                core = distinct(r, core, rng, lambda c: (r["show"].name, norm(c)) in seen_core)
         seen_core.add((r["show"].name, norm(core)))
         r["core"] = core
         cores.append(core)
         docs.append(r["doc"])
         shown.append(r["show"])
 
-    ops = noise_plan(spec, cores, shown, docs, len(rows))
+    ops = noise_plan(spec, cores, shown, docs, len(rows), [r["cv"] for r in rows])
     out = []
     seen_final = set()
     for i, r in enumerate(rows):
@@ -829,10 +951,12 @@ def generate(seed, N, spec=None, corpus=None, hard=None):
             trig = [t for t in trig if t in keep]
         if r["doc"] == "invoice":
             key = r["true"] if r["true"] in pp["invoice_paid_fraction"] else GE
-            paid = rng.random() < pp["invoice_paid_fraction"][key]
+            paid = (r["cv"].archetype in pp["card_charged_archetypes"]
+                    or rng.random() < pp["invoice_paid_fraction"][key])
         else:
             paid = True
-        core, language, applied = apply_core_noise(rng, trig, r["core"], r["lang"], generic_texts, r["inv"])
+        core, language, applied = apply_core_noise(rng, trig, r["core"], r["lang"],
+                                                   generic_for(generic_texts, r["cv"].cfg, r["doc"]), r["inv"])
         text = assemble(r, core, rng, spec, paid, "store_terminal_code" in trig)
         if "store_terminal_code" in trig:
             applied.append("store_terminal_code")
@@ -858,7 +982,7 @@ def generate(seed, N, spec=None, corpus=None, hard=None):
         key = (norm(vs), norm(text))
         if key in seen_final:
             redraws += 1
-            text = "Factuur %s - %s" % (r["inv"], text)
+            text = scrub_digits(distinct(r, text, rng, lambda c: (norm(vs), norm(scrub_digits(c))) in seen_final))
             key = (norm(vs), norm(text))
         seen_final.add(key)
         out.append({"id": "s%s-%05d" % (seed, i), "vendor": vs, "description": text,

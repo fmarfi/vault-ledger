@@ -129,3 +129,29 @@ Root cause: vendors and descriptions were independent lists per account, so "Dro
 - Ambiguity labels: `vendor_description_disagree` rows are always `escalate=true` (label General/Other, `true_account` = the account the description implies); `generic_description` rows escalate only for ambiguous brand vendors, otherwise keep the vendor's account with difficulty `hard`. The headline escalate share is computed from the case table (0.5305 of hard rows) and a test asserts agreement.
 - Vocabulary exclusivity: `measure_vocab.py` reports description tokens with vendor-name tokens removed (the gate), raw description, vendor and vendor+description tokens. Every pool carries shared business vocabulary (factuur/invoice/betaling/order/periode); the price is a higher keyword-free template share (spec `keyword_shortcut_band`).
 - Tools: `check_corpus.py` (corpus structure and hygiene), `measure_vocab.py`, tests in `tests/test_synth_generator.py`.
+
+## Revision 2 (after the realism gate failed on draw 4321, round 2)
+
+The round-2 realism review named three blocking artifacts: frozen per-vendor price menus, "Order/Invoice NNN" reference text on lines that have no such number, and invoice/order wording on receipt-style vendors. Every number below is an **assumption** (tunable, not measured) and lives in `spec/generative_spec.yaml` unless a corpus file is named.
+
+Prices (`price_dynamics`, tag assumption):
+- A recurring contract's price can change between two rows: `annual_change_p` 0.60 at the turn of the year, `midyear_change_p_per_month` 0.015 otherwise, size `change_range` +2% to +9% (assumption).
+- Per-seat plans gain or lose one seat between two rows with `seat_change_p_per_step` 0.07 (assumption). The description quotes the seat count the row was priced at.
+- Vendors whose selling entity is in `usd_billed_countries` (US, CA, AU, PA) are treated as billing a USD list price debited in EUR, using one synthetic EUR/USD random walk (`fx`: start 1.05, monthly sigma 0.015, bounds 0.98-1.22, card-rate jitter 0.006). This is an assumption, not market data, and which real vendors bill NL customers in USD is not verified.
+- `extras`: per description family, a chance that a bill carries an extra on top of the base price (telecom out-of-bundle usage, coworking meeting rooms, hosting domain renewals, ...); probabilities and ranges are assumptions.
+- A vendor without its own plan menu gets a deterministic price near the archetype's placeholder (+-20%, endings .00/.50/.95/.99; assumption), so two vendors no longer share one price list. Vendors now offer 2-3 plans of their menu instead of 1-2 (assumption).
+- Rent indexation: corpus `index_p` 0.3 -> 0.7 (`corpus/rent.json`, assumption); the +2-4% step is applied to the contract price, extras are billed on top.
+- Fixed fees stay fixed: corpus flag `fixed_price` (KvK, `corpus/professional.json`) exempts an archetype from price changes.
+
+Reference text (enforced in `generate_transactions.allowed()` and `assemble()`):
+- The document type is drawn before the description template, and the template must fit it.
+- "Order/Bestelling <number>" only for webshop-style archetypes (doc mix `receipt_ideal` >= 0.2 or corpus flag `orders`; threshold is an assumption) and only on invoices and iDEAL receipts.
+- An invoice number never on a receipt, and on a bank line only when the archetype sends invoices (doc mix `invoice` >= 0.35; assumption). The appended reference fragment follows the same rule and is scaled by `payment_text.reference_fragment_non_invoicing_factor` 0.15 (assumption) on bank lines of non-invoicing archetypes.
+- The row's invoice number is not repeated by an appended reference or NL/EN mix-in fragment.
+- A bare "Betaling/Payment <month>" never on a receipt; the NL/EN mix-in only on rows that have an invoice or payment reference.
+- A repeated (vendor, description) pair is made distinct with the invoice number where the document has one, otherwise with the date, and with a time of day only if the date is not enough. It is no longer always prefixed "Factuur <n>".
+- `paid_unpaid.card_charged_archetypes` (assumption): archetypes charged at the moment of use (ride-hail, parking, fuel, transit, airlines...) are always paid.
+
+Tools and tests: `measure_realism.py` is a read-only counter (frozen-price share by two definitions, order-number share, integer-euro share). `tests/test_synth_generator.py` gained three checks: quoted seats match the row's price, reference text matches the document type, and the frozen-price share (vendors with >= 10 easy rows and <= 3 distinct amounts) stays under 10% of rows (heuristic gate).
+
+Known and not changed here: some retail and fuel archetypes still have a `bank` share in their corpus doc mix, so lines such as "Kassabon <date> - SEPA Overboeking" occur; that is a corpus (stage 2) decision. A monthly subscription with no price change inside one calendar year is still constant, by design.

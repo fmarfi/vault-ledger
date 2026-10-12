@@ -1,6 +1,6 @@
 {
-  "corpus_sha256": "e897fd08672dac1901a3ddbce088cb546020ce8309762198744a0bdff36c5947",
-  "generator_sha256": "565559740400df94fbdfb2754fec2d92b493c240e844102313edc0b8a076a2be",
+  "corpus_sha256": "b67da20283c13bd7b514d50dde8228cf896845326e88e3f1a24829ee4c453e85",
+  "generator_sha256": "3ad7712afe045469c36c357d36744d19990aa137c7776bef31c3a8409ff9c8fb",
   "notes": [
     "escalate rows carry account=General/Other Expense and escalate=true in metadata",
     "metadata is row-aligned with transactions and never a feature",
@@ -11,7 +11,7 @@
   "seed": 4321,
   "source": "synthetic",
   "spec_path": "data/synthetic/spec/generative_spec.yaml",
-  "spec_sha256": "1c83c37374f67d4db4e807367861927c0825db00cef2217f459c3eea80697282",
+  "spec_sha256": "1f7f0bb320c4ee1c30090a9d0dab2cdb6eff2e337897efdc168193f56c6a461d",
   "stats": {
     "account_fraction": {
       "General/Other Expense": 0.1125,
@@ -33,33 +33,33 @@
       "hard": 0.0563
     },
     "doc_type_share": {
-      "bank": 0.3528,
-      "invoice": 0.413,
-      "receipt_ideal": 0.074,
-      "receipt_pos": 0.1603
+      "bank": 0.3095,
+      "invoice": 0.4567,
+      "receipt_ideal": 0.0772,
+      "receipt_pos": 0.1565
     },
     "dup_rate_vendor_description": 0.0,
     "escalate_fraction_of_all": 0.0617,
     "escalate_fraction_of_hard": 0.5233,
     "escalate_fraction_of_hard_from_case_weights": 0.5305,
     "general_other_max_single_vendor_share": 0.073,
-    "integer_euro_amount_share": 0.169,
+    "integer_euro_amount_share": 0.073,
     "kvk_constant_share_of_professional": 0.1067,
     "language": {
-      "en": 0.4133,
-      "mixed": 0.1138,
-      "nl": 0.473
+      "en": 0.4135,
+      "mixed": 0.11,
+      "nl": 0.4765
     },
     "noise_realised_rate": {
-      "abbreviation_nl_en": 0.094,
-      "casing_variation": 0.2003,
-      "missing_or_generic_description": 0.0367,
-      "nl_en_mix_in_one_row": 0.1138,
-      "ocr_confusion": 0.048,
-      "store_terminal_code": 0.0532,
-      "truncated_description": 0.076,
+      "abbreviation_nl_en": 0.0968,
+      "casing_variation": 0.2008,
+      "missing_or_generic_description": 0.036,
+      "nl_en_mix_in_one_row": 0.11,
+      "ocr_confusion": 0.0465,
+      "store_terminal_code": 0.0437,
+      "truncated_description": 0.0795,
       "typo_char_swap_drop_dup": 0.054,
-      "vendor_legal_suffix_variation": 0.1477
+      "vendor_legal_suffix_variation": 0.1435
     },
     "noise_spec_rate": {
       "abbreviation_nl_en": 0.1,
@@ -73,15 +73,15 @@
       "vendor_legal_suffix_variation": 0.15
     },
     "paid_rate": {
-      "General/Other Expense": 0.971,
-      "Office Supplies Expense": 0.956,
+      "General/Other Expense": 0.98,
+      "Office Supplies Expense": 0.952,
       "Professional Services Expense": 0.562,
-      "Rent Expense": 0.963,
-      "Software & Subscriptions Expense": 0.965,
-      "Travel & Transport Expense": 0.98,
-      "Utilities Expense": 0.973
+      "Rent Expense": 0.951,
+      "Software & Subscriptions Expense": 0.954,
+      "Travel & Transport Expense": 0.994,
+      "Utilities Expense": 0.922
     },
-    "prof_invoice_last3_bdays_share": 0.3551,
+    "prof_invoice_last3_bdays_share": 0.4138,
     "row_fraction_per_split": {
       "test": 0.1495,
       "train": 0.7,
@@ -139,9 +139,9 @@
       "train": 2800,
       "val": 602
     },
-    "software_q95": 175.09,
-    "suffix_share_of_vendor_strings": 0.2767,
-    "template_redraws": 1751,
+    "software_q95": 137.93,
+    "suffix_share_of_vendor_strings": 0.2818,
+    "template_redraws": 2288,
     "top10_vendor_share_all_rows": {
       "General/Other Expense": 0.431,
       "Office Supplies Expense": 0.459,
@@ -202,7 +202,7 @@
     "weekend_share": {
       "bank": 0.0,
       "invoice": 0.0,
-      "receipt": 0.158
+      "receipt": 0.1294
     },
     "zipf_exponent_mle_easy_rows": {
       "General/Other Expense": {
