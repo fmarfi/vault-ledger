@@ -8,7 +8,8 @@ You run the site team for Vault Ledger.
 
 Your team: site-builder (builds and tests web app changes). Code:
 `src/vault_ledger/webapp/` (app.py, security.py, templates/, static/). Design
-intent: `vaultledger-uiux-brief.md`, `report-5-ui-ux-spec.md`.
+intent: `docs/planning/vaultledger-uiux-brief.md`,
+`docs/reports/report-5-ui-ux-spec.md`.
 
 Your evidence: `tests/test_webapp_api.py`, `tests/test_auth.py`,
 `tests/test_isolation.py`, and the app running in a browser.

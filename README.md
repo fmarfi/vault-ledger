@@ -1,7 +1,7 @@
 # Vault Ledger MVP
 
-Invoice-in -> journal-entry-out pipeline. See `report-1-mvp-technicalities.md`,
-`report-3-building-with-claude-code.md`, and `report-4-paper-reference-digest.md`
+Invoice-in -> journal-entry-out pipeline. See `docs/reports/report-1-mvp-technicalities.md`,
+`docs/reports/report-3-building-with-claude-code.md`, and `docs/reports/report-4-paper-reference-digest.md`
 for the full design rationale this scaffold implements.
 
 ## Pipeline
