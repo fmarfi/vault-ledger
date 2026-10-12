@@ -41,6 +41,21 @@ five team executives and gives you one overall picture.
   or loosened by anyone but you. Whoever wrote a change never judges it.
 - **Nothing is merged, pushed, or shown to a customer without your approval.**
 
+## Background first
+
+No agent acts without the background. Every definition starts with the same
+rule: read `docs/background.md`, read the research findings for your area, and
+if you cannot say why the task exists and what was decided before it, stop and
+ask. Each report opens with a "Background read:" line so you can see it was
+done. The main executive keeps `docs/background.md` current.
+
+## Research serves every team
+
+Any team executive can ask the research crew a question by adding a row to
+`docs/reports/research/requests.md`. The research executive assigns a scout,
+the skeptic re-checks the answer at its sources, and only then does the team
+build on it.
+
 ## Asking for a briefing
 
 In a Claude Code session, ask for the agent by name, for example "get the

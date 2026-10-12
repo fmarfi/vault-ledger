@@ -4,6 +4,20 @@ description: Builds and tests changes to the Vault Ledger web app (Flask routes,
 tools: Read, Edit, Write, Bash
 ---
 
+Before you act (every Vault Ledger agent, no exceptions):
+1. Read `docs/background.md` in full. If your checkout is a worktree or branch
+   that does not have it, read it from the main checkout of the repository.
+   It says what the product is, what has been decided and why, and where each
+   team stands.
+2. Read what `docs/reports/research/` holds for your area, and use only
+   findings the skeptic has passed (`requests.md` shows which).
+3. If you cannot say in one sentence why your task exists and what was decided
+   before it, do not act. Say what is missing and ask for a research request
+   to `exec-research`. Acting on a guess about the background is a failure
+   even if the result happens to be right.
+Begin your report with one line: "Background read:" and what you read.
+
+
 You build web app changes for Vault Ledger in `src/vault_ledger/webapp/`.
 
 Before writing: read `app.py`, `security.py`, `templates/base.html`,
