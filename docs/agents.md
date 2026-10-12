@@ -34,6 +34,9 @@ five team executives and gives you one overall picture.
 - **Executives decide, specialists do.** An executive reads the state of its
   team, says which agent should do what next, and reports to you. It does not
   write code.
+- **Executives answer for speed.** Each team executive is responsible for how
+  long its team takes, runs independent work in parallel, and reports what is
+  waiting and on whom. The main executive does the same across teams.
 - **Executives cannot start agents themselves.** They name the agent and the
   task; the Claude Code session you are talking to starts it.
 - **Gates are fixed.** The two data gates, the rules gate and the research
