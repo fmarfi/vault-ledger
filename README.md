@@ -124,3 +124,7 @@ structure, and `docs/reports/` for the design reports.
   [docs/deployment.md](docs/deployment.md) for the full list.
 - The chart of accounts has 9 default accounts (`src/vault_ledger/coa.py`),
   and users can customize it in Settings.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
