@@ -26,3 +26,12 @@ data/.migrated
 
 # private working files (real documents, screenshots); never commit
 private/
+
+# single-file desktop build (packaging/vault_ledger.spec)
+build/
+dist/
+data/documents/
+
+# Claude Code agent worktrees and local runtime corrections
+.claude/worktrees/
+/corrections.csv

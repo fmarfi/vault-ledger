@@ -1,329 +1,126 @@
-# Vault Ledger MVP
+# Vault Ledger
 
-Invoice-in -> journal-entry-out pipeline. See `docs/reports/report-1-mvp-technicalities.md`,
-`docs/reports/report-3-building-with-claude-code.md`, and `docs/reports/report-4-paper-reference-digest.md`
-for the full design rationale this scaffold implements.
+On-device bookkeeping for small companies: a document (invoice, utility bill,
+receipt) goes in, a balanced debit/credit journal entry comes out. A
+bookkeeper reviews the proposal, confirms or corrects it, and corrections feed
+the next training round.
 
-## Pipeline
+Everything runs locally. OCR, classification and the optional LLM fallback
+never send a document to a hosted service; this was a deliberate privacy
+decision.
 
-```
-document (image or PDF) -> OCR -> field parsing (vendor, description, date, amount)
-                 -> two-field fusion classifier -> account + confidence
-                 -> confidence gate -> deterministic debit/credit rules
-                 -> proposed journal entry
-```
-
-PDFs (`src/vault_ledger/extraction/pdf.py`) try the native text layer first
-(exact, no OCR needed, for born-digital PDFs) and fall back to
-rasterize + OCR only for scanned/image-only PDFs. First page only. OCR
-itself is deliberately **local-only** (Tesseract) -- hosted Document AI
-APIs were researched and rejected for privacy reasons (see the
-`vault-ledger-ocr-extraction` skill); this is a considered decision, not a
-gap to fill in later.
-
-## Setup
+## How it works
 
 ```
-python3 -m venv .venv
-.venv/bin/pip install -e ".[dev]"
-brew install tesseract   # required for OCR; see note below
+document (image or PDF)
+  -> text: native PDF text layer, or Tesseract OCR for scans
+  -> field parsing: vendor, description, date, amount, paid
+  -> two-field fusion classifier -> expense account + confidence
+  -> confidence gate (low confidence goes to manual review)
+  -> deterministic debit/credit rules -> balanced journal entry
 ```
 
-**Known local blocker:** on this machine, `brew install tesseract` was
-blocked by a pre-existing permissions issue unrelated to tesseract itself
-(`/usr/local/share/man/man5` not writable by the current user). Fix once:
+- **Extraction** (`src/vault_ledger/extraction/`). Born-digital PDFs are read
+  from their text layer and scans are rasterized and OCR'd. Field parsing has
+  three tiers: exact label match, then real-world heuristics, then an optional
+  local LLM (Ollama, `qwen2.5:1.5b-instruct`). The LLM's answer is only
+  accepted if the amount it returns actually appears in the document text, so
+  it can't make up a number.
+- **Classifier** (`src/vault_ledger/classifier/`). Vendor and description get
+  separate vectorizers. The two feature sets are concatenated and fed to one
+  model, whose labels are the chart of accounts. It returns a confidence
+  score along with the predicted account.
+- **Entry rules** (`src/vault_ledger/rules/`). The debit/credit logic is
+  deterministic and spec-driven (`rules_spec.json`). It runs a balance-check
+  invariant and refuses to build an entry that wouldn't balance.
+- **Web app** (`src/vault_ledger/webapp/`). It's a Flask app with a review
+  queue with bulk confirm, a documents history, per-account ledgers, an
+  overview, export, a customizable chart of accounts, and single-file backup
+  and restore. Each user's data lives in its own directory. The app has
+  CSRF protection, login throttling, security headers and an opt-in demo
+  mode.
+
+## Tech stack
+
+Python 3.9+, scikit-learn, Tesseract (pytesseract), pypdfium2, Flask, pandas,
+pytest. Ollama is optional.
+
+## Quick start
 
 ```
-sudo chown -R $(whoami) /usr/local/share/man/man5
-brew install tesseract
+python -m venv .venv
+.venv/bin/pip install -e ".[dev]"        # Windows: .venv\Scripts\pip
 ```
 
-Everything except the real-OCR integration tests works without tesseract
-installed (see Testing below) -- field parsing, the classifier, and the
-rules layer are all tested independently of it.
+Install [Tesseract](https://github.com/tesseract-ocr/tesseract) for OCR. On
+macOS run `brew install tesseract`, and on Windows use the UB-Mannheim
+installer. Everything except the end-to-end OCR tests works without it.
 
-**Optional, for field-parsing tier 3 (local LLM fallback):**
-
-```
-brew install --cask ollama-app   # NOT `brew install ollama` -- that formula
-                                   # builds Go from source on unsupported
-                                   # platforms; the cask ships a prebuilt app
-ollama pull qwen2.5:1.5b-instruct
-```
-
-Only reached when tiers 1-2 (exact label match, real-world heuristics) both
-fail -- see the `vault-ledger-ocr-extraction` skill. Without Ollama
-installed, this tier fails closed and you just get tier 2's normal error
-message; nothing breaks.
-
-## Running the demo
-
-### CLI
+**CLI**
 
 ```
-.venv/bin/python data/synthetic/generate_documents.py   # generates sample docs (png + native/scanned pdf)
-.venv/bin/python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies.png
-.venv/bin/python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies_native.pdf
+python data/synthetic/generate_documents.py     # sample invoice/bill/receipt (png + pdf)
+python -m vault_ledger.pipeline data/synthetic/documents/invoice_office_supplies.png
 ```
 
-Prints the parsed fields, predicted account + confidence, review flag, and
-the proposed journal entry (or the rejection reason if the rules layer
-refused it).
+This prints the parsed fields, the predicted account and confidence, and the
+proposed journal entry, or the reason the rules layer refused to build one.
 
-### Web app (investor/customer-facing demo)
-
-```
-.venv/bin/python -m vault_ledger.webapp.app
-```
-
-Opens a Flask dev server at http://127.0.0.1:5050 with three pages
-(`templates/base.html` + `static/style.css`'s token system are shared
-across all of them -- see that CSS file's `:root` to change the whole
-look in one place):
-
-- **/ — Review Queue.** Process one document at a time (sample or
-  upload), see the extracted fields, predicted account, and confidence --
-  shown as a pencil/ink mark, not a percentage bar (the raw number is
-  there on hover). Accept posts the entry to the ledger as shown; Correct
-  posts it under a different account and logs the correction for the next
-  training pass (M7). Still single-document, not a true multi-item queue --
-  see the honest limitation in `webapp/app.py`'s module docstring.
-- **/documents — Documents.** Every document that's been confirmed, with
-  what it turned into and whether it needed a correction. Backed by
-  `vault_ledger/ledger.py`, a new CSV-backed posted-entry record (separate
-  from `corrections.py`, which is training signal only).
-- **/ledger — Account ledger.** Confirmed entries grouped by account, with
-  running totals -- styled as a ledger book's thumb-index tabs, not a plain
-  tab bar.
-
-- **/settings — Settings.** Customize the expense chart of accounts (add,
-  retire, or start from a US/EU template -- `coa.py`, stored in
-  `data/accounts.json`), and download/restore a single-file backup of all
-  local data (`backup.py`; the trained model is deliberately excluded and
-  retrains from the restored training data).
-
-The Review Queue is a persistent multi-item queue (`queue.py`) with bulk
-confirm; the Documents page shows an honest "accepted as-is" rate computed
-from the ledger (`stats.py`); every page shows a banner when this machine is
-under the recommended 16 GB RAM (`hardware.py`).
-
-
-It's a thin UI layer over `vault_ledger.pipeline` and `vault_ledger.ledger`
--- no separate business logic. Not a production deployment (Flask dev
-server, single in-memory classifier instance).
-
-## Accounts, sessions and running it for other people
-
-The web app requires a login. Every user gets a private directory
-`data/users/<random id>/` holding their own `ledger.csv`, `pending_queue.csv`,
-`corrections.csv`, `accounts.json`, `backups/` and `training.csv`. Paths are
-built from the random id only, never from the username, and the storage layer
-(`src/vault_ledger/userdata.py`) refuses any path outside the signed-in user's
-directory. The CLI, the classifier scripts and the tests still use the old
-single-user locations when no user is set.
-
-**Create users** (there is no open registration):
+**Web app**
 
 ```
-.venv/bin/python -m vault_ledger.auth add-user alice        # asks for a password twice
-.venv/bin/python -m vault_ledger.auth list-users
-.venv/bin/python -m vault_ledger.auth set-password alice     # also ends alice's sessions
-.venv/bin/python -m vault_ledger.auth delete-user alice      # asks you to retype the name; deletes only alice's data dir
+python -m vault_ledger.auth add-user alice
+python -m vault_ledger.webapp.app               # http://127.0.0.1:5050
+VAULT_DEMO=1 python -m vault_ledger.webapp.app  # adds a "Try the demo" button with seeded data
 ```
 
-Usernames are 3-32 characters of `a-z 0-9 _ . -`, unique case-insensitively.
-Passwords: at least 10 characters and not equal to the username; stored as
-salted scrypt hashes in `data/users.json` (mode 0600, written atomically).
-
-**Move your existing single-user data** (the pre-login `data/ledger.csv`,
-`data/pending_queue.csv`, `corrections.csv`, `data/accounts.json`,
-`data/backups/`) into a user, once:
-
-```
-.venv/bin/python -m vault_ledger.auth add-user alice
-.venv/bin/python -m vault_ledger.auth migrate-legacy alice
-```
-
-It copies, verifies each copy byte for byte, and writes `data/.migrated`. The
-originals are left where they are (never deleted for you); delete them by hand
-once you have checked. It refuses to run twice.
-
-**Environment variables**
-
-| Variable | Meaning |
-|---|---|
-| `VAULT_SECRET_KEY` | Session signing key. If unset, a random one is generated once into `data/.secret_key` (0600). There is no built-in default. |
-| `VAULT_COOKIE_SECURE=1` | Mark the session cookie `Secure`. **Set this whenever the app is served over HTTPS**, and serve it over HTTPS (reverse proxy such as Caddy/nginx) if it is reachable by anyone else. |
-| `VAULT_ALLOW_SIGNUP=1` | Enable a self-service `/signup` page. Off by default. |
-| `VAULT_DEMO=1` | Enable demo mode: a "Try the demo" button on the sign-in page. Off by default. See [Demo mode](#demo-mode). |
-| `VAULT_HOST` / `VAULT_PORT` | Bind address (default `127.0.0.1`) and port (default `5050`). |
-| `VAULT_DEBUG=1` | Flask debug mode. Off by default; the app refuses to start with it on a non-loopback host. |
-| `VAULT_TRUST_PROXY=1` | Trust one `X-Forwarded-For/Proto/Host` hop from a reverse proxy (so the login throttle sees real client IPs). Only set behind a proxy that overwrites those headers. |
-| `VAULT_DATA_DIR` | Where `users.json`, `.secret_key` and `users/` live (default `data/`). |
-
-**How it behaves.** Signed-cookie sessions (HttpOnly, SameSite=Lax, 8-hour
-lifetime, replaced on login, cleared on `POST /logout`). Every state-changing
-request needs the per-session `X-CSRF-Token` header (the pages read it from a
-`<meta>` tag). 5 failed logins per (IP, username) in 15 minutes gives HTTP 429;
-unknown user and wrong password produce the same message. Everything except
-`/login`, `/logout`, `/healthz` and `/static/*` requires login (`/api/*` answers
-401, pages redirect to `/login`). Responses carry `nosniff`, `X-Frame-Options:
-DENY`, `Referrer-Policy: same-origin`, `Cache-Control: no-store`, and a CSP with
-`frame-ancestors 'none'`. Uploads are capped at 20 MB. Backup restore accepts
-only the fixed member names, refuses symlinks and oversized archives, and only
-ever writes the caller's own directory.
-
-**Running it for several people.** Use a real WSGI server, and run exactly ONE
-process (threads are fine), because the login throttle and the per-user locks
-live in that process:
-
-```
-.venv/bin/pip install waitress      # or gunicorn; not a project dependency
-VAULT_COOKIE_SECURE=1 .venv/bin/waitress-serve --host 127.0.0.1 --port 5050 --threads 8 vault_ledger.webapp.wsgi:app
-# gunicorn equivalent: gunicorn -w 1 --threads 8 vault_ledger.webapp.wsgi:app
-```
-
-**What this does NOT do** (be honest with your users):
-
-- No encryption at rest: anyone with read access to the machine's disk or
-  backups can read every user's files. Users are separated by the app, not by
-  the operating system.
-- No password reset flow, no email, no 2FA, no account lockout beyond the
-  throttle. The operator resets passwords with the CLI.
-- No per-user classifier. The trained model is shared and read-only; a user's
-  corrections are stored in their own `corrections.csv` and never folded into
-  the shared training data or model, so one user's data cannot influence
-  another's predictions. The web app has no retrain button; the existing CLI
-  (`apply_corrections`, `train`) still works on the legacy single-user files
-  and is not per-user. Per-user `training.csv` exists (and is in backups) but
-  nothing trains on it yet.
-- The login throttle is in memory: it resets on restart and is not shared
-  between processes.
-- Sessions are stateless signed cookies: "Sign out" clears the browser's copy
-  but a stolen cookie stays valid until it expires (8 h) unless the user's
-  password is changed or the user is deleted.
-- Single process only. `is_admin` is recorded but currently grants nothing.
-- Uploaded documents' OCR temp files pass through the shared OS temp dir
-  briefly and are deleted immediately.
-
-## Demo mode
-
-For walking someone through the whole flow without any real data. Off by
-default; turn it on with an environment variable (read on every request, like
-`VAULT_ALLOW_SIGNUP`):
-
-```
-VAULT_DEMO=1 .venv/bin/python -m vault_ledger.webapp.app
-```
-
-While it is off, `/demo/*` answers 404 and no demo button is rendered.
-
-**What happens.** The sign-in page gets a separate "Try the demo" button.
-Each click creates a brand-new throwaway user (`demo-<8 hex>`, random id,
-random password that is never shown and cannot be used: demo users are
-refused at password login), seeds that user's own directory under
-`data/users/<id>/`, and signs the browser in. Two people trying the demo at
-the same time get two separate users and never see each other's data. A red
-banner stays on every page with **Reset demo** (wipe and reseed this demo
-user) and **Exit demo** (sign out and delete the user and its directory).
-
-**What it seeds** (`src/vault_ledger/demo.py`, a fixed list with dates
-relative to today):
-
-- 34 posted ledger entries over the last three months, covering every default
-  expense account: office rent, energy, water, internet and mobile, SaaS
-  subscriptions, train travel, an accountant, office supplies and so on.
-- 7 documents waiting in the review queue: 5 ready for bulk confirm and 2
-  flagged for individual review.
-
-Everything goes through the normal code paths (classifier, confidence gate,
-`construct_entry`, `append_entry`, `enqueue`), so every entry balances.
-
-**The data is invented.** The vendor names are plausible suppliers for a small
-Dutch startup, but no such invoices exist. Two things to know before
-presenting it:
-
-- The confidence and "corrected" flag on the posted history are the real
-  classifier's output on this invented data. With the current small training
-  set that confidence is low (roughly 0.2 to 0.5), so the Documents page marks
-  those entries "Uncertain".
-- The five bulk-confirmable queue items carry a **hand-set, illustrative**
-  account and confidence (0.86 to 0.95). The shipped classifier does not clear
-  the 0.75 confidence gate on anything yet, so without this every item would
-  be flagged and bulk confirm could not be shown. They are not a measurement of
-  the model; the banner says so on screen. The two flagged items are untouched
-  real classifier output. A document uploaded live during a demo also gets the
-  real (low) confidence.
-
-Amounts are plain numbers at euro scale; the UI still prints a fixed `$`
-(there is no currency setting yet).
-
-**Limits for demo users.** They can do everything in their own directory
-(process documents, confirm, correct, edit their chart of accounts, export,
-download a backup) but cannot restore a backup from an upload (HTTP 403), and
-have no access to any other user's data, like every other user.
-
-**Cleanup.** A demo user is deleted, record and directory, on Exit demo, or
-when it is more than 24 hours old: expired demo users are purged whenever
-someone starts a new demo (there is no background job, so the last ones stay
-on disk until the next start). Turning `VAULT_DEMO` off ends all demo
-sessions at once. Starts are limited to 10 per IP per 15 minutes and 100 live
-demo users in total.
+[docs/deployment.md](docs/deployment.md) covers accounts, environment
+variables, the security model, running the app for several users, and demo
+mode.
 
 ## Testing
 
 ```
-.venv/bin/python -m pytest tests/ -v
+python -m pytest tests/
 ```
 
-The 3 end-to-end OCR tests in `test_pipeline.py` auto-skip if `tesseract`
-isn't on PATH; everything else (rules layer, field parsing, classifier)
-runs without it.
+The test suite covers the rules layer, field parsing, the classifier, auth
+and per-user isolation, backup/restore, the web API and demo mode. The
+end-to-end OCR tests skip automatically if `tesseract` isn't on PATH.
 
-## Chart of accounts (9 by default, customizable)
+## Project layout
 
-Defaults: Cash/Bank, Accounts Payable, Utilities Expense, Office Supplies Expense,
-Professional Services Expense, Rent Expense, Travel & Transport Expense,
-Software & Subscriptions Expense, General/Other Expense. See
-`src/vault_ledger/coa.py`. (Grown from 8 to 9 after a real SaaS billing
-receipt had no honest home in the original list -- see git history and the
-`vault-ledger-entry-rules` skill.)
+```
+src/vault_ledger/
+  extraction/     OCR, PDF text, field parsing, local LLM fallback
+  classifier/     fusion classifier: train, evaluate, apply corrections
+  rules/          deterministic debit/credit construction
+  webapp/         Flask app, templates, static assets
+  auth.py, userdata.py, backup.py, queue.py, ledger.py, ...
+data/synthetic/   synthetic training data and document generator
+tests/            pytest suite
+docs/             design reports, research, agent structure
+.claude/          Claude Code agents, skills and hooks used to build this
+```
 
-## Claude Code tooling
+## Built with Claude Code
 
-- `.claude/skills/` -- domain procedures (OCR extraction, classifier,
-  entry rules, milestone definitions).
-- `.claude/agents/` -- `ocr-runner`, `classifier-eval`, `rules-validator`
-  subagents for isolated, repeatable work on each pipeline stage.
-- `.claude/settings.json` -- a hook that runs the entry-rules test suite
-  automatically on edits to the rules layer and blocks on failure.
+The project was developed with a team of
+[Claude Code](https://claude.com/claude-code) subagents. Each part of the
+product has its own team: extraction, model and rules, synthetic data, site,
+and research. Every team has an executive agent, and a main executive
+coordinates the teams. Domain rules such as the entry rules and the OCR
+procedure are written as skills. A hook re-runs the entry-rules tests on every
+edit to the rules layer. See [docs/agents.md](docs/agents.md) for the
+structure, and `docs/reports/` for the design reports.
 
-## Known limitations (by design, for this pass)
+## Status and limitations
 
-- **All data is synthetic/placeholder**: `data/synthetic/labeled_transactions.csv`
-  (17 hand-written rows) and the 3 generated document images exist only to
-  prove the pipeline runs end-to-end. Any accuracy number from
-  `classifier/evaluate.py` is a pipeline sanity check, not a validated metric
-  -- do not quote it as real performance.
-- No real pilot run (M8), no multi-client/multi-company support, no fraud/anomaly
-  detection, no live retraining, no polished correction UI -- all explicitly
-  out of scope for this MVP pass per Report 1.
-- The web app is a demo UI, not a production accountant tool -- no auth,
-  no persistence beyond `corrections.csv`, single-process Flask dev server.
-- PDFs are read **first page only** -- multi-page statements aren't handled.
-- Field parsing is now 3 tiers (exact label match -> real-world heuristics
-  -> local LLM fallback), validated against a real SaaS billing receipt and
-  a fabricated document containing none of the heuristic tiers' trigger
-  words at all. The LLM tier requires Ollama running locally (optional --
-  see Setup) and is slower (seconds, not milliseconds); without it, parsing
-  is limited to tiers 1-2. See the `vault-ledger-ocr-extraction` skill for
-  the full design, including the amount-grounding check that keeps the LLM
-  from hallucinating a number.
-
-## Milestone status
-
-See `.claude/skills/vault-ledger-milestone-check/SKILL.md` for the full
-M1-M8 definitions. As of this scaffold: M1-M7 implemented and tested
-(M7's retraining step is manual/periodic by design, run via
-`python -m vault_ledger.classifier.apply_corrections`); M8 not started
-(needs real data).
+- This is an MVP. The training data is synthetic, so classifier accuracy
+  numbers are pipeline sanity checks, not validated performance. A pilot on
+  real documents hasn't been run yet.
+- Only the first page of a PDF is read.
+- There's no encryption at rest, and the server runs as a single process. See
+  [docs/deployment.md](docs/deployment.md) for the full list.
+- The chart of accounts has 9 default accounts (`src/vault_ledger/coa.py`),
+  and users can customize it in Settings.
