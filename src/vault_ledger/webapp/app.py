@@ -41,7 +41,7 @@ from flask import Flask, Response, g, jsonify, redirect, request, send_file, sen
 from flask import render_template, url_for
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger import backup, coa, demo, hardware
+from vault_ledger import backup, coa, demo, documents, hardware
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
@@ -271,6 +271,10 @@ def api_process():
 
     try:
         result = run_pipeline(document_path, classifier)
+        item_id = _enqueue_result(result, filename)
+        if temp_path:
+            # Kept in the user's own folder so the reviewer can see it (documents.py).
+            documents.store(item_id, temp_path, suffix)
     except Exception as exc:  # noqa: BLE001 -- surfaced to the demo UI, not swallowed
         return jsonify({"error": str(exc)}), 422
     finally:
@@ -278,7 +282,11 @@ def api_process():
         if temp_path:
             Path(temp_path).unlink(missing_ok=True)
 
-    item_id = enqueue(
+    return jsonify(_serialize_result(result, filename, item_id))
+
+
+def _enqueue_result(result: PipelineResult, filename: str) -> str:
+    return enqueue(
         filename=filename,
         vendor=result.vendor,
         description=result.description,
@@ -291,8 +299,6 @@ def api_process():
         rejection_reason=result.rejection_reason,
         entry_json=json.dumps(_serialize_entry(result.entry)),
     )
-
-    return jsonify(_serialize_result(result, filename, item_id))
 
 
 @app.route("/api/queue")
@@ -310,7 +316,23 @@ def api_queue_dismiss(item_id: str):
     scan the user doesn't want to keep re-seeing in the queue."""
     if not remove_pending(item_id):
         return jsonify({"error": f"no pending item with id '{item_id}'"}), 404
+    documents.remove(item_id)
     return jsonify({"dismissed": item_id})
+
+
+@app.route("/api/queue/<item_id>/document")
+def api_queue_document(item_id: str):
+    """The document behind a pending item, as an image for the review card:
+    the stored upload's first page, or the sample image for a sample."""
+    row = get_pending(item_id)
+    if row is None:
+        return jsonify({"error": f"no pending item with id '{item_id}'"}), 404
+    png = documents.preview_png(item_id)
+    if png is not None:
+        return send_file(io.BytesIO(png), mimetype="image/png")
+    if any(f"{sample.name}.png" == row["filename"] for sample in SAMPLES):
+        return send_from_directory(DOCUMENTS_DIR, row["filename"])
+    return jsonify({"error": "no document stored for this item"}), 404
 
 
 def _confirm_pending_item(

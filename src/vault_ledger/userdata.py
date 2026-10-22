@@ -26,7 +26,7 @@ from pathlib import Path
 _DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 USER_ID_RE = re.compile(r"[0-9a-f]{32}")
 ALLOWED_NAMES = frozenset(
-    {"ledger.csv", "pending_queue.csv", "corrections.csv", "accounts.json", "training.csv", "backups"}
+    {"ledger.csv", "pending_queue.csv", "corrections.csv", "accounts.json", "training.csv", "backups", "documents"}
 )
 
 current_user_dir: contextvars.ContextVar[Path | None] = contextvars.ContextVar(

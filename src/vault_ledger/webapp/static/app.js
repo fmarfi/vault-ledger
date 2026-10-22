@@ -13,10 +13,10 @@ function csvBool(value) {
   return value === "True" || value === true;
 }
 
-// Swapped in via <img onerror="handleImgError(this)"> when a queue item's
-// filename doesn't resolve to a served sample image (always true for an
-// upload, since the temp file isn't kept around for redisplay after a
-// refresh) -- an honest placeholder instead of a broken image icon.
+// Swapped in via <img onerror="handleImgError(this)"> when a queue item has
+// no document to show (an upload queued before documents were kept, or a
+// file that can't be rendered) -- an honest placeholder instead of a broken
+// image icon.
 function handleImgError(img) {
   const wrap = img.closest(".doc-preview");
   wrap.innerHTML = documentIconHtml();
@@ -134,7 +134,7 @@ function renderQueueCard(item) {
     </div>
     <div class="result-grid">
       <div class="doc-preview">
-        <img alt="document preview" src="/samples/${encodeURIComponent(item.filename)}" onerror="handleImgError(this)">
+        <img alt="document preview" title="Click to enlarge" src="/api/queue/${encodeURIComponent(item.id)}/document" onerror="handleImgError(this)" onclick="this.closest('.result-grid').classList.toggle('doc-enlarged')">
       </div>
       <dl class="field-list">
         <dt>Vendor</dt><dd>${escapeHtml(item.vendor)}</dd>

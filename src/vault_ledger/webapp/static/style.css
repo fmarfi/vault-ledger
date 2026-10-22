@@ -199,7 +199,10 @@ a:hover { color: #6e5f3c; }
    Document / field display
    ============================================================ */
 .result-grid { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: start; }
-.doc-preview img { width: 100%; border: 1px solid var(--color-rule); }
+.doc-preview img { width: 100%; border: 1px solid var(--color-rule); cursor: zoom-in; }
+/* Click the preview to read the document at full card width, fields below it. */
+.result-grid.doc-enlarged { grid-template-columns: 1fr; }
+.result-grid.doc-enlarged .doc-preview img { cursor: zoom-out; }
 
 .field-list { margin: 0; display: grid; grid-template-columns: 110px 1fr; row-gap: 8px; }
 .field-list dt { color: var(--color-pencil); font-size: 13px; }
@@ -509,3 +512,4 @@ select {
 }
 .auth-form input:focus { outline: 2px solid var(--color-brass); outline-offset: 1px; }
 .auth-alt { margin: 14px 0 0; font-size: 13px; }
+.auth-skip { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--color-rule); }

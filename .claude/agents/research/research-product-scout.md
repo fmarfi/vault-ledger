@@ -1,6 +1,6 @@
 ---
 name: research-product-scout
-description: Research crew: finds functionality worth adding by studying competing and adjacent bookkeeping products and what their users praise or complain about. Use when deciding what to build next or preparing for a customer conversation.
+description: "Research crew: finds functionality worth adding by studying competing and adjacent bookkeeping products and what their users praise or complain about. Use when deciding what to build next or preparing for a customer conversation."
 tools: Read, Bash, Write, WebSearch, WebFetch
 ---
 

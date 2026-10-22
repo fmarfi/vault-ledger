@@ -13,6 +13,7 @@ from __future__ import annotations
 import collections
 import contextlib
 import hmac
+import ipaddress
 import os
 import secrets
 import threading
@@ -30,7 +31,9 @@ from vault_ledger import auth, userdata
 
 # Endpoints reachable without a login. Everything else is protected by default,
 # so a route added later is protected unless someone opts it out here.
-PUBLIC_ENDPOINTS = frozenset({"login", "logout", "signup", "healthz", "static", "demo_start"})
+PUBLIC_ENDPOINTS = frozenset({"login", "logout", "signup", "healthz", "static", "demo_start", "skip_login"})
+# Skip sign-in (VAULT_SKIP_LOGIN=1): the account the button signs in as.
+SKIP_LOGIN_USERNAME = "local"
 # Demo mode (VAULT_DEMO=1). These do not exist while the switch is off.
 DEMO_ENDPOINTS = frozenset({"demo_start", "demo_reset", "demo_exit"})
 MUTATING = frozenset({"POST", "PUT", "PATCH", "DELETE"})
@@ -212,6 +215,29 @@ def demo_enabled() -> bool:
     return os.environ.get("VAULT_DEMO") == "1"
 
 
+def skip_login_enabled() -> bool:
+    """A "Continue without signing in" button on the sign-in page, for one
+    person on their own machine. Off unless VAULT_SKIP_LOGIN=1 (the desktop app
+    sets it), and never offered to a request that did not come from this
+    machine, so serving the app to other people cannot expose it."""
+    if os.environ.get("VAULT_SKIP_LOGIN") != "1":
+        return False
+    try:
+        return ipaddress.ip_address(request.remote_addr or "").is_loopback
+    except ValueError:
+        return False
+
+
+def start_skip_login_session() -> dict:
+    """Sign this browser in as the local account, creating it on first use
+    with a random password nobody needs to know."""
+    user = auth.find_by_username(SKIP_LOGIN_USERNAME)
+    if user is None:
+        user = auth.create_user(SKIP_LOGIN_USERNAME, secrets.token_urlsafe(32))
+    _start_session(user)
+    return user
+
+
 def start_demo_session() -> tuple[dict | None, str | None]:
     """Create a throwaway demo user and sign this browser in as it. Returns
     (user, None), or (None, error) when throttled or full. The caller seeds
@@ -312,6 +338,7 @@ def init_app(app: Flask) -> None:
             "csrf_token": csrf_token,
             "signup_enabled": signup_enabled(),
             "demo_enabled": demo_enabled(),
+            "skip_login_enabled": skip_login_enabled(),
             "is_demo": auth.is_demo(user),
         }
 
@@ -341,6 +368,13 @@ def init_app(app: Flask) -> None:
         throttle.reset(key)
         _start_session(user)
         return redirect(next_url)
+
+    @app.route("/login/skip", methods=["POST"])
+    def skip_login():
+        if not skip_login_enabled():
+            return jsonify({"error": "not found"}), 404
+        start_skip_login_session()
+        return redirect(safe_next(request.form.get("next")))
 
     @app.route("/logout", methods=["POST"])
     def logout():

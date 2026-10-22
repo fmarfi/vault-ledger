@@ -16,6 +16,14 @@
     </label>
     <button type="submit" class="btn btn-dark">Sign in</button>
   </form>
+  {% if skip_login_enabled %}
+  <form method="post" action="{{ url_for('skip_login') }}" class="auth-form auth-skip">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="next" value="{{ next_url }}">
+    <button type="submit" class="btn btn-primary">Continue without signing in</button>
+    <p class="muted small">Opens the local account on this computer. No password needed.</p>
+  </form>
+  {% endif %}
   {% if signup_enabled %}<p class="auth-alt"><a href="{{ url_for('signup') }}">Create an account</a></p>{% endif %}
 </section>
 {% if demo_enabled %}

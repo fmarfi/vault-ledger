@@ -15,6 +15,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest", "fpdf2"]
+desktop = ["pywebview"]
+
+[project.gui-scripts]
+vault-ledger = "vault_ledger.desktop:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

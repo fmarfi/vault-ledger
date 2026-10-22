@@ -1,6 +1,6 @@
 ---
 name: research-tech-scout
-description: Research crew: finds better technical methods for extraction, classification and on-device models (OCR engines, layout and table reading, small local models, confidence calibration, learning from corrections). Use when a pipeline step is weak or before choosing a library or model.
+description: "Research crew: finds better technical methods for extraction, classification and on-device models (OCR engines, layout and table reading, small local models, confidence calibration, learning from corrections). Use when a pipeline step is weak or before choosing a library or model."
 tools: Read, Bash, Write, WebSearch, WebFetch
 ---
 

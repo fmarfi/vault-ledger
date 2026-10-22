@@ -1,6 +1,6 @@
 ---
 name: exec-site
-description: Executive of the site team (the Flask web app: review queue, documents, ledger, overview, export, settings, login, demo). Owns what a customer sees and clicks. Use when planning or reviewing any change to the web app or anything shown in a sales demo.
+description: "Executive of the site team (the Flask web app: review queue, documents, ledger, overview, export, settings, login, demo). Owns what a customer sees and clicks. Use when planning or reviewing any change to the web app or anything shown in a sales demo."
 tools: Read, Bash, Write
 ---
 

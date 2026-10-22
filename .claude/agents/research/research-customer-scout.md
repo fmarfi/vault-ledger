@@ -1,6 +1,6 @@
 ---
 name: research-customer-scout
-description: Research crew: finds what a small company and its bookkeeper are required to do and need in practice (record-keeping and VAT obligations, export formats accountants expect, typical workflows), with the Netherlands first. Use before a customer meeting or when scoping exports, VAT or audit features.
+description: "Research crew: finds what a small company and its bookkeeper are required to do and need in practice (record-keeping and VAT obligations, export formats accountants expect, typical workflows), with the Netherlands first. Use before a customer meeting or when scoping exports, VAT or audit features."
 tools: Read, Bash, Write, WebSearch, WebFetch
 ---
 

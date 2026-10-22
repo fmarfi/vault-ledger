@@ -1,6 +1,6 @@
 ---
 name: research-skeptic
-description: Research crew gate: challenges the scouts' findings before they reach the executives. Re-checks sources, licences and feasibility against the product's constraints, and produces one ranked shortlist. Use after the scouts report and before any research finding is turned into work.
+description: "Research crew gate: challenges the scouts' findings before they reach the executives. Re-checks sources, licences and feasibility against the product's constraints, and produces one ranked shortlist. Use after the scouts report and before any research finding is turned into work."
 tools: Read, Bash, Write, WebSearch, WebFetch
 ---
 

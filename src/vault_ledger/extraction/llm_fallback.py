@@ -22,6 +22,12 @@ report a correct number on its own -- only trusted to point at which
 already-real number is the total, mirroring the same "validate, don't just
 trust the model" principle already applied to the rules layer (VERAFI,
 Report 4 SS2).
+
+The same holds for every other field it proposes: the vendor must stand in
+the text, the description must be made of words from the text, the date
+must be a calendar-valid date that stands in the text (otherwise it is
+dropped to None), and "paid" is only believed when the text itself carries
+evidence of payment (otherwise it is False).
 """
 
 from __future__ import annotations
@@ -33,6 +39,11 @@ import threading
 import urllib.error
 import urllib.request
 from typing import TypedDict
+
+from vault_ledger.extraction.amounts import AmountError, find_amounts, scan, single_amount
+from vault_ledger.extraction.dates import find_dates
+from vault_ledger.extraction.locale_profile import AMOUNT_LABEL_PATTERN
+from vault_ledger.extraction.paid import has_paid_evidence
 
 logger = logging.getLogger(__name__)
 
@@ -48,16 +59,39 @@ TIMEOUT_SECONDS = 60  # CPU-only inference on modest hardware can be slow
 # queues, and only for documents that actually needed it.
 _INFERENCE_LOCK = threading.Lock()
 
-_AMOUNT_PATTERN = re.compile(r"\$?\s*([0-9][0-9,]*\.[0-9]{2})")
-_TOTAL_WORD_PATTERN = re.compile(r"\b(total|amount\s+due)\b", re.IGNORECASE)  # \b excludes "Subtotal"
+# A total label with a colon and digits behind it: a total was printed there,
+# whether or not it can be read.
+_LABELED_TOTAL_PATTERN = re.compile(rf"{AMOUNT_LABEL_PATTERN.pattern}\s*:.*[0-9]", re.IGNORECASE)
+_WORD_PATTERN = re.compile(r"[^\W_]+")
 
 
-def _amounts_on_total_lines(raw_text: str) -> set[str]:
-    amounts: set[str] = set()
+def _amounts_on_total_lines(raw_text: str) -> tuple[set[float], bool]:
+    """The amounts on "Total" / "Amount due" lines that hold exactly one
+    amount, and whether any total line could not be read that safely (two
+    amounts on it, a doubtful reading, a labelled total with no amount)."""
+    amounts: set[float] = set()
+    unsafe = False
     for line in raw_text.splitlines():
-        if _TOTAL_WORD_PATTERN.search(line):
-            amounts.update(m.replace(",", "") for m in _AMOUNT_PATTERN.findall(line))
-    return amounts
+        if not AMOUNT_LABEL_PATTERN.search(line):
+            continue
+        readings = scan(line)
+        values = {reading.value for reading in readings if reading.doubt is None}
+        if any(reading.doubt for reading in readings) or len(values) > 1:
+            unsafe = True
+        elif values:
+            amounts.update(values)
+        elif _LABELED_TOTAL_PATTERN.search(line):
+            unsafe = True
+    return amounts, unsafe
+
+
+def _normalized(text: str) -> str:
+    return " ".join(text.lower().split())
+
+
+def _words(text: str) -> set[str]:
+    return set(_WORD_PATTERN.findall(text.lower()))
+
 
 _PROMPT_TEMPLATE = """Extract fields from this business document text. Respond with ONLY a JSON object, no other text, in this exact shape:
 {{"vendor": "...", "description": "...", "date": "...", "amount": "...", "paid": true or false}}
@@ -128,14 +162,28 @@ def extract_fields_via_llm(raw_text: str) -> LlmExtractedFields | None:
     if not vendor or not description:
         logger.warning("LLM fallback rejected: missing vendor or description")
         return None
+    if not isinstance(vendor, str) or not isinstance(description, str):
+        logger.warning("LLM fallback rejected: vendor or description is not text")
+        return None
 
-    amount_match = _AMOUNT_PATTERN.search(str(parsed.get("amount", "")))
-    if amount_match is None:
+    # Grounding for the two text fields. The vendor is a name and must stand
+    # in the document as written; the description is asked for "in a few
+    # words", so it may join words from several lines but may not bring a
+    # word of its own.
+    if _normalized(vendor) not in _normalized(raw_text):
+        logger.warning("LLM fallback rejected: vendor %r is not in the document text", vendor)
+        return None
+    if not _words(description) or _words(description) - _words(raw_text):
+        logger.warning("LLM fallback rejected: description uses words not in the document text")
+        return None
+
+    try:
+        claimed_amount = single_amount(str(parsed.get("amount", "")))
+    except AmountError:
         logger.warning("LLM fallback rejected: no parseable amount in %r", parsed.get("amount"))
         return None
-    claimed_amount = amount_match.group(1).replace(",", "")
 
-    real_amounts = {m.replace(",", "") for m in _AMOUNT_PATTERN.findall(raw_text)}
+    real_amounts = set(find_amounts(raw_text))
     if claimed_amount not in real_amounts:
         logger.warning("LLM fallback rejected: amount %s is not in the document text", claimed_amount)
         return None  # the model named a number that isn't actually in the document
@@ -144,18 +192,37 @@ def extract_fields_via_llm(raw_text: str) -> LlmExtractedFields | None:
     # "Amount due" lines with amounts, the claim must be one of those. A
     # model echoing a tax, cash-tendered, or line-item figure otherwise
     # passes grounding.
-    total_line_amounts = _amounts_on_total_lines(raw_text)
-    if total_line_amounts and claimed_amount not in total_line_amounts:
+    # A total line that can't be read safely (two amounts on it, a number
+    # split by a gap) supports no claim at all: the model would be picking
+    # between figures this module could not tell apart either.
+    total_line_amounts, unsafe_total_line = _amounts_on_total_lines(raw_text)
+    if claimed_amount not in total_line_amounts and (total_line_amounts or unsafe_total_line):
         logger.warning(
-            "LLM fallback rejected: amount %s is in the text but not on a total line",
+            "LLM fallback rejected: amount %s is in the text but not on a readable total line",
             claimed_amount,
         )
         return None
 
+    # The date is optional, so a date that fails is dropped, not the reply.
+    document_dates = set(find_dates(raw_text))
+    claimed_dates = set(find_dates(str(parsed.get("date") or "")))
+    date = None
+    if len(claimed_dates) == 1 and claimed_dates <= document_dates:
+        (date,) = claimed_dates
+    elif parsed.get("date"):
+        logger.warning(
+            "LLM fallback dropped date %r: not a date found in the document text", parsed.get("date")
+        )
+
+    paid = parsed.get("paid") is True
+    if paid and not has_paid_evidence(raw_text, total=claimed_amount):
+        logger.warning("LLM fallback set paid to False: the document shows no evidence of payment")
+        paid = False
+
     return {
         "vendor": vendor,
         "description": description,
-        "date": parsed.get("date") or None,
-        "amount": float(claimed_amount),
-        "paid": bool(parsed.get("paid", False)),
+        "date": date,
+        "amount": claimed_amount,
+        "paid": paid,
     }
