@@ -32,11 +32,29 @@
   <div id="retired-accounts"></div>
 </section>
 
+<section class="card" id="reading-card">
+  <h2>Reading documents</h2>
+  <p class="muted small">
+    Dates are stored as year-month-day. A date like 03/04/2026 can mean
+    3 April or 4 March. A Dutch document always puts the day first; for any
+    other document this setting decides, and the review card asks you to
+    check the date.
+  </p>
+  <div class="settings-row">
+    <label for="date-order-select" class="small muted">Ambiguous dates</label>
+    <select id="date-order-select">
+      <option value="day_first">Day first: 03/04/2026 is 3 April (NL, EU)</option>
+      <option value="month_first">Month first: 03/04/2026 is 4 March (US)</option>
+    </select>
+  </div>
+  <div id="reading-status" class="muted small"></div>
+</section>
+
 <section class="card" id="backup-card">
   <h2>Backup &amp; restore</h2>
   <p class="muted small">
-    One file with your ledger, review queue, corrections, training data and
-    chart of accounts. Keep it wherever you like — nothing is uploaded
+    One file with your ledger, review queue, corrections, training data,
+    chart of accounts and reading settings. Keep it wherever you like — nothing is uploaded
     anywhere. Restoring replaces the current data (a safety copy is saved
     first) and the model retrains from the restored data.
   </p>

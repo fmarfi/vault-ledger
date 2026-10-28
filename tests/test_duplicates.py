@@ -25,8 +25,13 @@ def test_different_amount_date_or_vendor_is_not_a_match():
     assert find_match(item, [_item("b", vendor="Acme Office")], []) is None
 
 
-def test_dates_in_another_notation_are_not_guessed_equal():
-    assert find_match(_item("a"), [_item("b", date="03/14/2026")], []) is None
+def test_the_same_day_in_another_notation_matches():
+    # 03/14/2026 has only one reading (no 14th month), so it is 2026-03-14.
+    assert find_match(_item("a"), [_item("b", date="03/14/2026")], [])["id"] == "b"
+
+
+def test_a_different_day_does_not_match():
+    assert find_match(_item("a"), [_item("b", date="2026-03-15")], []) is None
 
 
 def test_ledger_match_wins_over_queue_match():

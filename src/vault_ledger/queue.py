@@ -27,13 +27,18 @@ from __future__ import annotations
 
 import csv
 import os
+import re
 import tempfile
 import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+from vault_ledger import preferences
+from vault_ledger.extraction.dates import to_iso
 from vault_ledger.userdata import current_user_id, lock_for, resolve
+
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 PENDING_PATH = Path(__file__).resolve().parents[2] / "data" / "pending_queue.csv"
 
@@ -63,6 +68,8 @@ FIELDNAMES = [
     "rejection_reason",
     "entry_json",
     "decided_by",
+    "date_written",
+    "date_assumed",
 ]
 
 # What update_pending may rewrite: everything but the row's identity.
@@ -83,6 +90,8 @@ def enqueue(
     entry_json: str,
     path: str | Path | None = None,
     decided_by: str = "",
+    date_written: str = "",
+    date_assumed: bool = False,
 ) -> str:
     """Persist a processed-but-unconfirmed result and return its id."""
     path = resolve("pending_queue.csv", PENDING_PATH, path)
@@ -110,6 +119,8 @@ def enqueue(
                 "rejection_reason": rejection_reason or "",
                 "entry_json": entry_json,
                 "decided_by": decided_by or "",
+                "date_written": date_written or "",
+                "date_assumed": "True" if date_assumed else "",
             })
     return item_id
 
@@ -131,7 +142,19 @@ def read_pending(path: str | Path | None = None) -> list[dict]:
         return []
     with path.open(newline="") as f:
         # Normalised to the current columns: a missing one (an old row) is "".
-        return [{name: row.get(name) or "" for name in FIELDNAMES} for row in csv.DictReader(f)]
+        rows = [{name: row.get(name) or "" for name in FIELDNAMES} for row in csv.DictReader(f)]
+    order = None
+    for row in rows:
+        # A row queued before dates were stored as YYYY-MM-DD keeps the
+        # date as written; read it the same way a new document is.
+        if row["date"] and not _ISO_DATE.fullmatch(row["date"]):
+            order = order or preferences.date_order()
+            reading = to_iso(row["date"], order)
+            if reading is not None:
+                row["date_written"] = row["date_written"] or row["date"]
+                row["date"] = reading.iso
+                row["date_assumed"] = "True" if reading.assumed else ""
+    return rows
 
 
 def get_pending(item_id: str, path: str | Path | None = None) -> dict | None:

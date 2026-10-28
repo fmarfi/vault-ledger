@@ -10,22 +10,32 @@ all three. Only bulk confirm acts on it (it skips such items so a human
 looks at them one by one). An item with no date or no readable amount is
 never matched -- too little to call it the same document.
 
-Dates are compared as written. The same date in two notations
-(`03/14/2026` and `2026-03-14`) does not match; which of day and month
-comes first is not guessed here either (see extraction/dates.py).
+Dates are compared as calendar dates: `03/14/2026`, `14 maart 2026` and
+`2026-03-14` are the same day. New documents are stored as YYYY-MM-DD
+already; older rows written as on the document are read with the same
+rules (extraction/dates.py), and an ambiguous one with the user's setting.
 """
 
 from __future__ import annotations
 
 import math
+import re
 from typing import Iterable
 
+from vault_ledger import preferences
+from vault_ledger.extraction.dates import to_iso
 
-def match_key(vendor: str | None, amount, date: str | None) -> tuple[str, float, str] | None:
-    """(normalised vendor, amount in cents' precision, date), or None if any
-    of the three is missing or unreadable."""
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+
+
+def match_key(vendor: str | None, amount, date: str | None, order: str | None = None) -> tuple[str, float, str] | None:
+    """(normalised vendor, amount in cents' precision, date as YYYY-MM-DD),
+    or None if any of the three is missing or unreadable."""
     name = " ".join((vendor or "").split()).casefold()
     day = (date or "").strip()
+    if day and not _ISO_DATE.fullmatch(day):  # an older row, as written
+        reading = to_iso(day, order or preferences.date_order())
+        day = reading.iso if reading else day
     try:
         value = float(amount)
     except (TypeError, ValueError):

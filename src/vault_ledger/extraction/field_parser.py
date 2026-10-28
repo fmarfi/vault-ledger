@@ -43,10 +43,11 @@ import re
 from dataclasses import dataclass
 
 from vault_ledger.extraction.amounts import AmountError, first_amount, scan, single_amount
-from vault_ledger.extraction.dates import date_matches
+from vault_ledger.extraction.dates import DAY_FIRST, date_matches
 from vault_ledger.extraction.llm_fallback import extract_fields_via_llm
 from vault_ledger.extraction.locale_profile import (
     AMOUNT_LABEL_PATTERN,
+    DUTCH,
     PROFILES,
     LocaleProfile,
     collect,
@@ -184,6 +185,14 @@ def _shows_language(profile: LocaleProfile, lines: list[str]) -> bool:
     labels = profile.amount_labels + profile.description_labels + profile.invoice_date_labels
     pattern = re.compile(rf"{_STRAY}{words_pattern(labels)}(?!\w)", re.IGNORECASE)
     return any(pattern.match(line) for line in lines)
+
+
+def document_date_order(raw_text: str) -> str | None:
+    """The day/month order the document itself settles: day first when it
+    carries Dutch field labels (Dutch never writes the month first). None
+    when the document doesn't say -- an English document can be either."""
+    lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
+    return DAY_FIRST if _shows_language(DUTCH, lines) else None
 
 
 def _ends_in_legal_suffix(line: str, lines: list[str]) -> bool:

@@ -219,7 +219,7 @@ function renderQueueCard(item) {
       <dl class="field-list">
         <dt>Vendor</dt><dd>${escapeHtml(item.vendor)}</dd>
         <dt>Description</dt><dd>${escapeHtml(item.description)}</dd>
-        <dt>Date</dt><dd>${escapeHtml(item.date) || "—"}</dd>
+        <dt>Date</dt><dd>${dateCellHtml(item)}</dd>
         <dt>Amount</dt><dd>${formatCurrency(item.amount)}</dd>
         <dt>Status</dt><dd>${paid ? "Paid" : "Unpaid"}</dd>
       </dl>
@@ -295,11 +295,52 @@ const draftAccounts = new Map();
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const PREVIEW_DELAY_MS = 300;
 
+// Dates are stored as YYYY-MM-DD; `date_written` is how the document wrote
+// it. `date_assumed` means the day/month order came from the setting, not
+// from the document, so the reviewer is asked to check it.
+function longDate(iso) {
+  if (!ISO_DATE.test(iso || "")) return iso || "";
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+// The other reading of an ambiguous date (day and month swapped), or "".
+function swappedDate(iso) {
+  if (!ISO_DATE.test(iso || "")) return "";
+  const [y, m, d] = iso.split("-");
+  return Number(d) <= 12 && d !== m ? `${y}-${d}-${m}` : "";
+}
+
+function dateCellHtml(item) {
+  if (!item.date) return "—";
+  const written = item.date_written && item.date_written !== item.date
+    ? `<div class="muted small">On the document: ${escapeHtml(item.date_written)}</div>` : "";
+  const assumed = csvBool(item.date_assumed)
+    ? `<div class="date-assumed small">Day/month order assumed — open Edit details to check</div>` : "";
+  return `${escapeHtml(longDate(item.date))}${written}${assumed}`;
+}
+
+function dateNoteHtml(item) {
+  const written = item.date_written || "";
+  if (csvBool(item.date_assumed) && ISO_DATE.test(item.date || "")) {
+    const other = swappedDate(item.date);
+    return `<div class="date-assumed small">On the document: ${escapeHtml(written)}, read as
+      <strong>${escapeHtml(longDate(item.date))}</strong> (from your date-order setting).
+      ${other ? `<button type="button" class="btn-link date-switch">Use ${escapeHtml(longDate(other))}</button> ·` : ""}
+      <button type="button" class="btn-link date-keep">Looks right</button></div>`;
+  }
+  if (written && written !== item.date) {
+    return `<div class="muted small">On the document: ${escapeHtml(written)}</div>`;
+  }
+  return "";
+}
+
 function startEditing(card, item) {
   card.classList.add("is-editing");
   const paid = csvBool(item.paid);
   const storedDate = item.date || "";
   const dateIsIso = ISO_DATE.test(storedDate);
+  const dateAssumed = csvBool(item.date_assumed);
   const uid = "edit-" + item.id;
   const form = document.createElement("form");
   form.className = "edit-form";
@@ -312,7 +353,7 @@ function startEditing(card, item) {
     <label for="${uid}-date">Date</label>
     <div>
       <input id="${uid}-date" class="text-input" name="date" type="date">
-      ${!dateIsIso && storedDate ? `<div class="muted small">On the document: ${escapeHtml(storedDate)} — pick the date to replace it, or leave it as read.</div>` : ""}
+      ${!dateIsIso && storedDate ? `<div class="muted small">On the document: ${escapeHtml(storedDate)} — pick the date to replace it, or leave it as read.</div>` : dateNoteHtml(item)}
     </div>
     <label for="${uid}-amount">Amount</label>
     <input id="${uid}-amount" class="text-input figure" name="amount" type="number" step="0.01" min="0.01" inputmode="decimal">
@@ -332,7 +373,8 @@ function startEditing(card, item) {
   const select = card.querySelector(".account-select");
   const state = {
     item, form, select, seq: 0, timer: null, suggestion: item.predicted_account,
-    dateTouched: dateIsIso, accountPicked: draftAccounts.has(item.id),
+    // An assumed date is only sent once the reviewer confirmed or changed it.
+    dateTouched: dateIsIso && !dateAssumed, accountPicked: draftAccounts.has(item.id),
   };
 
   card.querySelector(".prediction-row").innerHTML = `
@@ -366,6 +408,17 @@ function startEditing(card, item) {
   card.querySelector(".correction-row:not(.edit-actions)").replaceWith(actions);
   card.querySelector(".edit-btn").hidden = true;
   card.setAttribute("aria-keyshortcuts", "Control+S Control+Enter Escape");
+
+  const settleDate = (note) => {
+    state.dateTouched = true;
+    if (note) note.replaceWith(Object.assign(document.createElement("div"), { className: "muted small", textContent: "Date checked." }));
+    schedulePreview(card, state);
+  };
+  form.querySelector(".date-switch")?.addEventListener("click", (e) => {
+    form.elements.date.value = swappedDate(form.elements.date.value) || form.elements.date.value;
+    settleDate(e.target.closest(".date-assumed"));
+  });
+  form.querySelector(".date-keep")?.addEventListener("click", (e) => settleDate(e.target.closest(".date-assumed")));
 
   form.addEventListener("input", (e) => {
     if (e.target.name === "date") state.dateTouched = true;

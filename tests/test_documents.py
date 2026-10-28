@@ -14,7 +14,7 @@ from tests.helpers import make_user_client
 
 @pytest.fixture
 def client(monkeypatch):
-    def fake_pipeline(_path, _classifier):
+    def fake_pipeline(_path, _classifier, _date_order=None):
         return PipelineResult(
             vendor="Acme Office Supplies Inc",
             description="Printer paper",

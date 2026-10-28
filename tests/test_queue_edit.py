@@ -181,7 +181,34 @@ def test_update_keeps_a_field_that_was_not_sent(client):
     item_id = _add(client, date="14 maart 2026")
     client.post(f"/api/queue/{item_id}/update", json={"vendor": "Acme Office Supplies"})
     row = client.get("/api/queue").get_json()[0]
-    assert row["date"] == "14 maart 2026" and row["vendor"] == "Acme Office Supplies"
+    # An older row with the date as written is read as YYYY-MM-DD.
+    assert row["date"] == "2026-03-14" and row["date_written"] == "14 maart 2026"
+    assert row["vendor"] == "Acme Office Supplies"
+
+
+def test_update_keeps_an_unchecked_assumed_date_flagged(client):
+    item_id = _add(client, date="2026-04-03", date_written="03/04/2026", date_assumed=True, needs_review=True)
+    client.post(f"/api/queue/{item_id}/update", json={"vendor": "Main Street Properties", "description": "rent"})
+    row = client.get("/api/queue").get_json()[0]
+    assert row["date_assumed"] == "True" and row["needs_review"] == "True"
+
+
+def test_sending_the_date_settles_an_assumed_order(client):
+    item_id = _add(client, date="2026-04-03", date_written="03/04/2026", date_assumed=True, needs_review=True)
+    client.post(f"/api/queue/{item_id}/update", json={"date": "2026-03-04", "description": "rent"})
+    row = client.get("/api/queue").get_json()[0]
+    assert (row["date"], row["date_written"]) == ("2026-03-04", "03/04/2026")
+    assert row["date_assumed"] == "" and row["needs_review"] == "False"
+
+
+def test_preferences_route_reads_validates_and_saves(client):
+    assert client.get("/api/preferences").get_json() == {"date_order": "day_first"}
+    assert client.post("/api/preferences", json={"date_order": "sideways"}).status_code == 400
+    assert client.post("/api/preferences", json={"date_order": "month_first"}).get_json() == {"date_order": "month_first"}
+    assert client.get("/api/preferences").get_json() == {"date_order": "month_first"}
+    assert (client.user_dir / "preferences.json").exists()
+    other = make_user_client(app_mod.app, "neighbour")
+    assert other.get("/api/preferences").get_json() == {"date_order": "day_first"}
 
 
 def test_update_unknown_item_is_404(client):
@@ -353,7 +380,7 @@ def test_process_stores_decided_by(client, monkeypatch):
     # OCR is out of scope here: the extracted fields go straight to propose_entry.
     monkeypatch.setattr(
         app_mod, "run_pipeline",
-        lambda path, classifier: app_mod.propose_entry("Acme", "Printer paper", 10.0, True, None, classifier),
+        lambda path, classifier, date_order=None: app_mod.propose_entry("Acme", "Printer paper", 10.0, True, None, classifier),
     )
     res = client.post("/api/process", json={"sample": app_mod.SAMPLES[0].name})
     assert res.status_code == 200, res.get_json()

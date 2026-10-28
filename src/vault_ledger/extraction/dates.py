@@ -6,14 +6,22 @@
 
 A date is only a date if it exists in the calendar. `12-45-9087` (a policy
 number) and `31-45-2026` (a customer number) have the shape of one and are
-not read as one. The text of the date is returned as written; this module
-does not decide between day-first and month-first.
+not read as one. find_dates returns the text as written; to_iso turns one
+written date into YYYY-MM-DD.
+
+Day and month order. Most written dates allow only one reading: a month
+name, ISO, or a number above 12 (`14-03-2026`). Only a numeric date with
+both parts 12 or under (`03/04/2026`) can be either. to_iso takes the order
+the document itself shows (a Dutch document is always day first) and,
+failing that, the user's setting -- and then says so (`assumed`), so the
+reviewer is asked to check it. Nothing is guessed silently.
 """
 
 from __future__ import annotations
 
 import datetime
 import re
+from dataclasses import dataclass
 
 from vault_ledger.extraction.locale_profile import PROFILES, words_pattern
 
@@ -66,3 +74,49 @@ def date_matches(line: str) -> list[re.Match]:
 def find_dates(text: str) -> list[str]:
     """Every calendar-valid date in the text, as written, in order."""
     return [match.group(0) for line in text.splitlines() for match in date_matches(line)]
+
+
+DAY_FIRST = "day_first"
+MONTH_FIRST = "month_first"
+DATE_ORDERS = (DAY_FIRST, MONTH_FIRST)
+
+
+@dataclass(frozen=True)
+class DateReading:
+    written: str  # as on the document
+    iso: str  # YYYY-MM-DD
+    assumed: bool  # day/month order came from the setting, not the document
+
+
+def to_iso(written: str | None, order: str = DAY_FIRST, document_order: str | None = None) -> DateReading | None:
+    """One written date as YYYY-MM-DD, or None if it isn't a calendar date.
+
+    `document_order` is the order the document itself shows (see
+    field_parser.document_date_order); `order` is the user's setting, used
+    only when the document doesn't settle an ambiguous date."""
+    text = (written or "").strip()
+    match = _DATE_PATTERN.fullmatch(text)
+    if match is None or not _in_calendar(match):
+        return None
+    if match.group("y2"):
+        year, month, day = int(match.group("y2")), int(match.group("m2")), int(match.group("d2"))
+    elif match.group("y3"):
+        year, month, day = int(match.group("y3")), _MONTH_NUMBERS[match.group("m3").lower()], int(match.group("d3"))
+    elif match.group("y4"):
+        year, month, day = int(match.group("y4")), _MONTH_NUMBERS[match.group("m4").lower()], int(match.group("d4"))
+    else:
+        a, b, year = int(match.group("a")), int(match.group("b")), int(match.group("y1"))
+        readings = {}
+        if _exists(year, b, a):
+            readings[DAY_FIRST] = (b, a)
+        if _exists(year, a, b):
+            readings[MONTH_FIRST] = (a, b)
+        if len(set(readings.values())) == 1:  # only one reading, or a == b
+            month, day = next(iter(readings.values()))
+        else:
+            chosen = document_order if document_order in DATE_ORDERS else order
+            if chosen not in DATE_ORDERS:
+                chosen = DAY_FIRST
+            month, day = readings[chosen]
+            return DateReading(text, datetime.date(year, month, day).isoformat(), document_order not in DATE_ORDERS)
+    return DateReading(text, datetime.date(year, month, day).isoformat(), False)

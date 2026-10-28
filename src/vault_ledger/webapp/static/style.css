@@ -427,6 +427,13 @@ select {
   padding: 10px 12px; font-size: 13.5px; margin-bottom: 16px;
 }
 .duplicate-note .filename { font-family: var(--font-figure); }
+/* A date whose day/month order came from the setting, not the document. */
+.date-assumed { color: #7a5628; margin-top: 4px; }
+.btn-link {
+  background: none; border: 0; padding: 0; font: inherit; color: var(--color-ink);
+  text-decoration: underline; cursor: pointer;
+}
+.btn-link:focus-visible { outline: 2px solid var(--color-brass); outline-offset: 2px; }
 
 /* Edit details: the field list becomes inputs, the document stays beside
    them at a readable size so the two can be compared line by line. */

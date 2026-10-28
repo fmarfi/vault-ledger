@@ -43,7 +43,7 @@ from flask import Flask, Response, g, jsonify, redirect, request, send_file, sen
 from flask import render_template, url_for
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger import backup, coa, dashboard, demo, documents, duplicates, hardware
+from vault_ledger import backup, coa, dashboard, demo, documents, duplicates, hardware, preferences
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
@@ -106,6 +106,8 @@ def _serialize_result(result: PipelineResult, filename: str, item_id: str | None
         "vendor": result.vendor,
         "description": result.description,
         "date": result.date,
+        "date_written": result.date_written,
+        "date_assumed": result.date_assumed,
         "amount": result.amount,
         "paid": result.paid,
         "predicted_account": result.predicted_account,
@@ -240,6 +242,19 @@ def api_accounts_template():
     return _account_action(lambda: coa.apply_template(template))
 
 
+@app.route("/api/preferences", methods=["GET", "POST"])
+def api_preferences():
+    """How documents are read for this user (see preferences.py). Changing
+    the date order affects documents processed from now on; dates already
+    in the queue stay as read and keep their "check this date" note."""
+    if request.method == "GET":
+        return jsonify(preferences.load())
+    try:
+        return jsonify(preferences.save(preferences.validate(_json_body())))
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+
+
 @app.route("/api/backup")
 def api_backup():
     stamp = datetime.now().strftime("%Y-%m-%d")
@@ -298,7 +313,7 @@ def api_process():
         document_path = DOCUMENTS_DIR / filename
 
     try:
-        result = run_pipeline(document_path, classifier)
+        result = run_pipeline(document_path, classifier, preferences.date_order())
         item_id = _enqueue_result(result, filename)
         if temp_path:
             # Kept in the user's own folder so the reviewer can see it (documents.py).
@@ -327,6 +342,8 @@ def _enqueue_result(result: PipelineResult, filename: str) -> str:
         rejection_reason=result.rejection_reason,
         entry_json=json.dumps(_serialize_entry(result.entry)),
         decided_by=result.decided_by,
+        date_written=result.date_written,
+        date_assumed=result.date_assumed,
     )
 
 
@@ -485,13 +502,17 @@ def api_queue_update(item_id: str):
         if error:
             return error
         result = _propose(fields)
+        # Sending the date means the reviewer checked it: an assumed
+        # day/month order is settled. Otherwise it still needs a look.
+        assumed = row["date_assumed"] == "True" and "date" not in _json_body()
         update_pending(
             item_id,
             {
                 **fields,
+                "date_assumed": "True" if assumed else "",
                 "predicted_account": result.predicted_account,
                 "confidence": result.confidence,
-                "needs_review": result.needs_review,
+                "needs_review": result.needs_review or assumed,
                 "rejection_reason": result.rejection_reason or "",
                 "entry_json": json.dumps(_serialize_entry(result.entry)),
                 "decided_by": result.decided_by,

@@ -22,7 +22,7 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from vault_ledger import coa, corrections, ledger, queue
+from vault_ledger import coa, corrections, ledger, preferences, queue
 from vault_ledger.classifier import apply_corrections as _apply
 from vault_ledger.classifier.train import MODEL_PATH
 from vault_ledger.userdata import current_user_dir, resolve
@@ -39,6 +39,9 @@ _CSV_HEADERS = {
     "corrections.csv": corrections.FIELDNAMES,
     "labeled_transactions.csv": ["vendor", "description", "account"],
 }
+# Columns added to a file later (always at the end). A backup made before
+# they existed has a header that stops before them.
+_LATER_COLUMNS = {"pending_queue.csv": len(queue.FIELDNAMES) - queue.FIELDNAMES.index("decided_by")}
 
 
 class BackupError(ValueError):
@@ -55,6 +58,7 @@ def default_files() -> dict[str, Path]:
         # the shared training set is never included in or replaced by a restore.
         "labeled_transactions.csv": resolve("training.csv", _apply.TRAINING_DATA_PATH),
         "accounts.json": resolve("accounts.json", coa.ACCOUNTS_PATH),
+        "preferences.json": resolve("preferences.json", preferences.PREFERENCES_PATH),
     }
 
 
@@ -115,7 +119,12 @@ def _validate(zf: zipfile.ZipFile, allowed: set[str]) -> dict[str, bytes]:
         contents[info.filename] = payload
 
     for name, data in contents.items():
-        if name == "accounts.json":
+        if name == "preferences.json":
+            try:
+                preferences.validate(json.loads(data))
+            except ValueError:
+                raise BackupError("preferences.json in the backup is invalid")
+        elif name == "accounts.json":
             try:
                 state = json.loads(data)
                 assert isinstance(state["active"], list) and isinstance(state["retired"], list)
@@ -127,7 +136,11 @@ def _validate(zf: zipfile.ZipFile, allowed: set[str]) -> dict[str, bytes]:
                 header = next(csv.reader(io.StringIO(data.decode("utf-8"))), [])
             except UnicodeDecodeError:
                 raise BackupError(f"{name} in the backup isn't valid text")
-            if header != _CSV_HEADERS[name]:
+            # Columns only ever get added at the end, and readers fill a
+            # missing column with "", so an older backup's shorter header is fine.
+            expected = _CSV_HEADERS[name]
+            shortest = len(expected) - _LATER_COLUMNS.get(name, 0)
+            if not shortest <= len(header) <= len(expected) or header != expected[: len(header)]:
                 raise BackupError(f"{name} in the backup has unexpected columns")
     return contents
 

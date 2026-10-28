@@ -116,3 +116,24 @@ document.getElementById("restore-btn").addEventListener("click", async () => {
 });
 
 loadAccounts();
+
+// ---- reading documents: day/month order for ambiguous dates ----
+async function loadPreferences() {
+  const select = document.getElementById("date-order-select");
+  try {
+    select.value = (await fetchJson("/api/preferences")).date_order;
+  } catch (err) {
+    setStatus("reading-status", err.message, true);
+  }
+}
+
+document.getElementById("date-order-select").addEventListener("change", async (e) => {
+  try {
+    await postJson("/api/preferences", { date_order: e.target.value });
+    setStatus("reading-status", "Saved. Applies to documents processed from now on.");
+  } catch (err) {
+    setStatus("reading-status", err.message, true);
+  }
+});
+
+loadPreferences();

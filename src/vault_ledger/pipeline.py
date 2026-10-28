@@ -11,13 +11,14 @@ of the MVP.
 from __future__ import annotations
 
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from vault_ledger.classifier.fast_inference import FAST_MODEL_PATH, FastClassifier
 from vault_ledger.coa import GENERAL_EXPENSE, active_expense_accounts
 from vault_ledger.confidence_gate import needs_manual_review
-from vault_ledger.extraction.field_parser import parse_fields
+from vault_ledger.extraction.dates import DAY_FIRST, to_iso
+from vault_ledger.extraction.field_parser import document_date_order, parse_fields
 from vault_ledger.extraction.ocr import extract_raw_text
 from vault_ledger.rules.entry_rules import JournalEntry, RuleViolation, construct_entry
 
@@ -35,13 +36,26 @@ class PipelineResult:
     paid: bool
     date: str | None
     decided_by: str = ""  # which model in the cascade made the prediction
+    date_written: str = ""  # the date as on the document; `date` is YYYY-MM-DD
+    date_assumed: bool = False  # day/month order came from the setting: check it
 
 
-def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
+def run_pipeline(document_path: str | Path, classifier, date_order: str = DAY_FIRST) -> PipelineResult:
     raw_text = extract_raw_text(document_path)
     fields = parse_fields(raw_text)
-    return propose_entry(
-        fields.vendor, fields.description, fields.amount, fields.paid, fields.date, classifier
+    # Dates leave extraction as written; everything after this point (the
+    # model, the queue, the duplicate check) works with YYYY-MM-DD.
+    reading = to_iso(fields.date, date_order, document_date_order(raw_text)) if fields.date else None
+    result = propose_entry(
+        fields.vendor, fields.description, fields.amount, fields.paid,
+        reading.iso if reading else None, classifier,
+    )
+    return replace(
+        result,
+        date_written=fields.date or "",
+        date_assumed=bool(reading and reading.assumed),
+        # An order taken from the setting, not the document, is a human's call.
+        needs_review=result.needs_review or bool(reading and reading.assumed),
     )
 
 
