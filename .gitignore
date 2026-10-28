@@ -33,7 +33,7 @@ dist/
 data/documents/
 
 # Local worktrees and runtime corrections
-.claude/worktrees/
+.claude/
 /corrections.csv
 data/tessdata/
 data/synth/
