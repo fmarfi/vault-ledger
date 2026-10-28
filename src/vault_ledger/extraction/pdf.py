@@ -35,7 +35,7 @@ from vault_ledger.extraction.ocr import ocr_image
 # it doesn't need to be precise.
 MIN_NATIVE_TEXT_CHARS = 20
 
-RASTERIZE_SCALE = 200 / 72  # ~200 DPI: enough for Tesseract, ~55% fewer pixels than 300
+RASTERIZE_SCALE = 200 / 72  # ~200 DPI: 300 was tried and blurred low-resolution scans (CityPower -> GityPower)
 
 
 def _native_text_sufficient(text: str) -> bool:

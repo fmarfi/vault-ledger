@@ -41,6 +41,11 @@ datas.append((str(TESSERACT / "tesseract.exe"), "tesseract"))
 datas += [(str(dll), "tesseract") for dll in TESSERACT.glob("*.dll")]
 for name in ("eng.traineddata", "osd.traineddata"):
     datas.append((str(TESSERACT / "tessdata" / name), "tesseract/tessdata"))
+# Dutch: from Tesseract's own folder, or the app's data/tessdata (no admin needed)
+for folder in (TESSERACT / "tessdata", REPO / "data" / "tessdata"):
+    if (folder / "nld.traineddata").exists():
+        datas.append((str(folder / "nld.traineddata"), "tesseract/tessdata"))
+        break
 for folder in ("configs", "tessconfigs"):
     datas.append((str(TESSERACT / "tessdata" / folder), f"tesseract/tessdata/{folder}"))
 

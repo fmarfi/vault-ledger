@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vaultledger-ml"
+version = "0.1.0"
+description = "Vault Ledger categorization engine (DragoNet-style two-field model). Standalone; not wired into the app."
+requires-python = ">=3.11"
+# Runtime (inference) dependencies. torch stays here until the ONNX path (ML-M7)
+# exists; after that it moves to the `train` extra only.
+dependencies = [
+    "numpy>=1.26",
+    "pyyaml>=6",
+    "torch>=2.2",
+    "transformers>=4.44",
+    "sentencepiece>=0.2",
+]
+
+[project.optional-dependencies]
+# Only needed once, at build time, to fetch the pretrained encoder into models/.
+fetch = ["huggingface_hub>=0.24"]
+dev = ["pytest>=8", "hypothesis>=6"]
+
+[tool.setuptools.packages.find]
+include = ["vaultledger*"]
+
+[tool.setuptools.package-data]
+vaultledger = ["taxonomy/*.yaml", "synth/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["pretrained: needs the pretrained encoder in models/encoders (run scripts/fetch_encoder.py)"]

@@ -1,0 +1,7 @@
+.venv/
+models/
+runs/
+data/
+reports/
+*.egg-info/
+__pycache__/

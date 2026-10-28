@@ -35,3 +35,7 @@ data/documents/
 # Claude Code agent worktrees and local runtime corrections
 .claude/worktrees/
 /corrections.csv
+data/tessdata/
+data/synth/
+vaultledger-ml/.hypothesis/
+vaultledger-ml/.pytest_cache/

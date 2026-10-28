@@ -1,0 +1,56 @@
+# All hyperparameters in one place. Values are this project's defaults, not the paper's.
+
+encoder:
+  kind: pretrained          # pretrained | scratch
+  max_len_a: 16             # tokens for Field A (counterparty name)
+  max_len_b: 48             # tokens for Field B (description + activity)
+  pretrained:
+    # Fetched once at build time by scripts/fetch_encoder.py; never downloaded at runtime.
+    hf_id: intfloat/multilingual-e5-small   # licence to be confirmed by research before shipping
+    path: models/encoders/multilingual-e5-small
+    text_prefix: "query: "  # the e5 family expects this prefix
+    freeze: top_n           # all | top_n | none  (top_n=2 won on invoice rows: 76% vs 65%)
+    unfreeze_top_layers: 2  # used when freeze: top_n
+    share_encoders: true    # one backbone for both fields (halves size)
+  scratch:                  # spec 6.4.3 original
+    vocab_size: 8000
+    d: 128
+    layers: 2
+    heads: 4
+    ff: 256
+    dropout: 0.1
+    share_encoders: false
+
+model:
+  d: 128
+  dropout: 0.1
+  use_field_a: true         # ablations (spec 8.3)
+  use_field_b: true
+
+train:
+  seed: 13
+  epochs: 30
+  batch_size: 64
+  lr: 1.0e-3
+  encoder_lr: 2.0e-5        # only used for unfrozen pretrained layers
+  weight_decay: 0.01
+  warmup_frac: 0.05
+  label_smoothing: 0.05
+  lambda_micro: 1.0
+  class_weights: true
+  patience: 3               # early stopping on validation micro-level macro-F1
+  activity_dropout: 0.5
+  field_dropout: 0.1
+  val_frac: 0.15            # vendor-disjoint
+  train_on_low_quality: false
+
+decode:
+  method: joint             # joint | argmax_then_mask
+  top_k: 3
+
+# Used when no --data is given: a small synthetic pipeline-test fixture.
+synth:
+  seed: 7
+  n_companies: 8
+  rows_per_company: [400, 900]
+  months: 12

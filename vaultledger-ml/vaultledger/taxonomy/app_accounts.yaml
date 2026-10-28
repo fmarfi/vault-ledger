@@ -1,0 +1,19 @@
+# The Vault Ledger app's expense accounts as a two-level taxonomy, so DragoNet
+# can train on the synthetic data crew's rows (labeled with these accounts).
+# Macro groups are this project's grouping; the micro names map 1:1 to the
+# app's account names (see vaultledger/io/adapters.py APP_ACCOUNT_MAP).
+taxonomy_version: "app-accounts-0.1"
+
+macros:
+  OFFICE_IT:
+    software_subscriptions: {allowed_direction: OUT}
+    office_supplies: {allowed_direction: OUT}
+  TRANSPORT:
+    travel_transport: {allowed_direction: OUT}
+  HOUSING:
+    rent: {allowed_direction: OUT}
+    utilities: {allowed_direction: OUT}
+  PROFESSIONAL:
+    professional_services: {allowed_direction: OUT}
+  OTHER:
+    general_other: {allowed_direction: OUT}

@@ -34,6 +34,7 @@ class PipelineResult:
     amount: float
     paid: bool
     date: str | None
+    decided_by: str = ""  # which model in the cascade made the prediction
 
 
 def run_pipeline(document_path: str | Path, classifier) -> PipelineResult:
@@ -51,7 +52,14 @@ def propose_entry(
     Split out of run_pipeline so a caller that already has the fields (the
     demo seed, vault_ledger.demo) goes through the same classifier, the same
     confidence gate and the same rules layer as a scanned document."""
-    predicted_account, confidence = classifier.predict(vendor, description)
+    if hasattr(classifier, "decide"):  # the cascade: most engineered model first
+        predicted_account, confidence, decided_by = classifier.decide(vendor, description, amount, paid, date)
+    elif hasattr(classifier, "predict_document"):  # DragoNet also uses amount, paid and date
+        predicted_account, confidence = classifier.predict_document(vendor, description, amount, paid, date)
+        decided_by = "dragonet"
+    else:
+        predicted_account, confidence = classifier.predict(vendor, description)
+        decided_by = "tfidf"
     review_flag = needs_manual_review(confidence)
 
     # The model can still predict an account that has since been retired
@@ -80,10 +88,19 @@ def propose_entry(
         amount=amount,
         paid=paid,
         date=date,
+        decided_by=decided_by,
     )
 
 
-def _load_or_train_classifier() -> FastClassifier:
+def _load_or_train_classifier():
+    """The app's classifier: DragoNet runs first, TF-IDF as the last fallback
+    (see classifier/cascade.py)."""
+    from vault_ledger.classifier.cascade import build_cascade
+
+    return build_cascade(_load_or_train_tfidf)
+
+
+def _load_or_train_tfidf() -> FastClassifier:
     fast_path = Path(FAST_MODEL_PATH)
     # Training/export is the only path that needs the sklearn stack.
     from vault_ledger.classifier.train import MODEL_PATH, main as train_and_save_model
@@ -112,6 +129,7 @@ def main() -> None:
     print(f"vendor:      {result.vendor}")
     print(f"description: {result.description}")
     print(f"account:     {result.predicted_account}  (confidence {result.confidence:.2f})")
+    print(f"model:       {result.decided_by}")
     print(f"review:      {'YES - send to manual review queue' if result.needs_review else 'no'}")
 
     if result.entry:

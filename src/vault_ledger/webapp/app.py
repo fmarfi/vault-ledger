@@ -69,11 +69,11 @@ class NeedsIndividualReview(ValueError):
     to a human -- only a per-item confirm/correct may post it."""
 # The trained classifier is shared by every user and never modified by a
 # request: no user's corrections are folded into it (see README).
-_classifier: FusionClassifier | None = None
+_classifier = None  # CascadeClassifier, see classifier/cascade.py
 _classifier_lock = threading.Lock()
 
 
-def _get_classifier() -> FusionClassifier:
+def _get_classifier():
     global _classifier
     with _classifier_lock:
         if _classifier is None:
@@ -101,6 +101,7 @@ def _serialize_result(result: PipelineResult, filename: str, item_id: str | None
         "paid": result.paid,
         "predicted_account": result.predicted_account,
         "confidence": round(result.confidence, 4),
+        "decided_by": result.decided_by,
         "needs_review": result.needs_review,
         "rejection_reason": result.rejection_reason,
         "entry": _serialize_entry(result.entry),

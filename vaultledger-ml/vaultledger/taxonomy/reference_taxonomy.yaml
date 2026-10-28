@@ -1,0 +1,61 @@
+# Starter reference taxonomy (spec section 5). Roughly RGS-shaped, NOT verified
+# against the official RGS list: every rgs_code stays null until research passes.
+# allowed_direction: IN (money received), OUT (money paid), BOTH.
+taxonomy_version: "starter-0.1"
+
+macros:
+  REVENUE:
+    sales_domestic: {allowed_direction: IN}
+    sales_eu: {allowed_direction: IN}
+    sales_non_eu: {allowed_direction: IN}
+    other_income: {allowed_direction: IN}
+  COGS:
+    purchases_inventory: {allowed_direction: OUT}
+    subcontracting: {allowed_direction: OUT}
+    freight_in: {allowed_direction: OUT}
+  PERSONNEL:
+    salaries: {allowed_direction: OUT}
+    payroll_tax_pension: {allowed_direction: OUT}
+    travel_reimbursement: {allowed_direction: OUT}
+    training_education: {allowed_direction: OUT}
+  HOUSING:
+    rent: {allowed_direction: OUT}
+    energy: {allowed_direction: BOTH}
+    water: {allowed_direction: OUT}
+    cleaning_maintenance: {allowed_direction: OUT}
+  OFFICE_IT:
+    software_subscriptions: {allowed_direction: OUT}
+    hardware: {allowed_direction: OUT}
+    telecom_internet: {allowed_direction: OUT}
+    office_supplies: {allowed_direction: OUT}
+  TRANSPORT:
+    fuel: {allowed_direction: OUT}
+    public_transport: {allowed_direction: OUT}
+    parking: {allowed_direction: OUT}
+    car_lease: {allowed_direction: OUT}
+    taxi_ride_hailing: {allowed_direction: OUT}
+  MARKETING:
+    advertising: {allowed_direction: OUT}
+    representation_meals: {allowed_direction: OUT}
+    gifts_relations: {allowed_direction: OUT}
+  PROFESSIONAL:
+    accounting_fees: {allowed_direction: OUT}
+    legal_fees: {allowed_direction: OUT}
+    consulting: {allowed_direction: OUT}
+  FINANCIAL:
+    bank_fees: {allowed_direction: OUT}
+    interest: {allowed_direction: BOTH}
+    insurance: {allowed_direction: OUT}
+  TAX:
+    vat_payment: {allowed_direction: OUT}
+    vat_refund: {allowed_direction: IN}
+    corporate_income_tax: {allowed_direction: BOTH}
+    other_taxes: {allowed_direction: OUT}
+  BALANCE:
+    own_account_transfer: {allowed_direction: BOTH}
+    loan_repayment: {allowed_direction: OUT}
+    owner_withdrawal: {allowed_direction: OUT}
+    owner_deposit: {allowed_direction: IN}
+  SUSPENSE:
+    # Never a training target; a sink for low-quality labels and abstentions.
+    uncategorized: {allowed_direction: BOTH, trainable: false}

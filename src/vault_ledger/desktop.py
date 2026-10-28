@@ -36,6 +36,11 @@ def start_server() -> tuple[BaseWSGIServer, str]:
 
     server = make_server(HOST, 0, app, threaded=True)
     threading.Thread(target=server.serve_forever, name="vault-ledger-server", daemon=True).start()
+    # Load the classifier now, while the window opens, so the first document
+    # doesn't wait for it (DragoNet takes ~10 s to load).
+    from vault_ledger.webapp.app import _get_classifier
+
+    threading.Thread(target=_get_classifier, name="vault-ledger-preload", daemon=True).start()
     return server, f"http://{HOST}:{server.server_port}"
 
 

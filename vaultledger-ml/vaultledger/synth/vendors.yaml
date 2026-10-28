@@ -1,0 +1,336 @@
+# Vendor catalog for the synthetic pipeline-test fixture (spec 7.1).
+# NOT training data for a shipped model; nothing trained on it is quoted as accuracy.
+# Per micro category:
+#   vendors:  fixed names
+#   gen:      parts for procedurally generated vendors (prefix x stem x suffix)
+#   desc:     description templates ({month} {year} {n} {city} are filled in)
+#   activity: SBI-like activity texts (made up, not real SBI descriptions)
+#   amount:   [lognormal mu, sigma] in euros
+#   recurrence: monthly | weekly | adhoc
+#   vat:      typical VAT rate or null
+
+_cities: [Amsterdam, Rotterdam, Utrecht, Delft, Eindhoven, Groningen, Leiden, Haarlem, Breda, Zwolle, Arnhem, Tilburg]
+
+sales_domestic:
+  vendors: [Bouwbedrijf Jansen BV, De Vries Installatietechniek, Bakker & Zn, Hoveniersbedrijf Groen, Van Dijk Interieur]
+  gen: {prefix: [Bouwbedrijf, Klusbedrijf, Advies, Studio, Praktijk, Kapsalon, Garage], stem: [Mulder, Visser, Smit, Meijer, de Boer, Bos, Vos, Peters, Hendriks, Dekker], suffix: [BV, "", VOF, "& Partners"]}
+  desc: ["factuur {year}-{n}", "betaling factuur {n}", "invoice {n}", "termijn {n} project", "{n} betaling"]
+  activity: ["construction of residential buildings", "retail trade", "business consultancy"]
+  amount: [6.8, 0.9]
+  recurrence: adhoc
+  vat: 0.21
+sales_eu:
+  vendors: [Müller Technik GmbH, Dupont Services SARL, Bellini Forniture SRL, Schmidt & Co KG, Nowak Sp. z o.o.]
+  gen: {prefix: [Weber, Fischer, Laurent, Rossi, Garcia, Kowalski, Janssens, Peeters], stem: [Handels, Logistik, Consulting, Industrie, Services], suffix: [GmbH, SARL, SRL, BVBA, AG, S.L.]}
+  desc: ["invoice {n} reverse charge", "Rechnung {n}", "facture {n}", "payment invoice {year}-{n} intra-EU", "ICP levering {n}"]
+  activity: ["wholesale of machinery", "industrial services", "trade agency"]
+  amount: [7.4, 1.0]
+  recurrence: adhoc
+  vat: 0.0
+sales_non_eu:
+  vendors: [Acme Holdings Inc, Brightline Ltd, Northwind Traders LLC, Maple Leaf Systems Corp, Kangaroo Digital Pty Ltd]
+  gen: {prefix: [Pioneer, Summit, Atlas, Harbor, Liberty, Crown], stem: [Global, Digital, Partners, Systems, Trading], suffix: [Inc, Ltd, LLC, Corp, Pte Ltd]}
+  desc: ["invoice {n} export", "payment for services {month}", "wire transfer inv {n}", "export invoice {year}-{n}"]
+  activity: ["software publishing", "import export trading"]
+  amount: [7.6, 1.1]
+  recurrence: adhoc
+  vat: 0.0
+other_income:
+  vendors: [Belastingdienst Toeslagen, RVO Subsidies, Verzekeraar Schade-uitkering, Marktplaats Verkoop]
+  desc: ["subsidie {year}", "schade uitkering dossier {n}", "verkoop gebruikte inventaris", "vergoeding {month}", "teruggave borg"]
+  activity: ["government administration", "insurance"]
+  amount: [6.0, 1.2]
+  recurrence: adhoc
+  vat: null
+
+purchases_inventory:
+  vendors: [Sligro, Makro, Hanos, Technische Unie, Rexel, Bouwmaat, Hornbach Professional]
+  gen: {prefix: [Groothandel, Inkoopcentrale, Handelsonderneming], stem: [Noord, Zuid, Benelux, Holland, Centraal], suffix: [BV, ""]}
+  desc: ["inkoop voorraad {month}", "order {n}", "levering artikelen {n}", "stock purchase {n}", "factuur {n} materialen"]
+  activity: ["wholesale of food", "wholesale of electrical materials", "wholesale of building materials"]
+  amount: [6.5, 1.0]
+  recurrence: weekly
+  vat: 0.21
+subcontracting:
+  vendors: [ZZP Elektra Hendriks, Timmerwerken De Haan, Schildersbedrijf Kok, Flex Uitzend BV]
+  gen: {prefix: [ZZP, Freelance, Onderaannemer], stem: [Bakker, Jansen, de Wit, Vermeulen, van den Berg, Koster], suffix: ["", Services, Techniek]}
+  desc: ["uren {month} project", "inhuur week {n}", "onderaanneming {n}", "freelance werkzaamheden {month}", "hours worked {month}"]
+  activity: ["specialised construction activities", "temporary employment agency", "installation of electrical wiring"]
+  amount: [7.0, 0.8]
+  recurrence: monthly
+  vat: 0.21
+freight_in:
+  vendors: [PostNL Pakketten, DHL Express, DPD Nederland, UPS, GLS Netherlands, Kuehne+Nagel]
+  desc: ["verzendkosten zending {n}", "shipment {n}", "vracht {month}", "inbound freight {n}", "transportkosten levering"]
+  activity: ["postal and courier activities", "freight transport by road"]
+  amount: [4.5, 0.9]
+  recurrence: weekly
+  vat: 0.21
+
+salaries:
+  vendors: ["Salaris {person}", "Loon {person}", "Netto loon {person}"]
+  desc: ["salaris {month} {year}", "loon periode {n}", "nettoloon {month}", "salary {month}", "vakantiegeld {year}"]
+  activity: []
+  amount: [7.8, 0.4]
+  recurrence: monthly
+  vat: null
+payroll_tax_pension:
+  vendors: [Belastingdienst Loonheffing, PFZW, ABP Pensioenen, Pensioenfonds Metaal, BPF Bouw, Nationale Nederlanden Pensioen]
+  desc: ["loonheffing {month} {year}", "aangifte LH tijdvak {n}", "pensioenpremie {month}", "pension contribution {month}", "premie {year}-{n}"]
+  activity: ["pension funding", "public administration"]
+  amount: [7.5, 0.7]
+  recurrence: monthly
+  vat: null
+travel_reimbursement:
+  vendors: ["Declaratie {person}", "Onkosten {person}", "Reiskosten {person}"]
+  desc: ["reiskostenvergoeding {month}", "declaratie km {month}", "expense claim {n}", "onkostenvergoeding {month}"]
+  activity: []
+  amount: [4.8, 0.7]
+  recurrence: monthly
+  vat: null
+training_education:
+  vendors: [NCOI Opleidingen, LOI, Udemy, Coursera, Hogeschool van Amsterdam, Schouten & Nelissen]
+  desc: ["cursus {n}", "opleiding {year}", "training registration {n}", "inschrijving cursus {month}", "course fee"]
+  activity: ["other education", "higher education", "online learning"]
+  amount: [6.3, 0.9]
+  recurrence: adhoc
+  vat: 0.21
+
+rent:
+  vendors: [Vastgoed Beheer Centrum BV, Bedrijfsverzamelgebouw De Hallen, Regus, Spaces, Vesteda Zakelijk]
+  gen: {prefix: [Vastgoed, Beleggingsmij, Onroerend Goed], stem: [Centrum, Haven, Park, Plaza, Noordwest], suffix: [BV, Beheer]}
+  desc: ["huur {month} {year}", "huur kantoorruimte {month}", "rent {month}", "huurtermijn {n}", "servicekosten en huur {month}"]
+  activity: ["renting of own real estate", "business centre services"]
+  amount: [7.4, 0.6]
+  recurrence: monthly
+  vat: 0.21
+energy:
+  vendors: [Eneco, Vattenfall, Essent, Greenchoice, Budget Energie, Vandebron, Engie]
+  desc: ["termijnbedrag {month}", "voorschot energie {month}", "jaarafrekening {year}", "stroom en gas {month}", "energy bill {month}"]
+  activity: ["supply of electricity", "trade in gas"]
+  amount: [5.6, 0.7]
+  recurrence: monthly
+  vat: 0.21
+water:
+  vendors: [Vitens, Waternet, Evides, Brabant Water, Dunea, PWN]
+  desc: ["voorschot water {month}", "waterrekening {year}", "drinkwater {n}", "water bill {month}"]
+  activity: ["water collection and supply"]
+  amount: [3.9, 0.6]
+  recurrence: monthly
+  vat: 0.09
+cleaning_maintenance:
+  vendors: [CSU Schoonmaak, Hago, Asito, Glazenwassersbedrijf Helder, Onderhoudsbedrijf Van Rijn]
+  gen: {prefix: [Schoonmaakbedrijf, Glazenwasserij, Onderhoud], stem: [Helder, Glans, Fris, Smit, Kraak], suffix: [BV, ""]}
+  desc: ["schoonmaak {month}", "glazenwassen {month}", "onderhoud installatie {n}", "cleaning services {month}", "reparatie {n}"]
+  activity: ["general cleaning of buildings", "repair of machinery"]
+  amount: [5.4, 0.8]
+  recurrence: monthly
+  vat: 0.21
+
+software_subscriptions:
+  vendors: [Microsoft 365, Google Workspace, Adobe Systems, Exact Online, Moneybird, Slack Technologies, Atlassian, GitHub, Dropbox, Zoom Video]
+  desc: ["abonnement {month}", "subscription {month}", "licentie {year}", "monthly plan {n}", "invoice {n} seats"]
+  activity: ["software publishing", "data processing and hosting"]
+  amount: [4.0, 0.9]
+  recurrence: monthly
+  vat: 0.21
+hardware:
+  vendors: [Coolblue Zakelijk, Alternate, Megekko, Dell Technologies, Apple Store, Centralpoint]
+  desc: ["laptop {n}", "monitor bestelling {n}", "order {n} hardware", "nieuwe pc", "docking station"]
+  activity: ["retail sale of computers", "wholesale of computers"]
+  amount: [6.6, 0.8]
+  recurrence: adhoc
+  vat: 0.21
+telecom_internet:
+  vendors: [KPN, Odido, Ziggo Zakelijk, Vodafone, Tele2, Budget Mobiel]
+  desc: ["mobiel abonnement {month}", "internet {month}", "factuur {n} zakelijk", "phone plan {month}", "glasvezel {month}"]
+  activity: ["wired telecommunications", "wireless telecommunications"]
+  amount: [4.2, 0.6]
+  recurrence: monthly
+  vat: 0.21
+office_supplies:
+  vendors: [Viking Direct, Staples, Bruna, Lyreco, Paperclip Kantoorartikelen, HEMA]
+  gen: {prefix: [Kantoorvakhandel, Papierhandel], stem: [De Pen, Het Archief, Centrum, Noord], suffix: [BV, ""]}
+  desc: ["kantoorartikelen", "printerpapier en toner", "pennen en mappen", "office supplies {n}", "inktcartridges"]
+  activity: ["retail sale of stationery", "wholesale of office supplies"]
+  amount: [4.0, 0.8]
+  recurrence: adhoc
+  vat: 0.21
+
+fuel:
+  vendors: [Shell, BP, Esso, TotalEnergies, Tango, Tinq, Texaco, Gulf]
+  desc: ["", "tanken", "brandstof", "diesel", "fuel {city}", "tankstation {city}"]
+  activity: ["retail sale of automotive fuel"]
+  amount: [4.2, 0.4]
+  recurrence: weekly
+  vat: 0.21
+public_transport:
+  vendors: [NS Reizigers, GVB, RET, HTM, Arriva, Connexxion, OV-chipkaart]
+  desc: ["", "ov reis {city}", "treinkaartje", "business card {month}", "ov chipkaart opladen", "trein {city}"]
+  activity: ["passenger rail transport", "urban passenger transport"]
+  amount: [3.0, 0.8]
+  recurrence: weekly
+  vat: 0.09
+parking:
+  vendors: [Q-Park, Interparking, Yellowbrick, ParkMobile, EasyPark, APCOA Parking]
+  desc: ["", "parkeren {city}", "parking {city}", "parkeersessie {n}", "parkeergarage"]
+  activity: ["operation of parking facilities"]
+  amount: [2.5, 0.7]
+  recurrence: weekly
+  vat: 0.21
+car_lease:
+  vendors: [LeasePlan, Athlon, Arval, Alphabet Nederland, Terberg Business Lease, DirectLease]
+  desc: ["leasetermijn {month}", "lease {n}", "termijn leaseauto {month}", "car lease {month}"]
+  activity: ["renting and leasing of cars"]
+  amount: [6.3, 0.3]
+  recurrence: monthly
+  vat: 0.21
+taxi_ride_hailing:
+  vendors: [Uber BV, Bolt, TCA Taxi, Taxicentrale Amsterdam, RTC Taxi]
+  desc: ["", "rit {city}", "trip {n}", "taxi rit", "ride {month}"]
+  activity: ["taxi operation"]
+  amount: [3.4, 0.6]
+  recurrence: adhoc
+  vat: 0.09
+
+advertising:
+  vendors: [Google Ads, Meta Platforms Ireland, LinkedIn Ireland, Indeed, Bannerprint, Drukwerkdeal]
+  desc: ["advertentiekosten {month}", "ads {month}", "campagne {n}", "flyers drukwerk", "vacature plaatsing"]
+  activity: ["advertising agencies", "printing"]
+  amount: [5.5, 1.0]
+  recurrence: monthly
+  vat: 0.21
+representation_meals:
+  vendors: [Restaurant De Gouden Leeuw, Cafe Het Hoekje, Brasserie Centraal, Eetcafe De Zon, Lunchroom Bij Ons]
+  gen: {prefix: [Restaurant, Cafe, Brasserie, Eetcafe, Bistro, Lunchroom, Grand Cafe], stem: [De Kroon, Het Anker, De Ster, Plein, De Molen, Zuid, De Haven, Het Wapen, Bella, Sakura], suffix: [""]}
+  desc: ["", "lunch klant", "zakelijk diner", "lunch meeting", "borrel relaties", "diner {city}"]
+  activity: ["restaurants", "cafes and bars"]
+  amount: [4.2, 0.7]
+  recurrence: adhoc
+  vat: 0.09
+gifts_relations:
+  vendors: [Kerstpakketten.nl, Bloemenwinkel De Roos, Fleurop, Bol.com, Kadobon Centrale]
+  desc: ["kerstpakketten", "bloemen relatie", "relatiegeschenk", "gift for client", "attentie medewerker"]
+  activity: ["retail sale of flowers", "retail sale via internet"]
+  amount: [4.5, 0.9]
+  recurrence: adhoc
+  vat: 0.21
+
+accounting_fees:
+  vendors: [Administratiekantoor De Balans, BDO Accountants, Flynth, Countus, Visser Boekhouding]
+  gen: {prefix: [Administratiekantoor, Accountantskantoor, Boekhoudbureau], stem: [De Balans, Cijfer, Telwerk, Noord, Smit], suffix: [BV, ""]}
+  desc: ["administratie {month}", "jaarrekening {year}", "boekhouding kwartaal {n}", "accounting fees {month}", "aangifte begeleiding"]
+  activity: ["accounting and bookkeeping"]
+  amount: [6.2, 0.6]
+  recurrence: monthly
+  vat: 0.21
+legal_fees:
+  vendors: [Advocatenkantoor Van Leeuwen, Notariskantoor Brink, Legal Lions, Houthoff]
+  gen: {prefix: [Advocatenkantoor, Notariskantoor, Juristen], stem: [Brink, Van Leeuwen, De Graaf, Prins, Vermeer], suffix: ["", "& Partners"]}
+  desc: ["juridisch advies {n}", "notariskosten", "declaratie dossier {n}", "legal fees {month}", "contractreview"]
+  activity: ["legal activities", "notary activities"]
+  amount: [6.6, 0.8]
+  recurrence: adhoc
+  vat: 0.21
+consulting:
+  vendors: [Twynstra Gudde, Berenschot, Strategy Partners BV, Advies op Maat]
+  gen: {prefix: [Adviesbureau, Consultancy, Interim], stem: [Koers, Visie, Groei, Strategie, Delta], suffix: [BV, Partners, ""]}
+  desc: ["advies {month}", "consultancy {n}", "interim management {month}", "workshop strategie", "advisory fee {n}"]
+  activity: ["management consultancy", "business advisory"]
+  amount: [7.0, 0.8]
+  recurrence: adhoc
+  vat: 0.21
+
+bank_fees:
+  vendors: [ING Bank, Rabobank, ABN AMRO, Bunq, Knab, Triodos Bank]
+  desc: ["kosten zakelijk pakket {month}", "rente en kosten", "transactiekosten {month}", "bank fees {month}", "abonnement betaalrekening"]
+  activity: ["banking"]
+  amount: [2.8, 0.6]
+  recurrence: monthly
+  vat: null
+interest:
+  vendors: [ING Bank Rente, Rabobank Rente, ABN AMRO Rente, Qredits]
+  desc: ["rente {month}", "rente kwartaal {n}", "interest {month}", "creditrente", "debetrente {month}"]
+  activity: ["banking", "credit granting"]
+  amount: [3.5, 1.2]
+  recurrence: monthly
+  vat: null
+insurance:
+  vendors: [Centraal Beheer, Nationale Nederlanden, Achmea, ASR Verzekeringen, Interpolis, Allianz]
+  desc: ["premie {month}", "verzekering bedrijfsaansprakelijkheid", "polis {n}", "insurance premium {year}", "premie AOV {month}"]
+  activity: ["non-life insurance", "insurance brokers"]
+  amount: [5.0, 0.8]
+  recurrence: monthly
+  vat: null
+
+vat_payment:
+  vendors: [Belastingdienst]
+  desc: ["omzetbelasting {n}e kwartaal {year}", "btw aangifte {year}", "OB {year} kw{n}", "betalingskenmerk {n}"]
+  activity: ["public administration"]
+  amount: [7.5, 0.9]
+  recurrence: adhoc
+  vat: null
+vat_refund:
+  vendors: [Belastingdienst]
+  desc: ["teruggaaf omzetbelasting {year}", "btw teruggave kw{n}", "teruggave OB {year}"]
+  activity: ["public administration"]
+  amount: [6.8, 1.0]
+  recurrence: adhoc
+  vat: null
+corporate_income_tax:
+  vendors: [Belastingdienst]
+  desc: ["vennootschapsbelasting {year}", "voorlopige aanslag VPB {year}", "aanslag vpb {n}", "corporate tax {year}"]
+  activity: ["public administration"]
+  amount: [8.0, 1.0]
+  recurrence: adhoc
+  vat: null
+other_taxes:
+  vendors: [Gemeente Amsterdam, Gemeente Rotterdam, Gemeente Utrecht, Waterschap Rivierenland, Belastingsamenwerking West-Brabant]
+  desc: ["OZB {year}", "afvalstoffenheffing {year}", "rioolheffing {year}", "gemeentelijke belastingen {n}", "waterschapsbelasting"]
+  activity: ["public administration"]
+  amount: [6.0, 0.8]
+  recurrence: adhoc
+  vat: null
+
+own_account_transfer:
+  vendors: [Eigen rekening, Spaarrekening Zakelijk, Overboeking eigen rekening]
+  desc: ["naar spaarrekening", "van spaarrekening", "overboeking eigen rekening", "internal transfer", "spaardoel"]
+  activity: []
+  amount: [8.0, 1.0]
+  recurrence: adhoc
+  vat: null
+loan_repayment:
+  vendors: [Qredits Microfinanciering, Rabobank Lening, ING Zakelijke Lening, Funding Circle]
+  desc: ["aflossing lening {n}", "termijn lening {month}", "loan repayment {month}", "aflossing {year}"]
+  activity: ["credit granting"]
+  amount: [6.5, 0.6]
+  recurrence: monthly
+  vat: null
+owner_withdrawal:
+  vendors: ["Prive {person}", Opname eigenaar, Privé-opname]
+  desc: ["prive opname", "privé", "opname eigenaar {month}", "owner drawing", "naar prive rekening"]
+  activity: []
+  amount: [7.0, 0.8]
+  recurrence: monthly
+  vat: null
+owner_deposit:
+  vendors: ["Prive {person}", Storting eigenaar, Kapitaalstorting]
+  desc: ["storting eigen vermogen", "prive inleg", "kapitaalstorting", "owner contribution", "van prive"]
+  activity: []
+  amount: [7.2, 1.0]
+  recurrence: adhoc
+  vat: null
+
+# Ambiguous vendors (spec 7.2): the same name legitimately maps to several
+# categories; only amount or description can tell them apart.
+_ambiguous:
+  Albert Heijn: {representation_meals: ["lunch team", "borrel", "catering vergadering"], office_supplies: ["koffie en melk kantoor", "kantoorbenodigdheden"]}
+  Jumbo: {representation_meals: ["lunch meeting", "borrelhapjes"], office_supplies: ["koffie kantoor", "schoonmaakmiddelen kantoor"]}
+  Bol.com: {hardware: ["monitor", "laptop tas en dock", "toetsenbord"], office_supplies: ["printerpapier", "nietmachine"], gifts_relations: ["cadeau klant"]}
+  Amazon EU: {hardware: ["usb-c hub", "ssd 1tb", "webcam"], office_supplies: ["pens and notebooks", "labels"], software_subscriptions: ["aws {month}", "prime business {month}"]}
+  Action: {office_supplies: ["mappen en pennen"], cleaning_maintenance: ["schoonmaakspullen"]}
+
+# Generic names with no signal (spec 7.2).
+_generic_names: [Red Shop, Thunder, Blue Star, Online Store, Webshop 24, The Corner, Nova, Prime Store, Golden Gate, Fast Service]
+
+_people: [J. de Vries, M. Jansen, S. Bakker, L. Visser, A. Smit, R. Meijer, K. de Boer, E. Mulder, T. Bos, N. Peters]
