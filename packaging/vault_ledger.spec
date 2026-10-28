@@ -79,6 +79,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     name="VaultLedger",
+    icon=str(REPO / "packaging" / "vault_ledger.ico"),  # packaging/make_logo.py
     console=False,
     upx=False,
 )

@@ -61,9 +61,11 @@ a:hover { color: #6e5f3c; }
 
 .app-header .brand {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
 }
+
+.app-header .brand-logo { display: block; width: 26px; height: auto; flex: none; }
 
 .app-header .brand-name {
   font-family: var(--font-display);

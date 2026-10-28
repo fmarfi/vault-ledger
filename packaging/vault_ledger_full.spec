@@ -105,6 +105,7 @@ exe = EXE(
     a.scripts,
     exclude_binaries=True,
     name="VaultLedger",
+    icon=str(REPO / "packaging" / "vault_ledger.ico"),  # packaging/make_logo.py
     console=False,
     upx=False,
 )
