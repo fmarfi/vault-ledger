@@ -63,7 +63,12 @@ a = Analysis(
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
-    excludes=["pytest", "fpdf", "tkinter", "matplotlib", "IPython"],
+    # The DragoNet models (vaultledger-ml: torch + transformers, ~1 GB plus a
+    # ~490 MB encoder) are not bundled in the single-file build; the
+    # classifier cascade skips them and uses the TF-IDF model.
+    excludes=["pytest", "fpdf", "tkinter", "matplotlib", "IPython",
+              "torch", "transformers", "tokenizers", "safetensors", "sentencepiece",
+              "huggingface_hub", "vaultledger"],
 )
 a.pure = [entry for entry in a.pure if entry[0].split(".")[0] != "vault_ledger"]
 
