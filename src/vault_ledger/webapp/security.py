@@ -38,6 +38,9 @@ SKIP_LOGIN_USERNAME = "local"
 DEMO_ENDPOINTS = frozenset({"demo_start", "demo_reset", "demo_exit"})
 MUTATING = frozenset({"POST", "PUT", "PATCH", "DELETE"})
 SESSION_HOURS = 8
+# Where a sign-in (password, signup, "Continue without signing in") lands when
+# there is no other safe page to return to. "/" stays the review queue.
+LANDING_PATH = "/dashboard"
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 CSRF_HEADER = "X-CSRF-Token"
 GENERIC_LOGIN_ERROR = "Invalid username or password."
@@ -146,18 +149,18 @@ def _client_ip() -> str:
 # ---- helpers ---------------------------------------------------------------
 
 def safe_next(target: str | None) -> str:
-    """Only same-site relative paths; anything else becomes '/'."""
+    """Only same-site relative paths; anything else becomes LANDING_PATH."""
     if not target or not isinstance(target, str) or len(target) > 512:
-        return "/"
+        return LANDING_PATH
     if not target.startswith("/") or target.startswith("//") or "\\" in target:
-        return "/"
+        return LANDING_PATH
     if any(ord(c) < 32 or ord(c) == 127 for c in target):
-        return "/"
+        return LANDING_PATH
     parts = urlsplit(target)
     if parts.scheme or parts.netloc:
-        return "/"
+        return LANDING_PATH
     if parts.path.rstrip("/") in ("/login", "/logout", "/signup"):
-        return "/"
+        return LANDING_PATH
     return target
 
 
@@ -290,7 +293,10 @@ def init_app(app: Flask) -> None:
         if endpoint not in PUBLIC_ENDPOINTS and user is None:
             if _wants_json():
                 return jsonify({"error": "authentication required"}), 401
-            return redirect(url_for("login", next=safe_next(request.full_path.rstrip("?"))))
+            # Opening the app's root (the desktop window, a bookmark) means
+            # "open the app", so it lands on the dashboard after sign-in.
+            target = request.full_path.rstrip("?")
+            return redirect(url_for("login", next=LANDING_PATH if target == "/" else safe_next(target)))
         if user is not None:
             g.user = user
             g._dir_token = userdata.current_user_dir.set(userdata.user_dir_for(user["id"], create=True))
@@ -402,4 +408,4 @@ def init_app(app: Flask) -> None:
         except auth.AuthError as exc:
             return render_template("signup.html", error=str(exc), username=username), 400
         _start_session(user)
-        return redirect(url_for("index"))
+        return redirect(LANDING_PATH)

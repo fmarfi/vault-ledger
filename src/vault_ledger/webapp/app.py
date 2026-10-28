@@ -41,7 +41,7 @@ from flask import Flask, Response, g, jsonify, redirect, request, send_file, sen
 from flask import render_template, url_for
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger import backup, coa, demo, documents, hardware
+from vault_ledger import backup, coa, dashboard, demo, documents, hardware
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
@@ -144,6 +144,24 @@ def overview_page():
 @app.route("/export")
 def export_page():
     return render_template("export.html", active_page="export")
+
+
+# ---- dashboard ---------------------------------------------------------------
+# The page users land on after signing in. Every figure is computed by
+# vault_ledger.dashboard from this user's own ledger and queue.
+
+@app.route("/dashboard")
+def dashboard_page():
+    now = datetime.now().astimezone()
+    return render_template(
+        "dashboard.html", active_page="dashboard", header=dashboard.header(g.user["username"], now)
+    )
+
+
+@app.route("/api/dashboard")
+def api_dashboard():
+    period = "last" if request.args.get("period") == "last" else "this"
+    return jsonify(dashboard.build(read_entries(), read_pending(), period, datetime.now().astimezone()))
 
 
 @app.route("/api/samples")
@@ -550,7 +568,7 @@ def demo_start():
         return render_template("login.html", next_url="/", error=error, username=""), status
     with use_user_dir(user_dir_for(user["id"], create=True)):
         demo.seed(_get_classifier(), _serialize_entry)
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard_page"))
 
 
 @app.route("/demo/reset", methods=["POST"])
