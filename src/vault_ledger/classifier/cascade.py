@@ -9,8 +9,7 @@ manual review as usual.
 Default order (see DEFAULT_RUNS):
   1. DragoNet, pretrained encoder with its top 2 layers fine-tuned
   2. DragoNet, frozen encoder plus VAT/paid features
-  3. DragoNet, frozen encoder
-  4. TF-IDF fusion model (FastClassifier): no torch needed, always last
+  3. TF-IDF fusion model (FastClassifier): no torch needed, always last
 
 A model that fails to load is skipped for the rest of the process and the
 cascade keeps working with the others, so a machine without torch or without
@@ -31,11 +30,12 @@ log = logging.getLogger(__name__)
 
 RUNS_DIR = Path(__file__).resolve().parents[3] / "vaultledger-ml" / "runs"
 
-# Most engineered first. All three are trained on the app-accounts taxonomy.
+# Most engineered first. Both are trained on the app-accounts taxonomy.
+# The older frozen-encoder run (synth-crew-4321-pretrained) is left out: it was
+# trained with 10 numeric features, the model now has 13, so it cannot load.
 DEFAULT_RUNS = (
     "synth-crew-4321-pretrained-top2",
     "synth-crew-4321-pretrained-vatpaid",
-    "synth-crew-4321-pretrained",
 )
 
 ENV = "VAULT_CLASSIFIER"
