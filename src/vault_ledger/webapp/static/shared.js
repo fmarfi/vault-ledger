@@ -6,10 +6,12 @@ function formatCurrency(value) {
   return "$" + Number(value).toFixed(2);
 }
 
-// Single source of truth for what counts as "high confidence" -- used by
-// the glyph below and by the review queue's bulk-select-by-confidence
-// action, so the two can't silently drift apart.
-const CONFIDENCE_THRESHOLD = 0.6;
+// What counts as "high confidence": the server's confidence gate
+// (confidence_gate.py), read from the page so the label on a card and the
+// "needs review" flag can't disagree. Used by the glyph below and by the
+// review queue's bulk-select-by-confidence action.
+const CONFIDENCE_THRESHOLD =
+  Number(document.querySelector('meta[name="confidence-threshold"]')?.content) || 0.75;
 
 // Ink (solid, filled) = high confidence. Pencil (dashed outline) = low.
 // The percentage renders but stays hidden until hover via .confidence-pct

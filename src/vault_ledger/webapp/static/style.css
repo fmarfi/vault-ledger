@@ -688,3 +688,9 @@ body.is-dropping .drop-overlay { display: flex; }
   .dash-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dash-grid-bottom { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Documents page: the source document under its row */
+.doc-actions { white-space: nowrap; }
+.doc-viewer { padding: 12px 16px 20px; border-bottom: 1px solid var(--color-rule-soft); background: var(--color-card); }
+.doc-viewer img { display: block; max-width: 520px; max-height: 620px; width: auto; border: 1px solid var(--color-rule); cursor: zoom-in; }
+.doc-viewer.doc-viewer-large img { max-width: 100%; max-height: none; cursor: zoom-out; }

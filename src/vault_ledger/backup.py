@@ -41,7 +41,10 @@ _CSV_HEADERS = {
 }
 # Columns added to a file later (always at the end). A backup made before
 # they existed has a header that stops before them.
-_LATER_COLUMNS = {"pending_queue.csv": len(queue.FIELDNAMES) - queue.FIELDNAMES.index("decided_by")}
+_LATER_COLUMNS = {
+    "pending_queue.csv": len(queue.FIELDNAMES) - queue.FIELDNAMES.index("decided_by"),
+    "ledger.csv": len(ledger.FIELDNAMES) - ledger.FIELDNAMES.index("document_id"),
+}
 
 
 class BackupError(ValueError):

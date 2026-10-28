@@ -5,9 +5,10 @@ item id, so the reviewer can look at the document while confirming or
 correcting the proposed entry. Kept after confirm (it is the record behind the
 ledger entry), deleted on dismiss.
 
-Never served back in its original form: `preview_png` re-renders the first
-page (the only page the pipeline reads) to a PNG, so no uploaded bytes or
-content type reach the browser as-is.
+Shown in the page only as `preview_png`, a re-render of the first page (the
+only page the pipeline reads) to a PNG. The original file is offered only as
+a download (Content-Disposition: attachment, application/octet-stream), so
+uploaded bytes are never rendered in the app's own origin.
 
 Not part of `backup.py` yet: a backup holds the books, not the originals.
 """
@@ -39,6 +40,14 @@ def find(item_id: str) -> Path | None:
     if not folder.is_dir():
         return None
     return next((p for p in sorted(folder.iterdir()) if p.stem == item_id and p.is_file()), None)
+
+
+def stored_ids() -> set[str]:
+    """Item ids that have a stored document (one directory listing)."""
+    folder = _dir()
+    if not folder.is_dir():
+        return set()
+    return {p.stem for p in folder.iterdir() if p.is_file() and ITEM_ID_RE.fullmatch(p.stem)}
 
 
 def store(item_id: str, source: str | Path, suffix: str) -> Path:

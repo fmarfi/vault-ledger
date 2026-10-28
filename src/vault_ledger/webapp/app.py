@@ -47,7 +47,13 @@ from vault_ledger import backup, coa, dashboard, demo, documents, duplicates, ha
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
-from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, propose_entry, run_pipeline
+from vault_ledger.pipeline import (
+    PipelineResult,
+    _load_or_train_classifier,
+    propose_entry,
+    run_pipeline,
+    scoring_version,
+)
 from vault_ledger.queue import queue_lock, enqueue, get_pending, read_pending, remove_pending, update_pending
 from vault_ledger.reports import audit_csv, books_csv, period_summary
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
@@ -344,7 +350,36 @@ def _enqueue_result(result: PipelineResult, filename: str) -> str:
         decided_by=result.decided_by,
         date_written=result.date_written,
         date_assumed=result.date_assumed,
+        scored_with=scoring_version(_get_classifier()),
     )
+
+
+def _rescore_stale_items() -> None:
+    """Score again, once, every queued item whose stored score came from
+    other models or other inputs than the current ones (queued before a
+    model upgrade, or before dates were stored as YYYY-MM-DD). Without this
+    the card shows the old score while Edit details shows the new one."""
+    classifier = _get_classifier()
+    current = scoring_version(classifier)
+    with queue_lock():
+        for row in read_pending():
+            if row["scored_with"] == current:
+                continue
+            fields = _row_fields(row)
+            if not math.isfinite(fields["amount"]) or fields["amount"] <= 0:
+                update_pending(row["id"], {"scored_with": current})  # nothing to score
+                continue
+            result = _propose(fields)
+            assumed = row["date_assumed"] == "True"
+            update_pending(row["id"], {
+                "predicted_account": result.predicted_account,
+                "confidence": result.confidence,
+                "needs_review": result.needs_review or assumed,
+                "rejection_reason": result.rejection_reason or "",
+                "entry_json": json.dumps(_serialize_entry(result.entry)),
+                "decided_by": result.decided_by,
+                "scored_with": current,
+            })
 
 
 @app.route("/api/queue")
@@ -353,6 +388,7 @@ def api_queue():
     the persistent review queue (diagnostics report, feature 1). Each item
     says whether it looks like a copy of a posted or queued document
     (duplicates.py); that is a warning only."""
+    _rescore_stale_items()
     items = read_pending()
     items.sort(key=lambda row: row.get("queued_at", ""))
     found = duplicates.find_duplicates(items, read_entries())
@@ -516,6 +552,7 @@ def api_queue_update(item_id: str):
                 "rejection_reason": result.rejection_reason or "",
                 "entry_json": json.dumps(_serialize_entry(result.entry)),
                 "decided_by": result.decided_by,
+                "scored_with": scoring_version(_get_classifier()),
             },
         )
         return jsonify(get_pending(item_id))
@@ -610,6 +647,7 @@ def _confirm_pending_item(
             account=account,
             confidence=confidence,
             was_corrected=was_corrected,
+            document_id=item_id,
         )
         remove_pending(item_id)
         if was_corrected:
@@ -702,7 +740,54 @@ def api_bulk_confirm():
 def api_documents():
     entries = read_entries()
     entries.sort(key=lambda e: e.get("confirmed_at", ""), reverse=True)
+    stored = documents.stored_ids()
+    samples = {f"{sample.name}.png" for sample in SAMPLES}
+    for entry in entries:
+        entry["has_document"] = entry["document_id"] in stored or entry["filename"] in samples
     return jsonify(entries)
+
+
+def _posted_entry(document_id: str) -> dict | None:
+    """The current user's posted entry for this document id, if any."""
+    if not documents.ITEM_ID_RE.fullmatch(document_id or ""):
+        return None
+    return next((e for e in read_entries() if e["document_id"] == document_id), None)
+
+
+def _sample_path(entry: dict) -> Path | None:
+    if any(f"{sample.name}.png" == entry["filename"] for sample in SAMPLES):
+        return DOCUMENTS_DIR / entry["filename"]
+    return None
+
+
+@app.route("/api/documents/<document_id>/preview")
+def api_document_preview(document_id: str):
+    """First page of a posted entry's source document, as a PNG."""
+    entry = _posted_entry(document_id)
+    if entry is None:
+        return jsonify({"error": "no posted document with that id"}), 404
+    png = documents.preview_png(document_id)
+    if png is not None:
+        return send_file(io.BytesIO(png), mimetype="image/png")
+    if _sample_path(entry) is not None:
+        return send_from_directory(DOCUMENTS_DIR, entry["filename"])
+    return jsonify({"error": "no document stored for this entry"}), 404
+
+
+@app.route("/api/documents/<document_id>/original")
+def api_document_original(document_id: str):
+    """The source file exactly as it was added, as a download under its own
+    name. Never rendered inline (see documents.py)."""
+    entry = _posted_entry(document_id)
+    if entry is None:
+        return jsonify({"error": "no posted document with that id"}), 404
+    path = documents.find(document_id) or _sample_path(entry)
+    if path is None or not path.exists():
+        return jsonify({"error": "no document stored for this entry"}), 404
+    name = Path(entry["filename"] or path.name).name
+    if Path(name).suffix.lower() != path.suffix.lower():
+        name = f"{Path(name).stem or 'document'}{path.suffix.lower()}"
+    return send_file(path, as_attachment=True, download_name=name, mimetype="application/octet-stream")
 
 
 @app.route("/api/stats")

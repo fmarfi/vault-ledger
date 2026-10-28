@@ -40,6 +40,19 @@ class PipelineResult:
     date_assumed: bool = False  # day/month order came from the setting: check it
 
 
+# Bump when what the classifier is given changes (as when dates became
+# YYYY-MM-DD), so queue items scored the old way are scored again.
+SCORING_INPUTS_VERSION = "2"
+
+
+def scoring_version(classifier) -> str:
+    """Which models, fed which inputs, produced a score. A queued item whose
+    stored version differs from the current one is re-scored (app.py), so the
+    card and the edit preview always show the same model's answer."""
+    models = getattr(classifier, "stage_names", None) or [type(classifier).__name__]
+    return f"{SCORING_INPUTS_VERSION}:" + "|".join(models)
+
+
 def run_pipeline(document_path: str | Path, classifier, date_order: str = DAY_FIRST) -> PipelineResult:
     raw_text = extract_raw_text(document_path)
     fields = parse_fields(raw_text)

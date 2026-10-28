@@ -34,7 +34,7 @@ from vault_ledger import coa, userdata
 from vault_ledger.confidence_gate import needs_manual_review
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry
-from vault_ledger.pipeline import propose_entry
+from vault_ledger.pipeline import propose_entry, scoring_version
 from vault_ledger.queue import enqueue
 from vault_ledger.rules.entry_rules import construct_entry
 
@@ -202,6 +202,10 @@ def seed(classifier, serialize_entry: Callable, today: date | None = None) -> di
             needs_review=needs_review,
             rejection_reason=reason,
             entry_json=json.dumps(serialize_entry(entry)),
+            decided_by=proposal.decided_by,
+            # Marked as current so the hand-set illustrative scores (see
+            # QUEUE_SEED) are kept, not replaced by a re-score.
+            scored_with=scoring_version(classifier),
         )
 
     return {"ledger": len(LEDGER_SEED), "queue": len(QUEUE_SEED)}

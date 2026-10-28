@@ -15,6 +15,43 @@ function statusGlyphHtml(wasCorrected) {
   `;
 }
 
+const DOC_COLUMNS = "2.2fr 1.6fr 110px 130px 1.8fr 170px";
+
+// View: the first page as an image under the row. Download: the file as it
+// was added (served as an attachment, never opened inside the app).
+function addDocumentActions(row, doc) {
+  const cell = row.querySelector(".doc-actions");
+  if (!doc.has_document || !doc.document_id) {
+    cell.innerHTML = '<span class="muted small">Not stored</span>';
+    cell.title = "Posted before originals were linked to entries, or demo data.";
+    return;
+  }
+  const id = encodeURIComponent(doc.document_id);
+  const view = Object.assign(document.createElement("button"), { type: "button", className: "btn-link small", textContent: "View" });
+  const download = Object.assign(document.createElement("a"), { className: "btn-link small", textContent: "Download original", href: `/api/documents/${id}/original` });
+  download.setAttribute("download", "");
+  view.setAttribute("aria-expanded", "false");
+  cell.append(view, " · ", download);
+
+  let panel = null;
+  view.addEventListener("click", () => {
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "doc-viewer";
+      const img = Object.assign(document.createElement("img"), { alt: `First page of ${doc.filename}`, src: `/api/documents/${id}/preview` });
+      img.addEventListener("error", () => { panel.textContent = "This document can't be shown. Try Download original."; });
+      img.addEventListener("click", () => panel.classList.toggle("doc-viewer-large"));
+      img.title = "Click to enlarge";
+      panel.append(img);
+      row.after(panel);
+    } else {
+      panel.hidden = !panel.hidden;
+    }
+    view.textContent = panel.hidden ? "View" : "Hide";
+    view.setAttribute("aria-expanded", String(!panel.hidden));
+  });
+}
+
 async function loadDocuments() {
   const docs = await fetchJson("/api/documents");
   document.getElementById("doc-count").textContent = docs.length;
@@ -30,7 +67,7 @@ async function loadDocuments() {
   docs.forEach((doc) => {
     const row = document.createElement("div");
     row.className = "ledger-row";
-    row.style.gridTemplateColumns = "2.2fr 1.6fr 110px 130px 1.8fr";
+    row.style.gridTemplateColumns = DOC_COLUMNS;
     const postedDate = new Date(doc.confirmed_at).toLocaleDateString();
     row.innerHTML = `
       <div style="display:flex;align-items:center;gap:10px;">
@@ -41,8 +78,10 @@ async function loadDocuments() {
       <div class="figure small muted">${postedDate}</div>
       <div>${statusGlyphHtml(doc.was_corrected === "True")}</div>
       <div class="small" style="color: var(--color-ink-soft);">${escapeHtml(doc.account)}</div>
+      <div class="doc-actions"></div>
     `;
     rowsContainer.appendChild(row);
+    addDocumentActions(row, doc);
   });
 }
 

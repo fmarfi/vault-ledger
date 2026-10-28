@@ -396,10 +396,97 @@ def test_old_queue_file_without_decided_by_still_loads_and_upgrades(client):
         "Office Supplies Expense,0.9,False,,{}\n"
     )
     [old] = client.get("/api/queue").get_json()
-    assert old["id"] == "old1" and old["decided_by"] == ""
+    # Loading the queue re-scores an item scored by an older model.
+    assert old["id"] == "old1" and old["decided_by"] == "fake-model"
     new_id = _add(client, decided_by="fake-model")  # appending upgrades the header first
     rows = {row["id"]: row for row in _rows(client.pending_path)}
-    assert rows["old1"]["decided_by"] == "" and rows["old1"]["vendor"] == "Old Vendor"
+    assert rows["old1"]["decided_by"] == "fake-model" and rows["old1"]["vendor"] == "Old Vendor"
     assert rows[new_id]["decided_by"] == "fake-model" and rows[new_id]["vendor"] == "Acme Offce Suplies"
     assert client.post(f"/api/queue/old1/update", json={"vendor": "Renamed"}).status_code == 200
     assert client.post("/api/confirm", json={"id": "old1"}).status_code == 200
+
+
+# ---- re-scoring stale items ---------------------------------------------------
+
+def test_loading_the_queue_rescores_items_from_an_older_model_once(client):
+    item_id = _add(client, vendor="Main Street Properties", description="Office rent", confidence=0.31,
+                   predicted_account="Office Supplies Expense", needs_review=True, scored_with="1:old-model")
+    row = client.get("/api/queue").get_json()[0]
+    assert (row["predicted_account"], float(row["confidence"]), row["needs_review"]) == ("Rent Expense", 0.91, "False")
+    assert row["scored_with"] == app_mod.scoring_version(app_mod._classifier)
+    # The card and Edit details now agree.
+    preview = client.post(f"/api/queue/{item_id}/preview", json={}).get_json()
+    assert (preview["predicted_account"], preview["confidence"]) == ("Rent Expense", 0.91)
+    calls = FakeCascade.calls
+    client.get("/api/queue")
+    assert FakeCascade.calls == calls  # current items are not scored again
+
+
+def test_rescore_keeps_an_assumed_date_flagged(client):
+    _add(client, vendor="Main Street Properties", description="Office rent", date="2026-04-03",
+         date_written="03/04/2026", date_assumed=True, needs_review=True, scored_with="")
+    row = client.get("/api/queue").get_json()[0]
+    assert row["predicted_account"] == "Rent Expense" and row["needs_review"] == "True"
+
+
+def test_page_gets_the_server_confidence_threshold(client):
+    from vault_ledger.confidence_gate import CONFIDENCE_THRESHOLD
+    page = client.get("/").get_data(as_text=True)
+    assert f'<meta name="confidence-threshold" content="{CONFIDENCE_THRESHOLD}">' in page
+
+
+# ---- documents page: the source document of a posted entry ----------------------
+
+def _post_with_document(client, content=b"%PDF-1.4 fake", suffix=".pdf", filename="Factuur maart.pdf"):
+    item_id = _add(client, filename=filename)
+    folder = client.user_dir / "documents"
+    folder.mkdir(exist_ok=True)
+    (folder / f"{item_id}{suffix}").write_bytes(content)
+    assert client.post("/api/confirm", json={"id": item_id}).status_code == 200
+    return item_id
+
+
+def test_confirm_links_the_ledger_entry_to_its_document(client):
+    item_id = _post_with_document(client)
+    [doc] = client.get("/api/documents").get_json()
+    assert doc["document_id"] == item_id and doc["has_document"] is True
+
+
+def test_original_downloads_as_an_attachment_under_its_own_name(client):
+    item_id = _post_with_document(client)
+    res = client.get(f"/api/documents/{item_id}/original")
+    assert res.status_code == 200 and res.data == b"%PDF-1.4 fake"
+    assert res.mimetype == "application/octet-stream"
+    disposition = res.headers["Content-Disposition"]
+    assert disposition.startswith("attachment") and "Factuur" in disposition
+
+
+def test_preview_renders_an_image_document(client):
+    import io
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.new("RGB", (40, 30), "white").save(buf, "PNG")
+    item_id = _post_with_document(client, content=buf.getvalue(), suffix=".png", filename="scan.png")
+    res = client.get(f"/api/documents/{item_id}/preview")
+    assert res.status_code == 200 and res.mimetype == "image/png"
+
+
+def test_document_routes_are_per_user_and_reject_bad_ids(client):
+    item_id = _post_with_document(client)
+    other = make_user_client(app_mod.app, "outsider")
+    for route in ("original", "preview"):
+        assert other.get(f"/api/documents/{item_id}/{route}").status_code == 404
+        assert client.get(f"/api/documents/..%2F..%2Fusers.json/{route}").status_code == 404
+        assert client.get(f"/api/documents/000000000000/{route}").status_code == 404
+
+
+def test_old_ledger_without_document_id_still_loads_and_upgrades(client):
+    client.ledger_path.write_text(
+        "confirmed_at,filename,vendor,description,date,amount,account,confidence,was_corrected\n"
+        "2026-01-01T00:00:00+00:00,old.pdf,Old,desc,2026-01-01,5.0,Rent Expense,0.9,False\n"
+    )
+    [old] = client.get("/api/documents").get_json()
+    assert old["document_id"] == "" and old["has_document"] is False
+    _post_with_document(client)
+    rows = _rows(client.ledger_path)
+    assert len(rows) == 2 and rows[0]["vendor"] == "Old" and rows[0]["document_id"] == ""

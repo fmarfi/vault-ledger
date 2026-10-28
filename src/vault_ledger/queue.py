@@ -70,6 +70,7 @@ FIELDNAMES = [
     "decided_by",
     "date_written",
     "date_assumed",
+    "scored_with",  # pipeline.scoring_version() of the stored score
 ]
 
 # What update_pending may rewrite: everything but the row's identity.
@@ -92,6 +93,7 @@ def enqueue(
     decided_by: str = "",
     date_written: str = "",
     date_assumed: bool = False,
+    scored_with: str = "",
 ) -> str:
     """Persist a processed-but-unconfirmed result and return its id."""
     path = resolve("pending_queue.csv", PENDING_PATH, path)
@@ -121,6 +123,7 @@ def enqueue(
                 "decided_by": decided_by or "",
                 "date_written": date_written or "",
                 "date_assumed": "True" if date_assumed else "",
+                "scored_with": scored_with or "",
             })
     return item_id
 

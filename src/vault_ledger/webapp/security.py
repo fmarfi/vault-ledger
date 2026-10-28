@@ -27,6 +27,7 @@ from flask import (
 from flask.sessions import SecureCookieSessionInterface
 from werkzeug.exceptions import HTTPException
 
+from vault_ledger.confidence_gate import CONFIDENCE_THRESHOLD
 from vault_ledger import auth, userdata
 
 # Endpoints reachable without a login. Everything else is protected by default,
@@ -346,6 +347,7 @@ def init_app(app: Flask) -> None:
             "demo_enabled": demo_enabled(),
             "skip_login_enabled": skip_login_enabled(),
             "is_demo": auth.is_demo(user),
+            "confidence_threshold": CONFIDENCE_THRESHOLD,
         }
 
     @app.route("/healthz")
