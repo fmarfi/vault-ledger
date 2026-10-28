@@ -55,12 +55,18 @@
 
   <div class="upload-row">
     <label class="upload-btn">
-      Upload a document
-      <input id="file-input" type="file" accept="image/*,application/pdf,.pdf" hidden>
+      Upload documents
+      <input id="file-input" type="file" accept="image/*,application/pdf,.pdf" multiple hidden>
     </label>
+    <span class="muted small">or drop PDF and image files anywhere on this page</span>
     <span id="upload-filename" class="muted"></span>
   </div>
+  <div id="upload-status" hidden></div>
 </section>
+
+<div class="drop-overlay" aria-hidden="true">
+  <div class="drop-overlay-box">Drop to process — one document at a time, into the review queue</div>
+</div>
 
 <section id="loading" class="loading" hidden>Processing…</section>
 
@@ -78,14 +84,28 @@
       Every document processed above stays here, persisted on this
       machine, until it's confirmed, corrected, or dismissed — refreshing
       the page won't lose it. Select several and confirm them together, or
-      handle one at a time below.
+      handle one at a time below. "Edit details" on a card fixes anything
+      the document reader got wrong before it is posted.
     </p>
+    <div class="queue-filter-row">
+      <input id="queue-search" class="text-input" type="search" placeholder="Search vendor, description, file or amount"
+             aria-label="Search the review queue" autocomplete="off">
+      <div class="filter-chips" role="group" aria-label="Show">
+        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All <span class="filter-count figure"></span></button>
+        <button type="button" class="filter-chip" data-filter="review" aria-pressed="false">Needs review <span class="filter-count figure"></span></button>
+        <button type="button" class="filter-chip" data-filter="ready" aria-pressed="false">Ready <span class="filter-count figure"></span></button>
+        <button type="button" class="filter-chip" data-filter="duplicate" aria-pressed="false">Possible duplicate <span class="filter-count figure"></span></button>
+      </div>
+    </div>
     <div id="bulk-status" hidden></div>
   </div>
 
   <div id="queue-list"></div>
   <div id="queue-empty" class="card muted" hidden>
     Nothing in the review queue. Process a document above to get started.
+  </div>
+  <div id="queue-no-match" class="card muted" hidden>
+    No queued document matches this search or filter.
   </div>
 </section>
 

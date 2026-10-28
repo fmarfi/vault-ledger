@@ -17,6 +17,10 @@ storage concept for this MVP, just a third flat file next to the other two.
 (serialized by the caller, app.py) so the review queue can show the
 debit/credit breakdown on a reload without re-running the rules engine --
 it's a cache of a pure-function result, not a second source of truth.
+
+`decided_by` names the model in the classifier cascade that made the
+prediction (classifier/cascade.py). Rows written before it existed load
+with it as "".
 """
 
 from __future__ import annotations
@@ -58,7 +62,11 @@ FIELDNAMES = [
     "needs_review",
     "rejection_reason",
     "entry_json",
+    "decided_by",
 ]
+
+# What update_pending may rewrite: everything but the row's identity.
+EDITABLE_FIELDS = frozenset(FIELDNAMES) - {"id", "queued_at", "filename"}
 
 
 def enqueue(
@@ -74,18 +82,20 @@ def enqueue(
     rejection_reason: str | None,
     entry_json: str,
     path: str | Path | None = None,
+    decided_by: str = "",
 ) -> str:
     """Persist a processed-but-unconfirmed result and return its id."""
     path = resolve("pending_queue.csv", PENDING_PATH, path)
     path.parent.mkdir(parents=True, exist_ok=True)
     item_id = uuid.uuid4().hex[:12]
-    with queue_lock(), path.open("a", newline="") as f:
-        is_new = f.tell() == 0
-        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
-        if is_new:
-            writer.writeheader()
-        writer.writerow(
-            {
+    with queue_lock():
+        _upgrade_header(path)
+        with path.open("a", newline="") as f:
+            is_new = f.tell() == 0
+            writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+            if is_new:
+                writer.writeheader()
+            writer.writerow({
                 "id": item_id,
                 "queued_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "filename": filename,
@@ -99,9 +109,20 @@ def enqueue(
                 "needs_review": needs_review,
                 "rejection_reason": rejection_reason or "",
                 "entry_json": entry_json,
-            }
-        )
+                "decided_by": decided_by or "",
+            })
     return item_id
+
+
+def _upgrade_header(path: Path) -> None:
+    """A queue file written before a column was added is rewritten once with
+    the current header, so appending a longer row never shifts columns."""
+    if not path.exists() or path.stat().st_size == 0:
+        return
+    with path.open(newline="") as f:
+        header = next(csv.reader(f), [])
+    if header != FIELDNAMES:
+        _write_rows(path, read_pending(path))
 
 
 def read_pending(path: str | Path | None = None) -> list[dict]:
@@ -109,7 +130,8 @@ def read_pending(path: str | Path | None = None) -> list[dict]:
     if not path.exists():
         return []
     with path.open(newline="") as f:
-        return list(csv.DictReader(f))
+        # Normalised to the current columns: a missing one (an old row) is "".
+        return [{name: row.get(name) or "" for name in FIELDNAMES} for row in csv.DictReader(f)]
 
 
 def get_pending(item_id: str, path: str | Path | None = None) -> dict | None:
@@ -129,18 +151,42 @@ def remove_pending(item_id: str, path: str | Path | None = None) -> bool:
         remaining = [row for row in rows if row["id"] != item_id]
         if len(remaining) == len(rows):
             return False
-        # Write a temp file then os.replace: a crash or full disk mid-write
-        # leaves the old queue intact instead of a truncated one.
-        fd, tmp_name = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
-        try:
-            with os.fdopen(fd, "w", newline="") as f:
-                writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
-                writer.writeheader()
-                writer.writerows(remaining)
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(tmp_name, path)
-        except BaseException:
-            Path(tmp_name).unlink(missing_ok=True)
-            raise
+        _write_rows(path, remaining)
     return True
+
+
+def update_pending(item_id: str, fields: dict, path: str | Path | None = None) -> bool:
+    """Rewrite some fields of one pending item (an edited draft). Returns
+    False if the id wasn't found. Only EDITABLE_FIELDS may change; anything
+    else is a programming error and raises ValueError."""
+    unknown = set(fields) - EDITABLE_FIELDS
+    if unknown:
+        raise ValueError(f"not an editable queue field: {sorted(unknown)}")
+    path = resolve("pending_queue.csv", PENDING_PATH, path)
+    with queue_lock():
+        rows = read_pending(path)
+        for row in rows:
+            if row["id"] == item_id:
+                row.update({key: "" if value is None else value for key, value in fields.items()})
+                break
+        else:
+            return False
+        _write_rows(path, rows)
+    return True
+
+
+def _write_rows(path: Path, rows: list[dict]) -> None:
+    # Write a temp file then os.replace: a crash or full disk mid-write
+    # leaves the old queue intact instead of a truncated one.
+    fd, tmp_name = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+            writer.writeheader()
+            writer.writerows(rows)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_name, path)
+    except BaseException:
+        Path(tmp_name).unlink(missing_ok=True)
+        raise

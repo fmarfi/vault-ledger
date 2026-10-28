@@ -408,6 +408,71 @@ select {
 .status-banner { padding: 10px 12px; font-size: 13.5px; margin-top: 10px; background: var(--color-ink); color: var(--color-on-ink); }
 .status-banner.is-error { background: #f6e2df; color: var(--color-flag); }
 
+/* Search + filter chips above the queue (client-side). */
+.queue-filter-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.queue-filter-row .text-input { max-width: 380px; }
+.filter-chips { display: inline-flex; border: 1px solid var(--color-rule); flex-wrap: wrap; }
+.filter-chip {
+  font-family: var(--font-display); font-size: 13px; border: none; cursor: pointer;
+  padding: 7px 14px; background: none; color: var(--color-ink);
+}
+.filter-chip:hover:not([aria-pressed="true"]) { background: var(--color-rule-soft); }
+.filter-chip[aria-pressed="true"] { background: var(--color-ink); color: var(--color-on-ink); }
+.filter-count { font-size: 11.5px; opacity: 0.7; margin-left: 2px; }
+
+.queue-item-actions { display: flex; gap: 8px; }
+.decided-by { margin-top: 4px; font-family: var(--font-figure); font-size: 11.5px; }
+.duplicate-note {
+  background: #f0e3d6; color: #7a5628;
+  padding: 10px 12px; font-size: 13.5px; margin-bottom: 16px;
+}
+.duplicate-note .filename { font-family: var(--font-figure); }
+
+/* Edit details: the field list becomes inputs, the document stays beside
+   them at a readable size so the two can be compared line by line. */
+.queue-item.is-editing { border-color: var(--color-ink); }
+.queue-item.is-editing .result-grid { grid-template-columns: minmax(240px, 38%) 1fr; }
+.queue-item.is-editing .result-grid.doc-enlarged { grid-template-columns: 1fr; }
+.edit-form { display: grid; grid-template-columns: 110px 1fr; gap: 10px 12px; align-items: center; margin: 0; }
+.edit-form > label, .edit-form > span { color: var(--color-pencil); font-size: 13px; }
+.edit-form .text-input { min-width: 0; width: 100%; font-size: 14px; }
+.edit-form textarea.text-input { resize: vertical; font: inherit; font-size: 14px; }
+.edit-form input[type="number"] { max-width: 180px; }
+.edit-form input[type="date"] { max-width: 200px; }
+.edit-form .text-input:focus,
+.filter-chip:focus-visible, .queue-filter-row .text-input:focus,
+.queue-item select:focus { outline: 2px solid var(--color-brass); outline-offset: 1px; }
+.paid-toggle { display: inline-flex; border: 1px solid var(--color-rule); justify-self: start; }
+.paid-toggle label { padding: 7px 14px; font-size: 13.5px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.paid-toggle label:has(input:checked) { background: var(--color-ink); color: var(--color-on-ink); }
+.paid-toggle input { accent-color: var(--color-brass); margin: 0; }
+.paid-toggle label:has(input:focus-visible) { outline: 2px solid var(--color-brass); outline-offset: -2px; }
+
+.suggestion-note {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  border: 1px dashed var(--color-pencil); padding: 8px 12px; font-size: 13.5px;
+}
+.entry-block.is-stale { opacity: 0.45; }
+.edit-actions .account-select { min-width: 220px; }
+.key-hints { margin-left: auto; }
+kbd {
+  font-family: var(--font-figure); font-size: 11px; padding: 1px 5px;
+  border: 1px solid var(--color-rule); border-bottom-width: 2px; border-radius: var(--radius-sm);
+  background: var(--color-page); color: var(--color-ink-soft);
+}
+
+/* Drag and drop: a full-window target while files are dragged over the page. */
+.drop-overlay {
+  display: none; position: fixed; inset: 0; z-index: 30;
+  background: rgba(28, 43, 36, 0.55); padding: 32px;
+}
+body.is-dropping .drop-overlay { display: flex; }
+.drop-overlay-box {
+  flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 2px dashed var(--color-on-ink); color: var(--color-on-ink);
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+}
+
 /* ============================================================
    Overview page -- centered single-column period summary
    ============================================================ */

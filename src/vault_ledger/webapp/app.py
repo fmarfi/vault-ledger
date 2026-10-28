@@ -14,7 +14,9 @@ system (see that file's :root for the whole design system in one place):
   persisted server-side the moment it's processed (queue.py) -- a real
   multi-item queue that survives a page refresh, not just in-tab state.
   Confirm or correct items one at a time, or select several and bulk-
-  confirm them in one action.
+  confirm them in one action. Any extracted field can be edited before
+  posting (/api/queue/<id>/preview and /update); the entry is still built
+  by the rules.
 - /documents -- every document that's been confirmed, from ledger.py.
 - /ledger -- confirmed entries grouped by account, with running totals.
 
@@ -41,12 +43,12 @@ from flask import Flask, Response, g, jsonify, redirect, request, send_file, sen
 from flask import render_template, url_for
 
 from vault_ledger.classifier.fusion_classifier import FusionClassifier
-from vault_ledger import backup, coa, dashboard, demo, documents, hardware
+from vault_ledger import backup, coa, dashboard, demo, documents, duplicates, hardware
 from vault_ledger.stats import compute_stats
 from vault_ledger.corrections import record_correction
 from vault_ledger.ledger import append_entry, read_entries
-from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, run_pipeline
-from vault_ledger.queue import queue_lock, enqueue, get_pending, read_pending, remove_pending
+from vault_ledger.pipeline import PipelineResult, _load_or_train_classifier, propose_entry, run_pipeline
+from vault_ledger.queue import queue_lock, enqueue, get_pending, read_pending, remove_pending, update_pending
 from vault_ledger.reports import audit_csv, books_csv, period_summary
 from vault_ledger.rules.entry_rules import RuleViolation, construct_entry
 from vault_ledger.synthetic_samples import SAMPLES
@@ -67,6 +69,13 @@ class PendingNotFound(ValueError):
 class NeedsIndividualReview(ValueError):
     """A flagged item was submitted through the bulk path. Ambiguity escalates
     to a human -- only a per-item confirm/correct may post it."""
+
+
+class PossibleDuplicate(ValueError):
+    """Bulk confirm met an item that looks like a copy of a posted or queued
+    document (duplicates.py). Never a block on a per-item post."""
+
+
 # The trained classifier is shared by every user and never modified by a
 # request: no user's corrections are folded into it (see README).
 _classifier = None  # CascadeClassifier, see classifier/cascade.py
@@ -317,16 +326,178 @@ def _enqueue_result(result: PipelineResult, filename: str) -> str:
         needs_review=result.needs_review,
         rejection_reason=result.rejection_reason,
         entry_json=json.dumps(_serialize_entry(result.entry)),
+        decided_by=result.decided_by,
     )
 
 
 @app.route("/api/queue")
 def api_queue():
     """Every processed-but-not-yet-confirmed document, oldest first --
-    the persistent review queue (diagnostics report, feature 1)."""
+    the persistent review queue (diagnostics report, feature 1). Each item
+    says whether it looks like a copy of a posted or queued document
+    (duplicates.py); that is a warning only."""
     items = read_pending()
     items.sort(key=lambda row: row.get("queued_at", ""))
+    found = duplicates.find_duplicates(items, read_entries())
+    for item in items:
+        match = found.get(item["id"])
+        item["possible_duplicate"] = match is not None
+        item["duplicate_of"] = match
     return jsonify(items)
+
+
+# ---- editing a pending item before it is posted ------------------------------
+# The bookkeeper may fix any extracted field. The edited fields go through the
+# same pipeline.propose_entry (classifier, confidence gate, rules) as a scanned
+# document; the journal lines always come from construct_entry.
+
+EDIT_FIELDS = ("vendor", "description", "date", "amount", "paid")
+MAX_VENDOR_LEN = 200
+MAX_DESCRIPTION_LEN = 1000
+MAX_AMOUNT = 1_000_000_000
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+
+
+def _parse_edits(body: dict) -> dict:
+    """The edited fields present in a request body, validated. Raises
+    ValueError with a message for the reviewer. A field that is absent is
+    not edited (the stored value stays, e.g. a date written as `14 maart
+    2026` that the date picker cannot show)."""
+    edits = {}
+    if "vendor" in body:
+        vendor = " ".join(str(body["vendor"] or "").split())
+        if not vendor:
+            raise ValueError("vendor can't be empty")
+        if len(vendor) > MAX_VENDOR_LEN:
+            raise ValueError(f"vendor is longer than {MAX_VENDOR_LEN} characters")
+        edits["vendor"] = vendor
+    if "description" in body:
+        description = str(body["description"] or "").strip()
+        if len(description) > MAX_DESCRIPTION_LEN:
+            raise ValueError(f"description is longer than {MAX_DESCRIPTION_LEN} characters")
+        edits["description"] = description
+    if "date" in body:
+        day = str(body["date"] or "").strip()
+        if day:
+            try:
+                if not _ISO_DATE.fullmatch(day):
+                    raise ValueError
+                date.fromisoformat(day)
+            except ValueError:
+                raise ValueError(f"date must be empty or a real date as YYYY-MM-DD, got {day!r}") from None
+        edits["date"] = day
+    if "amount" in body:
+        raw = body["amount"]
+        try:
+            if isinstance(raw, bool):
+                raise ValueError
+            amount = float(raw)
+        except (TypeError, ValueError):
+            raise ValueError(f"amount must be a number, got {raw!r}") from None
+        # Rounded first: 0.004 would pass "> 0" and post as 0.00.
+        if not math.isfinite(amount) or round(amount, 2) <= 0:
+            raise ValueError("amount must be greater than 0.00")
+        if amount > MAX_AMOUNT:
+            raise ValueError(f"amount is larger than {MAX_AMOUNT:,}")
+        edits["amount"] = round(amount, 2)
+    if "paid" in body:
+        if not isinstance(body["paid"], bool):
+            raise ValueError("paid must be true or false")
+        edits["paid"] = body["paid"]
+    return edits
+
+
+def _row_fields(row: dict) -> dict:
+    """A queue row's stored fields as Python values (CSV gives strings)."""
+    try:
+        amount = float(row["amount"])
+    except (TypeError, ValueError):
+        amount = float("nan")
+    return {
+        "vendor": row["vendor"],
+        "description": row["description"],
+        "date": row["date"],
+        "amount": amount,
+        "paid": _str_to_bool(row["paid"]),
+    }
+
+
+def _propose(fields: dict) -> PipelineResult:
+    return propose_entry(
+        fields["vendor"], fields["description"], fields["amount"], fields["paid"],
+        fields["date"] or None, _get_classifier(),
+    )
+
+
+def _edit_request(item_id: str):
+    """Shared by preview and update: (row, merged fields) or an error response."""
+    row = get_pending(item_id)
+    if row is None:
+        return None, None, (jsonify({"error": f"no pending item with id '{item_id}'"}), 404)
+    try:
+        fields = _row_fields(row) | _parse_edits(_json_body())
+    except ValueError as exc:
+        return None, None, (jsonify({"error": str(exc)}), 400)
+    if not math.isfinite(fields["amount"]):
+        return None, None, (jsonify({"error": f"queued item has an unreadable amount: {row['amount']!r}"}), 400)
+    return row, fields, None
+
+
+@app.route("/api/queue/<item_id>/preview", methods=["POST"])
+def api_queue_preview(item_id: str):
+    """What the edited fields would give, without saving anything: the
+    classifier's suggestion for them and the entry for the chosen account
+    (the reviewer's, if given and active; else the suggestion)."""
+    row, fields, error = _edit_request(item_id)
+    if error:
+        return error
+    result = _propose(fields)
+    chosen = _json_body().get("account")
+    account = chosen if chosen in coa.active_expense_accounts() else result.predicted_account
+    entry, reason = result.entry, result.rejection_reason
+    if account != result.predicted_account:
+        try:
+            entry, reason = construct_entry(account, fields["amount"], fields["paid"]), None
+        except RuleViolation as exc:
+            entry, reason = None, str(exc)
+    match = duplicates.find_match(fields | {"id": item_id}, read_pending(), read_entries())
+    return jsonify(
+        {
+            "predicted_account": result.predicted_account,
+            "confidence": round(result.confidence, 4),
+            "decided_by": result.decided_by,
+            "needs_review": result.needs_review,
+            "account": account,
+            "entry": _serialize_entry(entry),
+            "rejection_reason": reason,
+            "possible_duplicate": match is not None,
+            "duplicate_of": match,
+        }
+    )
+
+
+@app.route("/api/queue/<item_id>/update", methods=["POST"])
+def api_queue_update(item_id: str):
+    """Save draft: the edited fields replace the extracted ones and the
+    proposal is re-run on them. The item stays in the queue."""
+    with queue_lock():
+        row, fields, error = _edit_request(item_id)
+        if error:
+            return error
+        result = _propose(fields)
+        update_pending(
+            item_id,
+            {
+                **fields,
+                "predicted_account": result.predicted_account,
+                "confidence": result.confidence,
+                "needs_review": result.needs_review,
+                "rejection_reason": result.rejection_reason or "",
+                "entry_json": json.dumps(_serialize_entry(result.entry)),
+                "decided_by": result.decided_by,
+            },
+        )
+        return jsonify(get_pending(item_id))
 
 
 @app.route("/api/queue/<item_id>", methods=["DELETE"])
@@ -355,19 +526,27 @@ def api_queue_document(item_id: str):
 
 
 def _confirm_pending_item(
-    item_id: str, corrected_account: str | None, allow_flagged: bool = True
+    item_id: str, corrected_account: str | None, allow_flagged: bool = True,
+    edits: dict | None = None,
 ) -> dict:
     """Shared by /api/confirm, /api/correct, and bulk confirm: look up a
     pending item, post it to the ledger under `corrected_account` (or its
     own predicted_account if None), and remove it from the queue. Raises
-    PendingNotFound / NeedsIndividualReview / ValueError (bad account or
-    amount) or RuleViolation (unbalanced entry) -- callers translate those
-    into the right HTTP response.
+    PendingNotFound / NeedsIndividualReview / PossibleDuplicate / ValueError
+    (bad account or amount) or RuleViolation (unbalanced entry) -- callers
+    translate those into the right HTTP response.
+
+    `edits` (already validated by _parse_edits) replace the extracted fields
+    in the posted row and the entry. If they change anything, the proposal is
+    re-run on the edited fields and "the prediction" below means that fresh
+    one: a correction is only training signal when the model was wrong about
+    the clean text, and it is recorded with that text.
 
     Runs under QUEUE_LOCK so a double-click or two tabs can't both post the
     same item. Bulk confirm passes allow_flagged=False: an item the pipeline
-    flagged needs_review (vendor/amount ambiguity, low confidence gate) must
-    be resolved by a human individually, never posted on a guess."""
+    flagged needs_review (vendor/amount ambiguity, low confidence gate), or
+    one that looks like a copy of another document, must be resolved by a
+    human individually, never posted on a guess."""
     with queue_lock():
         row = get_pending(item_id)
         if row is None:
@@ -375,42 +554,51 @@ def _confirm_pending_item(
 
         if not allow_flagged and (row["needs_review"] == "True" or row["rejection_reason"]):
             raise NeedsIndividualReview("flagged for review -- confirm or correct it individually")
+        if not allow_flagged:
+            match = duplicates.find_match(row, read_pending(), read_entries())
+            if match is not None:
+                raise PossibleDuplicate(f"{duplicates.describe(match)} -- confirm it individually")
 
-        account = corrected_account or row["predicted_account"]
+        stored = _row_fields(row)
+        fields = stored | (edits or {})
+        predicted, confidence = row["predicted_account"], float(row["confidence"] or 0)
+        if fields != stored and math.isfinite(fields["amount"]):
+            result = _propose(fields)
+            predicted, confidence = result.predicted_account, result.confidence
+
+        account = corrected_account or predicted
         if account not in coa.active_expense_accounts():
             raise ValueError(f"'{account}' is not an active account in the chart of accounts")
 
-        try:
-            amount = float(row["amount"])
-        except (TypeError, ValueError):
-            raise ValueError(f"queued item has an unreadable amount: {row['amount']!r}") from None
-        if not math.isfinite(amount) or amount <= 0:
+        amount = fields["amount"]
+        if not math.isfinite(amount):
+            raise ValueError(f"queued item has an unreadable amount: {row['amount']!r}")
+        if amount <= 0:
             raise ValueError(f"queued item has an invalid amount: {amount}")
-        paid = _str_to_bool(row["paid"])
-        entry = construct_entry(account, amount, paid)  # raises RuleViolation
+        entry = construct_entry(account, amount, fields["paid"])  # raises RuleViolation
 
-        was_corrected = bool(corrected_account and corrected_account != row["predicted_account"])
+        was_corrected = bool(corrected_account and corrected_account != predicted)
         # Post first, then log the correction: if the ledger write fails the
         # item stays pending and no training signal was recorded yet.
         append_entry(
             filename=row["filename"],
-            vendor=row["vendor"],
-            description=row["description"],
-            date=row["date"],
+            vendor=fields["vendor"],
+            description=fields["description"],
+            date=fields["date"],
             amount=amount,
             account=account,
-            confidence=float(row["confidence"]),
+            confidence=confidence,
             was_corrected=was_corrected,
         )
         remove_pending(item_id)
         if was_corrected:
             record_correction(
-                vendor=row["vendor"],
-                description=row["description"],
-                predicted_account=row["predicted_account"],
+                vendor=fields["vendor"],
+                description=fields["description"],
+                predicted_account=predicted,
                 corrected_account=corrected_account,
                 amount=amount,
-                date=row["date"],
+                date=fields["date"],
             )
     return {"entry": _serialize_entry(entry)}
 
@@ -420,14 +608,16 @@ def api_confirm():
     """Accept a queued item's predicted account as-is -- it becomes part
     of the posted ledger and leaves the pending queue. No training signal
     here (the prediction wasn't wrong); see /api/correct for the case that
-    also logs a correction."""
+    also logs a correction. Optional edited fields (EDIT_FIELDS) in the body
+    are posted instead of the extracted ones."""
     body = _json_body()
     item_id = body.get("id")
     if not item_id:
         return jsonify({"error": "'id' is required"}), 400
 
     try:
-        result = _confirm_pending_item(item_id, corrected_account=None)
+        edits = _parse_edits(body)
+        result = _confirm_pending_item(item_id, corrected_account=None, edits=edits)
     except PendingNotFound as exc:
         return jsonify({"error": str(exc)}), 404
     except ValueError as exc:
@@ -440,6 +630,8 @@ def api_confirm():
 
 @app.route("/api/correct", methods=["POST"])
 def api_correct():
+    """Post under the reviewer's account; logs a correction when it differs
+    from the prediction. Takes the same optional edited fields as confirm."""
     body = _json_body()
     item_id = body.get("id")
     corrected_account = body.get("corrected_account")
@@ -449,7 +641,8 @@ def api_correct():
         return jsonify({"error": f"'{corrected_account}' is not an active account in the chart of accounts"}), 400
 
     try:
-        result = _confirm_pending_item(item_id, corrected_account=corrected_account)
+        edits = _parse_edits(body)
+        result = _confirm_pending_item(item_id, corrected_account=corrected_account, edits=edits)
     except PendingNotFound as exc:
         return jsonify({"error": str(exc)}), 404
     except ValueError as exc:

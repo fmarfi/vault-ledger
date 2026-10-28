@@ -1,4 +1,6 @@
-from vault_ledger.queue import enqueue, get_pending, read_pending, remove_pending
+import pytest
+
+from vault_ledger.queue import enqueue, get_pending, read_pending, remove_pending, update_pending
 
 
 def _enqueue(path, **overrides):
@@ -63,3 +65,34 @@ def test_remove_pending_returns_false_for_unknown_id(tmp_path):
 
     assert remove_pending("not-a-real-id", path) is False
     assert len(read_pending(path)) == 1
+
+
+def test_update_pending_rewrites_only_that_item(tmp_path):
+    path = tmp_path / "pending_queue.csv"
+    id_a = _enqueue(path, filename="a.png")
+    id_b = _enqueue(path, filename="b.png")
+
+    assert update_pending(id_a, {"vendor": "Fixed Vendor", "amount": 12.5, "paid": False, "decided_by": "tfidf"}, path)
+
+    a, b = get_pending(id_a, path), get_pending(id_b, path)
+    assert (a["vendor"], a["amount"], a["paid"], a["decided_by"]) == ("Fixed Vendor", "12.5", "False", "tfidf")
+    assert a["filename"] == "a.png" and a["queued_at"]
+    assert b["vendor"] == "Acme Office Supplies Inc"
+
+
+def test_update_pending_unknown_id_and_fields(tmp_path):
+    path = tmp_path / "pending_queue.csv"
+    item_id = _enqueue(path)
+    assert update_pending("not-a-real-id", {"vendor": "X"}, path) is False
+    for field in ("id", "filename", "queued_at", "bogus"):
+        with pytest.raises(ValueError):
+            update_pending(item_id, {field: "X"}, path)
+    assert get_pending(item_id, path)["vendor"] == "Acme Office Supplies Inc"
+
+
+def test_enqueue_stores_decided_by_and_defaults_to_empty(tmp_path):
+    path = tmp_path / "pending_queue.csv"
+    with_model = _enqueue(path, decided_by="dragonet:run")
+    without = _enqueue(path)
+    assert get_pending(with_model, path)["decided_by"] == "dragonet:run"
+    assert get_pending(without, path)["decided_by"] == ""
