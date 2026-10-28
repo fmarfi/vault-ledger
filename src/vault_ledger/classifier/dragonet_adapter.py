@@ -30,10 +30,15 @@ def requested_run_dir() -> Path | None:
 
 class DragoNetClassifier:
     def __init__(self, run_dir: Path):
+        import vaultledger
         from vaultledger.io.adapters import APP_ACCOUNT_MAP
         from vaultledger.model.infer import Predictor
 
-        self._predictor = Predictor.load(run_dir)
+        # The checkpoint stores the absolute taxonomy path it was trained
+        # with; load the installed package's copy so a run keeps working
+        # after the folder it was trained in moves or is deleted.
+        taxonomy = Path(vaultledger.__file__).parent / "taxonomy" / "app_accounts.yaml"
+        self._predictor = Predictor.load(run_dir, taxonomy_path=taxonomy)
         self._account_of = {micro: account for account, (_, micro) in APP_ACCOUNT_MAP.items()}
         missing = set(self._predictor.tax.micro_names) - set(self._account_of)
         if missing:
