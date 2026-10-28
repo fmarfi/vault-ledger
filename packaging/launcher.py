@@ -22,6 +22,11 @@ def main() -> None:
     bundle = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parents[1]))
     if getattr(sys, "frozen", False):
         sys.path.insert(0, str(bundle / "src"))
+        # The folder build (vault_ledger_full.spec) also ships the DragoNet
+        # package as plain files, in the repo's layout, so its models and
+        # runs resolve next to it.
+        if (bundle / "vaultledger-ml" / "vaultledger").is_dir():
+            sys.path.insert(0, str(bundle / "vaultledger-ml"))
         local = Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local")
         os.environ.setdefault("VAULT_DATA_DIR", str(local / "VaultLedger"))
         tesseract = bundle / "tesseract" / "tesseract.exe"

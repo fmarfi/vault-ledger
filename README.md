@@ -151,6 +151,11 @@ python -m venv .venv
 python -m vault_ledger.desktop                     # desktop app
 ```
 
+Windows build: `python -m PyInstaller packaging/vault_ledger_full.spec` makes
+`dist/VaultLedger/`, a folder app with the DragoNet models (~1.8 GB, no Python
+needed on the target machine). `packaging/vault_ledger.spec` makes a small
+single-file `.exe` that uses only the TF-IDF model.
+
 Install [Tesseract](https://github.com/tesseract-ocr/tesseract) for OCR (on
 macOS `brew install tesseract`, on Windows the UB-Mannheim installer). For
 Dutch documents, put `nld.traineddata` in Tesseract's `tessdata` folder or in
