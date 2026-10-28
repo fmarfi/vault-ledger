@@ -175,18 +175,7 @@ vaultledger-ml/   DragoNet package: model, taxonomy, training, evaluation
 packaging/        desktop launcher and PyInstaller spec
 data/synthetic/   synthetic training data and document generators
 tests/            pytest suite
-.claude/          Claude Code agents, skills and hooks used to build this
 ```
-
-## Built with Claude Code
-
-The project was developed with a team of
-[Claude Code](https://claude.com/claude-code) subagents, organised like a small
-company. Each team has its own executive agent and builders: extraction, model
-and rules, synthetic data, site, and research. A main executive coordinates the
-teams. Domain rules such as the entry rules and the OCR procedure are encoded
-as skills, and hooks enforce the tests. The agent definitions are in
-`.claude/agents/`.
 
 ## Status
 

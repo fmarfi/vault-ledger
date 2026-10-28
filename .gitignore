@@ -32,7 +32,7 @@ build/
 dist/
 data/documents/
 
-# Claude Code agent worktrees and local runtime corrections
+# Local worktrees and runtime corrections
 .claude/worktrees/
 /corrections.csv
 data/tessdata/
