@@ -24,6 +24,7 @@
 
 {% if current_user %}
 <nav class="app-nav">
+  <a href="{{ url_for('dashboard_page') }}" class="{{ 'active' if active_page == 'dashboard' else '' }}">Dashboard</a>
   <a href="{{ url_for('index') }}" class="{{ 'active' if active_page == 'review' else '' }}">Review queue</a>
   <a href="{{ url_for('documents_page') }}" class="{{ 'active' if active_page == 'documents' else '' }}">Documents</a>
   <a href="{{ url_for('ledger_page') }}" class="{{ 'active' if active_page == 'ledger' else '' }}">Account ledger</a>

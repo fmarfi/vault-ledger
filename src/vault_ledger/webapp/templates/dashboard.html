@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Vault Ledger — Dashboard{% endblock %}
+{% block page_name %}Dashboard{% endblock %}
+{% block trust_text %}Every figure computed on this device from your own ledger and queue{% endblock %}
+
+{% block content %}
+
+<section class="dash-heading">
+  <div>
+    <div class="dash-eyebrow figure">{{ header.today }}</div>
+    <h1 class="dash-title">{{ header.greeting }}</h1>
+    <p class="dash-lede muted">Where your books stand today. Nothing is posted until you confirm it.</p>
+  </div>
+  <div class="dash-actions">
+    <div class="overview-toggle dash-toggle" role="group" aria-label="Period for posted figures and expense mix">
+      <button id="dash-period-this" class="period-btn active" type="button" aria-pressed="true">This month</button>
+      <button id="dash-period-last" class="period-btn" type="button" aria-pressed="false">Last month</button>
+    </div>
+    <a class="btn btn-primary dash-add" href="{{ url_for('index') }}">Add documents</a>
+  </div>
+</section>
+
+<p id="dash-error" class="error-note" role="alert" hidden></p>
+
+<section class="dash-tiles" aria-label="Key figures">
+  <article class="dash-tile">
+    <div class="dash-tile-label">Awaiting review</div>
+    <div id="tile-review-value" class="dash-tile-value figure">—</div>
+    <div id="tile-review-foot" class="dash-tile-foot"></div>
+  </article>
+  <article class="dash-tile">
+    <div class="dash-tile-label">Posted <span id="tile-posted-period">this month</span></div>
+    <div id="tile-posted-value" class="dash-tile-value figure">—</div>
+    <div id="tile-posted-foot" class="dash-tile-foot"></div>
+  </article>
+  <article class="dash-tile">
+    <div class="dash-tile-label">Open value</div>
+    <div id="tile-open-value" class="dash-tile-value figure">—</div>
+    <div id="tile-open-foot" class="dash-tile-foot"></div>
+  </article>
+  <article class="dash-tile">
+    <div class="dash-tile-label">Accepted as proposed</div>
+    <div id="tile-accept-value" class="dash-tile-value figure">—</div>
+    <div id="tile-accept-foot" class="dash-tile-foot"></div>
+  </article>
+</section>
+
+<div class="dash-grid">
+  <section class="dash-panel dash-review">
+    <div class="dash-panel-head">
+      <div>
+        <h2>Needs your review</h2>
+        <p class="muted small">Flagged items first, then the lowest confidence.</p>
+      </div>
+      <a class="dash-link" href="{{ url_for('index') }}">Open review queue →</a>
+    </div>
+    <div class="dash-table-wrap">
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th scope="col">Document</th>
+            <th scope="col">Date</th>
+            <th scope="col" class="num">Amount</th>
+            <th scope="col" class="num">Confidence</th>
+            <th scope="col">Status</th>
+            <th scope="col"><span class="visually-hidden">Action</span></th>
+          </tr>
+        </thead>
+        <tbody id="dash-review-rows"></tbody>
+      </table>
+    </div>
+    <p id="dash-review-empty" class="dash-empty muted" hidden>
+      The review queue is empty. Add an invoice, bill or receipt and its proposed entry shows up here.
+    </p>
+    <p id="dash-review-more" class="dash-foot muted small" hidden></p>
+  </section>
+
+  <section class="dash-panel dash-activity">
+    <div class="dash-panel-head">
+      <div>
+        <h2>Activity</h2>
+        <p class="muted small">Postings and new documents, newest first</p>
+      </div>
+    </div>
+    <ol id="dash-activity-list" class="dash-activity-list"></ol>
+    <p id="dash-activity-empty" class="dash-empty muted" hidden>
+      No activity yet. Processing or confirming a document is recorded here.
+    </p>
+  </section>
+</div>
+
+<div class="dash-grid dash-grid-bottom">
+  <section class="dash-panel">
+    <div class="dash-panel-head">
+      <div>
+        <h2>Month-end readiness</h2>
+        <p id="dash-ready-sub" class="muted small"></p>
+      </div>
+      <span id="dash-ready-pct" class="dash-big-figure figure"></span>
+    </div>
+    <div id="dash-ready-body">
+      <div id="dash-ready-bar" class="dash-progress" role="progressbar" aria-label="Month-end readiness" aria-valuemin="0" aria-valuemax="100">
+        <span id="dash-ready-fill" class="dash-progress-fill"></span>
+      </div>
+      <div class="dash-legend small">
+        <span><i class="dash-key dash-key-done" aria-hidden="true"></i>Posted this month <b id="dash-ready-posted" class="figure">0</b></span>
+        <span><i class="dash-key dash-key-open" aria-hidden="true"></i>Still in review queue <b id="dash-ready-pending" class="figure">0</b></span>
+      </div>
+    </div>
+    <p id="dash-ready-empty" class="dash-empty muted" hidden>
+      Nothing to close yet this month: no entries posted and nothing waiting.
+    </p>
+  </section>
+
+  <section class="dash-panel">
+    <div class="dash-panel-head">
+      <div>
+        <h2>Expense mix</h2>
+        <p id="dash-mix-sub" class="muted small"></p>
+      </div>
+      <span id="dash-mix-total" class="dash-big-figure figure"></span>
+    </div>
+    <div id="dash-mix" class="dash-bars"></div>
+    <p id="dash-mix-empty" class="dash-empty muted" hidden></p>
+  </section>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

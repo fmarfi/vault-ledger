@@ -40,7 +40,7 @@ def _post_login(client, username, password, next_url=None):
 def test_login_success_redirects_and_grants_access(anon, user):
     assert anon.get("/api/queue").status_code == 401
     res = _post_login(anon, "carol", PASSWORD)
-    assert res.status_code == 302 and res.headers["Location"] == "/"
+    assert res.status_code == 302 and res.headers["Location"] == "/dashboard"
     assert anon.get("/api/queue").status_code == 200
     page = anon.get("/").get_data(as_text=True)
     assert "carol" in page and "Sign out" in page and 'name="csrf-token"' in page
@@ -254,7 +254,7 @@ def test_unauthenticated_page_redirects_with_safe_next(anon):
 ])
 def test_open_redirect_is_refused(anon, user, target):
     res = _post_login(anon, "carol", PASSWORD, next_url=target)
-    assert res.status_code == 302 and res.headers["Location"] == "/"
+    assert res.status_code == 302 and res.headers["Location"] == "/dashboard"
 
 
 def test_safe_relative_next_is_honoured(anon, user):
@@ -264,7 +264,7 @@ def test_safe_relative_next_is_honoured(anon, user):
 
 def test_login_page_redirects_when_already_signed_in(user):
     c = login(new_client(app_mod.app), "carol")
-    assert c.get("/login?next=//evil.example").headers["Location"] == "/"
+    assert c.get("/login?next=//evil.example").headers["Location"] == "/dashboard"
 
 
 def test_signup_is_off_by_default_and_works_when_enabled(anon, monkeypatch):

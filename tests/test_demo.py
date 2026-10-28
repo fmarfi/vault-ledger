@@ -28,7 +28,7 @@ def start_demo(client=None):
     client = client or new_client(app_mod.app)
     token = client.page_token("/login")
     res = client.post("/demo/start", data={"csrf_token": token})
-    assert res.status_code == 302 and res.headers["Location"] == "/", res.status_code
+    assert res.status_code == 302 and res.headers["Location"] == "/dashboard", res.status_code
     client.csrf = client.page_token("/settings")
     client.user = next(u for u in auth.list_users() if u["username"] in client.get("/").get_data(as_text=True))
     client.user_dir = userdata.user_dir_for(client.user["id"])

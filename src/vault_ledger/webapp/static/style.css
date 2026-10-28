@@ -513,3 +513,106 @@ select {
 .auth-form input:focus { outline: 2px solid var(--color-brass); outline-offset: 1px; }
 .auth-alt { margin: 14px 0 0; font-size: 13px; }
 .auth-skip { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--color-rule); }
+
+/* dashboard */
+/* ============================================================
+   Dashboard -- the landing page after sign-in. Built for the
+   desktop window (960-1600px wide): four tiles across, then two
+   two-column rows of ruled panels. Same tokens as every page.
+   ============================================================ */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.dash-heading {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; padding: 32px 0 22px; flex-wrap: wrap;
+}
+.dash-eyebrow { font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-pencil); }
+.dash-title { font-family: var(--font-display); font-size: 28px; font-weight: 600; margin: 4px 0; }
+.dash-lede { margin: 0; font-size: 14px; }
+.dash-actions { display: flex; align-items: center; gap: 12px; }
+.dash-toggle { margin-bottom: 0; }
+.dash-add { text-decoration: none; display: inline-block; }
+.dash-add:hover { color: var(--color-card); }
+
+.dash-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.dash-tile {
+  background: var(--color-card); border: 1px solid var(--color-rule);
+  border-top: 2px solid var(--color-ink); padding: 16px 18px 14px; min-width: 0;
+}
+.dash-tile-label { font-size: 12.5px; color: var(--color-pencil); }
+.dash-tile-value { font-size: 28px; font-weight: 500; line-height: 1.2; margin: 8px 0 6px; }
+.dash-tile-foot { font-size: 12.5px; color: var(--color-ink-soft); min-height: 1.5em; }
+
+.dash-grid { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 16px; margin-bottom: 16px; }
+.dash-grid-bottom { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+.dash-panel { background: var(--color-card); border: 1px solid var(--color-rule); padding: 18px 20px; min-width: 0; }
+.dash-panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+.dash-panel h2 { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin: 0 0 2px; }
+.dash-panel-head p { margin: 0; }
+.dash-link { font-size: 13px; text-decoration: none; white-space: nowrap; }
+.dash-link:hover { text-decoration: underline; }
+.dash-empty { font-size: 13.5px; margin: 8px 0 4px; }
+.dash-foot { margin: 10px 0 0; }
+.dash-big-figure { font-size: 22px; font-weight: 500; white-space: nowrap; }
+
+/* Needs-your-review table: ruled like the ledger, scrolls inside its panel */
+.dash-table-wrap { overflow-x: auto; }
+.dash-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.dash-table th {
+  text-align: left; font-size: 11.5px; font-weight: 500; color: var(--color-pencil);
+  padding: 8px; border-top: 2px solid var(--color-ink); border-bottom: 1px solid var(--color-rule);
+}
+.dash-table td { padding: 10px 8px; border-bottom: 1px solid var(--color-rule-soft); font-size: 13.5px; vertical-align: middle; }
+.dash-table .num { text-align: right; }
+.dash-table .badge { padding: 3px 8px; font-size: 11.5px; white-space: nowrap; }
+.dash-doc { max-width: 260px; }
+.dash-doc-vendor { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dash-doc-file { font-size: 11.5px; color: var(--color-pencil); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Activity feed: ink dot = posted, brass = corrected, dashed pencil = queued */
+.dash-activity-list { list-style: none; margin: 0; padding: 0; }
+.dash-event { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--color-rule-soft); }
+.dash-event:last-child { border-bottom: none; }
+.dash-event-dot { flex-shrink: 0; width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--color-ink); }
+.dash-event-corrected .dash-event-dot { background: var(--color-brass); }
+.dash-event-queued .dash-event-dot { background: none; border: 1.3px dashed var(--color-pencil); }
+.dash-event-body { min-width: 0; }
+.dash-event-line { font-size: 13.5px; overflow-wrap: anywhere; }
+
+/* Month-end readiness */
+.dash-progress { height: 10px; background: var(--color-rule-soft); margin: 6px 0 12px; overflow: hidden; }
+.dash-progress-fill { display: block; height: 100%; width: 0; background: var(--color-ink); transition: width 0.3s ease; }
+.dash-legend { display: flex; gap: 20px; flex-wrap: wrap; color: var(--color-ink-soft); }
+.dash-legend b { font-weight: 500; margin-left: 4px; }
+.dash-key { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; }
+.dash-key-done { background: var(--color-ink); }
+.dash-key-open { background: var(--color-rule-soft); border: 1px solid var(--color-rule); }
+
+/* Expense mix: plain labelled bars, no chart library */
+.dash-bars { display: flex; flex-direction: column; gap: 9px; }
+.dash-bars[hidden] { display: none; }
+.dash-bar-row {
+  display: grid; grid-template-columns: minmax(120px, 1.1fr) minmax(80px, 2fr) auto 48px;
+  align-items: center; gap: 12px; font-size: 13px;
+}
+.dash-bar-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dash-bar-track { height: 10px; background: var(--color-rule-soft); }
+.dash-bar-fill { display: block; height: 100%; background: var(--color-brass); }
+.dash-bar-amount { text-align: right; }
+.dash-bar-share { text-align: right; font-size: 12px; }
+
+/* The desktop window's minimum is 960px. Below 1100 the review table and the
+   activity feed stack so the table keeps its columns; below 960 (a browser
+   window, not the desktop app) the tiles go two by two and everything stacks. */
+@media (max-width: 1100px) {
+  .dash-grid { grid-template-columns: minmax(0, 1fr); }
+  .dash-grid-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dash-tile-value { font-size: 24px; }
+}
+@media (max-width: 959px) {
+  .dash-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dash-grid-bottom { grid-template-columns: minmax(0, 1fr); }
+}

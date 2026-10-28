@@ -59,6 +59,7 @@ def _all_text(client, paths):
 READ_ENDPOINTS = [
     "/api/queue", "/api/documents", "/api/ledger", "/api/stats", "/api/overview", "/api/overview?period=last",
     "/api/export/summary", "/api/export/books", "/api/export/audit", "/api/accounts", "/api/accounts/manage",
+    "/api/dashboard", "/api/dashboard?period=last",
 ]
 
 
