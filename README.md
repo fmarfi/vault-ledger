@@ -23,10 +23,20 @@ as a multi-user web app.
   spec-driven rules, never from a model. An entry that wouldn't balance is
   refused rather than guessed.
 - **A human in the loop by design.** Low-confidence suggestions go to a review
-  queue, and corrections are stored as training signal.
+  queue. The bookkeeper can fix any extracted field (vendor, description,
+  date, amount, paid) next to the document image, and the suggested account
+  and journal entry update live as they type. Corrections are stored as
+  training signal, using the corrected text.
+- **A finance dashboard.** Items awaiting review, the month posted so far
+  compared with last month, the value of open documents, how often
+  suggestions are accepted unchanged, month-end readiness, an expense mix and
+  an activity feed. Every number is computed from the user's own books.
+- **Catches double bookings.** An invoice with the same vendor, amount and
+  date as one already posted or queued is flagged, and bulk confirm skips
+  it. Documents can be dragged onto the window in batches.
 - **Built like a product.** Per-user data isolation, CSRF protection, login
   throttling, security headers, backup and restore, CSV exports, a demo mode,
-  a single-file Windows build, and 400+ tests.
+  a single-file Windows build, and 480+ tests.
 
 ## How it works
 
