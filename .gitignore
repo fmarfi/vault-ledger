@@ -39,3 +39,6 @@ data/tessdata/
 data/synth/
 vaultledger-ml/.hypothesis/
 vaultledger-ml/.pytest_cache/
+
+# Design reports, research and planning docs: kept locally, not in the repo
+docs/
