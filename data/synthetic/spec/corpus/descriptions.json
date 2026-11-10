@@ -546,6 +546,400 @@
     "vat_rate": "0.09",
     "keyword_free": false
    }
+  ],
+  "einvoice": [
+   {
+    "text": "1 KG UL BLOKJES",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Afvoer afval",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "American Cookies",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "BLEEK 3 X 750 ML",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Ballonnen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Balloons",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Bezorgkosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Buildings insurance",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "CHIPS NAT KLEIN ZAKJES",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "CHIPS PAP KLEINE ZAKJES",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Container hire",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Container hire; Waste disposal",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Containerhuur",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Containerhuur; Afvoer afval",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Delivery charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Deposit",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Deur herstellen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Door repair",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "EM FRITUURVET",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "FRITESSAUS 3 LRR",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "FRITUUR VET 10 KG RETOUR",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Food (VAT 12%)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "KAAS 50PL. JONG BEL. 1KG",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "KOFFIE 3.5 KG BLIK STAND",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "KOFFIE BLIK 3,5KG SNELF",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "KRAT BIER",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Maintenance insurance",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Mineraalwater medium 12 x 1,0l PET",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Mineraalwater medium 12 x 1,0l PET; Statiegeld",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Mineral water medium 12 x 1.0l PET",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Mineral water medium 12 x 1.0l PET; Deposit",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Onderhoudsverzekering",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Opstalverzekering",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "PATAT FRITES 10MM 10KG",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "PK CHOCOLADEMEL",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "PK CHOCOLADEMELK",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "PKAAS 50PL. JONG BEL. 1KG",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "POT KETCHUP 3 LT",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Porto + verzendkosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Postage + shipping",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "STATIEGELD",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "SUIKERKLONT",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Shipping costs",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Statiegeld",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "TR KL PAKJES APPELSAP",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Verzendkosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "WC PAPIER",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Waste disposal",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Yoghurt banaan",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   }
   ]
  },
  "Office Supplies Expense": {
@@ -2624,6 +3018,304 @@
     "vat_rate": "0.21",
     "keyword_free": true
    }
+  ],
+  "einvoice": [
+   {
+    "text": "BALPENNEN 50 ST BLAUW",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "BLOCKNOTE A5",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Beamer plafondbeugel",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Beschermhoes, kunststof",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Divider sheets A4",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Draaistoel",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Huawei E5573 mobiele 4G hotspot zw",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Huawei E5573 mobile 4G hotspot blk",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Keyboard German layout",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Keyboard/mouse - white",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Keyboard/muis - wit",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "LCD Display 3.5",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Laptop",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Laptop computer",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Laptop computer; Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM: 3MB. Screen 1440x900; Network cable",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Laptop; Netwerkkabel",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "MX Master",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Mobile model A",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Mobile model B",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Mobile model B; Protection cover (plastic); Mobile model A (+1 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Netwerkkabel",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Network cable",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Parker Pen",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Parker Pen, Black, model Sansa",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Parker pen, zwart, model Sansa",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Printing paper",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Printing paper, 2mm",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Printpapier",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM: 3MB. Screen 1440x900",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM: 3MB. Screen 1440x900; Laptop computer; Network cable",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Projector ceiling mount",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Protection cover (plastic)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Protection cover, plastic",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Swivel chair",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Tabbladen A4",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Toetsenbord Duits",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "UIT Desktop m/59, 2-160 GB",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   }
   ]
  },
  "Professional Services Expense": {
@@ -3943,6 +4635,376 @@
     "doc_type": "invoice",
     "vat_rate": "0.21",
     "keyword_free": true
+   }
+  ],
+  "einvoice": [
+   {
+    "text": "Advies",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Advies; Requirementsmanagement",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Attendance fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Consulting",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Consulting Services",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Consulting; Requirements management",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Deelnamekosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Development",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Drafting functional spec until sign-off",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Drafting requirements spec until sign-off",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Fixed fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Fixed price",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Functional specification",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Functioneel ontwerp",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inhuur derden leverancier A",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inhuur derden leverancier A; Inhuur derden leverancier B",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Inhuur derden leverancier B",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inventarisatie eisen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inventarisatie eisen; Requirementsmanagement; Programma van eisen (+5 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Ontwikkeling",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Ontwikkeling systeem tot implementatie",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Opstellen functioneel ontwerp tot acceptatie",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Opstellen programma van eisen tot acceptatie",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Packaging of application \"Kofax 10.2\" for 180 devices",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Paketteren applicatie \"Kofax 10.2\" voor 180 apparaten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Professional consulting services for project management",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Professional consulting services for project management; Consulting Services; Training course delivery (+1 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Programma van eisen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Requirements gathering",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Requirements gathering; Drafting requirements spec until sign-off; Requirements specification (+4 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Requirements gathering; Requirements specification; Drafting requirements spec until sign-off (+4 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Requirements management",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Requirements management; Consulting",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Requirements specification",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Requirementsmanagement",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Requirementsmanagement; Advies",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Requirementsmanagement; Inventarisatie eisen; Opstellen programma van eisen tot acceptatie (+5 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Seminar",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Seminar",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Seminar handouts",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Seminarmateriaal",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "System development up to go-live",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Third-party services supplier A",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Training Services - Advanced Level",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Training course delivery",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Vaste prijs",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
    }
   ]
  },
@@ -8126,6 +9188,112 @@
     "vat_rate": "rc",
     "keyword_free": true
    }
+  ],
+  "einvoice": [
+   {
+    "text": "Abonnement, verlenging",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "IExpress licentiekosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Issue 13 {year} to 24 {year}",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Killer antivirus program",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Magazine domestic",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Newspaper (VAT 6%)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Nummer 13 {year} t/m 24 {year}",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Paper subscription",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Paper subscription; Subscription fee 1st quarter",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Subscription fee 1st quarter",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Subscription fee 1st quarter; Paper subscription",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Subscription, renewal",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Tijdschrift binnenland",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   }
   ]
  },
  "Travel & Transport Expense": {
@@ -11189,6 +12357,592 @@
     "vat_rate": "0.09",
     "keyword_free": true
    }
+  ],
+  "einvoice": [
+   {
+    "text": "4-rittenkaart Berlijn AB",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "4-rittenkaart Berlijn AB; Geldig van {date} 15:39 tot {date} 17:39 deel: 1/4",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "4-trip ticket Berlin AB",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "4-trip ticket Berlin AB; Valid from {date} 15:39 until {date} 17:39 section: 1/4",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Accommodation. 2 nights hotel",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Accommodation. 2 nights hotel; Meals breakfast; Travel costs, taxi Berlin (+1 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Allrisk dekking",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Andere inleverlocatie",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Annulering binnenlandse vlucht",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Autocategorie D, onbeperkt aantal km dag 1.",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Autocategorie D, onbeperkt aantal km dag 1.; Huurperiode in dagen; Inleveren Schiphol (+4 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Boekingskosten vlucht",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Brandstof",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Car category D, unlimited mileage day 1.",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Car category D, unlimited mileage day 1.; Rental period in days; Return Arlanda (+4 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Choice Upgrade",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Collision damage cover",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "DIESEL",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Diefstaldekking TP",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Domestic flight cancellation",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Excess reduction CDW",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Flight booking fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Flight booking fee; Stockholm - Lillby; Ticket",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Flight ticket",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Flight ticket; Domestic flight cancellation",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Fuel",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Geldig van {date} 15:39 tot {date} 17:39 deel: 1/4",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Geldig van {date} 15:39 tot {date} 17:39 deel: 1/4; 4-rittenkaart Berlijn AB",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Huurdagen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Huurdagen; Navigatiesysteem - garantie; Allrisk dekking (+2 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Huurperiode in dagen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inleveren Schiphol",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Inzittendenverzekering",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Meals breakfast",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Minimaal eigen risico",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Minimum excess",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Motorrijtuigenbelasting",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Nachttarief",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Navigatiesysteem - garantie",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Night fare",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "One-way drop-off",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Overnachting. 2 nachten hotel",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Overnachting. 2 nachten hotel; Verzorging ontbijt; Reiskosten, taxi Berlijn (+1 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Peak fare",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Personal accident insurance",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Petrol (VAT 25%)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Reiskosten forfaitair",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Reiskosten, taxi Berlijn",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Reiskosten, taxi Neurenberg",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Rental days",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Rental days; Sat nav - guarantee; Collision damage cover (+3 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Rental period in days",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Return Arlanda",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Road tax",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Road tax; Weight-based tax, vehicles >3000 KGM",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Sat nav - guarantee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Spitstarief",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Stockholm - Lillby",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Theft protection TP",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Ticket",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Travel costs, taxi Berlin",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Travel costs, taxi Nuremberg",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Travel expenses, flat rate",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Valid from {date} 15:39 until {date} 17:39 section: 1/4",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Valid from {date} 15:39 until {date} 17:39 section: 1/4; 4-trip ticket Berlin AB",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Vehicle AB class C",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Verlaging eigen risico CDW",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Verzorging ontbijt",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vliegticket",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vliegticket; Annulering binnenlandse vlucht",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Voertuig AB klasse C",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Weight-based tax, vehicles >3000 KGM",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Weight-based tax, vehicles >3000 KGM; Road tax",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   }
   ]
  },
  "Utilities Expense": {
@@ -12532,6 +14286,568 @@
     "doc_type": "bank",
     "vat_rate": "0.09",
     "keyword_free": false
+   }
+  ],
+  "einvoice": [
+   {
+    "text": "Calls domestic: landline, connection fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Calls domestic: landline, time",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Calls domestic: other mobile op., connection fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Calls domestic: own mobile network, time",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Contract transportvermogen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Data traffic: Internet/WAP",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Dataverkeer: internet/WAP",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Electricity consumption",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Electricity standing charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Electricity unit rate",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Electricity unit rate; Electricity standing charge; Gas unit rate (+3 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Energiebelasting",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Energieprijs",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Energieprijs; Transporttarief netgebruik; Vastrecht netbeheer (+2 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Energy price",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Energy price; Network usage rate; Network standing charge (+2 more)",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Energy tax",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Fixed electricity price, 1-year term",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Fixed electricity price, 1-year term; Electricity consumption",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Fixed monthly fee",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Fixed monthly fee; Variable charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Gas standing charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Gas unit rate",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Gesprekken NL: andere mobiele op., minuten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Gesprekken NL: eigen mobiel net, starttarief",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Gesprekken NL: vast net, minuten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Gesprekken NL: vast net, starttarief",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Getransporteerde kWh’s",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Getransporteerde kWh’s; Systeemdiensten; Contract transportvermogen (+7 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Huur Meterdiensten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Huur Overige Apparaten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Huur Schakelinstallaties",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Huur Transformatoren",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Leveringstarief gas",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Leveringstarief stroom",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Leveringstarief stroom; Vaste leveringskosten stroom; Leveringstarief gas (+3 more)",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Maximaal afgenomen vermogen",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Meettarief",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Meterhuur net",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Metering charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Metering point operation",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Monthly instalment {month}",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Network standing charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Network usage rate",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Power transmission, tariff 4b",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Power transmission, tariff 4b; Energy tax",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Roaming UK: outgoing SMS",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Roaming UK: outgoing calls, time",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Roaming UK: uitgaande gesprekken, minuten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Roaming UK: uitgaande sms",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Stroomverbruik",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Systeemdiensten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Termijnbedrag {maand}",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Transport elektriciteit, tarief 4b",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Transporttarief netgebruik",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Variabele kosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Variable charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vast maandbedrag",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vast maandbedrag; Variabele kosten",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Vaste leveringskosten gas",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vaste leveringskosten stroom",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vaste stroomprijs, 1 jaar vast",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vaste stroomprijs, 1 jaar vast; Stroomverbruik",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_joined"
+   },
+   {
+    "text": "Vastrecht Aansluitdienst",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Vastrecht Transportdienst",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": true,
+    "origin": "einvoice"
+   },
+   {
+    "text": "Vastrecht netbeheer",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.21",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Vastrecht water",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Verbruik water",
+    "language": "nl",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Water standing charge",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
+   },
+   {
+    "text": "Water usage",
+    "language": "en",
+    "doc_type": "invoice",
+    "vat_rate": "0.09",
+    "keyword_free": false,
+    "origin": "einvoice_translated"
    }
   ]
  }

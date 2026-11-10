@@ -36,7 +36,8 @@ Target: 0.35 or more.
 - Audit: `data/synthetic/generated/audit_2027.md`. Vendor realism AUC 0.94 → 0.75, measured before the leak fix.
 - Open from the audit: legal-suffix variants are on 9% of rows vs 14% in the spec, because real vendors have few
   aliases.
-- **Next: plan step 2** (description styles from real bank lines and e-invoices, hard cases from real mistakes, and
+- Step 2 done (70 bank formats, 288 e-invoice lines, alias variants): real 0.33, ZeraBooks 0.26, synthetic 0.69.
+- **Next: retrain DragoNet on seed 2027, then plan step 3.**
   generated alias variants).
 
 ## (Older) Stopped mid-run

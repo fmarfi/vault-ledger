@@ -49,6 +49,34 @@ def person_like(v: str) -> bool:
             and not BUSINESS.search(v))
 
 
+# legal-form spellings a vendor name shows up with on invoices and bank lines; each group is one form
+LEGAL_FORMS = [["B.V.", "BV", "bv", "B.V"], ["N.V.", "NV"], ["Ltd", "Ltd.", "Limited", "LTD"],
+               ["Inc", "Inc.", "INC"], ["LLC", "L.L.C."], ["GmbH", "GMBH"], ["PLC", "plc"]]
+BANK_CUT = 22              # bank feeds cut the counterparty name to about 22 characters
+
+
+def alias_variants(canon: str) -> list[str]:
+    """Generated spellings of one vendor: other legal-suffix forms, the other case, the bank-feed cut.
+
+    'Stavoor B.V.' -> ['Stavoor BV', 'Stavoor bv', 'STAVOOR B.V.']; no legal form is added to a name
+    that has none, because the real form is unknown.
+    """
+    out = []
+    for forms in LEGAL_FORMS:
+        for f in forms:
+            m = re.match(rf"^(.*\S)[\s,]+{re.escape(f)}$", canon)
+            if m:
+                out += [f"{m.group(1)} {g}" for g in forms if g != f][:2]
+                break
+        else:
+            continue
+        break
+    out.append(canon.upper() if canon != canon.upper() else canon.title())
+    if len(canon) > BANK_CUT:
+        out.append(canon.upper()[:BANK_CUT].rstrip(" ,.-&"))
+    return [a for a in dict.fromkeys(out) if a and a != canon and not person_like(a)]
+
+
 def main() -> None:
     names = [n for n, v in ds.SOURCES.items() if v[2] == "business" and v[3] == "real"]
     df = ds.load_all(names, verbose=False)
@@ -84,8 +112,13 @@ def main() -> None:
         spell = Counter(g.vendor.str.strip())
         canon = Counter(g.clean).most_common(1)[0][0]
         nl = g.source.isin(NL_SOURCES).mean()
+        aliases = {canon, *[a for a, _ in spell.most_common(4)]}
+        for a in alias_variants(canon):   # a generated spelling must not land on a held-out or corpus vendor
+            k = vendor_key(clean_name(a))
+            if k == key or (k and k not in held and k not in ckeys and k.split()[0].split(".")[0] not in brands):
+                aliases.add(a)
         out.append({"canonical": canon, "account": PARENT[fine], "fine_category": fine,
-                    "archetype": f"real_{fine}", "aliases": sorted({canon, *[a for a, _ in spell.most_common(4)]}), "families": {},
+                    "archetype": f"real_{fine}", "aliases": sorted(aliases), "families": {},
                     "languages": {"nl": 8, "en": 2} if nl > 0.5 else {"nl": 3, "en": 7},
                     "freq_4321": 0, "vendor_unverified": True, "rows": int(len(g)),
                     "sources": sorted(set(g.source))})

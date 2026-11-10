@@ -40,10 +40,96 @@ META_COLS = ["id", "source", "archetype", "difficulty", "escalate", "noise_appli
              "vendor_unverified", "vendor_canonical", "true_account", "hard_case", "split",
              "desc_family", "doc_type", "vat_rate", "net_amount", "fine_category"]
 # bank-feed lines that carry the vendor inside the description (vendor field empty)
-BANK_LINES = ["CARD PURCHASE {mm}/{dd} {VENDOR} CARD {n4}", "POS {VENDOR} {n6}", "{VENDOR} {n8}",
-              "BEA, Betaalpas {VENDOR},PAS{n3} NR:{n6} {dd}.{mm}.{yy}", "SEPA Incasso {Vendor} Kenmerk {n10} {short}",
-              "iDEAL {Vendor} {n16} {short}", "SEPA Overboeking {Vendor} Omschrijving: {short}",
-              "DEBIT CARD {VENDOR} {mm}/{dd}", "Pinbetaling {Vendor} {dd}-{mm}-{yy}", "ACH DEBIT {VENDOR} {n9}"]
+# Formats follow real bank exports. EN: mined from the public bank-line sets (US card/ACH lines in
+# kaggle/bank_txn_classification_benchmark and DoDataThings; AU card/direct-debit lines in
+# kaggle/semi_supervised_banking_txn): only the frame around the merchant is kept, never a merchant.
+# UK lines (DD, CPM, VIS, FASTER PAYMENT) and NL lines follow the published export layouts of the banks
+# (ABN AMRO BEA and /TRTP/ fields, ING Naam/Omschrijving/Kenmerk and Pasvolgnr, Rabobank Betaalautomaat);
+# no Dutch bank lines are in the public data, so the NL formats are written from those layouts, not mined.
+# Placeholders: VENDOR / Vendor / vendor (name, legal suffix dropped, cut to 22), VND (upper, cut to 12),
+# dd mm yy yyyy hh mi MON (date, time, 'MAR'), short / SHORT (start of the description), CITY,
+# iban, bic, nN (N digits), aN (N upper-case letters and digits).
+BANK_LINES_NL = [
+    "BEA, Betaalpas {Vendor},PAS{n3} NR:{n6} {dd}.{mm}.{yy}/{hh}:{mi}",
+    "BEA, Betaalpas {VENDOR},PAS{n3} NR:{a8}, {dd}.{mm}.{yy}/{hh}.{mi} {CITY},Land: NLD",
+    "BEA, Apple Pay {Vendor},PAS{n3} NR:{a8}, {dd}.{mm}.{yy}/{hh}.{mi} {CITY}",
+    "BEA, Google Pay {VENDOR},PAS{n3} NR:{n6} {dd}.{mm}.{yy}/{hh}:{mi} {CITY}",
+    "eCom, Betaalpas {Vendor},PAS{n3} NR:{a8}, {dd}.{mm}.{yy}/{hh}.{mi} {CITY}",
+    "/TRTP/SEPA Incasso algemeen doorlopend/CSID/NL{n2}ZZZ{n12}/NAME/{VENDOR}/MARF/{a10}/REMI/{short}/IBAN/{iban}/BIC/{bic}/EREF/{n12}",
+    "/TRTP/SEPA OVERBOEKING/IBAN/{iban}/BIC/{bic}/NAME/{Vendor}/REMI/{short}/EREF/NOTPROVIDED",
+    "/TRTP/iDEAL/IBAN/{iban}/BIC/{bic}/NAME/{Vendor}/REMI/{n16} {n10} {VND}/EREF/{dd}-{mm}-{yyyy} {hh}:{mi} {n16}",
+    "SEPA Incasso algemeen doorlopend Incassant: NL{n2}ZZZ{n12} Naam: {VENDOR} Machtiging: {a10} Omschrijving: {short} IBAN: {iban}",
+    "SEPA Overboeking IBAN: {iban} BIC: {bic} Naam: {Vendor} Omschrijving: {short} Kenmerk: {n10}",
+    "SEPA iDEAL IBAN: {iban} BIC: {bic} Naam: {Vendor} Omschrijving: {n16} {VND} Kenmerk: {dd}-{mm}-{yyyy} {hh}:{mi} {n16}",
+    "SEPA Incasso {Vendor} Kenmerk {n10} {short}",
+    "SEPA Overboeking {Vendor} Omschrijving: {short}",
+    "iDEAL {Vendor} {n16} {short}",
+    "Naam: {Vendor} Omschrijving: {short} IBAN: {iban} Kenmerk: {n16}",
+    "Naam: {VENDOR} Omschrijving: {n16} {short} IBAN: {iban} Valutadatum: {dd}-{mm}-{yyyy}",
+    "{VENDOR} Pasvolgnr: {n3} {dd}-{mm}-{yyyy} {hh}:{mi} Transactie: {a8} Term: {a8}",
+    "{Vendor} Pasvolgnr: {n3} {dd}-{mm}-{yyyy} {hh}:{mi} Transactie: {a8} Term: {n7} Apple Pay",
+    "Incasso {Vendor} Machtiging ID: {a10} Incassant ID: NL{n2}ZZZ{n12} Kenmerk: {n12} Omschrijving: {short}",
+    "Betaalautomaat {hh}:{mi} pasnr. {n3} {VENDOR} {CITY}",
+    "Betaalautomaat {dd}-{mm}-{yy} {VENDOR}",
+    "Betaalpas {VENDOR} {CITY} {dd}-{mm}",
+    "Online bankieren {Vendor} {short}",
+    "Google Pay {Vendor} {dd}-{mm}-{yyyy}",
+    "iDEAL betaling {VND} {n16}",
+    "Pinbetaling {Vendor} {dd}-{mm}-{yy}",
+    "Pinbetaling {VENDOR} {CITY} {dd}-{mm}-{yyyy} {hh}:{mi}",
+    "Incasso {VENDOR} {n10}",
+    "Doorlopende incasso {Vendor} {short}",
+    "Betaling {Vendor} {CITY} NLD",
+    "{VENDOR} {CITY} NLD {dd}-{mm}",
+    "PayPal Europe S.a.r.l. et Cie S.C.A {n13} PAYPAL *{VND} {n11}",
+]
+BANK_LINES_EN = [
+    "CARD PURCHASE {mm}/{dd} {VENDOR} CARD {n4}",
+    "CARD PURCHASE {dd}{MON} {VENDOR} {n4} {CITY}",
+    "VISA PURCHASE {VENDOR} {CITY}",
+    "EFTPOS PURCHASE {VENDOR} {CITY} TID {n6}",
+    "POS {VENDOR} {n6}",
+    "POS {VENDOR} {CITY} TID {n6}",
+    "DEBIT CARD {VENDOR} {mm}/{dd}",
+    "DEBIT CARD PURCHASE {VENDOR} {CITY} {mm}/{dd}",
+    "{VENDOR} {n8}",
+    "{VENDOR} #{n4} {CITY}",
+    "{vendor} #{n4} {CITY}",
+    "{VND}*{a9}",
+    "SQ *{VENDOR}",
+    "TST* {VENDOR} - {CITY}",
+    "PP*{VENDOR}",
+    "PAYPAL *{VND} {n11}",
+    "PAYPAL INST XFER {VND} WEB ID: PAYPALSI{n2}",
+    "ACH DEBIT {VENDOR} {n9}",
+    "{VENDOR} PPD ID: {n10}",
+    "{VENDOR} ONLINE PMT WEB ID: {a8}",
+    "{VENDOR} BILL PAY WEB ID: {a8}",
+    "{VENDOR} AUTOPAY PPD ID: {n10}",
+    "ORIG CO NAME:{VENDOR} CO ENTRY DESCR:PAYMENT SEC:CCD",
+    "PreApproved Payment Bill User Payment: {VENDOR}",
+    "PREAUTHORIZED WITHDRAWAL TO {VENDOR}",
+    "Withdrawal from {VENDOR}",
+    "WITHDRAWAL FROM {VENDOR} WEB ONLINE",
+    "DIRECT DEBIT {VENDOR} DDR ID {n6}",
+    "DIRECT DEBIT - {VENDOR}",
+    "BPAY - {VENDOR} REF {n10}",
+    "DD {VENDOR} {n8}",
+    "CARD PAYMENT TO {VENDOR} ON {dd}-{mm}-{yyyy}",
+    "{VENDOR} ON {dd} {MON} CPM",
+    "VIS {VENDOR} {CITY}",
+    "{VENDOR} {CITY} GB {dd}/{mm}",
+    "FASTER PAYMENT {Vendor} REF {short}",
+    "Card payment {Vendor} {CITY} {dd}/{mm}/{yy}",
+    "Direct debit {Vendor} Ref {a10}",
+]
+BANK_LINES = BANK_LINES_NL + BANK_LINES_EN
+BANK_CITIES = {"nl": ["AMSTERDAM", "ROTTERDAM", "UTRECHT", "DEN HAAG", "EINDHOVEN", "GRONINGEN", "Amsterdam",
+                      "HAARLEM", "Utrecht", "SCHIPHOL", "LEIDEN", "ARNHEM", "Zwolle", "BREDA"],
+               "en": ["LONDON", "MANCHESTER", "SYDNEY", "CBD", "NEW YORK", "SAN FRANCISCO", "Chicago",
+                      "BOSTON", "DUBLIN", "LEEDS", "AUSTIN", "BRISTOL", "AMSTERDAM", "SEATTLE"]}
+BANK_BICS = ["ABNANL2A", "INGBNL2A", "RABONL2U", "TRIONL2U", "SNSBNL2A", "BUNQNL2A", "KNABNL2H", "ASNBNL21"]
+EN_MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 TX_COLS = ["vendor", "description", "date", "amount", "paid", "account"]
 NL_MONTHS = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus",
              "september", "oktober", "november", "december"]
@@ -138,16 +224,26 @@ class Gen:
             return self.choice(self.real[acc], p=self.real_w[acc])
         return self.choice(self.by_acc[acc], p=(self.zipf_series if series else self.zipf)[acc])
 
-    def bank_line(self, vendor, desc, date):
+    def bank_line(self, vendor, desc, date, lang=None):
         """The vendor inside a bank-feed description, as a bank export shows a card or SEPA payment."""
-        name = re.sub(r"\s+(B\.?V\.?|N\.?V\.?|Ltd\.?|LLC|Inc\.?|GmbH)$", "", vendor, flags=re.I)[:22]
-        rep = {"VENDOR": name.upper(), "Vendor": name, "mm": f"{date.month:02d}", "dd": f"{date.day:02d}",
-               "yy": f"{date.year % 100:02d}", "short": desc[:28].rstrip()}
-        t = self.choice(BANK_LINES)
+        name = re.sub(r"\s+(B\.?V\.?|N\.?V\.?|Ltd\.?|Limited|LLC|Inc\.?|GmbH|plc)$", "", vendor, flags=re.I)[:22].rstrip()
+        side = lang if lang in ("nl", "en") else self.choice(["nl", "en"])
+        abc = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789"
+        rep = {"VENDOR": name.upper(), "Vendor": name, "vendor": name.lower(), "VND": name.upper()[:12].rstrip(),
+               "mm": f"{date.month:02d}", "dd": f"{date.day:02d}", "yy": f"{date.year % 100:02d}",
+               "yyyy": str(date.year), "hh": f"{int(self.rng.integers(7, 23)):02d}",
+               "mi": f"{int(self.rng.integers(0, 60)):02d}", "MON": EN_MON[date.month - 1],
+               "short": desc[:28].rstrip(), "SHORT": desc[:28].rstrip().upper(),
+               "CITY": self.choice(BANK_CITIES[side]), "bic": self.choice(BANK_BICS),
+               "iban": f"NL{self.digits(2)}{self.choice(BANK_BICS)[:4]}0{self.digits(9)}"}
+        t = self.choice(BANK_LINES_NL if side == "nl" else BANK_LINES_EN)
+
         def sub(m):
             k = m.group(1)
             if k in rep:
                 return rep[k]
+            if k[0] == "a" and k[1:].isdigit():
+                return "".join(abc[int(i)] for i in self.rng.integers(0, len(abc), int(k[1:])))
             return self.digits(int(k[1:])) if k[1:].isdigit() else m.group(0)
         return re.sub(r"\s+", " ", re.sub(r"\{(\w+)\}", sub, t)).strip()
 
@@ -318,7 +414,7 @@ class Gen:
         vat_out = vat_rate or "0"
         if mf:
             if self.rng.random() < mf["vendor_in_description"]:
-                desc, vendor, doc_type = self.bank_line(vendor, desc, date), "", "bank"
+                desc, vendor, doc_type = self.bank_line(vendor, desc, date, lang), "", "bank"
                 applied.append("vendor_in_description")
             if self.rng.random() < mf["no_vat"]:
                 vat_out = ""
