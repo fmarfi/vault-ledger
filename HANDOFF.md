@@ -37,8 +37,8 @@ Target: 0.35 or more.
 - Open from the audit: legal-suffix variants are on 9% of rows vs 14% in the spec, because real vendors have few
   aliases.
 - Step 2 done (70 bank formats, 288 e-invoice lines, alias variants): real 0.33, ZeraBooks 0.26, synthetic 0.69.
-- **Next: retrain DragoNet on seed 2027, then plan step 3.**
-  generated alias variants).
+- DragoNet retrained on seed 2027 only (`vaultledger-ml/runs/synth-crew-2027-pretrained-top2-synthonly`, not yet used by the app): real 0.22 → 0.30, ZeraBooks 0.36 → 0.41 (best so far). Its synthetic score in `notebooks/results/dragonet_2027.json` is on the 2026 test split and shares vendors, so ignore it.
+- **Next: plan step 3** (description-rich public sources, then mixed retrain), or switch the app to the new DragoNet run after review.
 
 ## (Older) Stopped mid-run
 1. **Fixing a leak**: 6 vendors were in both the real list and our corpus under different names (Zoom / ZOOM.US,

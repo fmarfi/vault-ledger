@@ -1,0 +1,20 @@
+{
+ "synth-crew-2027-pretrained-top2-synthonly | synthetic": {
+  "acc": 0.7617471872931834,
+  "f1": 0.7396120917875677,
+  "cov95": 0.5923229649238915,
+  "ms_per_txn": 4.929567945468986
+ },
+ "synth-crew-2027-pretrained-top2-synthonly | external_real (5k sample)": {
+  "acc": 0.3654,
+  "f1": 0.2965105525254473,
+  "cov95": 0.001,
+  "ms_per_txn": 3.9689301967620847
+ },
+ "synth-crew-2027-pretrained-top2-synthonly | zerabooks": {
+  "acc": 0.38010204081632654,
+  "f1": 0.4124210646714655,
+  "cov95": 0.021683673469387755,
+  "ms_per_txn": 2.5688580104282925
+ }
+}
