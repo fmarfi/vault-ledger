@@ -42,3 +42,6 @@ vaultledger-ml/.pytest_cache/
 
 # Design reports, research and planning docs: kept locally, not in the repo
 docs/
+
+# public datasets downloaded for research/training (large, third-party licences)
+data/external/

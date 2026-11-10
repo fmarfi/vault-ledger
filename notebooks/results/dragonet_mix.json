@@ -1,0 +1,20 @@
+{
+ "synth-crew-2026-pretrained-top2-mix14k | synthetic": {
+  "acc": 0.4738583719391132,
+  "f1": 0.4340086961297637,
+  "cov95": 0.048312375909993384,
+  "ms_per_txn": 4.986692626771353
+ },
+ "synth-crew-2026-pretrained-top2-mix14k | external_real (5k sample)": {
+  "acc": 0.5632,
+  "f1": 0.43043338513150925,
+  "cov95": 0.0184,
+  "ms_per_txn": 4.5626654624938965
+ },
+ "synth-crew-2026-pretrained-top2-mix14k | zerabooks": {
+  "acc": 0.3960459183673469,
+  "f1": 0.25349534044911265,
+  "cov95": 0.00510204081632653,
+  "ms_per_txn": 3.0039191550138047
+ }
+}

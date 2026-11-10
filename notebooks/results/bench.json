@@ -1,0 +1,151 @@
+{
+ "results": {
+  "1 baseline (word TF-IDF + LR, current)": {
+   "fit_s": 21.668569087982178,
+   "synthetic_acc": 0.6121773659827928,
+   "synthetic_f1": 0.5225593194903703,
+   "synthetic_top2": 0.800132362673726,
+   "synthetic_cov@90": 0.15751158173395102,
+   "synthetic_cov@95": 0.04103242885506287,
+   "external_real_acc": 0.5736380156981016,
+   "external_real_f1": 0.4531614676254398,
+   "external_real_top2": 0.8412017167381974,
+   "external_real_cov@90": 0.1520705254610834,
+   "external_real_cov@95": 0.09906043382438232,
+   "zerabooks_acc": 0.4049744897959184,
+   "zerabooks_f1": 0.2770485782312715,
+   "zerabooks_top2": 0.5637755102040817,
+   "zerabooks_cov@90": 0.0,
+   "zerabooks_cov@95": 0.0,
+   "ms_per_1000": 8.100748062133789
+  },
+  "2 char n-grams + LR": {
+   "fit_s": 96.64597535133362,
+   "synthetic_acc": 0.6201191264063534,
+   "synthetic_f1": 0.5395898624559425,
+   "synthetic_top2": 0.7961614824619457,
+   "synthetic_cov@90": 0.1469225678358703,
+   "synthetic_cov@95": 0.09066843150231635,
+   "external_real_acc": 0.6082434365696169,
+   "external_real_f1": 0.49788285814850736,
+   "external_real_top2": 0.8564745002513243,
+   "external_real_cov@90": 0.15427444611993968,
+   "external_real_cov@95": 0.09465259250666976,
+   "zerabooks_acc": 0.38392857142857145,
+   "zerabooks_f1": 0.22835460573949323,
+   "zerabooks_top2": 0.5593112244897959,
+   "zerabooks_cov@90": 0.06760204081632654,
+   "zerabooks_cov@95": 0.06186224489795918,
+   "ms_per_1000": 36.324501037597656
+  },
+  "3 word+char + LR": {
+   "fit_s": 102.40269613265991,
+   "synthetic_acc": 0.6247518199867638,
+   "synthetic_f1": 0.5387707173856289,
+   "synthetic_top2": 0.799470549305096,
+   "synthetic_cov@90": 0.05493050959629384,
+   "synthetic_cov@95": 0.04301786896095301,
+   "external_real_acc": 0.5739473378958357,
+   "external_real_f1": 0.4767574569372663,
+   "external_real_top2": 0.8608436762943201,
+   "external_real_cov@90": 0.1480880021652554,
+   "external_real_cov@95": 0.09465259250666976,
+   "zerabooks_acc": 0.38584183673469385,
+   "zerabooks_f1": 0.24421125479800584,
+   "zerabooks_top2": 0.5605867346938775,
+   "zerabooks_cov@90": 0.0,
+   "zerabooks_cov@95": 0.0,
+   "ms_per_1000": 48.90561103820801
+  },
+  "4 word+char + LR, public weight 0.3": {
+   "fit_s": 66.61209440231323,
+   "synthetic_acc": 0.6657842488418266,
+   "synthetic_f1": 0.5984747395444467,
+   "synthetic_top2": 0.8153540701522171,
+   "synthetic_cov@90": 0.4798146922567836,
+   "synthetic_cov@95": 0.05493050959629384,
+   "external_real_acc": 0.5891814561342459,
+   "external_real_f1": 0.4800143542244108,
+   "external_real_top2": 0.8609983373931872,
+   "external_real_cov@90": 0.16131152611839308,
+   "external_real_cov@95": 0.0954258980010053,
+   "zerabooks_acc": 0.35714285714285715,
+   "zerabooks_f1": 0.19551182059610123,
+   "zerabooks_top2": 0.5267857142857143,
+   "zerabooks_cov@90": 0.0,
+   "zerabooks_cov@95": 0.0,
+   "ms_per_1000": 57.52110481262207
+  },
+  "5 word+char + linear SVM": {
+   "fit_s": 22.26607370376587,
+   "synthetic_acc": 0.5678358702845797,
+   "synthetic_f1": 0.48338125792621706,
+   "synthetic_top2": 0.8034414295168762,
+   "external_real_acc": 0.5716660866875459,
+   "external_real_f1": 0.4751703224004902,
+   "external_real_top2": 0.8481228009125005,
+   "zerabooks_acc": 0.4221938775510204,
+   "zerabooks_f1": 0.28556878865967433,
+   "zerabooks_top2": 0.6549744897959183,
+   "ms_per_1000": 46.85473442077637
+  },
+  "6 word+char + SGD (modified huber)": {
+   "fit_s": 13.708474159240723,
+   "synthetic_acc": 0.5506287227001986,
+   "synthetic_f1": 0.4709949452176314,
+   "synthetic_top2": 0.784910655195235,
+   "synthetic_cov@90": 0.0026472534745201853,
+   "synthetic_cov@95": 0.0026472534745201853,
+   "external_real_acc": 0.5582879016355411,
+   "external_real_f1": 0.46697884279837154,
+   "external_real_top2": 0.8068669527896996,
+   "external_real_cov@90": 0.00038665274716776865,
+   "external_real_cov@95": 0.00011599582415033058,
+   "zerabooks_acc": 0.4100765306122449,
+   "zerabooks_f1": 0.28570375295989753,
+   "zerabooks_top2": 0.6026785714285714,
+   "zerabooks_cov@90": 0.0,
+   "zerabooks_cov@95": 0.0,
+   "ms_per_1000": 49.0567684173584
+  }
+ },
+ "cv": {
+  "1 baseline (word TF-IDF + LR, current)": {
+   "acc": [
+    0.6205775181318169,
+    0.03965800421490863
+   ],
+   "f1": [
+    0.45425294411733824,
+    0.01386135976169313
+   ],
+   "top2": [
+    0.8349692705384083,
+    0.007259046535429676
+   ],
+   "cov@90": [
+    0.24661605217400812,
+    0.03189151043242187
+   ],
+   "cov@95": [
+    0.16393179291710955,
+    0.031372976782521565
+   ]
+  },
+  "5 word+char + linear SVM": {
+   "acc": [
+    0.6368986405703007,
+    0.03305487543364661
+   ],
+   "f1": [
+    0.4828116697055627,
+    0.014536817909966063
+   ],
+   "top2": [
+    0.8317198470320909,
+    0.009995772659842167
+   ]
+  }
+ },
+ "best": "5 word+char + linear SVM"
+}

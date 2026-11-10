@@ -1,0 +1,38 @@
+{
+ "2026": {
+  "synthetic_test": {
+   "acc": 0.6274,
+   "f1": 0.5652,
+   "n": 1511
+  },
+  "test_external_real": {
+   "acc": 0.3257,
+   "f1": 0.188,
+   "n": 25863
+  },
+  "test_zerabooks": {
+   "acc": 0.227,
+   "f1": 0.1388,
+   "n": 1568
+  },
+  "_train_rows": 8489
+ },
+ "2027": {
+  "synthetic_test": {
+   "acc": 0.6804,
+   "f1": 0.6297,
+   "n": 1502
+  },
+  "test_external_real": {
+   "acc": 0.3877,
+   "f1": 0.3216,
+   "n": 25863
+  },
+  "test_zerabooks": {
+   "acc": 0.2755,
+   "f1": 0.2488,
+   "n": 1568
+  },
+  "_train_rows": 8498
+ }
+}

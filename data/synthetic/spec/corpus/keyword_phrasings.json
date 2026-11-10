@@ -1,0 +1,4704 @@
+{
+ "Rent Expense": [
+  {
+   "text": "SEPA Incasso Huur kantoorruimte {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur kantoorruimte periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur kantoorruimte {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur kantoorruimte",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur kantoorruimte {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur kantoorruimte periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur kantoorruimte {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur kantoorruimte",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur kantoorruimte {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur kantoorruimte periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur kantoorruimte {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur kantoorruimte",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur kantoorruimte {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur kantoorruimte periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur kantoorruimte {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur kantoorruimte",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur kantoorruimte {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur kantoorruimte periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur kantoorruimte {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur kantoorruimte",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur werkplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur werkplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur werkplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur werkplek",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur werkplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur werkplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur werkplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur werkplek",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur werkplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur werkplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur werkplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur werkplek",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur werkplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur werkplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur werkplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur werkplek",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur werkplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur werkplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur werkplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur werkplek",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Servicekosten kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Servicekosten kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Servicekosten kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Servicekosten kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Servicekosten kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Servicekosten kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Servicekosten kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Servicekosten kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Servicekosten kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Servicekosten kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Servicekosten kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Servicekosten kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Servicekosten kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Servicekosten kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Servicekosten kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Servicekosten kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Servicekosten kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Servicekosten kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Servicekosten kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Servicekosten kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur flexplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur flexplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur flexplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Huur flexplek",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur flexplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur flexplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur flexplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Huur flexplek",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur flexplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur flexplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur flexplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Huur flexplek",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur flexplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur flexplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur flexplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Huur flexplek",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur flexplek {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur flexplek periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur flexplek {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Huur flexplek",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Office rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office rent",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office rent",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office rent",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office rent",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk rent",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk rent",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk rent",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk rent {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk rent period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk rent {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk rent",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office lease {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office lease period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office lease {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office lease",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office lease {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office lease period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office lease {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office lease",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office lease {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office lease period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office lease {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office lease",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office lease {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office lease period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office lease {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office lease",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coworking membership {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coworking membership period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coworking membership {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coworking membership",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coworking membership {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coworking membership period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coworking membership {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coworking membership",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coworking membership {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coworking membership period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coworking membership {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coworking membership",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coworking membership {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coworking membership period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coworking membership {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coworking membership",
+   "language": "en"
+  }
+ ],
+ "Utilities Expense": [
+  {
+   "text": "SEPA Incasso Energie voorschot {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Energie voorschot periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Energie voorschot {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Energie voorschot",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Energie voorschot {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Energie voorschot periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Energie voorschot {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Energie voorschot",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Energie voorschot {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Energie voorschot periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Energie voorschot {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Energie voorschot",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Energie voorschot {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Energie voorschot periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Energie voorschot {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Energie voorschot",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Energie voorschot {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Energie voorschot periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Energie voorschot {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Energie voorschot",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Stroom en gas {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Stroom en gas periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Stroom en gas {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Stroom en gas",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Stroom en gas {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Stroom en gas periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Stroom en gas {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Stroom en gas",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Stroom en gas {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Stroom en gas periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Stroom en gas {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Stroom en gas",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Stroom en gas {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Stroom en gas periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Stroom en gas {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Stroom en gas",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Stroom en gas {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Stroom en gas periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Stroom en gas {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Stroom en gas",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Internet zakelijk {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Internet zakelijk periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Internet zakelijk {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Internet zakelijk",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Internet zakelijk {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Internet zakelijk periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Internet zakelijk {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Internet zakelijk",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Internet zakelijk {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Internet zakelijk periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Internet zakelijk {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Internet zakelijk",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Internet zakelijk {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Internet zakelijk periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Internet zakelijk {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Internet zakelijk",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Internet zakelijk {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Internet zakelijk periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Internet zakelijk {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Internet zakelijk",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Mobiel abonnement {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Mobiel abonnement periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Mobiel abonnement {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Mobiel abonnement",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Mobiel abonnement {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Mobiel abonnement periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Mobiel abonnement {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Mobiel abonnement",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Mobiel abonnement {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Mobiel abonnement periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Mobiel abonnement {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Mobiel abonnement",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Mobiel abonnement {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Mobiel abonnement periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Mobiel abonnement {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Mobiel abonnement",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Mobiel abonnement {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Mobiel abonnement periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Mobiel abonnement {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Mobiel abonnement",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Water vastrecht {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Water vastrecht periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Water vastrecht {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Water vastrecht",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Water vastrecht {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Water vastrecht periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Water vastrecht {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Water vastrecht",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Water vastrecht {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Water vastrecht periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Water vastrecht {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Water vastrecht",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Water vastrecht {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Water vastrecht periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Water vastrecht {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Water vastrecht",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Water vastrecht {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Water vastrecht periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Water vastrecht {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Water vastrecht",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Energy advance {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Energy advance period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Energy advance {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Energy advance",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Energy advance {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Energy advance period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Energy advance {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Energy advance",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Energy advance {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Energy advance period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Energy advance {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Energy advance",
+   "language": "en"
+  },
+  {
+   "text": "Payment Energy advance {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Energy advance period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Energy advance {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Energy advance",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Electricity and gas {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Electricity and gas period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Electricity and gas {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Electricity and gas",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Electricity and gas {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Electricity and gas period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Electricity and gas {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Electricity and gas",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Electricity and gas {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Electricity and gas period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Electricity and gas {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Electricity and gas",
+   "language": "en"
+  },
+  {
+   "text": "Payment Electricity and gas {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Electricity and gas period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Electricity and gas {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Electricity and gas",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Business internet {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Business internet period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Business internet {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Business internet",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Business internet {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Business internet period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Business internet {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Business internet",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Business internet {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Business internet period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Business internet {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Business internet",
+   "language": "en"
+  },
+  {
+   "text": "Payment Business internet {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Business internet period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Business internet {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Business internet",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Mobile plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Mobile plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Mobile plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Mobile plan",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Mobile plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Mobile plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Mobile plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Mobile plan",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Mobile plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Mobile plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Mobile plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Mobile plan",
+   "language": "en"
+  },
+  {
+   "text": "Payment Mobile plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Mobile plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Mobile plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Mobile plan",
+   "language": "en"
+  }
+ ],
+ "Software & Subscriptions Expense": [
+  {
+   "text": "SEPA Incasso Abonnement software {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Abonnement software periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Abonnement software {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Abonnement software",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Abonnement software {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Abonnement software periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Abonnement software {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Abonnement software",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Abonnement software {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Abonnement software periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Abonnement software {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Abonnement software",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Abonnement software {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Abonnement software periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Abonnement software {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Abonnement software",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Abonnement software {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Abonnement software periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Abonnement software {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Abonnement software",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Licentie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Licentie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Licentie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Licentie",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Licentie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Licentie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Licentie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Licentie",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Licentie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Licentie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Licentie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Licentie",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Licentie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Licentie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Licentie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Licentie",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Licentie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Licentie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Licentie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Licentie",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Cloud opslag {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Cloud opslag periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Cloud opslag {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Cloud opslag",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Cloud opslag {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Cloud opslag periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Cloud opslag {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Cloud opslag",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Cloud opslag {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Cloud opslag periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Cloud opslag {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Cloud opslag",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Cloud opslag {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Cloud opslag periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Cloud opslag {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Cloud opslag",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Cloud opslag {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Cloud opslag periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Cloud opslag {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Cloud opslag",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Hosting pakket {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Hosting pakket periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Hosting pakket {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Hosting pakket",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Hosting pakket {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Hosting pakket periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Hosting pakket {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Hosting pakket",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Hosting pakket {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Hosting pakket periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Hosting pakket {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Hosting pakket",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Hosting pakket {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Hosting pakket periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Hosting pakket {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Hosting pakket",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Hosting pakket {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Hosting pakket periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Hosting pakket {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Hosting pakket",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Software subscription {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Software subscription period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Software subscription {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Software subscription",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Software subscription {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Software subscription period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Software subscription {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Software subscription",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Software subscription {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Software subscription period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Software subscription {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Software subscription",
+   "language": "en"
+  },
+  {
+   "text": "Payment Software subscription {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Software subscription period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Software subscription {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Software subscription",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Licence renewal {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Licence renewal period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Licence renewal {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Licence renewal",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Licence renewal {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Licence renewal period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Licence renewal {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Licence renewal",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Licence renewal {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Licence renewal period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Licence renewal {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Licence renewal",
+   "language": "en"
+  },
+  {
+   "text": "Payment Licence renewal {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Licence renewal period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Licence renewal {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Licence renewal",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Cloud storage {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Cloud storage period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Cloud storage {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Cloud storage",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Cloud storage {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Cloud storage period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Cloud storage {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Cloud storage",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Cloud storage {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Cloud storage period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Cloud storage {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Cloud storage",
+   "language": "en"
+  },
+  {
+   "text": "Payment Cloud storage {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Cloud storage period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Cloud storage {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Cloud storage",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Hosting plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Hosting plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Hosting plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Hosting plan",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Hosting plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Hosting plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Hosting plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Hosting plan",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Hosting plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Hosting plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Hosting plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Hosting plan",
+   "language": "en"
+  },
+  {
+   "text": "Payment Hosting plan {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Hosting plan period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Hosting plan {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Hosting plan",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit SaaS seats {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit SaaS seats period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit SaaS seats {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit SaaS seats",
+   "language": "en"
+  },
+  {
+   "text": "Transfer SaaS seats {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer SaaS seats period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer SaaS seats {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer SaaS seats",
+   "language": "en"
+  },
+  {
+   "text": "Card payment SaaS seats {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment SaaS seats period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment SaaS seats {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment SaaS seats",
+   "language": "en"
+  },
+  {
+   "text": "Payment SaaS seats {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment SaaS seats period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment SaaS seats {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment SaaS seats",
+   "language": "en"
+  }
+ ],
+ "Travel & Transport Expense": [
+  {
+   "text": "SEPA Incasso Parkeren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Parkeren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Parkeren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Parkeren",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Parkeren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Parkeren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Parkeren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Parkeren",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Parkeren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Parkeren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Parkeren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Parkeren",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Parkeren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Parkeren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Parkeren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Parkeren",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Parkeren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Parkeren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Parkeren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Parkeren",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Treinreis {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Treinreis periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Treinreis {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Treinreis",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Treinreis {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Treinreis periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Treinreis {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Treinreis",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Treinreis {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Treinreis periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Treinreis {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Treinreis",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Treinreis {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Treinreis periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Treinreis {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Treinreis",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Treinreis {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Treinreis periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Treinreis {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Treinreis",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Brandstof {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Brandstof periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Brandstof {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Brandstof",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Brandstof {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Brandstof periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Brandstof {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Brandstof",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Brandstof {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Brandstof periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Brandstof {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Brandstof",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Brandstof {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Brandstof periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Brandstof {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Brandstof",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Brandstof {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Brandstof periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Brandstof {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Brandstof",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Taxirit {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Taxirit periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Taxirit {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Taxirit",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Taxirit {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Taxirit periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Taxirit {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Taxirit",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Taxirit {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Taxirit periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Taxirit {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Taxirit",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Taxirit {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Taxirit periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Taxirit {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Taxirit",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Taxirit {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Taxirit periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Taxirit {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Taxirit",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Reiskosten {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Reiskosten periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Reiskosten {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Reiskosten",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Reiskosten {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Reiskosten periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Reiskosten {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Reiskosten",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Reiskosten {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Reiskosten periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Reiskosten {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Reiskosten",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Reiskosten {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Reiskosten periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Reiskosten {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Reiskosten",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Reiskosten {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Reiskosten periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Reiskosten {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Reiskosten",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Parking {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Parking period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Parking {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Parking",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Parking {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Parking period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Parking {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Parking",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Parking {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Parking period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Parking {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Parking",
+   "language": "en"
+  },
+  {
+   "text": "Payment Parking {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Parking period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Parking {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Parking",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Train ticket {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Train ticket period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Train ticket {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Train ticket",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Train ticket {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Train ticket period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Train ticket {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Train ticket",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Train ticket {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Train ticket period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Train ticket {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Train ticket",
+   "language": "en"
+  },
+  {
+   "text": "Payment Train ticket {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Train ticket period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Train ticket {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Train ticket",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Fuel {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Fuel period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Fuel {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Fuel",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Fuel {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Fuel period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Fuel {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Fuel",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Fuel {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Fuel period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Fuel {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Fuel",
+   "language": "en"
+  },
+  {
+   "text": "Payment Fuel {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Fuel period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Fuel {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Fuel",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Taxi ride {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Taxi ride period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Taxi ride {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Taxi ride",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Taxi ride {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Taxi ride period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Taxi ride {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Taxi ride",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Taxi ride {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Taxi ride period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Taxi ride {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Taxi ride",
+   "language": "en"
+  },
+  {
+   "text": "Payment Taxi ride {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Taxi ride period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Taxi ride {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Taxi ride",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Flight {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Flight period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Flight {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Flight",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Flight {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Flight period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Flight {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Flight",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Flight {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Flight period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Flight {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Flight",
+   "language": "en"
+  },
+  {
+   "text": "Payment Flight {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Flight period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Flight {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Flight",
+   "language": "en"
+  }
+ ],
+ "Office Supplies Expense": [
+  {
+   "text": "SEPA Incasso Kantoorartikelen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Kantoorartikelen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Kantoorartikelen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Kantoorartikelen",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Kantoorartikelen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Kantoorartikelen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Kantoorartikelen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Kantoorartikelen",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Kantoorartikelen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Kantoorartikelen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Kantoorartikelen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Kantoorartikelen",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Kantoorartikelen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Kantoorartikelen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Kantoorartikelen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Kantoorartikelen",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Kantoorartikelen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Kantoorartikelen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Kantoorartikelen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Kantoorartikelen",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Printpapier A4 {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Printpapier A4 periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Printpapier A4 {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Printpapier A4",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Printpapier A4 {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Printpapier A4 periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Printpapier A4 {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Printpapier A4",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Printpapier A4 {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Printpapier A4 periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Printpapier A4 {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Printpapier A4",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Printpapier A4 {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Printpapier A4 periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Printpapier A4 {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Printpapier A4",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Printpapier A4 {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Printpapier A4 periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Printpapier A4 {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Printpapier A4",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Toner cartridge {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Toner cartridge periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Toner cartridge {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Toner cartridge",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Toner cartridge {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Toner cartridge periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Toner cartridge {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Toner cartridge",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Toner cartridge {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Toner cartridge periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Toner cartridge {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Toner cartridge",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Toner cartridge {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Toner cartridge periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Toner cartridge {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Toner cartridge",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Toner cartridge {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Toner cartridge periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Toner cartridge {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Toner cartridge",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Pennen en mappen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Pennen en mappen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Pennen en mappen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Pennen en mappen",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Pennen en mappen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Pennen en mappen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Pennen en mappen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Pennen en mappen",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Pennen en mappen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Pennen en mappen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Pennen en mappen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Pennen en mappen",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Pennen en mappen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Pennen en mappen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Pennen en mappen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Pennen en mappen",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Pennen en mappen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Pennen en mappen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Pennen en mappen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Pennen en mappen",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bureaustoel {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bureaustoel periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bureaustoel {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bureaustoel",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bureaustoel {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bureaustoel periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bureaustoel {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bureaustoel",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bureaustoel {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bureaustoel periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bureaustoel {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bureaustoel",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bureaustoel {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bureaustoel periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bureaustoel {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bureaustoel",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bureaustoel {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bureaustoel periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bureaustoel {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bureaustoel",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Office supplies {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office supplies period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office supplies {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Office supplies",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office supplies {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office supplies period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office supplies {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Office supplies",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office supplies {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office supplies period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office supplies {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Office supplies",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office supplies {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office supplies period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office supplies {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Office supplies",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Printer paper {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Printer paper period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Printer paper {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Printer paper",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Printer paper {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Printer paper period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Printer paper {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Printer paper",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Printer paper {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Printer paper period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Printer paper {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Printer paper",
+   "language": "en"
+  },
+  {
+   "text": "Payment Printer paper {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Printer paper period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Printer paper {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Printer paper",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Toner {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Toner period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Toner {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Toner",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Toner {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Toner period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Toner {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Toner",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Toner {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Toner period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Toner {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Toner",
+   "language": "en"
+  },
+  {
+   "text": "Payment Toner {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Toner period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Toner {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Toner",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Monitor cable {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Monitor cable period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Monitor cable {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Monitor cable",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Monitor cable {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Monitor cable period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Monitor cable {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Monitor cable",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Monitor cable {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Monitor cable period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Monitor cable {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Monitor cable",
+   "language": "en"
+  },
+  {
+   "text": "Payment Monitor cable {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Monitor cable period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Monitor cable {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Monitor cable",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk chair {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk chair period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk chair {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Desk chair",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk chair {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk chair period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk chair {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Desk chair",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk chair {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk chair period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk chair {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Desk chair",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk chair {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk chair period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk chair {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Desk chair",
+   "language": "en"
+  }
+ ],
+ "Professional Services Expense": [
+  {
+   "text": "SEPA Incasso Advies uren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Advies uren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Advies uren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Advies uren",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Advies uren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Advies uren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Advies uren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Advies uren",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Advies uren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Advies uren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Advies uren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Advies uren",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Advies uren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Advies uren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Advies uren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Advies uren",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Advies uren {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Advies uren periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Advies uren {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Advies uren",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Juridisch advies {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Juridisch advies periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Juridisch advies {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Juridisch advies",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Juridisch advies {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Juridisch advies periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Juridisch advies {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Juridisch advies",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Juridisch advies {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Juridisch advies periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Juridisch advies {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Juridisch advies",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Juridisch advies {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Juridisch advies periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Juridisch advies {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Juridisch advies",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Juridisch advies {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Juridisch advies periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Juridisch advies {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Juridisch advies",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Administratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Administratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Administratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Administratie",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Administratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Administratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Administratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Administratie",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Administratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Administratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Administratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Administratie",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Administratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Administratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Administratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Administratie",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Administratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Administratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Administratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Administratie",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Jaarrekening {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Jaarrekening periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Jaarrekening {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Jaarrekening",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Jaarrekening {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Jaarrekening periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Jaarrekening {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Jaarrekening",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Jaarrekening {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Jaarrekening periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Jaarrekening {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Jaarrekening",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Jaarrekening {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Jaarrekening periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Jaarrekening {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Jaarrekening",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Jaarrekening {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Jaarrekening periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Jaarrekening {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Jaarrekening",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Salarisadministratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Salarisadministratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Salarisadministratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Salarisadministratie",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Salarisadministratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Salarisadministratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Salarisadministratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Salarisadministratie",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Salarisadministratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Salarisadministratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Salarisadministratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Salarisadministratie",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Salarisadministratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Salarisadministratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Salarisadministratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Salarisadministratie",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Salarisadministratie {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Salarisadministratie periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Salarisadministratie {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Salarisadministratie",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Consulting hours {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Consulting hours period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Consulting hours {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Consulting hours",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Consulting hours {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Consulting hours period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Consulting hours {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Consulting hours",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Consulting hours {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Consulting hours period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Consulting hours {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Consulting hours",
+   "language": "en"
+  },
+  {
+   "text": "Payment Consulting hours {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Consulting hours period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Consulting hours {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Consulting hours",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Legal advice {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Legal advice period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Legal advice {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Legal advice",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Legal advice {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Legal advice period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Legal advice {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Legal advice",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Legal advice {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Legal advice period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Legal advice {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Legal advice",
+   "language": "en"
+  },
+  {
+   "text": "Payment Legal advice {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Legal advice period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Legal advice {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Legal advice",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Accountant fee {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Accountant fee period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Accountant fee {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Accountant fee",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Accountant fee {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Accountant fee period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Accountant fee {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Accountant fee",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Accountant fee {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Accountant fee period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Accountant fee {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Accountant fee",
+   "language": "en"
+  },
+  {
+   "text": "Payment Accountant fee {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Accountant fee period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Accountant fee {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Accountant fee",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Payroll services {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Payroll services period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Payroll services {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Payroll services",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Payroll services {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Payroll services period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Payroll services {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Payroll services",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Payroll services {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Payroll services period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Payroll services {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Payroll services",
+   "language": "en"
+  },
+  {
+   "text": "Payment Payroll services {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Payroll services period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Payroll services {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Payroll services",
+   "language": "en"
+  }
+ ],
+ "General/Other Expense": [
+  {
+   "text": "SEPA Incasso Boodschappen kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Boodschappen kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Boodschappen kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Boodschappen kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Boodschappen kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Boodschappen kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Boodschappen kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Boodschappen kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Boodschappen kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Boodschappen kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Boodschappen kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Boodschappen kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Boodschappen kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Boodschappen kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Boodschappen kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Boodschappen kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Boodschappen kantoor {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Boodschappen kantoor periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Boodschappen kantoor {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Boodschappen kantoor",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Lunch team {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Lunch team periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Lunch team {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Lunch team",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Lunch team {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Lunch team periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Lunch team {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Lunch team",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Lunch team {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Lunch team periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Lunch team {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Lunch team",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Lunch team {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Lunch team periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Lunch team {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Lunch team",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Lunch team {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Lunch team periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Lunch team {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Lunch team",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Koffie en thee {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Koffie en thee periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Koffie en thee {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Koffie en thee",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Koffie en thee {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Koffie en thee periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Koffie en thee {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Koffie en thee",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Koffie en thee {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Koffie en thee periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Koffie en thee {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Koffie en thee",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Koffie en thee {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Koffie en thee periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Koffie en thee {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Koffie en thee",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Koffie en thee {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Koffie en thee periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Koffie en thee {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Koffie en thee",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bloemen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bloemen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bloemen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Bloemen",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bloemen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bloemen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bloemen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Bloemen",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bloemen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bloemen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bloemen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Bloemen",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bloemen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bloemen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bloemen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Bloemen",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bloemen {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bloemen periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bloemen {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Bloemen",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Verzekering {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Verzekering periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Verzekering {date}",
+   "language": "nl"
+  },
+  {
+   "text": "SEPA Incasso Verzekering",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Verzekering {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Verzekering periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Verzekering {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Overboeking Verzekering",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Verzekering {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Verzekering periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Verzekering {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Incasso Verzekering",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Verzekering {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Verzekering periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Verzekering {date}",
+   "language": "nl"
+  },
+  {
+   "text": "iDEAL betaling Verzekering",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Verzekering {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Verzekering periode {maand} {year}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Verzekering {date}",
+   "language": "nl"
+  },
+  {
+   "text": "Betaling Verzekering",
+   "language": "nl"
+  },
+  {
+   "text": "Direct debit Team lunch {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Team lunch period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Team lunch {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Team lunch",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Team lunch {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Team lunch period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Team lunch {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Team lunch",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Team lunch {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Team lunch period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Team lunch {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Team lunch",
+   "language": "en"
+  },
+  {
+   "text": "Payment Team lunch {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Team lunch period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Team lunch {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Team lunch",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coffee and snacks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coffee and snacks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coffee and snacks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Coffee and snacks",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coffee and snacks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coffee and snacks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coffee and snacks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Coffee and snacks",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coffee and snacks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coffee and snacks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coffee and snacks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Coffee and snacks",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coffee and snacks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coffee and snacks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coffee and snacks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Coffee and snacks",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Gift card {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Gift card period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Gift card {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Gift card",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Gift card {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Gift card period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Gift card {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Gift card",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Gift card {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Gift card period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Gift card {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Gift card",
+   "language": "en"
+  },
+  {
+   "text": "Payment Gift card {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Gift card period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Gift card {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Gift card",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Insurance premium {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Insurance premium period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Insurance premium {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Insurance premium",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Insurance premium {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Insurance premium period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Insurance premium {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Insurance premium",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Insurance premium {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Insurance premium period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Insurance premium {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Insurance premium",
+   "language": "en"
+  },
+  {
+   "text": "Payment Insurance premium {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Insurance premium period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Insurance premium {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Insurance premium",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Drinks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Drinks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Drinks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Direct debit Drinks",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Drinks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Drinks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Drinks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Transfer Drinks",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Drinks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Drinks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Drinks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Card payment Drinks",
+   "language": "en"
+  },
+  {
+   "text": "Payment Drinks {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Drinks period {month} {year}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Drinks {date}",
+   "language": "en"
+  },
+  {
+   "text": "Payment Drinks",
+   "language": "en"
+  }
+ ]
+}

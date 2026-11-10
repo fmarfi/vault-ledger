@@ -1,0 +1,38 @@
+{
+ "synth-crew-2026-pretrained-top2 | synthetic": {
+  "acc": 0.5671740569159497,
+  "f1": 0.5245783188076267,
+  "cov95": 0.22700198544010589,
+  "ms_per_txn": 5.1133361263514985
+ },
+ "synth-crew-2026-pretrained-top2 | external_real (5k sample)": {
+  "acc": 0.3046,
+  "f1": 0.22446039701613385,
+  "cov95": 0.0002,
+  "ms_per_txn": 7.9316774845123295
+ },
+ "synth-crew-2026-pretrained-top2 | zerabooks": {
+  "acc": 0.3392857142857143,
+  "f1": 0.3614127971160815,
+  "cov95": 0.0031887755102040817,
+  "ms_per_txn": 5.214318937184859
+ },
+ "synth-crew-2026-pretrained-vatpaid | synthetic": {
+  "acc": 0.5698213103904699,
+  "f1": 0.4787195041352413,
+  "cov95": 0.20450033090668432,
+  "ms_per_txn": 8.451021561789876
+ },
+ "synth-crew-2026-pretrained-vatpaid | external_real (5k sample)": {
+  "acc": 0.3054,
+  "f1": 0.19849364612120945,
+  "cov95": 0.0,
+  "ms_per_txn": 7.093055391311646
+ },
+ "synth-crew-2026-pretrained-vatpaid | zerabooks": {
+  "acc": 0.3711734693877551,
+  "f1": 0.37495532920358304,
+  "cov95": 0.01721938775510204,
+  "ms_per_txn": 5.1952124554283765
+ }
+}

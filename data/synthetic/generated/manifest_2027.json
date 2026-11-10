@@ -1,0 +1,53 @@
+{
+ "seed": 2027,
+ "rows": 10000,
+ "spec": "spec\\generative_spec.yaml",
+ "spec_sha256": "60488dfa95a848adcd744954402eab5817bd3f64b98a97f5e83846f2c77c28b6",
+ "corpus_sha256": "ee3d109fe895b703571ed5f261cff72ca05fe43b5daf7aa5eddd98f1b4fbfd6c",
+ "generator_sha256": "ae78a0a5303d178b7d16838f5bcb6b013bc9710b1976fe6b05e2129cbc4a0e7b",
+ "dup_rate": 0.0,
+ "split_rows": {
+  "test": 1502,
+  "train": 6996,
+  "val": 1502
+ },
+ "class_rows": {
+  "General/Other Expense": 1163,
+  "Office Supplies Expense": 1461,
+  "Professional Services Expense": 900,
+  "Rent Expense": 606,
+  "Software & Subscriptions Expense": 2602,
+  "Travel & Transport Expense": 2155,
+  "Utilities Expense": 1113
+ },
+ "split_class_rows": {
+  "train": {
+   "General/Other Expense": 853,
+   "Office Supplies Expense": 1009,
+   "Professional Services Expense": 631,
+   "Rent Expense": 424,
+   "Software & Subscriptions Expense": 1810,
+   "Travel & Transport Expense": 1493,
+   "Utilities Expense": 776
+  },
+  "val": {
+   "General/Other Expense": 122,
+   "Office Supplies Expense": 263,
+   "Professional Services Expense": 136,
+   "Rent Expense": 91,
+   "Software & Subscriptions Expense": 394,
+   "Travel & Transport Expense": 329,
+   "Utilities Expense": 167
+  },
+  "test": {
+   "General/Other Expense": 188,
+   "Office Supplies Expense": 189,
+   "Professional Services Expense": 133,
+   "Rent Expense": 91,
+   "Software & Subscriptions Expense": 398,
+   "Travel & Transport Expense": 333,
+   "Utilities Expense": 170
+  }
+ },
+ "note": "synthetic, cold-start only; never quote accuracy on it as real-world"
+}

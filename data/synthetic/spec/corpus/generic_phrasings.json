@@ -1,0 +1,1262 @@
+[
+ {
+  "text": "SEPA Incasso Factuur {n9} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuur {n9} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuur {n9} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuur {n9}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuurnr. {n6} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuurnr. {n6} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuurnr. {n6} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Factuurnr. {n6}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Kenmerk {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Kenmerk {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Kenmerk {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Kenmerk {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Betalingskenmerk {n16} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Betalingskenmerk {n16} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Betalingskenmerk {n16} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Betalingskenmerk {n16}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Ref. {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Ref. {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Ref. {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "SEPA Incasso Ref. {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuur {n9} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuur {n9} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuur {n9} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuur {n9}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuurnr. {n6} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuurnr. {n6} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuurnr. {n6} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Factuurnr. {n6}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Kenmerk {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Kenmerk {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Kenmerk {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Kenmerk {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Betalingskenmerk {n16} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Betalingskenmerk {n16} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Betalingskenmerk {n16} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Betalingskenmerk {n16}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Ref. {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Ref. {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Ref. {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Overboeking Ref. {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuur {n9} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuur {n9} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuur {n9} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuur {n9}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuurnr. {n6} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuurnr. {n6} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuurnr. {n6} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Factuurnr. {n6}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Kenmerk {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Kenmerk {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Kenmerk {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Kenmerk {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Betalingskenmerk {n16} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Betalingskenmerk {n16} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Betalingskenmerk {n16} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Betalingskenmerk {n16}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Ref. {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Ref. {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Ref. {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Incasso Ref. {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuur {n9} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuur {n9} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuur {n9} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuur {n9}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuurnr. {n6} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuurnr. {n6} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuurnr. {n6} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Factuurnr. {n6}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Kenmerk {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Kenmerk {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Kenmerk {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Kenmerk {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Betalingskenmerk {n16} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Betalingskenmerk {n16} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Betalingskenmerk {n16} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Betalingskenmerk {n16}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Ref. {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Ref. {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Ref. {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "iDEAL betaling Ref. {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuur {n9} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuur {n9} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuur {n9} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuur {n9}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuurnr. {n6} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuurnr. {n6} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuurnr. {n6} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Factuurnr. {n6}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Kenmerk {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Kenmerk {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Kenmerk {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Kenmerk {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Betalingskenmerk {n16} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Betalingskenmerk {n16} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Betalingskenmerk {n16} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Betalingskenmerk {n16}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Ref. {n8} {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Ref. {n8} periode {maand} {year}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Ref. {n8} {date}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Betaling Ref. {n8}",
+  "language": "nl",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice {n9} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice {n9} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice {n9} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice {n9}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice no. {n6} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice no. {n6} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice no. {n6} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Invoice no. {n6}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Reference {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Reference {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Reference {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Reference {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Ref {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Ref {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Ref {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Ref {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Order {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Order {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Order {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Direct debit Order {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice {n9} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice {n9} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice {n9} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice {n9}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice no. {n6} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice no. {n6} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice no. {n6} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Invoice no. {n6}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Reference {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Reference {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Reference {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Reference {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Ref {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Ref {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Ref {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Ref {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Order {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Order {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Order {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Transfer Order {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice {n9} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice {n9} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice {n9} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice {n9}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice no. {n6} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice no. {n6} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice no. {n6} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Invoice no. {n6}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Reference {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Reference {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Reference {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Reference {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Ref {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Ref {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Ref {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Ref {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Order {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Order {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Order {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Card payment Order {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice {n9} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice {n9} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice {n9} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice {n9}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice no. {n6} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice no. {n6} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice no. {n6} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Invoice no. {n6}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Reference {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Reference {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Reference {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Reference {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Ref {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Ref {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Ref {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Ref {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Order {n8} {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Order {n8} period {month} {year}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Order {n8} {date}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ },
+ {
+  "text": "Payment Order {n8}",
+  "language": "en",
+  "doc_type": "bank",
+  "vat_rate": null,
+  "generic": true
+ }
+]

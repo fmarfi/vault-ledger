@@ -1,0 +1,126 @@
+# Generative spec, rebuilt 2026-10-29 from the surviving revision-2 draw 4321
+# (vaultledger-ml/data/synth-crew/{transactions,metadata}_4321.csv).
+# Tags: "sourced:4321" = measured on that draw (itself synthetic, so ultimately an
+# assumption about the real world); "assumption" = our own choice.
+# No gold set exists: every parameter is unverified against real rows.
+version: 3-lean
+date_range: {start: "2025-01-01", end: "2026-08-31", tag: "sourced:4321"}
+
+class_prior:        # share of rows per account
+  tag: "sourced:4321"
+  "Software & Subscriptions Expense": 0.261
+  "Travel & Transport Expense": 0.217
+  "Office Supplies Expense": 0.147
+  "General/Other Expense": 0.113
+  "Utilities Expense": 0.112
+  "Professional Services Expense": 0.089
+  "Rent Expense": 0.061
+
+amount_lognormal:   # natural-log mean / sd of the gross amount (EUR)
+  tag: "sourced:4321"
+  "General/Other Expense": {mu: 3.48, sigma: 1.23}
+  "Office Supplies Expense": {mu: 3.82, sigma: 1.07}
+  "Professional Services Expense": {mu: 6.43, sigma: 1.28}
+  "Rent Expense": {mu: 6.20, sigma: 0.85}
+  "Software & Subscriptions Expense": {mu: 3.09, sigma: 1.04}
+  "Travel & Transport Expense": {mu: 3.43, sigma: 1.09}
+  "Utilities Expense": {mu: 4.10, sigma: 0.92}
+amount_clip: {min: 1.00, max: 25000.00, tag: assumption}
+
+vendor_zipf:
+  exponent: 0.74          # 4321 fit 0.74-0.90; set below 0.85 because series and hard vendors add concentration (audit fix 2026-10-29)
+  series_exponent: 0.40   # flatter law for choosing the vendor of a recurring series (assumption, audit fix)
+  rank_by: freq_4321      # vendor rank = its frequency rank in 4321
+  tag: "sourced:4321"
+
+recurring:              # monthly series, same vendor, same day of month
+  tag: assumption
+  share_of_rows:
+    "Rent Expense": 0.40
+    "Utilities Expense": 0.40
+    "Software & Subscriptions Expense": 0.35
+    "Professional Services Expense": 0.15
+  series_length: {min: 3, max: 10}   # audit fix: more, shorter series (was 20)
+  amount_jitter_sd:     # relative month-to-month change
+    "Rent Expense": 0.03          # audit fix; base amount is drawn per series
+    "Utilities Expense": 0.05
+    "Software & Subscriptions Expense": 0.03
+    "Professional Services Expense": 0.04
+  price_change_prob: 0.10   # per series, one step change of +3..10% midway
+
+description_source:
+  generic_phrasing_share: 0.12   # crossed channel x reference x period, keyword-free, all accounts
+  keyword_phrasing_share: 0.01   # crossed channel x account keyword noun x period (audit fix: keyword rows ~25%)
+  tag: assumption
+
+hard_cases:
+  share: 0.12                    # 4321: 11.8% (225 hard + 247 ambiguous of 4000)
+  tag: "sourced:4321"
+  mix:                           # 4321 counts
+    vendor_description_disagree: 112
+    generic_description: 83
+    albert_heijn_hema: 62
+    coolblue_action: 57
+    amazon_nl: 45
+    bol_marketplace: 43
+    google_ads_vs_workspace: 39
+    fuel_station_shop: 31
+
+real_vendors:           # real vendor names from public data (spec/build_real_lexicon.py); test-set vendors removed
+  tag: "sourced:public data, 2026-11-10"
+  file: real_vendors.json
+  share: 0.55           # share of easy and recurring rows that use a real vendor instead of a corpus vendor
+  zipf_exponent: 0.5    # vendor rank = its row count in the public data
+
+missing_fields:         # inputs as they arrive from a bank feed or a poor scan
+  tag: assumption
+  vendor_in_description: 0.12   # no vendor field; the vendor name sits inside a bank-style description
+  no_vat: 0.25                  # VAT rate unknown
+
+paid_prob_by_doc_type: {bank: 1.0, receipt_pos: 1.0, receipt_ideal: 1.0, invoice: 0.84, tag: "sourced:4321"}
+
+noise_rates:            # independent per-row probability
+  tag: "sourced:4321 except casing_variation"
+  vendor_legal_suffix_variation: 0.14   # non-canonical alias with this probability; not scaled by grain
+  abbreviation_nl_en: 0.10              # applied only to rows with an abbreviable word, rate rescaled so ~0.10 of all rows; not scaled by grain
+  truncated_description: 0.07           # 4321: 0.08; lowered to keep under the 8% artifact cap; not scaled by grain
+  typo_char_swap_drop_dup: 0.054
+  ocr_confusion: 0.047
+  store_terminal_code: 0.044            # receipt_pos rows only
+  missing_or_generic_description: 0.036
+  casing_variation: 0.06                # assumption: 4321 used 0.20; round 3 flagged whole-string recasing
+  # nl_en_mix_in_one_row is not injected: it is carried by mined templates with language=mixed
+
+split:
+  fractions: {train: 0.70, val: 0.15, test: 0.15}
+  unit: vendor_canonical          # all aliases of a vendor go to one split
+  tag: assumption
+
+dedup:
+  key: [vendor, description, amount]
+  max_rate: 0.02
+  redraws: 6
+
+label_noise:          # bookkeeper miscategorisation, train split only; true_account keeps the truth
+  tag: assumption     # no real export measured yet
+  rate: 0.02
+  neighbours:         # flip target drawn uniformly from these
+    "Office Supplies Expense": ["General/Other Expense", "Software & Subscriptions Expense"]
+    "General/Other Expense": ["Office Supplies Expense", "Travel & Transport Expense"]
+    "Software & Subscriptions Expense": ["Utilities Expense", "Professional Services Expense", "Office Supplies Expense"]
+    "Utilities Expense": ["Software & Subscriptions Expense", "Rent Expense"]
+    "Rent Expense": ["Utilities Expense", "Professional Services Expense"]
+    "Travel & Transport Expense": ["General/Other Expense"]
+    "Professional Services Expense": ["Software & Subscriptions Expense", "General/Other Expense"]
+
+grain:                # extra roughness for unclear real inputs (user request 2026-10-29)
+  tag: assumption
+  noise_multiplier: 1.4          # scales only typo, ocr, missing/generic and casing; each capped at max_artifact_rate
+  scaled: [typo_char_swap_drop_dup, ocr_confusion, missing_or_generic_description, casing_variation]
+  max_artifact_rate: 0.075       # audit: no artifact type on > 8% of rows
+  whitespace_noise: 0.05         # double / leading / trailing spaces, tab
+  punctuation_drop: 0.06         # drop ' - ', ',', '.' separators
+  vendor_ocr_confusion: 0.04     # OCR confusion inside the vendor string
+  accent_strip_or_junk: 0.03     # stray characters such as '*', '#', '/' or a cut-off token
+# recurring series base amounts are drawn on golden-ratio quantiles of the account lognormal
+# (assumption, audit fix 2026-10-29: series clustering broke the amount KS test)

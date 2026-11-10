@@ -1,0 +1,241 @@
+{
+ "fine_model_on_fine": {
+  "acc": 0.4461948142957253,
+  "f1": 0.3575445566467712
+ },
+ "charts": [
+  {
+   "chart": "vault 7 accounts",
+   "n": 7,
+   "rollup_acc": 0.5581219341275403,
+   "rollup_f1": 0.4068789063604966,
+   "retrained_acc": 0.557645409950946,
+   "retrained_f1": 0.412867582745348,
+   "retrain_s": 11.091062784194946
+  },
+  {
+   "chart": "random 4 accounts #1",
+   "n": 4,
+   "rollup_acc": 0.5887035739313244,
+   "rollup_f1": 0.5560122727354624,
+   "retrained_acc": 0.5597196916608269,
+   "retrained_f1": 0.5181024491425372,
+   "retrain_s": 6.666284084320068
+  },
+  {
+   "chart": "random 4 accounts #2",
+   "n": 4,
+   "rollup_acc": 0.5763419761737911,
+   "rollup_f1": 0.5245194749467659,
+   "retrained_acc": 0.5397056762438682,
+   "retrained_f1": 0.48476585929078175,
+   "retrain_s": 6.68122124671936
+  },
+  {
+   "chart": "random 10 accounts #1",
+   "n": 10,
+   "rollup_acc": 0.4782340574632095,
+   "rollup_f1": 0.4676794382481015,
+   "retrained_acc": 0.44882971268395233,
+   "retrained_f1": 0.4406874099617107,
+   "retrain_s": 15.705220937728882
+  },
+  {
+   "chart": "random 10 accounts #2",
+   "n": 10,
+   "rollup_acc": 0.4743658023826209,
+   "rollup_f1": 0.47090154014638463,
+   "retrained_acc": 0.4808689558514366,
+   "retrained_f1": 0.4766737439981147,
+   "retrain_s": 15.167791604995728
+  },
+  {
+   "chart": "random 16 accounts #1",
+   "n": 16,
+   "rollup_acc": 0.45135248773651016,
+   "rollup_f1": 0.42273981231195146,
+   "retrained_acc": 0.4156972669936931,
+   "retrained_f1": 0.38463014859423916,
+   "retrain_s": 22.390957355499268
+  },
+  {
+   "chart": "random 16 accounts #2",
+   "n": 16,
+   "rollup_acc": 0.4855781359495445,
+   "rollup_f1": 0.4146184618155125,
+   "retrained_acc": 0.4685353889278206,
+   "retrained_f1": 0.3977585641573579,
+   "retrain_s": 19.885116815567017
+  },
+  {
+   "chart": "random 22 accounts #1",
+   "n": 22,
+   "rollup_acc": 0.45081990189208127,
+   "rollup_f1": 0.3900813784691741,
+   "retrained_acc": 0.4322354590049054,
+   "retrained_f1": 0.3842756721630536,
+   "retrain_s": 23.86524534225464
+  },
+  {
+   "chart": "random 22 accounts #2",
+   "n": 22,
+   "rollup_acc": 0.45897687456201824,
+   "rollup_f1": 0.37795366973283406,
+   "retrained_acc": 0.4404765241765943,
+   "retrained_f1": 0.3697476077335549,
+   "retrain_s": 25.398683071136475
+  },
+  {
+   "chart": "all 29 fine accounts",
+   "n": 29,
+   "rollup_acc": 0.4461948142957253,
+   "rollup_f1": 0.3575445566467712
+  }
+ ],
+ "new_account": [
+  {
+   "new_account": "air_travel",
+   "examples": 5,
+   "recall_new": 0.9695550351288056,
+   "precision_new": 0.9951923076923077,
+   "others_acc": 0.4283363595097594,
+   "test_rows": 427
+  },
+  {
+   "new_account": "air_travel",
+   "examples": 20,
+   "recall_new": 0.9648711943793911,
+   "precision_new": 1.0,
+   "others_acc": 0.4453302315024966,
+   "test_rows": 427
+  },
+  {
+   "new_account": "air_travel",
+   "examples": 100,
+   "recall_new": 0.9695550351288056,
+   "precision_new": 1.0,
+   "others_acc": 0.45148660916931455,
+   "test_rows": 427
+  },
+  {
+   "new_account": "legal_notary",
+   "examples": 5,
+   "recall_new": 0.031914893617021274,
+   "precision_new": 1.0,
+   "others_acc": 0.4370332797926001,
+   "test_rows": 188
+  },
+  {
+   "new_account": "legal_notary",
+   "examples": 20,
+   "recall_new": 0.005319148936170213,
+   "precision_new": 1.0,
+   "others_acc": 0.4412038211175924,
+   "test_rows": 188
+  },
+  {
+   "new_account": "legal_notary",
+   "examples": 100,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.43565249246202836,
+   "test_rows": 188
+  },
+  {
+   "new_account": "telecom",
+   "examples": 5,
+   "recall_new": 0.025048169556840076,
+   "precision_new": 1.0,
+   "others_acc": 0.4547161224257595,
+   "test_rows": 519
+  },
+  {
+   "new_account": "telecom",
+   "examples": 20,
+   "recall_new": 0.0038535645472061657,
+   "precision_new": 1.0,
+   "others_acc": 0.4316759585845944,
+   "test_rows": 519
+  },
+  {
+   "new_account": "telecom",
+   "examples": 100,
+   "recall_new": 0.007707129094412331,
+   "precision_new": 0.5714285714285714,
+   "others_acc": 0.42826260097849583,
+   "test_rows": 519
+  },
+  {
+   "new_account": "advertising",
+   "examples": 5,
+   "recall_new": 0.00929368029739777,
+   "precision_new": 0.08928571428571429,
+   "others_acc": 0.43757292882147025,
+   "test_rows": 538
+  },
+  {
+   "new_account": "advertising",
+   "examples": 20,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.45860488943279165,
+   "test_rows": 538
+  },
+  {
+   "new_account": "advertising",
+   "examples": 100,
+   "recall_new": 0.10594795539033457,
+   "precision_new": 0.475,
+   "others_acc": 0.436946808207872,
+   "test_rows": 538
+  },
+  {
+   "new_account": "furniture",
+   "examples": 5,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.4529274832778383,
+   "test_rows": 1738
+  },
+  {
+   "new_account": "furniture",
+   "examples": 20,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.4448536995020185,
+   "test_rows": 1738
+  },
+  {
+   "new_account": "furniture",
+   "examples": 100,
+   "recall_new": 0.0017261219792865361,
+   "precision_new": 0.6,
+   "others_acc": 0.4391666912219701,
+   "test_rows": 1738
+  },
+  {
+   "new_account": "coworking",
+   "examples": 5,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.4491841950068803,
+   "test_rows": 66
+  },
+  {
+   "new_account": "coworking",
+   "examples": 20,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.4410121036816535,
+   "test_rows": 66
+  },
+  {
+   "new_account": "coworking",
+   "examples": 100,
+   "recall_new": 0.0,
+   "precision_new": 0.0,
+   "others_acc": 0.43053722373557246,
+   "test_rows": 66
+  }
+ ]
+}

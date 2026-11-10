@@ -1,0 +1,6759 @@
+[
+ {
+  "canonical": "123inkt",
+  "account": "Office Supplies Expense",
+  "archetype": "printer_inkt_shop",
+  "aliases": [
+   "123inkt",
+   "123inkt B.V.",
+   "123inkt BV"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "printer_retail": 12
+  },
+  "languages": {
+   "en": 4,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "1Password",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "security_saas",
+  "aliases": [
+   "1PASSWORD",
+   "1Password"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "security": 14
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 12
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "9292",
+  "account": "Travel & Transport Expense",
+  "archetype": "ov_tap",
+  "aliases": [
+   "9292"
+  ],
+  "freq_4321": 16,
+  "families": {
+   "transit": 16
+  },
+  "languages": {
+   "en": 10,
+   "nl": 6
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "ANWB Wegenwacht",
+  "account": "Travel & Transport Expense",
+  "archetype": "roadside",
+  "aliases": [
+   "ANWB",
+   "ANWB Wegenwacht"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "roadside": 3
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "AWS",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "AWS",
+   "AWS EMEA",
+   "Amazon Web Services",
+   "Amazon Web Services EMEA SARL"
+  ],
+  "freq_4321": 22,
+  "families": {
+   "cloud": 22
+  },
+  "languages": {
+   "en": 17,
+   "mixed": 4,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Accountantskantoor Noord B.V.",
+  "account": "Professional Services Expense",
+  "archetype": "accountantskantoor_generic",
+  "aliases": [
+   "Accountantskantoor Noord B.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "accountant": 8
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Administratiekantoor De Balans",
+  "account": "Professional Services Expense",
+  "archetype": "accountantskantoor_generic",
+  "aliases": [
+   "Administratiekantoor De Balans"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "accountant": 7
+  },
+  "languages": {
+   "en": 4,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Adobe",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "design_saas",
+  "aliases": [
+   "ADOBE",
+   "ADOBE *CREATIVE CLOUD",
+   "Adobe",
+   "Adobe Systems Software Ireland Ltd"
+  ],
+  "freq_4321": 53,
+  "families": {
+   "design": 53
+  },
+  "languages": {
+   "en": 36,
+   "mixed": 10,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Adviesgroep Noord B.V.",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy_bv_generic",
+  "aliases": [
+   "Adviesgroep Noord B.V."
+  ],
+  "freq_4321": 1,
+  "families": {
+   "consulting": 1
+  },
+  "languages": {
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Advocaten Utrecht Zuid",
+  "account": "Professional Services Expense",
+  "archetype": "advocaten_generic",
+  "aliases": [
+   "Advocaten Utrecht Zuid"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "law": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Advocatenkantoor Rijnmond",
+  "account": "Professional Services Expense",
+  "archetype": "advocaten_generic",
+  "aliases": [
+   "Advocatenkantoor Rijnmond"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "law": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Ahrend",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "AHREND",
+   "Ahrend",
+   "Ahrend BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "furniture": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Aldi",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "ALDI",
+   "Aldi",
+   "Aldi B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "supermarket": 7
+  },
+  "languages": {
+   "en": 4,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Allego",
+  "account": "Travel & Transport Expense",
+  "archetype": "ev_charging",
+  "aliases": [
+   "ALLEGO",
+   "Allego",
+   "Allego BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "ev": 7
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Alternate",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "ALTERNATE.NL",
+   "Alternate",
+   "Alternate B.V.",
+   "Alternate BV",
+   "Alternate Nederland B.V."
+  ],
+  "freq_4321": 11,
+  "families": {
+   "it_retail": 11
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Antagonist",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "hosting_domain",
+  "aliases": [
+   "ANTAGONIST",
+   "Antagonist",
+   "Antagonist B.V."
+  ],
+  "freq_4321": 14,
+  "families": {
+   "hosting": 14
+  },
+  "languages": {
+   "en": 11,
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Anthropic",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "ai_saas",
+  "aliases": [
+   "Anthropic"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "ai_api": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Apcoa",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "APCOA",
+   "Apcoa",
+   "Apcoa B.V.",
+   "Apcoa BV",
+   "Apcoa Parking Nederland B.V."
+  ],
+  "freq_4321": 23,
+  "families": {
+   "parking": 23
+  },
+  "languages": {
+   "en": 9,
+   "nl": 14
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Apple Store",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_brand",
+  "aliases": [
+   "APPLE.COM/NL",
+   "Apple Store"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "it_brand": 6
+  },
+  "languages": {
+   "en": 3,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Argos",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "ARGOS",
+   "Argos"
+  ],
+  "freq_4321": 16,
+  "families": {
+   "fuel": 16
+  },
+  "languages": {
+   "en": 7,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Arriva",
+  "account": "Travel & Transport Expense",
+  "archetype": "regional_transit",
+  "aliases": [
+   "ARRIVA",
+   "ARRIVA NL",
+   "Arriva",
+   "Arriva B.V.",
+   "Arriva BV"
+  ],
+  "freq_4321": 21,
+  "families": {
+   "transit": 21
+  },
+  "languages": {
+   "en": 14,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Asana",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "ASANA",
+   "ASANA.COM",
+   "Asana",
+   "Asana Inc"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "collab": 9
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Atelierruimte Kunstenaars Collectief",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "Atelierruimte Kunstenaars Collectief"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "cowork": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Atlassian",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "dev_tools",
+  "aliases": [
+   "Atlassian",
+   "Atlassian Pty Ltd"
+  ],
+  "freq_4321": 20,
+  "families": {
+   "devtools": 20
+  },
+  "languages": {
+   "en": 16,
+   "mixed": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Autowasstraat en Tank Zuid",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel_local",
+  "aliases": [
+   "AUTOWASSTRAAT EN TANK ZUID",
+   "AUTOWASSTRAAT TANK ZUID",
+   "Autowasstraat en Tank Zuid"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "fuel": 7
+  },
+  "languages": {
+   "en": 2,
+   "nl": 5
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Avia",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "AVIA",
+   "AVIA TANKSTATION",
+   "Avia"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "fuel": 17
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 1,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Azerty",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "AZERTY",
+   "Azerty",
+   "Azerty BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "it_retail": 7
+  },
+  "languages": {
+   "en": 3,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "B.Amsterdam",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "B.Amsterdam"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "cowork": 5
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "BDO",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "BDO",
+   "BDO Accountants & Adviseurs"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "accountant": 11
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 6,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Backblaze",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_storage",
+  "aliases": [
+   "Backblaze",
+   "Backblaze Inc"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "storage": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bagels & Beans",
+  "account": "General/Other Expense",
+  "archetype": "catering_cafe",
+  "aliases": [
+   "BAGELS & BEANS",
+   "Bagels & Beans",
+   "Bagels & Beans B.V.",
+   "Bagels & Beans BV"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "cafe": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Baker Tilly",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "Baker Tilly",
+   "Baker Tilly (Netherlands) N.V.",
+   "Baker Tilly NV"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "accountant": 19
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 14
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bedrijfsruimte Zwolle B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Bedrijfsruimte Zwolle B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bedrijfsverzamelgebouw De Hoek",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Bedrijfsverzamelgebouw De Hoek"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "office": 5
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Belastingadviseurs Randstad",
+  "account": "Professional Services Expense",
+  "archetype": "tax_advice",
+  "aliases": [
+   "Belastingadviseurs Randstad",
+   "Belastingadviseurs Randstad BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "accountant": 4
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Ben",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "BEN",
+   "Ben",
+   "Ben B.V.",
+   "Ben BV"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "telecom_mobile": 11
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Benelux Bureau voor de Intellectuele Eigendom",
+  "account": "Professional Services Expense",
+  "archetype": "ip_registry",
+  "aliases": [
+   "Benelux Bureau voor de Intellectuele Eigendom"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "ip_registry": 6
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Berenschot",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "Berenschot",
+   "Berenschot B.V.",
+   "Berenschot BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "consulting": 4
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bijenkorf",
+  "account": "General/Other Expense",
+  "archetype": "gift",
+  "aliases": [
+   "Bijenkorf",
+   "Bijenkorf B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "gift": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bitwarden",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "security_saas",
+  "aliases": [
+   "BITWARDEN",
+   "Bitwarden"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "security": 8
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bloemenbank",
+  "account": "General/Other Expense",
+  "archetype": "bloemist_local",
+  "aliases": [
+   "Bloemenbank"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "flowers": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bloemenwinkel Centrum",
+  "account": "General/Other Expense",
+  "archetype": "bloemist_local",
+  "aliases": [
+   "BLOEMENWINKEL CENTRUM",
+   "Bloemenwinkel Centrum"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "flowers": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bloemisterij De Tulp",
+  "account": "General/Other Expense",
+  "archetype": "bloemist_local",
+  "aliases": [
+   "BLOEMISTERIJ DE TULP",
+   "Bloemisterij De Tulp"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "flowers": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Blokker",
+  "account": "General/Other Expense",
+  "archetype": "household",
+  "aliases": [
+   "BLOKKER",
+   "Blokker"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "household": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Boek & Kantoor Centrum",
+  "account": "Office Supplies Expense",
+  "archetype": "papierwaren_local",
+  "aliases": [
+   "BOEK & KANTOOR CENTRUM",
+   "Boek & Kantoor Centrum"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "supplies": 3
+  },
+  "languages": {
+   "en": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Boekhandel Broese",
+  "account": "Office Supplies Expense",
+  "archetype": "stationery_shop",
+  "aliases": [
+   "BOEKHANDEL BROESE",
+   "Boekhandel Broese"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "supplies": 6
+  },
+  "languages": {
+   "en": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Boekhouder aan Huis",
+  "account": "Professional Services Expense",
+  "archetype": "boekhouder_zzp",
+  "aliases": [
+   "Boekhouder aan Huis"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "accountant": 9
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 8
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Boekhoudservice Zuid",
+  "account": "Professional Services Expense",
+  "archetype": "boekhouder_zzp",
+  "aliases": [
+   "Boekhoudservice Zuid"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "accountant": 7
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bolddesk Software B.V.",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "generic_saas_bv",
+  "aliases": [
+   "Bolddesk BV",
+   "Bolddesk Software B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "generic_saas": 7
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bolt",
+  "account": "Travel & Transport Expense",
+  "archetype": "ride_share",
+  "aliases": [
+   "BOLT",
+   "BOLT.EU",
+   "Bolt",
+   "Bolt Operations OU"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "taxi": 7
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Boston Consulting Group",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "BCG Netherlands B.V.",
+   "Boston Consulting Group",
+   "Boston Consulting Group B.V.",
+   "Boston Consulting Group BV"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "consulting": 8
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 4,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bouwinvest",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "BOUWINVEST",
+   "Bouwinvest"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "institutional": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Brabant Water",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Brabant Water",
+   "Brabant Water N.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "water": 2
+  },
+  "languages": {
+   "mixed": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Brasserie Het Plein",
+  "account": "General/Other Expense",
+  "archetype": "representatie_local",
+  "aliases": [
+   "Brasserie Het Plein"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cafe": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Broodjeszaak Centraal",
+  "account": "General/Other Expense",
+  "archetype": "kantine_local",
+  "aliases": [
+   "Broodjeszaak Centraal"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "catering": 2
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Brother Nederland",
+  "account": "Office Supplies Expense",
+  "archetype": "copier_supplies",
+  "aliases": [
+   "Brother International Benelux",
+   "Brother Nederland"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "printer_maker": 4
+  },
+  "languages": {
+   "en": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bruna",
+  "account": "Office Supplies Expense",
+  "archetype": "stationery_shop",
+  "aliases": [
+   "BRUNA",
+   "Bruna",
+   "Bruna B.V.",
+   "Bruna BV"
+  ],
+  "freq_4321": 22,
+  "families": {
+   "supplies": 22
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 2,
+   "nl": 13
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Brussels Airlines",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "BRUSSELS AIRLINES",
+   "Brussels Airlines"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "airline": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Budget Energie",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "BUDGET ENERGIE",
+   "Budget Energie",
+   "Budget Energie B.V.",
+   "Budget Energie BV"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "energy": 14
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 4,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Budget Thuis",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Budget Thuis",
+   "Budget Thuis B.V.",
+   "Budget Thuis BV"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "telecom_internet": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Bureau Huren Rotterdam",
+  "account": "Rent Expense",
+  "archetype": "flexwerkplek_generic",
+  "aliases": [
+   "Bureau Huren Rotterdam"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "cowork": 3
+  },
+  "languages": {
+   "en": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bureau Strategie & Groei",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy_bv_generic",
+  "aliases": [
+   "BUREAU STRATEGIE EN GROEI",
+   "Bureau Strategie & Groei"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "consulting": 3
+  },
+  "languages": {
+   "en": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bureau voor Vertalingen Centraal",
+  "account": "Professional Services Expense",
+  "archetype": "translation",
+  "aliases": [
+   "Bureau voor Vertalingen Centraal"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "translation": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Bureaustoelen.nl",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "BUREAUSTOELEN.NL",
+   "Bureaustoelen.nl"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "furniture": 6
+  },
+  "languages": {
+   "en": 3,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Businesscenter Leiden",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Businesscenter Leiden"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "office": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "CBRE Property Management",
+  "account": "Rent Expense",
+  "archetype": "property_manager",
+  "aliases": [
+   "CBRE Global Investors",
+   "CBRE Property Management"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Caiway",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Caiway",
+   "Caiway B.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "telecom_internet": 6
+  },
+  "languages": {
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Calendly",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "scheduling_saas",
+  "aliases": [
+   "CALENDLY",
+   "Calendly",
+   "Calendly LLC"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "growth": 12
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Canon Business Services",
+  "account": "Office Supplies Expense",
+  "archetype": "copier_supplies",
+  "aliases": [
+   "Canon Business Services",
+   "Canon Business Services N.V.",
+   "Canon Nederland N.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "printer_maker": 6
+  },
+  "languages": {
+   "en": 4,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Canva",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "design_saas",
+  "aliases": [
+   "Canva",
+   "Canva Pty Ltd"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "design": 19
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 2,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Capgemini Invent",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "Capgemini Invent"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "consulting": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Cartridge World",
+  "account": "Office Supplies Expense",
+  "archetype": "printer_inkt_shop",
+  "aliases": [
+   "CARTRIDGE WORLD",
+   "Cartridge World",
+   "Cartridge World Nederland"
+  ],
+  "freq_4321": 13,
+  "families": {
+   "printer_retail": 13
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 8
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Cateringservice Vers B.V.",
+  "account": "General/Other Expense",
+  "archetype": "kantine_local",
+  "aliases": [
+   "Cateringservice Vers B.V."
+  ],
+  "freq_4321": 1,
+  "families": {
+   "catering": 1
+  },
+  "languages": {
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Centraal Beheer",
+  "account": "General/Other Expense",
+  "archetype": "insurance",
+  "aliases": [
+   "Centraal Beheer"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "insurance": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Check",
+  "account": "Travel & Transport Expense",
+  "archetype": "scooter_share",
+  "aliases": [
+   "CHECK",
+   "Check",
+   "Check BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "micro": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Cloudflare",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "hosting_domain",
+  "aliases": [
+   "CLOUDFLARE",
+   "Cloudflare"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "hosting": 11
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 3,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Cloudnine Apps B.V.",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "generic_saas_bv",
+  "aliases": [
+   "CLOUDNINE APPS B.V.",
+   "CLOUDNINE APPS BV",
+   "Cloudnine Apps B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "generic_saas": 9
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Coffee Company",
+  "account": "General/Other Expense",
+  "archetype": "catering_cafe",
+  "aliases": [
+   "Coffee Company",
+   "Coffee Company BV"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "cafe": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Colliers Property Management",
+  "account": "Rent Expense",
+  "archetype": "property_manager",
+  "aliases": [
+   "Colliers Property Management"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Commerciele Ruimte Maastricht B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Commerciele Ruimte Maastricht B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Compliance Advies Holland",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy_bv_generic",
+  "aliases": [
+   "COMPLIANCE ADVIES HOLLAND B.V.",
+   "Compliance Advies Holland"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "consulting": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Conrad",
+  "account": "Office Supplies Expense",
+  "archetype": "cables_hardware",
+  "aliases": [
+   "CONRAD",
+   "Conrad"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "cables": 6
+  },
+  "languages": {
+   "en": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Coop",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "COOP",
+   "Coop"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "supermarket": 12
+  },
+  "languages": {
+   "en": 3,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "De Brauw Blackstone Westbroek",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "De Brauw Blackstone Westbroek"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "law": 3
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Dell",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_brand",
+  "aliases": [
+   "Dell",
+   "Dell B.V.",
+   "Dell BV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "it_brand": 9
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Deloitte",
+  "account": "Professional Services Expense",
+  "archetype": "big_four",
+  "aliases": [
+   "Deloitte",
+   "Deloitte Accountants B.V.",
+   "Deloitte B.V.",
+   "Deloitte BV"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "big_four": 14
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 4,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Delta Energie",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "DELTA ENERGIE",
+   "Delta Energie"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "energy": 7
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Delta Fiber",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Delta Fiber"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "telecom_internet": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Dentons Boekel",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "Dentons Boekel",
+   "Dentons Boekel N.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "law": 4
+  },
+  "languages": {
+   "en": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Deskr",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "Deskr",
+   "Deskr Nederland"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "furniture": 7
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Deutsche Bahn",
+  "account": "Travel & Transport Expense",
+  "archetype": "rail_intl",
+  "aliases": [
+   "DB BAHN",
+   "DB Fernverkehr AG",
+   "Deutsche Bahn"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "rail_intl": 9
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "DigitalOcean",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "DIGITALOCEAN",
+   "DigitalOcean",
+   "DigitalOcean LLC"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "cloud": 14
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 2,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Dirk",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "DIRK",
+   "Dirk"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "supermarket": 10
+  },
+  "languages": {
+   "en": 4,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "DocuSign",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "esign_saas",
+  "aliases": [
+   "DocuSign"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "growth": 3
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Domino's",
+  "account": "General/Other Expense",
+  "archetype": "catering_delivery",
+  "aliases": [
+   "Domino's"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "delivery": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Donkey Republic",
+  "account": "Travel & Transport Expense",
+  "archetype": "bike_share",
+  "aliases": [
+   "DONKEY REPUBLIC",
+   "Donkey Republic"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "micro": 14
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Dropbox",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_storage",
+  "aliases": [
+   "DROPBOX",
+   "DROPBOX*",
+   "Dropbox",
+   "Dropbox International Unlimited Company"
+  ],
+  "freq_4321": 36,
+  "families": {
+   "storage": 36
+  },
+  "languages": {
+   "en": 23,
+   "mixed": 6,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Drukkerij Snelprint",
+  "account": "Office Supplies Expense",
+  "archetype": "print_shop",
+  "aliases": [
+   "Drukkerij Snelprint"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "printing": 5
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Drukwerkdeal",
+  "account": "Office Supplies Expense",
+  "archetype": "print_shop",
+  "aliases": [
+   "Drukwerkdeal",
+   "Drukwerkdeal B.V.",
+   "Drukwerkdeal BV"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "printing": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Dunea",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "DUNEA",
+   "Dunea"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "water": 8
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "EBS",
+  "account": "Travel & Transport Expense",
+  "archetype": "regional_transit",
+  "aliases": [
+   "EBS",
+   "EBS OV"
+  ],
+  "freq_4321": 20,
+  "families": {
+   "transit": 20
+  },
+  "languages": {
+   "en": 9,
+   "nl": 11
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "EY",
+  "account": "Professional Services Expense",
+  "archetype": "big_four",
+  "aliases": [
+   "EY",
+   "Ernst & Young Accountants LLP"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "big_four": 9
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "EasyPark",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "EASYPARK",
+   "EasyPark",
+   "EasyPark B.V.",
+   "EasyPark BV"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "parking": 17
+  },
+  "languages": {
+   "en": 11,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Eetcafe De Hoek",
+  "account": "General/Other Expense",
+  "archetype": "representatie_local",
+  "aliases": [
+   "Eetcafe De Hoek"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cafe": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Eneco",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "ENECO",
+   "Eneco",
+   "Eneco B.V.",
+   "Eneco Consumenten B.V.",
+   "Eneco Zakelijk"
+  ],
+  "freq_4321": 30,
+  "families": {
+   "energy": 30
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 5,
+   "nl": 16
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Energiedirect",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Energiedirect",
+   "Energiedirect B.V.",
+   "Energiedirect BV",
+   "Energiedirect.nl B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "energy": 9
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Enexis",
+  "account": "Utilities Expense",
+  "archetype": "grid",
+  "aliases": [
+   "Enexis",
+   "Enexis BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "grid": 7
+  },
+  "languages": {
+   "mixed": 3,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Engie",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "ENGIE",
+   "Engie",
+   "Engie Energie Nederland"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "energy": 11
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 3,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Essent",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "ESSENT",
+   "Essent",
+   "Essent B.V.",
+   "Essent BV",
+   "Essent Retail Energie B.V."
+  ],
+  "freq_4321": 25,
+  "families": {
+   "energy": 25
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 5,
+   "nl": 19
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Esso",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "ESSO",
+   "Esso",
+   "Esso B.V.",
+   "Esso Nederland B.V."
+  ],
+  "freq_4321": 21,
+  "families": {
+   "fuel": 21
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 17
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Etos",
+  "account": "General/Other Expense",
+  "archetype": "drugstore",
+  "aliases": [
+   "ETOS",
+   "Etos",
+   "Etos B.V.",
+   "Etos BV"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "drugstore": 6
+  },
+  "languages": {
+   "en": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Europcar",
+  "account": "Travel & Transport Expense",
+  "archetype": "car_rental",
+  "aliases": [
+   "Europcar",
+   "Europcar Nederland B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "car_rental": 7
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Eurostar",
+  "account": "Travel & Transport Expense",
+  "archetype": "rail_intl",
+  "aliases": [
+   "EUROSTAR",
+   "Eurostar",
+   "Eurostar International Ltd"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "rail_intl": 9
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Evides",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Evides"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "water": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Exact Online",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "EXACT ONLINE",
+   "EXACT SOFTWARE NL BV",
+   "Exact Online",
+   "Exact Online B.V.",
+   "Exact Online BV",
+   "Exact Software Nederland B.V."
+  ],
+  "freq_4321": 33,
+  "families": {
+   "accounting": 33
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 4,
+   "nl": 25
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Fastned",
+  "account": "Travel & Transport Expense",
+  "archetype": "ev_charging",
+  "aliases": [
+   "FASTNED",
+   "Fastned",
+   "Fastned BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "ev": 7
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Felyx",
+  "account": "Travel & Transport Expense",
+  "archetype": "scooter_share",
+  "aliases": [
+   "FELYX",
+   "Felyx",
+   "Felyx B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "micro": 9
+  },
+  "languages": {
+   "en": 5,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Figma",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "design_saas",
+  "aliases": [
+   "FIGMA",
+   "FIGMA.COM",
+   "Figma",
+   "Figma Inc"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "design": 14
+  },
+  "languages": {
+   "en": 12,
+   "mixed": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Fiscaal Adviesbureau Centrum",
+  "account": "Professional Services Expense",
+  "archetype": "tax_advice",
+  "aliases": [
+   "FISCAAL ADVIESBUREAU CENTRUM",
+   "Fiscaal Adviesbureau Centrum"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "accountant": 4
+  },
+  "languages": {
+   "nl": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Fleurop",
+  "account": "General/Other Expense",
+  "archetype": "bloemist_local",
+  "aliases": [
+   "Fleurop"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "flowers": 4
+  },
+  "languages": {
+   "en": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Flexa Kantoor",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "Flexa Kantoor"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "furniture": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Flexwerken Utrecht",
+  "account": "Rent Expense",
+  "archetype": "flexwerkplek_generic",
+  "aliases": [
+   "FLEXWERKEN UTRECHT",
+   "Flexwerken Utrecht"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "cowork": 6
+  },
+  "languages": {
+   "en": 4,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Flexwerkplek Centrum B.V.",
+  "account": "Rent Expense",
+  "archetype": "flexwerkplek_generic",
+  "aliases": [
+   "FLEXWERKPLEK CENTRUM",
+   "Flexwerkplek Centrum B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "cowork": 4
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "FlixBus",
+  "account": "Travel & Transport Expense",
+  "archetype": "coach",
+  "aliases": [
+   "FLIXBUS",
+   "FlixBus",
+   "FlixBus DACH GmbH"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "coach": 6
+  },
+  "languages": {
+   "en": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Flyeralarm",
+  "account": "Office Supplies Expense",
+  "archetype": "print_shop",
+  "aliases": [
+   "Flyeralarm",
+   "Flyeralarm GmbH"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "printing": 3
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Forvis Mazars",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "Forvis Mazars",
+   "Forvis Mazars NV",
+   "Mazars N.V."
+  ],
+  "freq_4321": 12,
+  "families": {
+   "accountant": 12
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Frank Energie",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Frank Energie",
+   "Frank Energie B.V.",
+   "Frank Energie BV"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "energy": 10
+  },
+  "languages": {
+   "en": 2,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Freedom Internet",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Freedom Internet",
+   "Freedom Internet BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "telecom_internet": 4
+  },
+  "languages": {
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "GVB",
+  "account": "Travel & Transport Expense",
+  "archetype": "city_transit",
+  "aliases": [
+   "GVB",
+   "GVB AMSTERDAM"
+  ],
+  "freq_4321": 28,
+  "families": {
+   "transit": 28
+  },
+  "languages": {
+   "en": 20,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Gall & Gall",
+  "account": "General/Other Expense",
+  "archetype": "liquor",
+  "aliases": [
+   "Gall & Gall"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "liquor": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Gamma",
+  "account": "General/Other Expense",
+  "archetype": "diy_store",
+  "aliases": [
+   "GAMMA",
+   "Gamma"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "diy": 5
+  },
+  "languages": {
+   "en": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "GitHub",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "dev_tools",
+  "aliases": [
+   "GITHUB",
+   "GITHUB.COM",
+   "GitHub",
+   "GitHub Inc"
+  ],
+  "freq_4321": 25,
+  "families": {
+   "devtools": 25
+  },
+  "languages": {
+   "en": 11,
+   "mixed": 4,
+   "nl": 10
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Glasvezel Buitenaf B.V.",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "GLASVEZEL BUITENAF",
+   "Glasvezel Buitenaf B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "telecom_internet": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Google Workspace",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_productivity",
+  "aliases": [
+   "GOOGLE WORKSPACE",
+   "GOOGLE*WORKSPACE",
+   "Google Workspace",
+   "Google Workspace Ireland"
+  ],
+  "freq_4321": 78,
+  "families": {
+   "suite": 78
+  },
+  "languages": {
+   "en": 49,
+   "mixed": 10,
+   "nl": 19
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Grammarly",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "writing_saas",
+  "aliases": [
+   "GRAMMARLY",
+   "Grammarly",
+   "Grammarly Inc"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "ai_api": 9
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Grant Thornton",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "Grant Thornton",
+   "Grant Thornton Accountants"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "accountant": 10
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Greenchoice",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "GREENCHOICE",
+   "Greenchoice",
+   "Greenchoice B.V.",
+   "Greenchoice BV"
+  ],
+  "freq_4321": 15,
+  "families": {
+   "energy": 15
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 12
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Greenwheels",
+  "account": "Travel & Transport Expense",
+  "archetype": "car_share",
+  "aliases": [
+   "Greenwheels"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "carshare": 4
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "HP Store",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_brand",
+  "aliases": [
+   "HP Nederland B.V.",
+   "HP Store",
+   "HP Store BV"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "it_brand": 10
+  },
+  "languages": {
+   "en": 3,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "HR Partners Nederland",
+  "account": "Professional Services Expense",
+  "archetype": "hr_consultancy",
+  "aliases": [
+   "HR Partners Nederland"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "consulting": 5
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "HTM",
+  "account": "Travel & Transport Expense",
+  "archetype": "city_transit",
+  "aliases": [
+   "HTM",
+   "HTM DEN HAAG",
+   "HTM N.V.",
+   "HTM NV"
+  ],
+  "freq_4321": 31,
+  "families": {
+   "transit": 31
+  },
+  "languages": {
+   "en": 17,
+   "nl": 14
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Hanos Kantoor",
+  "account": "Office Supplies Expense",
+  "archetype": "wholesale",
+  "aliases": [
+   "Hanos Kantoor"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "supplies": 4
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Hertz",
+  "account": "Travel & Transport Expense",
+  "archetype": "car_rental",
+  "aliases": [
+   "HERTZ",
+   "Hertz",
+   "Hertz BV",
+   "Hertz Nederland B.V."
+  ],
+  "freq_4321": 15,
+  "families": {
+   "car_rental": 15
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Hetzner",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "HETZNER",
+   "Hetzner"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "cloud": 7
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Hines Nederland",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "Hines Nederland"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "institutional": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Hobbyhandel Gouda",
+  "account": "Office Supplies Expense",
+  "archetype": "papierwaren_local",
+  "aliases": [
+   "HOBBYHANDEL GOUDA",
+   "Hobbyhandel Gouda"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "supplies": 4
+  },
+  "languages": {
+   "en": 1,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Holding Pandbeheer Midden B.V.",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "Holding Pandbeheer Midden B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Hollandsnieuwe",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "Hollandsnieuwe",
+   "Hollandsnieuwe B.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "telecom_mobile": 8
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Hornbach",
+  "account": "General/Other Expense",
+  "archetype": "diy_store",
+  "aliases": [
+   "HORNBACH",
+   "Hornbach",
+   "Hornbach Bouwmarkt Nederland"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "diy": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Hostnet",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "hosting_domain",
+  "aliases": [
+   "HOSTNET BV",
+   "Hostnet",
+   "Hostnet B.V.",
+   "Hostnet BV"
+  ],
+  "freq_4321": 15,
+  "families": {
+   "hosting": 15
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 11
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Houthoff",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "Houthoff",
+   "Houthoff Coöperatief U.A."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "law": 9
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "HubSpot",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "crm_saas",
+  "aliases": [
+   "HUBSPOT",
+   "HubSpot",
+   "HubSpot Ireland Ltd"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "growth": 9
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "IKEA",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "IKEA",
+   "IKEA B.V.",
+   "IKEA BV"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "furniture": 6
+  },
+  "languages": {
+   "en": 3,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "IT Consultancy Rhijn B.V.",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy_bv_generic",
+  "aliases": [
+   "IT Consultancy Rhijn B.V."
+  ],
+  "freq_4321": 1,
+  "families": {
+   "consulting": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Impact Hub Amsterdam",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "IMPACT HUB AMSTERDAM",
+   "Impact Hub Amsterdam",
+   "Impact Hub Amsterdam BV"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "cowork": 12
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Informatique",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "INFORMATIQUE",
+   "Informatique",
+   "Informatique B.V.",
+   "Informatique BV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "it_retail": 9
+  },
+  "languages": {
+   "en": 6,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Informer",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "INFORMER ONLINE",
+   "Informer",
+   "Informer BV"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "accounting": 8
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 4,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Inktweb",
+  "account": "Office Supplies Expense",
+  "archetype": "printer_inkt_shop",
+  "aliases": [
+   "INKTWEB",
+   "Inktweb",
+   "Inktweb.nl"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "printer_retail": 19
+  },
+  "languages": {
+   "en": 9,
+   "nl": 10
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Interparking",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "INTERPARKING",
+   "Interparking",
+   "Interparking Nederland"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "parking": 19
+  },
+  "languages": {
+   "en": 5,
+   "nl": 14
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Intertoys",
+  "account": "General/Other Expense",
+  "archetype": "gift",
+  "aliases": [
+   "Intertoys",
+   "Intertoys BV"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "gift": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Intratuin",
+  "account": "General/Other Expense",
+  "archetype": "garden",
+  "aliases": [
+   "Intratuin"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "garden": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Ionity",
+  "account": "Travel & Transport Expense",
+  "archetype": "ev_charging",
+  "aliases": [
+   "IONITY",
+   "Ionity"
+  ],
+  "freq_4321": 13,
+  "families": {
+   "ev": 13
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "JLL Asset Management",
+  "account": "Rent Expense",
+  "archetype": "property_manager",
+  "aliases": [
+   "JLL Asset Management"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "office": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "JetBrains",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "dev_tools",
+  "aliases": [
+   "JETBRAINS",
+   "JetBrains"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "devtools": 12
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Jortt",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "Jortt",
+   "Jortt B.V.",
+   "Jortt BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "accounting": 7
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 4,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Jumbo",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "JUMBO",
+   "Jumbo",
+   "Jumbo B.V.",
+   "Jumbo BV"
+  ],
+  "freq_4321": 18,
+  "families": {
+   "supermarket": 18
+  },
+  "languages": {
+   "en": 7,
+   "nl": 11
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "KLM",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "KLM",
+   "KLM N.V.",
+   "KLM NV",
+   "KLM Royal Dutch Airlines"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "airline": 8
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "KPMG",
+  "account": "Professional Services Expense",
+  "archetype": "big_four",
+  "aliases": [
+   "KPMG",
+   "KPMG Accountants N.V.",
+   "KPMG NV"
+  ],
+  "freq_4321": 13,
+  "families": {
+   "big_four": 13
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 3,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "KPN",
+  "account": "Utilities Expense",
+  "archetype": "telecom",
+  "aliases": [
+   "KPN",
+   "KPN N.V.",
+   "KPN NV",
+   "KPN ZAKELIJK"
+  ],
+  "freq_4321": 21,
+  "families": {
+   "telecom_both": 21
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 3,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kaartje2go",
+  "account": "General/Other Expense",
+  "archetype": "gift",
+  "aliases": [
+   "KAARTJE2GO",
+   "Kaartje2go"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "gift": 4
+  },
+  "languages": {
+   "en": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kabelshop",
+  "account": "Office Supplies Expense",
+  "archetype": "cables_hardware",
+  "aliases": [
+   "Kabelshop",
+   "Kabelshop.nl"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "cables": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kabelwinkel.nl",
+  "account": "Office Supplies Expense",
+  "archetype": "cables_hardware",
+  "aliases": [
+   "KABELWINKEL.NL",
+   "Kabelwinkel.nl"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cables": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kamer van Koophandel",
+  "account": "Professional Services Expense",
+  "archetype": "kvk",
+  "aliases": [
+   "KAMER VAN KOOPHANDEL",
+   "KVK INSCHRIJVING",
+   "Kamer van Koophandel",
+   "KvK"
+  ],
+  "freq_4321": 37,
+  "families": {
+   "kvk": 37
+  },
+  "languages": {
+   "en": 11,
+   "mixed": 5,
+   "nl": 21
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kantoorartikelen.nl",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "KANTOORARTIKELEN.NL",
+   "Kantoorartikelen.nl"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "supplies": 3
+  },
+  "languages": {
+   "en": 2,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorhotel Arnhem",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Kantoorhotel Arnhem"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "office": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorruimte Groningen",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Kantoorruimte Groningen"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorverhuur Amsterdam-Zuid B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Kantoorverhuur Amsterdam-Zuid B.V."
+  ],
+  "freq_4321": 3,
+  "families": {
+   "office": 3
+  },
+  "languages": {
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorverhuur Den Haag B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Kantoorverhuur Den Haag B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorverhuur Rotterdam B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Kantoorverhuur Rotterdam B.V."
+  ],
+  "freq_4321": 5,
+  "families": {
+   "office": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kantoorverhuur Utrecht B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "KANTOORVERHUUR UTRECHT B.V.",
+   "Kantoorverhuur Utrecht B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "office": 7
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kapper en Barbershop Centrum",
+  "account": "General/Other Expense",
+  "archetype": "kapper",
+  "aliases": [
+   "Kapper en Barbershop Centrum"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "kapper": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Kartonnage Verpakkingen NL",
+  "account": "Office Supplies Expense",
+  "archetype": "packaging",
+  "aliases": [
+   "Kartonnage Verpakkingen NL"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "supplies": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Karwei",
+  "account": "General/Other Expense",
+  "archetype": "diy_store",
+  "aliases": [
+   "KARWEI",
+   "Karwei"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "diy": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kennedy Van der Laan",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "KVDL",
+   "Kennedy Van der Laan",
+   "Kennedy Van der Laan N.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "law": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Keolis Nederland",
+  "account": "Travel & Transport Expense",
+  "archetype": "regional_transit",
+  "aliases": [
+   "KEOLIS NEDERLAND",
+   "KEOLIS NL",
+   "Keolis Nederland",
+   "Keolis Nederland B.V."
+  ],
+  "freq_4321": 15,
+  "families": {
+   "transit": 15
+  },
+  "languages": {
+   "en": 6,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kruidvat",
+  "account": "General/Other Expense",
+  "archetype": "drugstore",
+  "aliases": [
+   "KRUIDVAT",
+   "Kruidvat"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "drugstore": 3
+  },
+  "languages": {
+   "en": 1,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Kwantum",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "Kwantum",
+   "Kwantum BV"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "furniture": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Lebara",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "Lebara",
+   "Lebara Mobile Netherlands"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "telecom_mobile": 3
+  },
+  "languages": {
+   "en": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Leen Bakker",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "LEEN BAKKER",
+   "Leen Bakker",
+   "Leen Bakker B.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "furniture": 8
+  },
+  "languages": {
+   "en": 3,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Legalstart",
+  "account": "Professional Services Expense",
+  "archetype": "legal_online",
+  "aliases": [
+   "LEGALSTART",
+   "Legalstart",
+   "Legalstart B.V.",
+   "Legalstart BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "law": 7
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Lenovo",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_brand",
+  "aliases": [
+   "LENOVO",
+   "Lenovo",
+   "Lenovo B.V.",
+   "Lenovo BV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "it_brand": 9
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Liander",
+  "account": "Utilities Expense",
+  "archetype": "grid",
+  "aliases": [
+   "LIANDER",
+   "Liander",
+   "Liander N.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "grid": 8
+  },
+  "languages": {
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Lidl",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "LIDL",
+   "Lidl"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "supermarket": 12
+  },
+  "languages": {
+   "en": 3,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Linear",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "dev_tools",
+  "aliases": [
+   "LINEAR",
+   "Linear"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "devtools": 10
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Logitech",
+  "account": "Office Supplies Expense",
+  "archetype": "peripherals",
+  "aliases": [
+   "LOGITECH",
+   "Logitech"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "peripherals": 8
+  },
+  "languages": {
+   "en": 5,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Loods en Opslag Verhuur Oost",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Loods en Opslag Verhuur Oost"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Loom",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "LOOM",
+   "LOOM.COM",
+   "Loom"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "collab": 11
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 2,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Loonadministratie Direct",
+  "account": "Professional Services Expense",
+  "archetype": "payroll_service",
+  "aliases": [
+   "Loonadministratie Direct"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "accountant": 9
+  },
+  "languages": {
+   "en": 9
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Loyens & Loeff",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "Loyens & Loeff",
+   "Loyens & Loeff N.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "law": 4
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Lufthansa",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "Lufthansa"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "airline": 3
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Lyreco",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "LYRECO",
+   "Lyreco",
+   "Lyreco B.V.",
+   "Lyreco BV",
+   "Lyreco Nederland B.V."
+  ],
+  "freq_4321": 26,
+  "families": {
+   "supplies": 26
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 3,
+   "nl": 18
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Mailchimp",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "marketing_saas",
+  "aliases": [
+   "MAILCHIMP",
+   "Mailchimp",
+   "The Rocket Science Group LLC"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "growth": 17
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Makro",
+  "account": "Office Supplies Expense",
+  "archetype": "wholesale",
+  "aliases": [
+   "MAKRO",
+   "Makro",
+   "Makro Nederland"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "supplies": 5
+  },
+  "languages": {
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Marketingadvies Delta",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy_bv_generic",
+  "aliases": [
+   "Marketingadvies Delta"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "consulting": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "McDonald's",
+  "account": "General/Other Expense",
+  "archetype": "catering_cafe",
+  "aliases": [
+   "MCDONALD'S",
+   "McDonald's"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cafe": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "McKinsey & Company",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "McKinsey & Company",
+   "McKinsey & Company Inc. Netherlands"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "consulting": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "MediaMarkt",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "MEDIAMARKT",
+   "MediaMarkt",
+   "MediaMarkt B.V.",
+   "MediaMarkt BV"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "it_retail": 7
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Megekko",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "MEGEKKO",
+   "Megekko",
+   "Megekko B.V.",
+   "Megekko BV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "it_retail": 9
+  },
+  "languages": {
+   "en": 4,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Merin",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "MERIN",
+   "Merin"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "institutional": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Microsoft 365",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_productivity",
+  "aliases": [
+   "MICROSOFT 365",
+   "MICROSOFT*365",
+   "MSFT 365",
+   "Microsoft 365",
+   "Microsoft Ireland Operations Ltd"
+  ],
+  "freq_4321": 99,
+  "families": {
+   "suite": 99
+  },
+  "languages": {
+   "en": 58,
+   "mixed": 12,
+   "nl": 29
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Microsoft Azure",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "MICROSOFT*AZURE",
+   "Microsoft Azure"
+  ],
+  "freq_4321": 25,
+  "families": {
+   "cloud": 25
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 3,
+   "nl": 19
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Mijndomein",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "hosting_domain",
+  "aliases": [
+   "Mijndomein",
+   "Mijndomein BV",
+   "Mijndomein Hosting B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "hosting": 7
+  },
+  "languages": {
+   "en": 4,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Miro",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "Miro",
+   "RealtimeBoard Inc"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "collab": 11
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 3,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Moneybird",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "MONEYBIRD",
+   "MONEYBIRD BV",
+   "Moneybird",
+   "Moneybird B.V.",
+   "Moneybird BV"
+  ],
+  "freq_4321": 31,
+  "families": {
+   "accounting": 31
+  },
+  "languages": {
+   "en": 24,
+   "mixed": 6,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Moore Alliance",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "Moore Alliance"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "accountant": 7
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "MyWheels",
+  "account": "Travel & Transport Expense",
+  "archetype": "car_share",
+  "aliases": [
+   "MYWHEELS",
+   "MyWheels",
+   "MyWheels B.V."
+  ],
+  "freq_4321": 5,
+  "families": {
+   "carshare": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "NS",
+  "account": "Travel & Transport Expense",
+  "archetype": "rail",
+  "aliases": [
+   "N.S. REIZIGERS",
+   "NS",
+   "NS Groep N.V.",
+   "NS INTERNATIONAL",
+   "NS N.V.",
+   "NS NV"
+  ],
+  "freq_4321": 49,
+  "families": {
+   "rail": 49
+  },
+  "languages": {
+   "en": 17,
+   "mixed": 7,
+   "nl": 25
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "NS Flex",
+  "account": "Travel & Transport Expense",
+  "archetype": "rail",
+  "aliases": [
+   "NS FLEX",
+   "NS FLEX ABONNEMENT",
+   "NS Flex",
+   "NS Reizigers B.V. (Flex)"
+  ],
+  "freq_4321": 33,
+  "families": {
+   "rail": 33
+  },
+  "languages": {
+   "en": 16,
+   "nl": 17
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "NSI",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "NSI",
+   "NSI KANTOREN",
+   "NSI N.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "institutional": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "NautaDutilh",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "NautaDutilh",
+   "NautaDutilh N.V."
+  ],
+  "freq_4321": 5,
+  "families": {
+   "law": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Netlify",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "NETLIFY",
+   "Netlify"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "cloud": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "NordVPN",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "security_saas",
+  "aliases": [
+   "Nord Security",
+   "NordVPN"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "security": 7
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Notariaat Oost",
+  "account": "Professional Services Expense",
+  "archetype": "notariskantoor_generic",
+  "aliases": [
+   "Notariaat Oost"
+  ],
+  "freq_4321": 15,
+  "families": {
+   "notary": 15
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 2,
+   "nl": 6
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Notariskantoor Centrum",
+  "account": "Professional Services Expense",
+  "archetype": "notariskantoor_generic",
+  "aliases": [
+   "Notariskantoor Centrum"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "notary": 12
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 6,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Notion",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "NOTION",
+   "NOTION LABS",
+   "Notion",
+   "Notion Labs Inc"
+  ],
+  "freq_4321": 31,
+  "families": {
+   "collab": 31
+  },
+  "languages": {
+   "en": 17,
+   "mixed": 6,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Nuon",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Nuon",
+   "Nuon Energy Sales"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "energy": 10
+  },
+  "languages": {
+   "mixed": 3,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "OV-chipkaart",
+  "account": "Travel & Transport Expense",
+  "archetype": "ov_tap",
+  "aliases": [
+   "OV-CHIPKAART",
+   "OV-CHIPKAART SALDO",
+   "OV-chipkaart",
+   "OV-chipkaart B.V.",
+   "OV-chipkaart BV"
+  ],
+  "freq_4321": 26,
+  "families": {
+   "transit": 26
+  },
+  "languages": {
+   "en": 15,
+   "nl": 11
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Oasen",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Oasen",
+   "Oasen N.V.",
+   "Oasen NV"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "water": 6
+  },
+  "languages": {
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Octrooibureau Delta",
+  "account": "Professional Services Expense",
+  "archetype": "ip_firm",
+  "aliases": [
+   "Octrooibureau Delta"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "consulting": 2
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Octrooicentrum Nederland",
+  "account": "Professional Services Expense",
+  "archetype": "ip_registry",
+  "aliases": [
+   "Octrooicentrum Nederland"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "ip_registry": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Odido",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "ODIDO",
+   "Odido",
+   "Odido B.V.",
+   "Odido BV",
+   "Odido Netherlands B.V."
+  ],
+  "freq_4321": 20,
+  "families": {
+   "telecom_mobile": 20
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 3,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Office Centre",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "OFFICE CENTRE",
+   "Office Centre",
+   "Office Centre B.V.",
+   "Office Centre BV"
+  ],
+  "freq_4321": 27,
+  "families": {
+   "supplies": 27
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 4,
+   "nl": 10
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Office Depot",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "OFFICE DEPOT",
+   "Office Depot",
+   "Office Depot B.V.",
+   "Office Depot BV",
+   "Office Depot Nederland B.V."
+  ],
+  "freq_4321": 28,
+  "families": {
+   "supplies": 28
+  },
+  "languages": {
+   "en": 10,
+   "mixed": 2,
+   "nl": 16
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Officeland",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "Officeland",
+   "Officeland Nederland"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "supplies": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Online.nl",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Online.nl",
+   "Online.nl B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "telecom_internet": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Onroerend Goed Delta B.V.",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "ONROEREND GOED DELTA",
+   "Onroerend Goed Delta B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "office": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "OpenAI",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "ai_saas",
+  "aliases": [
+   "OpenAI",
+   "OpenAI Ireland Ltd"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "ai_api": 5
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Oxxio",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Oxxio",
+   "Oxxio B.V.",
+   "Oxxio BV"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "energy": 11
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "PWN",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "PWN"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "water": 5
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Pandbeheer Van Alle Markten",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "Pandbeheer Van Alle Markten"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "office": 8
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Paperman",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "PAPERMAN",
+   "Paperman",
+   "Paperman B.V.",
+   "Paperman BV"
+  ],
+  "freq_4321": 21,
+  "families": {
+   "supplies": 21
+  },
+  "languages": {
+   "en": 9,
+   "nl": 12
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Papierwaren De Schrijfhoek",
+  "account": "Office Supplies Expense",
+  "archetype": "papierwaren_local",
+  "aliases": [
+   "Papierwaren De Schrijfhoek"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "supplies": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Parkmobile",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "PARKMOBILE",
+   "Parkmobile",
+   "Parkmobile B.V.",
+   "Parkmobile BV"
+  ],
+  "freq_4321": 32,
+  "families": {
+   "parking": 32
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 3,
+   "nl": 16
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Pipedrive",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "crm_saas",
+  "aliases": [
+   "PIPEDRIVE",
+   "Pipedrive",
+   "Pipedrive OU"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "growth": 10
+  },
+  "languages": {
+   "en": 8,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Plausible Analytics",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "analytics_saas",
+  "aliases": [
+   "Plausible Analytics",
+   "Plausible Insights OU"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "growth": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Plus",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "PLUS",
+   "PLUS SUPERMARKT",
+   "Plus",
+   "Plus B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "supermarket": 9
+  },
+  "languages": {
+   "en": 3,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "PostNL",
+  "account": "General/Other Expense",
+  "archetype": "postage",
+  "aliases": [
+   "PostNL"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "postage": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Postmark",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "api_saas",
+  "aliases": [
+   "Postmark"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "api": 4
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Powerpeers",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Powerpeers",
+   "Powerpeers B.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "energy": 6
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Praktijkruimte Verhuur B.V.",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Praktijkruimte Verhuur B.V."
+  ],
+  "freq_4321": 1,
+  "families": {
+   "office": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Praxis",
+  "account": "General/Other Expense",
+  "archetype": "diy_store",
+  "aliases": [
+   "PRAXIS",
+   "Praxis"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "diy": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Printerinkt Direct B.V.",
+  "account": "Office Supplies Expense",
+  "archetype": "printer_inkt_shop",
+  "aliases": [
+   "PRINTERINKT DIRECT",
+   "Printerinkt Direct B.V."
+  ],
+  "freq_4321": 12,
+  "families": {
+   "printer_retail": 12
+  },
+  "languages": {
+   "en": 5,
+   "nl": 7
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Provast",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "Provast",
+   "Provast Holding B.V."
+  ],
+  "freq_4321": 5,
+  "families": {
+   "institutional": 5
+  },
+  "languages": {
+   "en": 1,
+   "nl": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Pure Energie",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "PURE ENERGIE",
+   "Pure Energie",
+   "Pure Energie B.V.",
+   "Pure Energie BV"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "energy": 14
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 2,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "PwC",
+  "account": "Professional Services Expense",
+  "archetype": "big_four",
+  "aliases": [
+   "PricewaterhouseCoopers Accountants N.V.",
+   "PwC",
+   "PwC NV"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "big_four": 14
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 2,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Q-Park",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "Q-PARK",
+   "Q-Park",
+   "Q-Park B.V.",
+   "Q-Park BV",
+   "Q-Park Nederland B.V.",
+   "QPARK"
+  ],
+  "freq_4321": 38,
+  "families": {
+   "parking": 38
+  },
+  "languages": {
+   "en": 16,
+   "mixed": 2,
+   "nl": 20
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Q8",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "Q8",
+   "Q8 TANKSTATION"
+  ],
+  "freq_4321": 21,
+  "families": {
+   "fuel": 21
+  },
+  "languages": {
+   "en": 9,
+   "nl": 12
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Qbuzz",
+  "account": "Travel & Transport Expense",
+  "archetype": "regional_transit",
+  "aliases": [
+   "QBUZZ",
+   "Qbuzz",
+   "Qbuzz B.V.",
+   "Qbuzz BV"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "transit": 17
+  },
+  "languages": {
+   "en": 7,
+   "nl": 10
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "QuickBooks",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "QUICKBOOKS",
+   "QuickBooks"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "accounting": 3
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "RET",
+  "account": "Travel & Transport Expense",
+  "archetype": "city_transit",
+  "aliases": [
+   "RET",
+   "RET N.V.",
+   "RET NV",
+   "RET ROTTERDAM"
+  ],
+  "freq_4321": 23,
+  "families": {
+   "transit": 23
+  },
+  "languages": {
+   "en": 11,
+   "nl": 12
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "RSM Netherlands",
+  "account": "Professional Services Expense",
+  "archetype": "accountant",
+  "aliases": [
+   "RSM Netherlands",
+   "RSM Netherlands Accountants N.V.",
+   "RSM Netherlands N.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "accountant": 8
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Regionale Netbeheerder Oost",
+  "account": "Utilities Expense",
+  "archetype": "grid",
+  "aliases": [
+   "REGIONALE NETBEHEERDER OOST",
+   "Regionale Netbeheerder Oost"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "grid": 4
+  },
+  "languages": {
+   "nl": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Regus",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "REGUS",
+   "Regus",
+   "Regus B.V.",
+   "Regus BV",
+   "Regus Management Nederland B.V."
+  ],
+  "freq_4321": 18,
+  "families": {
+   "cowork": 18
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Restaurant De Gouden Lepel",
+  "account": "General/Other Expense",
+  "archetype": "representatie_local",
+  "aliases": [
+   "RESTAURANT DE GOUDEN LEPEL",
+   "Restaurant De Gouden Lepel"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cafe": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Ricoh Nederland",
+  "account": "Office Supplies Expense",
+  "archetype": "copier_supplies",
+  "aliases": [
+   "Ricoh Nederland",
+   "Ricoh Nederland B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "printer_maker": 4
+  },
+  "languages": {
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Rotterdamse Taxi Coop",
+  "account": "Travel & Transport Expense",
+  "archetype": "taxi_local",
+  "aliases": [
+   "ROTTERDAMSE TAXI COOP",
+   "Rotterdamse Taxi Coop"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "taxi": 7
+  },
+  "languages": {
+   "en": 2,
+   "nl": 5
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Ryanair",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "Ryanair"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "airline": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Samsung Business",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_brand",
+  "aliases": [
+   "Samsung Business",
+   "Samsung Electronics Benelux"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "it_brand": 4
+  },
+  "languages": {
+   "en": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Schiphol Parking",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "SCHIPHOL P1",
+   "SCHIPHOL PARKING",
+   "Schiphol Parking"
+  ],
+  "freq_4321": 13,
+  "families": {
+   "parking": 13
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Schoolspullen Groothandel",
+  "account": "Office Supplies Expense",
+  "archetype": "papierwaren_local",
+  "aliases": [
+   "SCHOOLSPULLEN GROOTHANDEL",
+   "Schoolspullen Groothandel"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "supplies": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Seats2meet",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "SEATS2MEET",
+   "Seats2meet",
+   "Seats2meet B.V.",
+   "Seats2meet BV"
+  ],
+  "freq_4321": 13,
+  "families": {
+   "cowork": 13
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 3,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "SendGrid",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "api_saas",
+  "aliases": [
+   "SendGrid",
+   "Twilio SendGrid"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "api": 8
+  },
+  "languages": {
+   "en": 2,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Sentry",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "dev_tools",
+  "aliases": [
+   "Functional Software Inc",
+   "Sentry"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "devtools": 9
+  },
+  "languages": {
+   "en": 1,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Shopify",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "ecommerce_saas",
+  "aliases": [
+   "Shopify",
+   "Shopify International Ltd"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "web": 7
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Significant",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "Significant"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "consulting": 1
+  },
+  "languages": {
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Simyo",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "SIMYO",
+   "Simyo",
+   "Simyo B.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "telecom_mobile": 8
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Sixt",
+  "account": "Travel & Transport Expense",
+  "archetype": "car_rental",
+  "aliases": [
+   "SIXT",
+   "SIXT RENT A CAR",
+   "Sixt",
+   "Sixt Autoverhuur B.V.",
+   "Sixt B.V.",
+   "Sixt BV"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "car_rental": 12
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Slack",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "SLACK",
+   "SLACK.COM",
+   "Slack",
+   "Slack Technologies Ltd"
+  ],
+  "freq_4321": 50,
+  "families": {
+   "collab": 50
+  },
+  "languages": {
+   "en": 18,
+   "mixed": 11,
+   "nl": 21
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Sleutelservice en Schoenmaker",
+  "account": "General/Other Expense",
+  "archetype": "sleutel",
+  "aliases": [
+   "Sleutelservice en Schoenmaker"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "sleutel": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "SnelStart",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "SnelStart",
+   "SnelStart BV",
+   "SnelStart Software B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "accounting": 7
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Spaces",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "IWG Spaces",
+   "SPACES",
+   "Spaces",
+   "Spaces B.V.",
+   "Spaces BV",
+   "Spaces Nederland B.V."
+  ],
+  "freq_4321": 25,
+  "families": {
+   "cowork": 25
+  },
+  "languages": {
+   "en": 17,
+   "mixed": 3,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Spar",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "Spar"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "supermarket": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Sportschool FitPoint",
+  "account": "General/Other Expense",
+  "archetype": "sportschool",
+  "aliases": [
+   "Sportschool FitPoint"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "sport": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Squarespace",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "web_builder",
+  "aliases": [
+   "Squarespace",
+   "Squarespace Ireland Ltd"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "web": 12
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Staples",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "STAPLES",
+   "STAPLES NL",
+   "Staples",
+   "Staples B.V.",
+   "Staples BV",
+   "Staples Nederland B.V."
+  ],
+  "freq_4321": 45,
+  "families": {
+   "supplies": 45
+  },
+  "languages": {
+   "en": 13,
+   "mixed": 4,
+   "nl": 28
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Starbucks",
+  "account": "General/Other Expense",
+  "archetype": "catering_cafe",
+  "aliases": [
+   "STARBUCKS",
+   "Starbucks"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cafe": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Stedin",
+  "account": "Utilities Expense",
+  "archetype": "grid",
+  "aliases": [
+   "STEDIN",
+   "Stedin",
+   "Stedin B.V."
+  ],
+  "freq_4321": 8,
+  "families": {
+   "grid": 8
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Stibbe",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "Stibbe",
+   "Stibbe N.V."
+  ],
+  "freq_4321": 3,
+  "families": {
+   "law": 3
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Stichting Bedrijfspanden Regio",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "STICHTING BEDRIJFSPANDEN REGIO",
+   "Stichting Bedrijfspanden Regio"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "office": 5
+  },
+  "languages": {
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Studio Verhuur Tilburg",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "Studio Verhuur Tilburg"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "office": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Subway",
+  "account": "General/Other Expense",
+  "archetype": "catering_cafe",
+  "aliases": [
+   "SUBWAY",
+   "Subway"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "cafe": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Swapfiets",
+  "account": "Travel & Transport Expense",
+  "archetype": "bike_subscription",
+  "aliases": [
+   "Swapfiets",
+   "Swapfiets B.V.",
+   "Swapfiets BV"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "bike_sub": 17
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2,
+   "nl": 12
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "T-Mobile Thuis",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "T-MOBILE THUIS",
+   "T-Mobile Netherlands",
+   "T-Mobile Thuis",
+   "TMOBILE THUIS"
+  ],
+  "freq_4321": 21,
+  "families": {
+   "telecom_internet": 21
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 4,
+   "nl": 15
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "TCA Taxi",
+  "account": "Travel & Transport Expense",
+  "archetype": "taxi",
+  "aliases": [
+   "TCA TAXI",
+   "TCA Taxi",
+   "Taxi Centrale Amsterdam"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "taxi": 11
+  },
+  "languages": {
+   "en": 4,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "TQ Delft",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "TQ DELFT",
+   "TQ Delft"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "cowork": 10
+  },
+  "languages": {
+   "en": 6,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tankstation De Kruiseweg",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel_local",
+  "aliases": [
+   "TANKSTATION DE KRUISEWEG",
+   "Tankstation De Kruiseweg"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "fuel": 8
+  },
+  "languages": {
+   "en": 1,
+   "nl": 7
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Taxi Utrecht Centrale",
+  "account": "Travel & Transport Expense",
+  "archetype": "taxi_local",
+  "aliases": [
+   "TAXI UTRECHT CENTRALE",
+   "Taxi Utrecht Centrale"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "taxi": 11
+  },
+  "languages": {
+   "en": 5,
+   "nl": 6
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Teamleader",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "crm_saas",
+  "aliases": [
+   "Teamleader",
+   "Teamleader NV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "growth": 9
+  },
+  "languages": {
+   "en": 7,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tele2",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "TELE2",
+   "Tele2",
+   "Tele2 B.V.",
+   "Tele2 BV"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "telecom_mobile": 10
+  },
+  "languages": {
+   "mixed": 2,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Texaco",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "TEXACO",
+   "Texaco"
+  ],
+  "freq_4321": 17,
+  "families": {
+   "fuel": 17
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 1,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Thalys",
+  "account": "Travel & Transport Expense",
+  "archetype": "rail_intl",
+  "aliases": [
+   "THALYS",
+   "Thalys",
+   "Thalys International"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "rail_intl": 14
+  },
+  "languages": {
+   "en": 9,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Thuisbezorgd",
+  "account": "General/Other Expense",
+  "archetype": "catering_delivery",
+  "aliases": [
+   "THUISBEZORGD",
+   "Thuisbezorgd"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "delivery": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tinq",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "TINQ",
+   "Tinq",
+   "Tinq B.V.",
+   "Tinq BV"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "fuel": 9
+  },
+  "languages": {
+   "en": 4,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tonershop24",
+  "account": "Office Supplies Expense",
+  "archetype": "printer_inkt_shop",
+  "aliases": [
+   "TONERSHOP24",
+   "Tonershop24"
+  ],
+  "freq_4321": 8,
+  "families": {
+   "printer_retail": 8
+  },
+  "languages": {
+   "en": 5,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Toonbank Kantoorservice",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "Toonbank Kantoorservice"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "supplies": 3
+  },
+  "languages": {
+   "en": 1,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "TotalEnergies",
+  "account": "Travel & Transport Expense",
+  "archetype": "fuel",
+  "aliases": [
+   "TOTAL NL",
+   "TOTALENERGIES",
+   "TOTALENERGIES TANKEN",
+   "TotalEnergies",
+   "TotalEnergies Marketing Nederland"
+  ],
+  "freq_4321": 31,
+  "families": {
+   "fuel": 31
+  },
+  "languages": {
+   "en": 9,
+   "nl": 22
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "TransIP",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "hosting_domain",
+  "aliases": [
+   "TransIP",
+   "TransIP B.V.",
+   "TransIP BV"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "hosting": 10
+  },
+  "languages": {
+   "mixed": 3,
+   "nl": 7
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Transavia",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "TRANSAVIA",
+   "Transavia",
+   "Transavia Airlines C.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "airline": 7
+  },
+  "languages": {
+   "en": 4,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tribes",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "TRIBES",
+   "Tribes",
+   "Tribes Coworking"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "cowork": 6
+  },
+  "languages": {
+   "mixed": 1,
+   "nl": 5
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Tuincentrum Groenland",
+  "account": "General/Other Expense",
+  "archetype": "garden",
+  "aliases": [
+   "Tuincentrum Groenland"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "garden": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Tweak",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Tweak",
+   "Tweak B.V.",
+   "Tweak Networks B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "telecom_internet": 9
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Tweakers Pricewatch Shop",
+  "account": "Office Supplies Expense",
+  "archetype": "hardware_retail",
+  "aliases": [
+   "TWEAKERS PRICEWATCH SHOP",
+   "TWEAKERS SHOP",
+   "Tweakers Pricewatch Shop"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "it_retail": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Twilio",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "api_saas",
+  "aliases": [
+   "TWILIO",
+   "Twilio"
+  ],
+  "freq_4321": 15,
+  "families": {
+   "api": 15
+  },
+  "languages": {
+   "en": 12,
+   "mixed": 1,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Twinfield",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "TWINFIELD",
+   "Twinfield"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "accounting": 6
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Twynstra Gudde",
+  "account": "Professional Services Expense",
+  "archetype": "consultancy",
+  "aliases": [
+   "Twynstra Gudde"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "consulting": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Typeform",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "forms_saas",
+  "aliases": [
+   "Typeform"
+  ],
+  "freq_4321": 14,
+  "families": {
+   "growth": 14
+  },
+  "languages": {
+   "en": 11,
+   "mixed": 2,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Uber",
+  "account": "Travel & Transport Expense",
+  "archetype": "ride_share",
+  "aliases": [
+   "UBER",
+   "UBER *TRIP",
+   "Uber",
+   "Uber B.V.",
+   "Uber BV"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "taxi": 19
+  },
+  "languages": {
+   "en": 10,
+   "mixed": 1,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "VVV Cadeaubon",
+  "account": "General/Other Expense",
+  "archetype": "gift",
+  "aliases": [
+   "VVV CADEAUBON",
+   "VVV Cadeaubon"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "gift": 1
+  },
+  "languages": {
+   "en": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Van Benthem & Keulen",
+  "account": "Professional Services Expense",
+  "archetype": "notaris",
+  "aliases": [
+   "VAN BENTHEM & KEULEN",
+   "Van Benthem & Keulen",
+   "Van Benthem & Keulen N.V.",
+   "Van Benthem & Keulen NV",
+   "Van Benthem en Keulen N.V."
+  ],
+  "freq_4321": 17,
+  "families": {
+   "notary": 17
+  },
+  "languages": {
+   "en": 7,
+   "mixed": 2,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Van Doorne",
+  "account": "Professional Services Expense",
+  "archetype": "law_firm",
+  "aliases": [
+   "Van Doorne",
+   "Van Doorne N.V."
+  ],
+  "freq_4321": 10,
+  "families": {
+   "law": 10
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vandebron",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "Vandebron",
+   "Vandebron B.V.",
+   "Vandebron BV",
+   "Vandebron Energie B.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "energy": 6
+  },
+  "languages": {
+   "en": 1,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vastgoed Beheer Zuid B.V.",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "Vastgoed Beheer Zuid B.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "office": 6
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Vastgoed Noord Exploitatie B.V.",
+  "account": "Rent Expense",
+  "archetype": "vastgoed_bv_generic",
+  "aliases": [
+   "VASTGOED NOORD EXPLOITATIE",
+   "Vastgoed Noord Exploitatie B.V."
+  ],
+  "freq_4321": 4,
+  "families": {
+   "office": 4
+  },
+  "languages": {
+   "en": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Vattenfall",
+  "account": "Utilities Expense",
+  "archetype": "energy",
+  "aliases": [
+   "VATTENFALL",
+   "Vattenfall",
+   "Vattenfall Klantenservice B.V.",
+   "Vattenfall N.V."
+  ],
+  "freq_4321": 22,
+  "families": {
+   "energy": 22
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 5,
+   "nl": 16
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Veerdienst Texel (TESO)",
+  "account": "Travel & Transport Expense",
+  "archetype": "ferry",
+  "aliases": [
+   "TESO",
+   "Veerdienst Texel (TESO)"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "ferry": 4
+  },
+  "languages": {
+   "en": 2,
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vepa Bureau",
+  "account": "Office Supplies Expense",
+  "archetype": "furniture",
+  "aliases": [
+   "VEPA BUREAUMEUBILAIR",
+   "Vepa",
+   "Vepa Bureau"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "furniture": 4
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Vercel",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "cloud_infra",
+  "aliases": [
+   "VERCEL",
+   "Vercel"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "cloud": 9
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Verpakkingsgroothandel Noord",
+  "account": "Office Supplies Expense",
+  "archetype": "packaging",
+  "aliases": [
+   "Verpakkingsgroothandel Noord",
+   "Verpakkingsgroothandel Noord BV"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "supplies": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Viking",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "VIKING DIRECT BV",
+   "Viking",
+   "Viking B.V.",
+   "Viking BV",
+   "Viking Direct Nederland"
+  ],
+  "freq_4321": 35,
+  "families": {
+   "supplies": 35
+  },
+  "languages": {
+   "en": 10,
+   "mixed": 6,
+   "nl": 19
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vistaprint",
+  "account": "Office Supplies Expense",
+  "archetype": "print_shop",
+  "aliases": [
+   "Vistaprint",
+   "Vistaprint B.V.",
+   "Vistaprint BV",
+   "Vistaprint Netherlands B.V."
+  ],
+  "freq_4321": 5,
+  "families": {
+   "printing": 5
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vitens",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Vitens",
+   "Vitens N.V.",
+   "Vitens NV"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "water": 6
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 1,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vodafone",
+  "account": "Utilities Expense",
+  "archetype": "telecom",
+  "aliases": [
+   "Vodafone",
+   "Vodafone BV",
+   "Vodafone Libertel B.V."
+  ],
+  "freq_4321": 21,
+  "families": {
+   "telecom_both": 21
+  },
+  "languages": {
+   "en": 15,
+   "mixed": 2,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "VodafoneZiggo",
+  "account": "Utilities Expense",
+  "archetype": "telecom",
+  "aliases": [
+   "VODAFONEZIGGO",
+   "VodafoneZiggo",
+   "VodafoneZiggo Group B.V."
+  ],
+  "freq_4321": 14,
+  "families": {
+   "telecom_both": 14
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 11
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vomar",
+  "account": "General/Other Expense",
+  "archetype": "supermarket",
+  "aliases": [
+   "VOMAR",
+   "Vomar",
+   "Vomar BV"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "supermarket": 6
+  },
+  "languages": {
+   "en": 3,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Vueling",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "Vueling"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "airline": 4
+  },
+  "languages": {
+   "en": 3,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "WML",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "WML",
+   "Waterleiding Maatschappij Limburg"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "water": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Waternet",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Waternet"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "water": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Waterschapsbelasting Zuid",
+  "account": "Utilities Expense",
+  "archetype": "water",
+  "aliases": [
+   "Waterschapsbelasting Zuid"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "water": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "WeWork",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "WeWork",
+   "WeWork Netherlands B.V."
+  ],
+  "freq_4321": 10,
+  "families": {
+   "cowork": 10
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Webflow",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "web_builder",
+  "aliases": [
+   "WEBFLOW",
+   "WEBFLOW.COM",
+   "Webflow"
+  ],
+  "freq_4321": 7,
+  "families": {
+   "web": 7
+  },
+  "languages": {
+   "en": 6,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Wehkamp Zakelijk",
+  "account": "Office Supplies Expense",
+  "archetype": "office_retail",
+  "aliases": [
+   "Wehkamp Zakelijk",
+   "Wehkamp Zakelijk B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "supplies": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Wereldhave",
+  "account": "Rent Expense",
+  "archetype": "landlord_institutional",
+  "aliases": [
+   "WERELDHAVE",
+   "Wereldhave"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "institutional": 2
+  },
+  "languages": {
+   "nl": 2
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Werkgebouw Binnenstad",
+  "account": "Rent Expense",
+  "archetype": "kantoorverhuur_generic",
+  "aliases": [
+   "WERKGEBOUW BINNENSTAD",
+   "Werkgebouw Binnenstad"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "office": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Werkloft Breda",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "Werkloft Breda"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cowork": 1
+  },
+  "languages": {
+   "nl": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Werkplek Eindhoven B.V.",
+  "account": "Rent Expense",
+  "archetype": "flexwerkplek_generic",
+  "aliases": [
+   "WERKPLEK EINDHOVEN B.V.",
+   "Werkplek Eindhoven B.V."
+  ],
+  "freq_4321": 6,
+  "families": {
+   "cowork": 6
+  },
+  "languages": {
+   "en": 1,
+   "mixed": 2,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Werkspot Flexplekken",
+  "account": "Rent Expense",
+  "archetype": "flexwerkplek_generic",
+  "aliases": [
+   "WERKSPOT FLEXPLEKKEN",
+   "Werkspot Flexplekken"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "cowork": 9
+  },
+  "languages": {
+   "en": 3,
+   "nl": 6
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Wheels4All Taxi",
+  "account": "Travel & Transport Expense",
+  "archetype": "taxi_local",
+  "aliases": [
+   "Wheels4All Taxi"
+  ],
+  "freq_4321": 4,
+  "families": {
+   "taxi": 4
+  },
+  "languages": {
+   "en": 4
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Wix",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "web_builder",
+  "aliases": [
+   "WIX",
+   "WIX.COM",
+   "Wix"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "web": 12
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 8
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Xenos",
+  "account": "General/Other Expense",
+  "archetype": "household",
+  "aliases": [
+   "Xenos",
+   "Xenos BV"
+  ],
+  "freq_4321": 2,
+  "families": {
+   "household": 2
+  },
+  "languages": {
+   "en": 1,
+   "nl": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Xero",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "Xero",
+   "Xero (UK) Ltd"
+  ],
+  "freq_4321": 3,
+  "families": {
+   "accounting": 3
+  },
+  "languages": {
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "YOND",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "YOND",
+   "YOND B.V."
+  ],
+  "freq_4321": 9,
+  "families": {
+   "cowork": 9
+  },
+  "languages": {
+   "en": 6,
+   "nl": 3
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Yellowbrick",
+  "account": "Travel & Transport Expense",
+  "archetype": "parking",
+  "aliases": [
+   "YELLOWBRICK",
+   "Yellowbrick",
+   "Yellowbrick Parkeren"
+  ],
+  "freq_4321": 19,
+  "families": {
+   "parking": 19
+  },
+  "languages": {
+   "en": 10,
+   "nl": 9
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Youfone",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "Youfone",
+   "Youfone BV",
+   "Youfone Nederland B.V."
+  ],
+  "freq_4321": 7,
+  "families": {
+   "telecom_mobile": 7
+  },
+  "languages": {
+   "en": 3,
+   "mixed": 1,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Yuki",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "Visma Yuki B.V.",
+   "Yuki",
+   "Yuki B.V.",
+   "Yuki BV"
+  ],
+  "freq_4321": 12,
+  "families": {
+   "accounting": 12
+  },
+  "languages": {
+   "en": 8,
+   "mixed": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Zakelijk Mobiel Nederland B.V.",
+  "account": "Utilities Expense",
+  "archetype": "telecom_mobile",
+  "aliases": [
+   "Zakelijk Mobiel Nederland B.V."
+  ],
+  "freq_4321": 2,
+  "families": {
+   "telecom_mobile": 2
+  },
+  "languages": {
+   "en": 2
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Zapier",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "automation_saas",
+  "aliases": [
+   "Zapier",
+   "Zapier Inc"
+  ],
+  "freq_4321": 9,
+  "families": {
+   "growth": 9
+  },
+  "languages": {
+   "mixed": 4,
+   "nl": 5
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Ziggo",
+  "account": "Utilities Expense",
+  "archetype": "telecom_internet",
+  "aliases": [
+   "Ziggo",
+   "Ziggo B.V.",
+   "Ziggo BV"
+  ],
+  "freq_4321": 10,
+  "families": {
+   "telecom_internet": 10
+  },
+  "languages": {
+   "en": 2,
+   "mixed": 2,
+   "nl": 6
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Zoku",
+  "account": "Rent Expense",
+  "archetype": "coworking_generic",
+  "aliases": [
+   "Zoku",
+   "Zoku Amsterdam"
+  ],
+  "freq_4321": 6,
+  "families": {
+   "cowork": 6
+  },
+  "languages": {
+   "en": 5,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "Zoolplan Elektro",
+  "account": "Office Supplies Expense",
+  "archetype": "cables_hardware",
+  "aliases": [
+   "Zoolplan Elektro"
+  ],
+  "freq_4321": 1,
+  "families": {
+   "cables": 1
+  },
+  "languages": {
+   "mixed": 1
+  },
+  "vendor_unverified": true
+ },
+ {
+  "canonical": "Zoom",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "saas_collab",
+  "aliases": [
+   "ZOOM",
+   "ZOOM.US",
+   "Zoom",
+   "Zoom Communications",
+   "Zoom Video Communications Inc"
+  ],
+  "freq_4321": 44,
+  "families": {
+   "collab": 44
+  },
+  "languages": {
+   "en": 35,
+   "mixed": 5,
+   "nl": 4
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "e-Boekhouden.nl",
+  "account": "Software & Subscriptions Expense",
+  "archetype": "accounting_software",
+  "aliases": [
+   "e-Boekhouden.nl",
+   "e-Boekhouden.nl B.V.",
+   "e-Boekhouden.nl BV"
+  ],
+  "freq_4321": 11,
+  "families": {
+   "accounting": 11
+  },
+  "languages": {
+   "en": 10,
+   "mixed": 1
+  },
+  "vendor_unverified": false
+ },
+ {
+  "canonical": "easyJet",
+  "account": "Travel & Transport Expense",
+  "archetype": "airline",
+  "aliases": [
+   "EASYJET",
+   "easyJet",
+   "easyJet Airline Company Ltd"
+  ],
+  "freq_4321": 5,
+  "families": {
+   "airline": 5
+  },
+  "languages": {
+   "en": 2,
+   "nl": 3
+  },
+  "vendor_unverified": false
+ }
+]
